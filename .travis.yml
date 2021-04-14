@@ -1,0 +1,24 @@
+sudo: required
+language: java
+jdk: oraclejdk8
+
+services:
+  - postgresql
+
+before_install:
+  - chmod +x mvnw
+  
+addons:
+  sonarcloud:
+  organization: ISA-TEAM24
+  token: 695f2f0dc2770b7352e6913f73866c949ae3e30e  
+
+script:
+  - ./mvnw clean install -DskipTests=false -B
+
+dist: trusty
+
+deploy:
+  provider: heroku
+  api_key: deec033f-dc63-4992-a433-1395d9986ac5
+  app: isa-2020-team-24
