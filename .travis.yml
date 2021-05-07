@@ -23,10 +23,9 @@ deploy:
   api_key: deec033f-dc63-4992-a433-1395d9986ac5
   app: isa-2020-team-24
   
-sudo: enabled
 
 addons:
-  postgresql: "13.2" // change "9.5" for your postgres specific version
+  postgresql: "13.2"
 
 before_script:
   - psql -c "create database jpa;" -U postgres // your database name
