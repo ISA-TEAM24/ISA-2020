@@ -28,7 +28,7 @@ addons:
   postgresql: "13.2"
 
 before_script:
-  - psql -c "create database jpa;" -U postgres
+  - psql -c 'create database jpa;' -U postgres
   - sudo -u postgres psql -c "ALTER ROLE postgres WITH password 'root'"
 
 services:
