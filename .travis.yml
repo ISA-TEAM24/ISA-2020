@@ -1,4 +1,4 @@
-sudo: required
+sudo: enabled
 language: java
 jdk: oraclejdk8
 
@@ -22,3 +22,15 @@ deploy:
   provider: heroku
   api_key: deec033f-dc63-4992-a433-1395d9986ac5
   app: isa-2020-team-24
+  
+
+addons:
+  postgresql: "9.5"
+
+before_script:
+  - psql -c 'CREATE DATABASE jpa;' -U postgres -p 5432
+  - sudo -u postgres psql -c "ALTER ROLE postgres WITH password 'root'"
+
+services:
+  - postgresql
+
