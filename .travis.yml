@@ -25,7 +25,7 @@ deploy:
   
 
 addons:
-  postgresql: "13.2"
+  postgresql: "9.5"
 
 before_script:
   - psql -c 'CREATE DATABASE jpa;' -U postgres -p 5432
