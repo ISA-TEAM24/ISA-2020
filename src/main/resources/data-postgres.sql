@@ -1,1 +1,1 @@
-select * from terapija;
+select * from korisnik;
