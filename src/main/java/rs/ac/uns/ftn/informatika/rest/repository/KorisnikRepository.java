@@ -7,14 +7,17 @@ import rs.ac.uns.ftn.informatika.rest.model.Authority;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface KorisnikRepository extends JpaRepository<Korisnik, Long> {
 
 
-    List<Authority> findAuthoritiesByID(Long ID);
+    Set<Authority> findAuthoritiesByID(Long ID);
 
     Korisnik findOneByEmail(String email);
 
     Korisnik findByUsername(String username);
+
+    List<Korisnik> findAll();
 }

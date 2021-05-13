@@ -11,8 +11,18 @@ public class Authority implements GrantedAuthority {
     private Long ID;
     @Column(nullable = false, unique = false)
     private String name;
-    //@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //private Korisnik korisnik;
+
+    public Authority() {
+    }
+
+    public Authority(Long ID, String name) {
+        this.ID = ID;
+        this.name = name;
+    }
+
+    public Authority(String name) {
+        this.name = name;
+    }
 
     @Override
     public String getAuthority() {
