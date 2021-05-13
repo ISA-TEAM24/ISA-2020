@@ -277,4 +277,30 @@ public class Korisnik implements UserDetails {
         DERMATOLOG,
         PACIJENT
     } */
+
+    @Override
+    public String toString() {
+        return "Korisnik{" +
+                "ID=" + ID +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", lastPasswordResetDate=" + lastPasswordResetDate +
+                ", ime='" + ime + '\'' +
+                ", prezime='" + prezime + '\'' +
+                ", adresa='" + adresa + '\'' +
+                ", grad='" + grad + '\'' +
+                ", drzava='" + drzava + '\'' +
+                ", telefon='" + telefon + '\'' +
+                ", activated=" + activated +
+                ", authorities=" + authorities +
+                ", terapije=" + terapije +
+                ", loyaltyInfo=" + loyaltyInfo +
+                ", alergije=" + alergije +
+                ", radnoInfo=" + radnoInfo +
+                ", godisnjiInfo=" + godisnjiInfo +
+                ", ocena=" + ocena +
+                ", prvoLogovanje=" + prvoLogovanje +
+                '}';
+    }
 }

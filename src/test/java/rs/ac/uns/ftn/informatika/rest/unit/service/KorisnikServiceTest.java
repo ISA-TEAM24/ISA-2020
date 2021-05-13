@@ -1,6 +1,5 @@
-package rs.ac.uns.ftn.informatika.rest.unit.Service;
+package rs.ac.uns.ftn.informatika.rest.unit.service;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -13,10 +12,8 @@ import rs.ac.uns.ftn.informatika.rest.repository.KorisnikRepository;
 import rs.ac.uns.ftn.informatika.rest.service.KorisnikService;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;

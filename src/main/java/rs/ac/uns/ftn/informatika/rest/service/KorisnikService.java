@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.rest.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class KorisnikService {
 		return result;
 	}
 
-	public Korisnik saveKorisnik(UserRequest userRequest) {
+	public Korisnik saveKorisnik(UserRequest userRequest) throws Exception {
 		Korisnik k = new Korisnik();
 		k.setUsername(userRequest.getUsername());
 		// pre nego sto postavimo lozinku u atribut hesiramo je
@@ -53,8 +54,15 @@ public class KorisnikService {
 		k.setIme(userRequest.getFirstname());
 		k.setPrezime(userRequest.getLastname());
 		k.setActivated(true);
-		
+		k.setAdresa(userRequest.getAddress());
+		k.setDrzava(userRequest.getCountry());
+		k.setGrad(userRequest.getCity());
+		k.setLastPasswordResetDate(new Date());
+		k.setTelefon(userRequest.getPhone());
+		k.setEmail("email");
 		List<Authority> auth = findByName("ROLE_USER");
+		if (auth == null)
+			throw new Exception("No role with such name");
 		// u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
 		k.setAuthorities(new HashSet<>(auth));
 		
