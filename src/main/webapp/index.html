@@ -10,47 +10,122 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
-
-    <title>Document</title>
+    
+    <title>Homepage</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"> <img src="img/logo.png" alt="" /></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarResponsive"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">navitem0</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="">navitem1</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="">navitem2 </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="">navitem3</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link"  href="">navitem4</a>
-            </li>
-          </ul>
+    <div class="index-img" id="">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <div class="container-fluid">
+          <!--<a class="navbar-brand" href="#"> <img class="logo-img" src="img/logo.png" alt="" /></a>-->
+          <button
+            class="navbar-toggler custom-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div class="container">
+              <ul class="navbar-nav w-100 justify-content-center">
+                <li class="nav-item">
+                  <a class="nav-link surround-item" href="index.html">CONTACT</a>
+                </li>
+    
+                <li class="nav-item">
+                  <a class="nav-link surround-item" href="#about">ABOUT US</a>
+                </li>
+    
+                <li class="nav-item active middle-nav">
+                  <a class="nav-link" href="#">MDNN</a>
+                </li>
+    
+                <li class="nav-item">
+                  <a class="nav-link surround-item" href="">SIGN UP</a>
+                </li>
+    
+                <li class="nav-item">
+                  <a class="nav-link surround-item"  href="">LOGIN</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+  
+      <!--searchbar start-->
+      <section id="search" class="search-contain">
+        <div class="container">
+          <div class="row no-gutters">
+            <div class="offset-lg-2 col-lg-5">
+              <input class="col-lg-12 search-bar" type="text" placeholder="Find what you need today">
+            </div>
+            <div class="col-lg-1 pr-2-4">
+                <select class="selectpicker drop-me-down" data-show-tokens= "false" data-live-search="true">
+                  <option data-tokens="PHARMACY">&nbsp&nbspPHARMACY</option>
+                  <option data-tokens="MEDICINE">&nbsp&nbspMEDICINE</option>    
+                </select>            
+            </div>
+  
+            <div class="col-lg-1">
+              <button class="search-button" type="submit">&nbspSEARCH&nbsp</button>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <!--searchbar end-->
+  
+      <!-- BANNER TEXT START -->
+      <section class="use-montseratt">
+        <div class="container">
+          <div class="row row-bottom-margin">
+            <div class="offset-lg-2">
+              <p style="letter-spacing:-9px;">
+                <span class="custom-green">M</span>
+                <span class="custom-white">O</span>
+                <span class="custom-green">D</span>
+                <span class="custom-white">E</span>
+                <span class="custom-white">R</span>
+                <span class="custom-green">N</span>
+                <span>&nbsp</span>
+                <span class="custom-white">O</span>
+                <span class="custom-green">N</span>
+                <span class="custom-white">L</span>
+                <span class="custom-white">I</span>
+                <span class="custom-white">N</span>
+                <span class="custom-white">E</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="offset-lg-2 custom-white">
+              PHARMACY
+            </div>
+          </div>
+        </div>
+
+        <div class="container" style="font-family: Molengo; font-size:20px;">
+          <div class="row">
+            <div class="offset-lg-2 custom-white">
+              Where everything goes according to plan.
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- BANNER TEXT END-->
+    </div>
+
+    <div class="img-about" id="about">
+
+    </div>
+    
+
+
 
     <script
             src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -67,5 +142,6 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"
     ></script>
+    <script src="js/navscript.js"></script>
   </body>
 </html>
