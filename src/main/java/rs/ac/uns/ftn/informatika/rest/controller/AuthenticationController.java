@@ -32,8 +32,8 @@ public class AuthenticationController {
     @Autowired
     private TokenUtils tokenUtils;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    //@Autowired
+    //private AuthenticationManager authenticationManager;
 
     @Autowired
     private CustomUserDetailsService userDetailsService;
@@ -49,7 +49,7 @@ public class AuthenticationController {
         // testing purpose
         // System.out.println(userService.findByUsername(authenticationRequest.getUsername()));
 
-        Authentication authentication = authenticationManager
+        Authentication authentication = userDetailsService.getAuthenticationManager()
                 .authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
                         authenticationRequest.getPassword()));
 

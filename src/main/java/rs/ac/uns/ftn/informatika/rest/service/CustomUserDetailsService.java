@@ -31,6 +31,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    public AuthenticationManager getAuthenticationManager(){
+        return this.authenticationManager;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
