@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,6 +28,7 @@ public class KorisnikService {
 	@Autowired
 	private AuthorityRepository authorityRepository;
 
+	@Lazy
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
