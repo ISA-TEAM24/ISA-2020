@@ -1,0 +1,76 @@
+img {
+    width: 70px;
+    height: 70px;
+  }
+  a {
+    font-size: 16px;
+  }
+  
+  label{
+    margin-top: 10px;
+  }
+  
+  #systemName {
+    color: rgb(25, 175, 250);
+    font-family: cursive;
+  }
+  
+  #avatarimg {
+    display: block;
+    max-width: 100%;
+    height: 150px;
+    width: 150px;
+  }
+  
+  #welcome {
+    opacity: 0.3;
+    display: block;
+    width: 100%;
+    height: auto;
+  
+  }
+  
+  .loginText {
+    width: 350px;
+  }
+  
+  #searchbtn {
+    margin-top: 37px;
+  }
+  
+  tr {
+    width: 100%;
+    display: inline-table;
+    table-layout: fixed;
+    }
+    
+  table{
+     height:300px;              /* <-- Select the height of the table */
+     display: -moz-groupbox;    /*Firefox Bad Effect*/
+  }
+    
+  tbody{
+      overflow-y: scroll;      
+      height: 300px;            /*<-- Select the height of the body*/
+      width: 100%;
+      position: absolute;
+  }
+  
+  /* IZDAVANJE LEKA*/
+  #idRezervacijeInput {
+    width: 250px;
+  }
+  
+  #proveribtn{
+    width: 250px;
+  }
+  
+  .col-centered {
+    margin: auto; 
+    max-width: 300px;
+  }
+  
+  textarea {
+    resize: none;
+    height: 150px;
+  }
