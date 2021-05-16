@@ -1,0 +1,55 @@
+.img-background {
+  background-image: url('../../img/poli-light-blur.jpg');
+  font-family: Molengo;
+    /* Center and scale the image nicely */
+  height : 100vh;
+  background-repeat: no-repeat;
+}
+
+.tabbed-panez {
+    padding-top: 15vh;
+    
+}
+
+.poppin-pillies {
+    background-color: rgb(240, 235, 235);
+}
+
+.under-nav-fake {
+  background-color: transparent;
+  /* Center and scale the image nicely */
+  background-repeat: no-repeat;
+  padding-bottom: 15vh;
+}
+
+.under-nav-real {
+  background-color: transparent;
+  /* Center and scale the image nicely */
+  background-repeat: no-repeat;
+  padding-bottom: 85vh;
+}
+
+.left-panel {
+    background-image: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.6));
+    height: 75vh;
+}
+
+.right-panel {
+    background-color: rgb(255, 255, 255);
+}
+
+.background-tint {
+    background-color: rgba(141, 140, 138, 0.7); /* Tint color */
+    background-blend-mode: multiply;
+}
+
+.nav-link.active {
+    background: #42275a;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #734b6d, #42275a);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #734b6d, #42275a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.nav-link {
+    color: black;
+}
