@@ -53,3 +53,48 @@
 .nav-link {
     color: black;
 }
+
+/* css related to all sidebar items */
+.text-pad {
+    padding-top: 1vh;
+    padding-left: 3vw;
+}
+
+.pretty-color {
+    color: #42275a;  /* fallback for old browsers */
+    color: -webkit-linear-gradient(to right, #734b6d, #42275a);  /* Chrome 10-25, Safari 5.1-6 */
+    color: linear-gradient(to right, #734b6d, #42275a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* css related to sidebar item - Profile */
+
+.left-pad {
+    padding-left: 1px;
+    padding-bottom: 4vh;
+    opacity: 0.5;
+}
+
+.input-border {
+    outline: none;
+    border: none;
+    border-bottom: solid 1px rgba(0,0,0,0.5);
+
+}
+
+.long-label {
+    margin-left: 0px;
+    padding-right: 5vw;
+}
+
+.btn-info {
+    background: #42275a;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #734b6d, #42275a);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #734b6d, #42275a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border: none;
+    border-radius: 50px;
+    height: 5vh;
+}
+
+input[type="text"]:disabled {
+    background-color:transparent;
+}
