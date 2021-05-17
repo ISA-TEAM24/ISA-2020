@@ -68,8 +68,9 @@
                         <br>
                         <br>
                         <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
+                        <a class="nav-link" id="v-pills-allergies-tab" data-toggle="pill" href="#v-pills-allergies" role="tab" aria-controls="v-pills-allergies" aria-selected="false">Allergies</a>         
                         <a class="nav-link" id="v-pills-appointments-tab" data-toggle="pill" href="#v-pills-appointments" role="tab" aria-controls="v-pills-appointments" aria-selected="false">Appointments</a>
-                        <a class="nav-link" id="v-pills-loyalty-tab" data-toggle="pill" href="#v-pills-loyalty" role="tab" aria-controls="v-pills-loyalty" aria-selected="false">Loyalty</a>
+                        <a class="nav-link" id="v-pills-loyalty-tab" data-toggle="pill" href="#v-pills-loyalty" role="tab" aria-controls="v-pills-loyalty" aria-selected="false">Loyalty/Penalties</a>
                         <a class="nav-link" id="v-pills-subscriptions-tab" data-toggle="pill" href="#v-pills-subscriptions" role="tab" aria-controls="v-pills-subscriptions" aria-selected="false">Subscriptions</a>
                         <a class="nav-link" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
                         <a class="nav-link" id="v-pills-upcoming-tab" data-toggle="pill" href="#v-pills-upcoming" role="tab" aria-controls="v-pills-upcoming" aria-selected="false">Upcoming</a>
@@ -141,7 +142,7 @@
                                     </div>
                                     
                                     <div class="offset-4 col-3">
-                                        <button class="btn btn-info">&nbsp&nbsp&nbspSave changes&nbsp&nbsp</button>
+                                        <button class="btn btn-info-profile">&nbsp&nbsp&nbspSave changes&nbsp&nbsp</button>
                                     </div>
 
                                 </div>
@@ -160,27 +161,264 @@
 
                             </div>
                         </div>
+                         
+                        <div class="tab-pane fade" id="v-pills-allergies" role="tabpanel" aria-labelledby="v-pills-allergies-tab">
+                          <br>
+                          <br>
+                          <div class="text-pad">
+                            <div class="row pretty-color" style="font-size: 2.5vh;">Allergies</div>
+                            <br>
+                            <br>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                              <table class="table table-bordered table-striped mb-0">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col"></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Penicillin</td>
+                                    <td> <button class="btn btn-info-allergies">Remove</button></td>
+                                  </tr>   
+                                  <tr>
+                                    <td>Penicillin</td>
+                                    <td> <button class="btn btn-info-allergies">Remove</button></td>
+                                  </tr> 
+                                  <tr>
+                                    <td>Penicillin</td>
+                                    <td> <button class="btn btn-info-allergies">Remove</button></td>
+                                  </tr> 
+                                  <tr>
+                                    <td>Penicillin</td>
+                                    <td> <button class="btn btn-info-allergies">Remove</button></td>
+                                  </tr>                        
+                                </tbody>
+                              </table>
+                            </div>
+                            <br>
+                            <hr>
+                            <div class="container py-5">
+                              <div class="row">
+                                <div class="offset-3 col-2">
+                                  <input type="text" placeholder="Allergy name">
+                                </div>
+                                <div class="offset-1 col-2">
+                                  <button class="btn btn-info-allergies">Add new allergy </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                            
+                        </div>
 
                         <div class="tab-pane fade" id="v-pills-appointments" role="tabpanel" aria-labelledby="v-pills-appointments-tab">
                             <br>
                             <br>
-                            appointments
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">Appointments</div>
+                              <br>
+                              <br>
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                <table class="table table-bordered table-striped mb-0">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Type of visit</th>
+                                      <th scope="col">Doctor</th>
+                                      <th scope="col">Time</th>
+                                      <th scope="col">Date</th>
+                                      <th scope="col">Pharmacy</th>
+                                      <th scope="col"></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>Exam</td>
+                                      <td>Mark Ristic</td>
+                                      <td>17:15</td>
+                                      <td>21/07/2021</td>
+                                      <td>MDNN 5</td>
+                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
+                                    </tr>   
+                                    <tr>
+                                      <td>Exam</td>
+                                      <td>Mark Ristic</td>
+                                      <td>17:15</td>
+                                      <td>21/07/2021</td>
+                                      <td>MDNN 5</td>
+                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
+                                    </tr>
+                                    <tr>
+                                      <td>Exam</td>
+                                      <td>Mark Ristic</td>
+                                      <td>17:15</td>
+                                      <td>21/07/2021</td>
+                                      <td>MDNN 5</td>
+                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
+                                    </tr> 
+                                    <tr>
+                                      <td>Exam</td>
+                                      <td>Mark Ristic</td>
+                                      <td>17:15</td>
+                                      <td>21/07/2021</td>
+                                      <td>MDNN 5</td>
+                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
+                                    </tr> 
+                                    <tr>
+                                      <td>Exam</td>
+                                      <td>Mark Ristic</td>
+                                      <td>17:15</td>
+                                      <td>21/07/2021</td>
+                                      <td>MDNN 5</td>
+                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
+                                    </tr>
+                                    <tr>
+                                      <td>Exam</td>
+                                      <td>Mark Ristic</td>
+                                      <td>17:15</td>
+                                      <td>21/07/2021</td>
+                                      <td>MDNN 5</td>
+                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
+                                    </tr>                       
+                                  </tbody>
+                                </table>
+                              </div>
+                              <br>                                           
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-loyalty" role="tabpanel" aria-labelledby="v-pills-loyalty-tab">
-                            <br>
-                            <br>
-                            loyalty
+                          <br>
+                          <br>
+                          <div class="text-pad">
+                            <div class="row pretty-color" style="font-size: 2.5vh;">Loyalty/Penalties</div>
+                            <h5 class="py-5 "> 
+                              You currently belong in the GOLD category - 10% off on all products and exams
+                            </h5>
+                            <h5 class="py-3"> 
+                              You currently have no penalty points - no punishment
+                            </h5>
+
+                          </div>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-subscriptions" role="tabpanel" aria-labelledby="v-subscriptions-loyalty-tab">
+                        <div class="tab-pane fade" id="v-pills-subscriptions" role="tabpanel" aria-labelledby="v-subscriptions-tab">
                             <br>
                             <br>
-                            subscriptions
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">Subscriptions</div>
+                              <br>
+                              <br>
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                <table class="table table-bordered mb-0">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Dermatologist name</th>
+                                      <th scope="col">Subscribed</th>
+
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>MDNN 5</td>
+                                      <td>
+                                        <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider round"></span>
+                                      </label>
+                                    </td>
+                                    </tr>   
+                                    <tr>
+                                      <td>MDNN 7</td>
+                                      <td>
+                                        <label class="switch">
+                                          <input type="checkbox">
+                                          <span class="slider round"></span>
+                                        </label>
+                                      </td>
+                                    </tr>
+                                                           
+                                  </tbody>
+                                </table>
+                                <div class="container py-3">
+                                  <div class="row">
+                                    <div class="offset-7 col-2">
+                                      <button class="btn-info-profile btn">&nbsp&nbspSave Changes&nbsp&nbsp</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+  
+                            </div>
                         </div>
 
                         <div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab">
                             <br>
                             <br>
-                            history
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">History of appointments</div>
+                              <br>
+                              <br>
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                <table class="table table-bordered mb-0" id="history_pharmacist_table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Pharmacist</th>
+                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Price</th>
+                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Length</th>
+                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Date</th>
+
+                                    </tr>
+                                    
+                                  </thead>
+                                  <tbody>  
+                                    <tr>
+                                      <td>D</td>
+                                      <td>P</td>
+                                      <td>L</td>
+                                      <td>1</td>
+                                    </tr>  
+                                    <tr>
+                                      <td>Z</td>
+                                      <td>A</td>
+                                      <td>Z</td>
+                                      <td>2</td>
+                                    </tr>               
+                                  </tbody>
+                                </table>
+                                <table class="table table-bordered mb-0" id="history_dermatologist_table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" onclick="sortTable(0,'history_dermatologist_table')">Dermatologist</th>
+                                      <th scope="col" onclick="sortTable(1,'history_dermatologist_table')">Price</th>
+                                      <th scope="col" onclick="sortTable(2,'history_dermatologist_table')">Length</th>
+                                      <th scope="col" onclick="sortTable(3,'history_dermatologist_table')">Date</th>  
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>D</td>
+                                      <td>P</td>
+                                      <td>L</td>
+                                      <td>D</td>
+                                    </tr>  
+                                    <tr>
+                                      <td>Z</td>
+                                      <td>A</td>
+                                      <td>Z</td>
+                                      <td>A</td>
+                                    </tr>                                                                                  
+                                  </tbody>
+                                </table>
+                                <div class="container py-3">
+                                  <div class="row">
+                                    <div class="offset-7 col-2">
+                                      <button id="history_save" class="btn-info-profile btn">Show exams</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+  
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-upcoming" role="tabpanel" aria-labelledby="v-pills-upcoming-tab">
                             <br>
@@ -246,7 +484,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"
     ></script>
-    
+    <script src="../js/user/history.js"></script>
     
   </body>
 </html>
