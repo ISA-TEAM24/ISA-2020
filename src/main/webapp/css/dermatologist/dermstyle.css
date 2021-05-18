@@ -1,3 +1,28 @@
+html {
+  scroll-behavior: smooth;
+  font-family: 'Molengo';
+}
+
+@font-face {
+  font-family: 'Molengo';
+  src: url('/fonts/Molengo-Regular.ttf'); /* IE9 Compat Modes */
+  src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/fonts/Molengo-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'Montseratt';
+  src: url('/fonts/Montserrat-Bold.ttf'); /* IE9 Compat Modes */
+  src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/fonts/Montserrat-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
 img {
     width: 70px;
     height: 70px;
@@ -11,8 +36,9 @@ img {
   }
   
   #systemName {
-    color: rgb(25, 175, 250);
-    font-family: cursive;
+    color: #4794db;
+    font-family: 'Molengo';
+    padding-top: 10px;
   }
   
   #avatarimg {
@@ -27,7 +53,6 @@ img {
     display: block;
     width: 100%;
     height: auto;
-  
   }
   
   .loginText {
@@ -48,6 +73,11 @@ img {
      height:300px;              /* <-- Select the height of the table */
      display: -moz-groupbox;    /*Firefox Bad Effect*/
   }
+
+  #historytable{
+    height:500px;              /* <-- Select the height of the table */
+    display: -moz-groupbox;    /*Firefox Bad Effect*/
+ }
     
   tbody{
       overflow-y: scroll;      
