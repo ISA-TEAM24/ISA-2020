@@ -36,6 +36,7 @@
 
 .right-panel {
     background-color: rgb(255, 255, 255);
+    height: 75vh;
 }
 
 .background-tint {
@@ -92,7 +93,7 @@
     background: linear-gradient(to right, #734b6d, #42275a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border: none;
     border-radius: 50px;
-    height: 5vh;
+    height: 4vh;
     color: white;
 }
 
@@ -104,7 +105,7 @@ input[type="text"]:disabled {
 
 .my-custom-scrollbar {
   position: relative;
-  height: 50vh;
+  height: 35vh;
   overflow: auto;
 }
 
@@ -187,5 +188,9 @@ input[type="text"]:disabled {
     border-radius: 50%;
   }
 
-  /* */
+  /* css related to sidebar item - Complaints */
+  .input-sizing {
+    width: 20vw;
+    height: 35vh;
+  }
   
