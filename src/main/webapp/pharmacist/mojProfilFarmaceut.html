@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/dermatologist/dermstyle.css" />
+
+    <title>My profile</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"> <img src="../img/logo2.png" alt="" /></a>
+        <h2 id='systemName'>MDNN</h2>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="indexFarmaceut.html">Početna</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pregledani klijenti</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Savetovanje</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Radni kalendar</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Izdavanje leka</a>
+              </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="#">Godišnji/odsustvo</a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link" href="mojProfilFarmaceut.html">Moj profil</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Zakazivanje savetovanja</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">Izloguj se</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <br>
+
+    <h2 class="text-center">Moj profil</h2>
+    <hr>
+    <br>
+
+    <div class ="container">
+        
+        <div class="row">
+            <div class="col-lg-2">             
+            </div>
+
+            <div class="col-lg-2">
+                <img src="../img/avatar.png" class="img-thumbnail mx-auto rounded float-left" alt="Responsive image" id="avatarimg">
+            </div>
+
+            <div class="col-lg-4">
+                <br>
+                <label>
+                    <h2  id="punoImeId"> dr. Farmaceut farmaceut</h2>
+                </label>
+
+                <br>
+                <br>
+
+            </div>
+
+            <div class="col-lg-1">
+
+              <br>
+              <br>
+
+              <div class="col-lg-3">
+                <button class="btn btn-dark" id="changebtn" onclick="location.href='radniKalendar.html'"> Radni kalendar </button>
+            </div> 
+
+          </div>
+
+
+        </div>
+
+        <hr>
+        <div class="row">
+            <div class="col-lg-2">             
+            </div>
+
+            <div class="col-lg-2">
+                <label>Ime:</label>
+                <input type="text" id="imeId">
+            </div>
+
+            <div class="col-lg-1">             
+            </div>
+    
+            <div class="col-lg-2">
+                <label>Prezime:</label>
+                <input type="text" id="prezimeId">
+            </div>
+
+            <div class="col-lg-1">             
+            </div>
+
+            <div class="col-lg-2">
+              <label>Telefon:</label>
+              <input type="text" id="telId">
+          </div>
+  
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2">             
+            </div>
+
+            <div class="col-lg-2">
+                <label>Adresa:</label>
+                <input type="text" id="adresaId">
+            </div>
+            
+            <div class="col-lg-1">             
+            </div>
+    
+            <div class="col-lg-2">
+              <label>Država:</label>
+              <input type="text" id="drzavaId">
+          </div>
+          
+          <div class="col-lg-1">             
+          </div>
+
+          <div class="col-lg-2">
+            <label>Grad:</label>
+            <input type="text" id="gradId">
+        </div>
+  
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2">             
+            </div>
+
+            <div class="col-lg-2">
+                <label>Email:</label>
+                <input type="text" id="mailId">
+            </div>
+  
+        </div>
+
+        <br>
+        <hr>
+
+        <div class="row">
+            <div class="col-lg-3"></div>
+
+            <div class="col-lg-3">
+                <button class="btn btn-primary" id="changepwBtn" data-target="#changepwModal" data-toggle="modal">&nbsp&nbsp&nbsp&nbsp&nbsp Izmenu lozinku &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+            </div> 
+
+            <div class="col-lg-3">
+                <button class="btn btn-dark" id="changeDatabtn" data-target="#changeDataModal" data-toggle="modal">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Izmeni podatke &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+            </div> 
+            
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3"></div>
+
+          <div class="col-lg-3">
+            
+          </div> 
+          
+        </div>
+      </div>
+
+        <br>
+        
+
+      <!-- CHANGE PW MODAL-->
+
+      <div class="container" id="changepwDiv">
+        <div class="row">
+          <div class="col-xs-12">
+
+            <div class="modal fade" data-keyboard="false" data-backdrop="static" id="changepwModal" tabindex="-1">
+              <div class="modal-dialog modal-md">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                      <h4 class="modal-title w-100" id="modalTitle"> Izmena lozinke </h4>
+                      <button class="close" data-dismiss="modal">&times;</button>
+
+                    </div>
+
+                    <div class ="modal-body">
+                      <form id="formXYZ">
+                        <div class="form-group">
+                          <label>Stara lozinka: </label>
+                          <input class="form-control" type="password" placeholder="" id="oldpw">
+                        </div>
+
+                        <div class="form-group">
+                          <label>Nova lozinka: </label>
+                          <input class="form-control" type="password" name="password" placeholder="" id="newpw1">
+                        </div>
+
+                        <div class="form-group">
+                          <label>Ponovi novu lozinku: </label>
+                          <input class="form-control" type="password" name="password" placeholder="" id="newpw2">
+                        </div>
+                      </form>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button class="btn btn-dark" id="closeBtn" data-dismiss="modal">Odustani</button>
+                      <button class="btn btn-primary" type="submit" id="savepwBtn">Sačuvaj</button>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+      <!-- END OF CHANGE PW MODAL-->
+
+     <!-- CHANGE DATA MODAL-->
+
+     <div class="container" id="changeDataDiv">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="modal fade" data-keyboard="false" data-backdrop="static" id="changeDataModal" tabindex="-1">
+            <div class="modal-dialog modal-md">
+              <div class="modal-content">
+
+                  <div class="modal-header">
+                    <h4 class="modal-title w-100" id="modalTitle"> Izmena podataka </h4>
+                    <button class="close" data-dismiss="modal">&times;</button>
+
+                  </div>
+
+                  <div class ="modal-body">
+                    <form id="form2">
+
+                      <div class="form-group">
+                        <label>Ime: </label>
+                        <input class="form-control" type="text" placeholder="" id="ime1">
+                      </div>
+
+                      <div class="form-group">
+                        <label>Prezime: </label>
+                        <input class="form-control" type="text" placeholder="" id="prezime1">
+                      </div>
+
+                      <div class="form-group">
+                        <label>Telefon: </label>
+                        <input class="form-control" type="text" placeholder="" id="telefon1">
+                      </div>
+
+                      <div class="form-group">
+                        <label>Adresa: </label>
+                        <input class="form-control" type="text" placeholder="" id="adresa1">
+                      </div>
+
+                      <div class="form-group">
+                        <label>Država: </label>
+                        <input class="form-control" type="text" placeholder="" id="drzava1">
+                      </div>
+
+                      <div class="form-group">
+                        <label>Grad: </label>
+                        <input class="form-control" type="text" placeholder="" id="grad1">
+                      </div>
+
+                      <div class="form-group">
+                        <label>Email: </label>
+                        <input class="form-control" type="text" placeholder="" id="email1">
+                      </div>
+
+
+                    </form>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button class="btn btn-dark" id="closeBtn" data-dismiss="modal">Odustani</button>
+                    <button class="btn btn-primary" type="submit" id="savepwBtn">Sačuvaj</button>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    
+    <!-- END OF DATA MODAL-->
+
+    </div>
+
+    
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="text/javascript" src="js/mojProfilFarmaceut.js"></script>
+
+  </body>
+</html>
