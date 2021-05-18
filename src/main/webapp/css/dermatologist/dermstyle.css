@@ -104,3 +104,7 @@ img {
     resize: none;
     height: 150px;
   }
+
+  .customBtn {
+    width: 100%;
+  }
