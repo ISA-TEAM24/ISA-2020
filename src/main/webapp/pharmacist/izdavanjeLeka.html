@@ -12,13 +12,14 @@
     <link rel="stylesheet" href="../css/dermatologist/dermstyle.css" />
     <link rel="stylesheet" href="../css/dermatologist/navbar-dermpharm.css"/>
 
-    <title>TimeOff request</title>
+    <title>Prescription dispense</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
       <div class="container-fluid">
         <a class="navbar-brand brand" href="indexFarmaceut.html"> <img src="../img/logo2.png" alt="" /></a>
         <h2 id='systemName'>MDNN</h2>
+
         <button
           class="navbar-toggler"
           type="button"
@@ -30,38 +31,38 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link" href="indexFarmaceut.html">Početna</a>
               </li>
-  
+
               <li class="nav-item">
                 <a class="nav-link" href="pregledaniKlijentiFarmaceut.html">Pregledani klijenti</a>
               </li>
-  
+
               <li class="nav-item">
                 <a class="nav-link" href="savetovanje.html">Savetovanje</a>
               </li>
-  
+
               <li class="nav-item">
                 <a class="nav-link" href="radniKalendar.html">Radni kalendar</a>
               </li>
-  
-              <li class="nav-item">
-                  <a class="nav-link" href="izdavanjeLeka.html">Izdavanje leka</a>
-                </li>
-              
+
               <li class="nav-item active">
+                  <a class="nav-link" href="izdavanjeLeka.html">Izdavanje leka</a>
+              </li>
+              
+              <li class="nav-item">
                 <a class="nav-link" href="timeOffZahtev.html">Godišnji/odsustvo</a>
               </li>
-  
+
               <li class="nav-item">
                 <a class="nav-link" href="mojProfilFarmaceut.html">Moj profil</a>
               </li>
-  
+
               <li class="nav-item">
                 <a class="nav-link" href="zakaziSavetovanje.html">Zakazivanje savetovanja</a>
               </li>
-  
+
               <li class="nav-item">
                 <a class="nav-link" href="#">Izloguj se</a>
               </li>
@@ -72,48 +73,57 @@
 
     <br>
 
-    <h2 class="text-center">Podnošenje zahteva za godišnji odmor/odustvo</h2>
+    <h2 class="text-center">Izdavanje leka</h2>
     <hr>
     <br>
+    
     <div class="container">
-        <div class="col-md-20 col-centered">
-            <div class="form-group">
-                <label>Od datuma: </label>
-                <input class="form-control" type="date" placeholder="" id="odDatuma">
-            </div>  
 
-            <div class="form-group">
-                <label>Do datuma: </label>
-                <input class="form-control" type="date" placeholder="" id="doDatuma">
+            <div class="col-lg-4 col-centered">
+                <label>&nbsp &nbsp &nbsp Jedinstveni broj rezervacije:</label>
+                <br>
+                <br>
+                
+                <input type="text" id="idRezervacijeInput">
+
+                <br>
+                <br>
+
+                <button class="btn btn-primary" id="proveribtn">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Proveri &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
             </div>
 
-            <div class="form-group">
-                <label>Vrsta zahteva: </label>
-                <select class="form-control" id="vrstaZahteva">
-                    <option>Godišnji odmor</option>
-                    <option>Odsustvo</option>
-                  </select>
-            </div>
+            <br>
+            <br>
 
-            <div class="form-group">
-                <label for="razlogZahteva">Razlog: </label>
-                <textarea class="form-control zahtevtxtArea" id="razlogZahteva" rows="2"></textarea>
-            </div>
-
-        <br>
-            <div class="row">
-            <div class="col text-center">
-                <button class="btn btn-primary customBtn" type="submit" id="podnesiZahtev">Podnesi zahtev</button>
-            </div>
+            <div class="container col-lg-12"> 
+              <table class="table text-center table-striped" id = "mydatatable" >
+                <thead class="thead">
+                  <tr>
+                    <th class="th-sm" scope="col" data-column="ime" data-order ="">Ime </th>
+                    <th class="th-sm" scope="col" data-column="prezime" data-order ="">Prezime </th>
+                    <th class="th-sm" scope="col" data-column="brRezervacije" data-order ="">Broj rezervacije </th>
+                    <th class="th-sm" scope="col" data-column="preuzmi" data-order =""></th>
+                  </tr>
+                </thead>
+  
+                <tbody class="customtbody" id="tableBody">
+                    <tr>
+                      <td>Nikola</td>
+                      <td>Tomik</td>
+                      <td>111111</td>
+                      <td><button class="btn btn-warning" id="preuzmiId"> preuzmi </button></td>
+                    </tr>
+                </tbody>
+              </table>
+        
         </div>
 
-        <br>
-        <br>
-
-      </div>
 
 
+  
+        </div>
     </div>
+    
 
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

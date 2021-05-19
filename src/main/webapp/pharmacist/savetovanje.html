@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/dermatologist/dermstyle.css" />
     <link rel="stylesheet" href="../css/dermatologist/navbar-dermpharm.css"/>
 
-    <title>TimeOff request</title>
+    <title>Consultation</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
@@ -38,7 +38,7 @@
                 <a class="nav-link" href="pregledaniKlijentiFarmaceut.html">Pregledani klijenti</a>
               </li>
   
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="savetovanje.html">Savetovanje</a>
               </li>
   
@@ -50,7 +50,7 @@
                   <a class="nav-link" href="izdavanjeLeka.html">Izdavanje leka</a>
                 </li>
               
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="timeOffZahtev.html">Godišnji/odsustvo</a>
               </li>
   
@@ -72,46 +72,79 @@
 
     <br>
 
-    <h2 class="text-center">Podnošenje zahteva za godišnji odmor/odustvo</h2>
+    <h2 class="text-center">Pretraga pacijenta za savetovanje</h2>
     <hr>
-    <br>
-    <div class="container">
-        <div class="col-md-20 col-centered">
-            <div class="form-group">
-                <label>Od datuma: </label>
-                <input class="form-control" type="date" placeholder="" id="odDatuma">
-            </div>  
 
-            <div class="form-group">
-                <label>Do datuma: </label>
-                <input class="form-control" type="date" placeholder="" id="doDatuma">
+
+    <div class ="container">
+        
+        <div class="row">
+            <div class="col-lg-2">             
             </div>
 
-            <div class="form-group">
-                <label>Vrsta zahteva: </label>
-                <select class="form-control" id="vrstaZahteva">
-                    <option>Godišnji odmor</option>
-                    <option>Odsustvo</option>
-                  </select>
+            <div class="col-lg-2">
+                <label>Ime:</label>
+                <input type="text" id="imeId">
             </div>
 
-            <div class="form-group">
-                <label for="razlogZahteva">Razlog: </label>
-                <textarea class="form-control zahtevtxtArea" id="razlogZahteva" rows="2"></textarea>
+            <div class="col-lg-1">             
+            </div>
+    
+            <div class="col-lg-2">
+                <label>Prezime:</label>
+                <input type="text" id="prezimeId">
             </div>
 
-        <br>
-            <div class="row">
-            <div class="col text-center">
-                <button class="btn btn-primary customBtn" type="submit" id="podnesiZahtev">Podnesi zahtev</button>
+            <div class="col-lg-1">             
             </div>
+
+            <div class="col-lg-2">
+                <button class="btn btn-primary" id="searchbtn">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Pretraži &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+            </div> 
+  
         </div>
 
         <br>
+        <hr>
         <br>
 
-      </div>
+        <div class='form col-lg-3'>
 
+        </div>
+
+        <div class="form col-lg-12"> 
+            
+            <table class="table text-center">
+              <thead>
+                <tr>
+                  <th scope="col">Datum</th>
+                  <th scope="col">Vreme</th>
+                  <th scope="col">Ime</th>
+                  <th scope="col">Prezime</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+
+                </tr>
+              </thead>
+
+              <tbody id="tableBody">
+                <tr>
+                    <td>18-05-2021</td>
+                    <td>08:00</td>
+                    <td>Test</td>
+                    <td>Pacijent</td>
+                    <td><button class="btn btn-dark" id="">Započni savetovanje</button></td>
+                    <td><button class="btn btn-warning" id="">Nije se pojavio/la</button></td>
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <br>
+          <hr>
+          <br>
 
     </div>
 
@@ -130,8 +163,6 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-
-    <script type="text/javascript" src=""></script>
 
   </body>
 </html>
