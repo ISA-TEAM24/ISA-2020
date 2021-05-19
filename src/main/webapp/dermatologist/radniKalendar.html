@@ -9,10 +9,16 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../css/dermatologist/dermstyle.css" />
-    <link rel="stylesheet" href="../css/dermatologist/navbar-dermpharm.css"/>
 
-    <title>Examination</title>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.css' rel='stylesheet' />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.css' rel='stylesheet' />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.min.css' rel='stylesheet' />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/list/main.min.css' rel='stylesheet' />
+  
+    <link rel="stylesheet" href="../css/dermatologist/kalendar.css" />
+    <link rel="stylesheet" href="../css/dermatologist/navbar-dermpharm.css"/>
+  
+    <title>Working calendar</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
@@ -38,11 +44,11 @@
               <a class="nav-link" href="pregledaniKlijenti.html">Pregledani klijenti</a>
             </li>
 
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="pregled.html">Pregled</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="radniKalendar.html">Radni kalendar</a>
             </li>
             
@@ -68,81 +74,19 @@
 
     <br>
 
-    <h2 class="text-center">Pretraga pacijenta za pregled</h2>
+    <h2 class="text-center">Radni kalendar</h2>
     <hr>
+    <br>
 
+    <div class = "container">
+    <div id='calendar-container'>
 
-    <div class ="container">
-        
-        <div class="row">
-            <div class="col-lg-2">             
-            </div>
-
-            <div class="col-lg-2">
-                <label>Ime:</label>
-                <input type="text" id="imeId">
-            </div>
-
-            <div class="col-lg-1">             
-            </div>
-    
-            <div class="col-lg-2">
-                <label>Prezime:</label>
-                <input type="text" id="prezimeId">
-            </div>
-
-            <div class="col-lg-1">             
-            </div>
-
-            <div class="col-lg-2">
-                <button class="btn btn-primary" id="searchbtn">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Pretraži &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
-            </div> 
-  
-        </div>
-
-        <br>
-        <hr>
-        <br>
-
-        <div class='form col-lg-3'>
-
-        </div>
-
-        <div class="form col-lg-12"> 
-            
-            <table class="table text-center">
-              <thead>
-                <tr>
-                  <th scope="col">Datum</th>
-                  <th scope="col">Vreme</th>
-                  <th scope="col">Ime</th>
-                  <th scope="col">Prezime</th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-
-                </tr>
-              </thead>
-
-              <tbody id="tableBody">
-                <tr>
-                    <td>18-05-2021</td>
-                    <td>08:00</td>
-                    <td>Test</td>
-                    <td>Pacijent</td>
-                    <td><button class="btn btn-dark" id="">Započni pregled</button></td>
-                    <td><button class="btn btn-warning" id="">Nije se pojavio/la</button></td>
-
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
-
-          <br>
-          <hr>
-          <br>
-
+        <div id='calendar'></div>
     </div>
+
+    <br>
+
+  </div>
 
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -159,6 +103,14 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/interaction/main.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/list/main.min.js'></script>
+
+
+    <script type="text/javascript" src="../js/dermatologist/kalendar.js"></script>
 
   </body>
 </html>
