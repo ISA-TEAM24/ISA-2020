@@ -1,5 +1,6 @@
 html {
   scroll-behavior: smooth;
+  font-family: 'Molengo';
 }
 
 @font-face {
@@ -41,6 +42,14 @@ html {
   background-image: url('/img/about.png');
   font-family: Molengo;
     /* Center and scale the image nicely */
+  height : 100vh;
+  background-repeat: no-repeat;
+}
+
+.img-contact {
+  background-image: url('/img/contact.png');
+  font-family: Molengo;
+  /* Center and scale the image nicely */
   height : 100vh;
   background-repeat: no-repeat;
 }

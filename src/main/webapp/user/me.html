@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/user/user_style.css"/>
+    
+    <title>Homepage</title>
+  </head>
+  <body>
+    <div class="img-background background-tint" id="">
+      <nav class="navbar navbar-expand-md navbar-light fixed-top">
+        <div class="container-fluid">
+          <!--<a class="navbar-brand" href="#"> <img class="logo-img" src="img/logo.png" alt="" /></a>-->
+          <button
+            class="navbar-toggler custom-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div class="container">
+              <ul class="navbar-nav w-100 justify-content-center">
+                <li class="nav-item">
+                  <a class="nav-link surround-item" href="#contact">CONTACT</a>
+                </li>
+    
+                <li class="nav-item">
+                  <a class="nav-link surround-item" href="#about">ABOUT US</a>
+                </li>
+    
+                <li class="nav-item active middle-nav">
+                  <a class="nav-link" href="#">MDNN</a>
+                </li>
+    
+                <li class="nav-item">
+                  <a class="nav-link surround-item" href="">PHARMACIES</a>
+                </li>
+    
+                <li class="nav-item">
+                  <a class="nav-link surround-item"  href="">LOGOUT</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      <section id="under-nav-fake" class="under-nav-fake">
+      </section>
+
+      <section id="under-nav-real" class="under-nav-real">
+
+        <div class="container pt-5">
+            <div class="row no-gutters">
+                <div class="col-3 left-panel">
+                    <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <br>
+                        <br>
+                        <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
+                        <a class="nav-link" id="v-pills-allergies-tab" data-toggle="pill" href="#v-pills-allergies" role="tab" aria-controls="v-pills-allergies" aria-selected="false">Allergies</a>         
+                        <a class="nav-link" id="v-pills-appointments-tab" data-toggle="pill" href="#v-pills-appointments" role="tab" aria-controls="v-pills-appointments" aria-selected="false">Appointments</a>
+                        <a class="nav-link" id="v-pills-loyalty-tab" data-toggle="pill" href="#v-pills-loyalty" role="tab" aria-controls="v-pills-loyalty" aria-selected="false">Loyalty/Penalties</a>
+                        <a class="nav-link" id="v-pills-subscriptions-tab" data-toggle="pill" href="#v-pills-subscriptions" role="tab" aria-controls="v-pills-subscriptions" aria-selected="false">Subscriptions</a>
+                        <a class="nav-link" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
+                        <a class="nav-link" id="v-pills-upcoming-tab" data-toggle="pill" href="#v-pills-upcoming" role="tab" aria-controls="v-pills-upcoming" aria-selected="false">Meds via EPrescription</a>
+                        <a class="nav-link" id="v-pills-eprescriptions-tab" data-toggle="pill" href="#v-pills-eprescriptions" role="tab" aria-controls="v-pills-eprescriptions" aria-selected="true">EPrescriptions</a>
+                        <a class="nav-link" id="v-pills-reserved-tab" data-toggle="pill" href="#v-pills-reserved" role="tab" aria-controls="v-pills-reserved" aria-selected="false">Reserved</a>
+                        <a class="nav-link" id="v-pills-complaints-tab" data-toggle="pill" href="#v-pills-complaints" role="tab" aria-controls="v-pills-complaints" aria-selected="false">Complaints</a>
+                        <a class="nav-link" id="v-pills-pickup-tab" data-toggle="pill" href="#v-pills-pickup" role="tab" aria-controls="v-pills-pickup" aria-selected="false">New Consult</a>
+                        <a class="nav-link" id="v-pills-penalties-tab" data-toggle="pill" href="#v-pills-penalties" role="tab" aria-controls="v-pills-penalties" aria-selected="false">Grading</a>
+                    </div>
+                </div>
+                <div class="col-9 right-panel">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <br>
+                            <br>
+                            <div class="container text-pad" >
+                                <div class="row pretty-color" style="font-size: 2.5vh;">Profile</div>
+                                <br>
+                                <br>
+                                <div class="row" style="font-size: 2vh;">
+                                    <div class="col-2 left-pad">
+                                        <label>email</label>
+                                    </div>
+
+                                    <div class="col-2 mx-1">
+                                        <input type="text" class="input-border" disabled id="" value="mark@mdnn.com">
+                                    </div>
+
+                                    <div class="offset-2 col-2 left-pad">
+                                        <label>current password</label>
+                                    </div>
+                                    <div class="col-2 mx-0">
+                                        <input type="password" class="input-border" id="">
+                                    </div>                    
+                                </div> 
+                                
+                                <div class="row" style="font-size: 2vh;">
+                                    <div class="col-2 left-pad">
+                                        <label>name</label>
+                                    </div>
+                                    <div class="col-1 mx-1">
+                                        <input type="text" class="input-border" id="" value="Mark">
+                                    </div>
+
+                                    <div class="offset-3 left-pad">
+                                        <label>new password</label>
+                                    </div>
+                                    <div class="col-2 mx-3">
+                                        <input type="password" class="input-border" id="">
+                                    </div>
+
+                                </div>
+
+                                <div class="row" style="font-size: 2vh;">
+                                    <div class="col-2 left-pad">
+                                        <label>last name</label>
+                                    </div>
+                                    <div class="col-1 mx-0">
+                                        <input type="text" class="input-border" id="" value="Ristic">
+                                    </div>
+                                </div>
+
+                                <div class="row" style="font-size: 2vh;">
+                                    <div class="col-2 left-pad">
+                                        <label>address</label>
+                                    </div>
+                                    <div class="col-2 mx-0">
+                                        <input type="text" class="input-border" id="" value="Software St 5">
+                                    </div>
+                                    
+                                    <div class="offset-4 col-3">
+                                        <button class="btn btn-info-profile">&nbsp&nbsp&nbspSave changes&nbsp&nbsp</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="row" style="font-size: 2vh;">
+                                    <div class="col-2 left-pad">
+                                        <label>phone number</label>
+                                    </div>
+                                    <div class="col-2 mx-0">
+                                        <input type="text" class="input-border" id="" value="5161 16141 525">
+                                    </div>
+                                </div>
+
+                                
+
+
+                            </div>
+                        </div>
+                         
+                        <div class="tab-pane fade" id="v-pills-allergies" role="tabpanel" aria-labelledby="v-pills-allergies-tab">
+                          <br>
+                          <br>
+                          <div class="text-pad">
+                            <div class="row pretty-color" style="font-size: 2.5vh;">Allergies</div>
+                            <br>
+                            <br>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                              <table class="table table-bordered table-striped mb-0">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col"></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Penicillin</td>
+                                    <td> <button class="btn btn-info-allergies">Remove</button></td>
+                                  </tr>   
+                                  <tr>
+                                    <td>Penicillin</td>
+                                    <td> <button class="btn btn-info-allergies">Remove</button></td>
+                                  </tr> 
+                                  <tr>
+                                    <td>Penicillin</td>
+                                    <td> <button class="btn btn-info-allergies">Remove</button></td>
+                                  </tr> 
+                                  <tr>
+                                    <td>Penicillin</td>
+                                    <td> <button class="btn btn-info-allergies">Remove</button></td>
+                                  </tr>                        
+                                </tbody>
+                              </table>
+                            </div>
+                            <br>
+                            <hr>
+                            <div class="container py-5">
+                              <div class="row">
+                                <div class="offset-3 col-2">
+                                  <input type="text" placeholder="Allergy name">
+                                </div>
+                                <div class="offset-1 col-2">
+                                  <button class="btn btn-info-allergies">Add new allergy </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                            
+                        </div>
+
+                        <div class="tab-pane fade" id="v-pills-appointments" role="tabpanel" aria-labelledby="v-pills-appointments-tab">
+                            <br>
+                            <br>
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">Appointments</div>
+                              <br>
+                              <br>
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                <table class="table table-bordered table-striped mb-0">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Type of visit</th>
+                                      <th scope="col">Doctor</th>
+                                      <th scope="col">Time</th>
+                                      <th scope="col">Date</th>
+                                      <th scope="col">Pharmacy</th>
+                                      <th scope="col"></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>Exam</td>
+                                      <td>Mark Ristic</td>
+                                      <td>17:15</td>
+                                      <td>21/07/2021</td>
+                                      <td>MDNN 5</td>
+                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
+                                    </tr>   
+                                    <tr>
+                                      <td>Exam</td>
+                                      <td>Mark Ristic</td>
+                                      <td>17:15</td>
+                                      <td>21/07/2021</td>
+                                      <td>MDNN 5</td>
+                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
+                                    </tr>
+                                    <tr>
+                                      <td>Exam</td>
+                                      <td>Mark Ristic</td>
+                                      <td>17:15</td>
+                                      <td>21/07/2021</td>
+                                      <td>MDNN 5</td>
+                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
+                                    </tr> 
+                                    <tr>
+                                      <td>Exam</td>
+                                      <td>Mark Ristic</td>
+                                      <td>17:15</td>
+                                      <td>21/07/2021</td>
+                                      <td>MDNN 5</td>
+                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
+                                    </tr> 
+                                    <tr>
+                                      <td>Exam</td>
+                                      <td>Mark Ristic</td>
+                                      <td>17:15</td>
+                                      <td>21/07/2021</td>
+                                      <td>MDNN 5</td>
+                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
+                                    </tr>
+                                    <tr>
+                                      <td>Exam</td>
+                                      <td>Mark Ristic</td>
+                                      <td>17:15</td>
+                                      <td>21/07/2021</td>
+                                      <td>MDNN 5</td>
+                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
+                                    </tr>                       
+                                  </tbody>
+                                </table>
+                              </div>
+                              <br>                                           
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-loyalty" role="tabpanel" aria-labelledby="v-pills-loyalty-tab">
+                          <br>
+                          <br>
+                          <div class="text-pad">
+                            <div class="row pretty-color" style="font-size: 2.5vh;">Loyalty/Penalties</div>
+                            <h5 class="py-5 "> 
+                              You currently belong in the GOLD category - 10% off on all products and exams
+                            </h5>
+                            <h5 class="py-3"> 
+                              You currently have no penalty points - no punishment
+                            </h5>
+                            <h5 class="py-5"> 
+                              Your current grade : 5.0 / 5.0
+                            </h5>
+
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-subscriptions" role="tabpanel" aria-labelledby="v-subscriptions-tab">
+                            <br>
+                            <br>
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">Subscriptions</div>
+                              <br>
+                              <br>
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                <table class="table table-bordered mb-0">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Dermatologist name</th>
+                                      <th scope="col">Subscribed</th>
+
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>MDNN 5</td>
+                                      <td>
+                                        <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider round"></span>
+                                      </label>
+                                    </td>
+                                    </tr>   
+                                    <tr>
+                                      <td>MDNN 7</td>
+                                      <td>
+                                        <label class="switch">
+                                          <input type="checkbox">
+                                          <span class="slider round"></span>
+                                        </label>
+                                      </td>
+                                    </tr>
+                                                           
+                                  </tbody>
+                                </table>
+                                <div class="container py-3">
+                                  <div class="row">
+                                    <div class="offset-7 col-2">
+                                      <button class="btn-info-profile btn">&nbsp&nbspSave Changes&nbsp&nbsp</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+  
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab">
+                            <br>
+                            <br>
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">History of appointments</div>
+                              <br>
+                              <br>
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                <table class="table table-bordered mb-0" id="history_pharmacist_table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Pharmacist</th>
+                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Price</th>
+                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Length</th>
+                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Date</th>
+
+                                    </tr>
+                                    
+                                  </thead>
+                                  <tbody>  
+                                    <tr>
+                                      <td>D</td>
+                                      <td>P</td>
+                                      <td>L</td>
+                                      <td>1</td>
+                                    </tr>  
+                                    <tr>
+                                      <td>Z</td>
+                                      <td>A</td>
+                                      <td>Z</td>
+                                      <td>2</td>
+                                    </tr>               
+                                  </tbody>
+                                </table>
+                                <table class="table table-bordered mb-0" id="history_dermatologist_table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" onclick="sortTable(0,'history_dermatologist_table')">Dermatologist</th>
+                                      <th scope="col" onclick="sortTable(1,'history_dermatologist_table')">Price</th>
+                                      <th scope="col" onclick="sortTable(2,'history_dermatologist_table')">Length</th>
+                                      <th scope="col" onclick="sortTable(3,'history_dermatologist_table')">Date</th>  
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>D</td>
+                                      <td>P</td>
+                                      <td>L</td>
+                                      <td>D</td>
+                                    </tr>  
+                                    <tr>
+                                      <td>Z</td>
+                                      <td>A</td>
+                                      <td>Z</td>
+                                      <td>A</td>
+                                    </tr> 
+                                    <tr>
+                                      <td>Z</td>
+                                      <td>A</td>
+                                      <td>Z</td>
+                                      <td>A</td>
+                                    </tr>    
+                                    <tr>
+                                      <td>Z</td>
+                                      <td>A</td>
+                                      <td>Z</td>
+                                      <td>A</td>
+                                    </tr>                                                                             
+                                  </tbody>
+                                </table>
+                                <div class="container py-3">
+                                  <div class="row">
+                                    <div class="offset-7 col-2">
+                                      <button id="history_save" class="btn-info-profile btn">Show exams</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+  
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-upcoming" role="tabpanel" aria-labelledby="v-pills-upcoming-tab">
+                          <br>
+                          <br>
+                          <div class="text-pad">
+                            <div class="row pretty-color" style="font-size: 2.5vh;">Medicine prescribed via EPrescription</div>
+                            <br>
+                            <br>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                              <table class="table table-bordered mb-0" id="history_pharmacist_table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col" onclick="">Medicine name</th>
+                                    <th scope="col" onclick="">Date of prescription</th>
+                                    <th scope="col" onclick="">Prescribed by</th>
+                                  </tr>
+                                  
+                                </thead>
+                                <tbody>  
+                                  <tr>
+                                    <td>Aspirin</td>
+                                    <td>25/07/2020</td>
+                                    <td>Marky Mark</td>
+                                    
+                                  </tr>                
+                                </tbody>
+                              </table>                            
+                            </div>
+                          </div>
+                        </div>
+                            
+                        
+                        <div class="tab-pane fade" id="v-pills-eprescriptions" role="tabpanel" aria-labelledby="v-pills-eprescriptions-tab">
+                            <br>
+                            <br>
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">EPrescriptions</div>
+                              <br>
+                              <br>
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                <table class="table table-bordered mb-0" id="history_pharmacist_table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" onclick="">Medicine name</th>
+                                      <th scope="col" onclick="">Date of prescription</th>
+                                      <th scope="col" onclick="">Prescribed by</th>
+                                      <th scope="col" onclick="">Status</th>
+                                    </tr>
+                                    
+                                  </thead>
+                                  <tbody>  
+                                    <tr>
+                                      <td>Aspirin</td>
+                                      <td>25/07/2020</td>
+                                      <td>Marky Mark</td>
+                                      <td>New</td>                                 
+                                    </tr> 
+                                    <tr>
+                                      <td>Aspirin</td>
+                                      <td>25/07/2020</td>
+                                      <td>Darky Dark</td>
+                                      <td>Processed</td>                                 
+                                    </tr> 
+                                    <tr>
+                                      <td>Aspirin</td>
+                                      <td>25/07/2020</td>
+                                      <td>Sparky Spark</td>
+                                      <td>Rejected</td>                                 
+                                    </tr>               
+                                  </tbody>
+                                </table>                            
+                              </div>
+                              <div class="container">
+                                <div class="row">
+                                  <div class="col-2">
+                                    <label for="">Filter by status</label>
+                                  </div>
+                                  <div class="col-3">
+                                    <select class="custom-select modified-select">
+                                      <option selected></option>
+                                      <option value="1">New</option>
+                                      <option value="2">Processed</option>
+                                      <option value="3">Rejected</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-reserved" role="tabpanel" aria-labelledby="v-pills-reserved-tab">
+                            <br>
+                            <br>
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">EPrescriptions</div>
+                              <br>
+                              <br>
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                <table class="table table-bordered mb-0" id="history_pharmacist_table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" onclick="">Medicine name</th>
+                                      <th scope="col" onclick="">Pharmacy</th>
+                                      <th scope="col" onclick="">Reserved on date</th>
+                                      <th scope="col" onclick="">Time</th>
+                                      <th scope="col" onclick=""></th>
+                                      <th scope="col" onclick=""></th>
+                                    </tr>
+                                    
+                                  </thead>
+                                  <tbody>  
+                                    <tr>
+                                      <td>Aspirin</td>
+                                      <td>MDNN 7</td>
+                                      <td>24/03/2021</td>
+                                      <td>13:37</td>       
+                                      <td><button class="btn btn-info-allergies"> Pick Up </button></td> 
+                                      <td><button class="btn btn-info-allergies"> Cancel </button></td>                          
+                                    </tr>                        
+                                  </tbody>
+                                </table>                            
+                              </div>                       
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-complaints" role="tabpanel" aria-labelledby="v-pills-complaints-tab">
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">Write a complaint</div>
+                              <br>
+                              <br>
+                              <div class="container">
+                                <div class="row">
+                                  <div class="col-2">
+                                    <label for="">Complaint about</label>
+                                  </div>
+                                  <div class="col-4">
+                                    <select class="custom-select modified-select">
+                                      <option selected></option>
+                                      <option value="1">1</option>
+                                      <option value="2">2</option>
+                                      <option value="3">3</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="row">
+                                  <div class="col-2">
+                                    <label for="">Complaint text</label>
+                                  </div>
+                                  <div class="col-9">
+                                    <textarea rows="10" cols="70" id="TITLE" placeholder="Complaint text">
+                                    </textarea>
+                                  </div>                                 
+                                </div>
+                                <br>
+                                <div class="row">
+                                  <div class="offset-8">
+                                    <button class="btn btn-info-profile">&nbspSend complaint&nbsp</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-pickup" role="tabpanel" aria-labelledby="v-pills-pickup-tab">
+                                <br>
+                                <br>                            
+                                <div class="text-pad">
+                                  <div class="row pretty-color" style="font-size: 2.5vh;">Schedule a consult</div>
+                                  <br>
+                                  <br>
+                                  <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                    <table class="table table-bordered mb-0" id="new_consult_table">
+                                      <thead>
+                                        <tr>
+                                          <th scope="col" onclick="sortTable(0,'new_consult_table')">Pharmacy</th>
+                                          <th scope="col" onclick="sortTable(1,'new_consult_table')">Address</th>
+                                          <th scope="col" onclick="sortTable(2,'new_consult_table')">Grade</th>
+                                          <th scope="col" onclick="sortTable(3,'new_consult_table')">Price</th>
+                                        </tr>
+                                        
+                                      </thead>
+                                      <tbody>  
+                                        <tr>
+                                          <td>MDNN 7</td>
+                                          <td>Software St.5</td>
+                                          <td>4.7</td>
+                                          <td>50</td>                                 
+                                        </tr> 
+                                        <tr>
+                                          <td>MDNN 9</td>
+                                          <td>Software St.1337</td>
+                                          <td>4.2</td>
+                                          <td>35</td>                                 
+                                        </tr>
+                                        <tr>
+                                          <td>MDNN 1</td>
+                                          <td>Software St.15</td>
+                                          <td>5</td>
+                                          <td>78</td>                                 
+                                        </tr>            
+                                      </tbody>
+                                    </table>                            
+                                  </div>
+                                  <div class="container">
+                                    <div class="row">
+                                      <div class="col-2">
+                                        <label for="">At date</label>
+                                      </div>
+                                      <div class="col-3">
+                                        <input type="date">
+                                      </div>
+                                      <div class="offset- 1 col-3"><button class="btn btn-info-profile">&nbsp&nbspFind term&nbsp&nbsp</button></div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-2">
+                                        <label for="">On time</label>
+                                      </div>
+                                      <div class="col-3">
+                                        <input type="time">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-penalties" role="tabpanel" aria-labelledby="v-pills-penalties-tab">
+                                <br>
+                                <br>
+                                <div class="text-pad">
+                                  <div class="row pretty-color" style="font-size: 2.5vh;">Grading</div>
+                                  <br>
+                                  <br>
+                                  <div class="container">
+                                    <div class="row">
+                                      <div class="col-2">
+                                        <label for="" >Group</label>
+                                      </div>
+                                      <div class="col-2">
+                                        <select>
+                                          <option>Pharmacy</option>
+                                          <option>Medicine</option>
+                                          <option>Pharmacist</option>
+                                          <option>Dermatologist</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                      <div class="col-3">
+                                        <label for="" >Specifically for</label>
+                                      </div>
+                                      <div class="col-2">
+                                        <select>
+                                          <option>x</option>
+                                          <option>y</option>
+                                          <option>Z</option>
+                                          <option>y</option>
+                                        </select>
+                                      </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-3">
+                                        <label for="" >Grade</label>
+                                      </div>  
+                                      <div class="col-1">
+                                        <input type="number" placeholder="grade">    
+                                      </div> 
+                                      <div class="offset-2 col-2">
+                                        <button class="btn btn-info-profile">Send grade</button>
+                                      </div>                           
+                                    </div>
+
+                                  </div>
+                                </div>
+                                
+
+                        </div>
+                        
+                      </div>          
+                </div>
+            </div>
+        </div>
+
+      </section>
+
+    </div>
+    <!-- ABOUT PAGE START -->
+    <div class="img-about" id="about">
+                
+    </div>
+    <!-- CONTACT PAGE START -->
+    <div class="img-contact" id="contact">
+
+    </div>
+
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+    ></script>
+    <script src="../js/user/history.js"></script>
+    
+  </body>
+</html>
