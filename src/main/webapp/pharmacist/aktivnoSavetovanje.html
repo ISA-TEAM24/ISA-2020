@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/dermatologist/dermstyle.css" />
+    <link rel="stylesheet" href="../css/dermatologist/navbar-dermpharm.css"/>
+
+    <title>Active examination</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand brand" href="indexFarmaceut.html"> <img src="../img/logo2.png" alt="" /></a>
+        <h2 id='systemName'>MDNN</h2>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="indexFarmaceut.html">Početna</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link" href="pregledaniKlijentiFarmaceut.html">Pregledani klijenti</a>
+              </li>
+  
+              <li class="nav-item active">
+                <a class="nav-link" href="savetovanje.html">Savetovanje</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link" href="radniKalendar.html">Radni kalendar</a>
+              </li>
+  
+              <li class="nav-item">
+                  <a class="nav-link" href="izdavanjeLeka.html">Izdavanje leka</a>
+                </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="timeOffZahtev.html">Godišnji/odsustvo</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link" href="mojProfilFarmaceut.html">Moj profil</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link" href="zakaziSavetovanje.html">Zakazivanje savetovanja</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link" href="#">Izloguj se</a>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <br>
+
+    <div id="pregledHeader">
+      <h2 class="text-center" >Savetovanje</h2>
+    </div>
+    <hr>
+
+    <div class ="container">
+
+        <div class="row">
+            <div class="col-lg-2">             
+            </div>
+
+            <div class="col-lg-12">
+                <h4>Podaci o pacijentu: </h4>
+                <label type="text">
+            </div>
+  
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-1">             
+            </div>
+
+            <div class="col-lg-1">
+                <label><b>Ime: </b></label>
+            </div>
+
+            <div class="col-lg-1">
+                <label id="imeLabel"> Marija </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1">             
+            </div>
+
+            <div class="col-lg-1">
+                <label><b>Prezime: </b></label>
+            </div>
+
+            <div class="col-lg-1">
+                <label id="prezimeLabel"> Prezimencic </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1">             
+            </div>
+
+            <div class="col-lg-1">
+                <label><b>Email: </b></label>
+            </div>
+
+            <div class="col-lg-1">
+                <label id="emailLabel"> mj@gmail.com </label>
+            </div>
+        </div>
+        <!--
+        <div class="row">
+            <div class="col-lg-1">             
+            </div>
+ 
+            <div class="col-lg-1">
+                <label><b>Datum rodjenja: </b></label>
+            </div>
+
+            <div class="col-lg-1">
+                <label id="datrodjLabel"> 10/04/1998 </label>
+            </div>
+        </div>
+        -->
+        <div class="row">
+            <div class="col-lg-1">             
+            </div>
+
+            <div class="col-lg-1">
+                <label><b>Telefon: </b></label>
+            </div>
+
+            <div class="col-lg-1">
+                <label id="telLabel"> 0691100321 </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1">             
+            </div>
+
+            <div class="col-lg-1">
+                <label><b>Alergije: </b></label>
+            </div>
+
+            <div class="col-lg-6">
+                <label id="alergijeLabel"> na penicilin, na polen, na laktozu ... </label>
+            </div>
+        </div>
+
+        <br>
+        <hr>
+        <br>
+
+        <div class='form col-lg-12'>
+            <div class="row">
+                <div class="col-lg-2">             
+                </div>
+    
+                <div class="col-lg-12">
+                    <h4>Dijagnoza: </h4>
+                    <label type="text">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-1">             
+                </div>
+    
+                <div class="col-lg-10">
+                    <div class="form-group">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="row">
+              <div class="col-lg-2"></div>
+
+              <div class="col-lg-1">
+                <button class="btn btn-dark" id="prepisiLekId" data-target="#prepisiLekModal" data-toggle="modal" >&nbsp&nbsp&nbsp&nbsp&nbsp Prepiši lek &nbsp&nbsp&nbsp&nbsp&nbsp</button>
+              </div>
+
+              <div class="col-lg-1"></div>
+
+              <div class="col-lg-2">
+                <button class="btn btn-dark" id="noviPregledId" data-target="#dodatniPregledModal" data-toggle="modal">&nbsp&nbsp Zakaži dodatno savetovanje &nbsp&nbsp&nbsp</button>
+              </div>
+
+              <div class="col-lg-1"></div>
+
+              <div class="col-lg-2">
+                <button class="btn btn-primary" id="noviPregledId" >&nbsp&nbsp&nbsp&nbsp&nbsp Sačuvaj izveštaj &nbsp&nbsp&nbsp&nbsp&nbsp</button>
+              </div>
+
+          </div>
+          <br>
+
+        </div>
+
+        <div class="form col-lg-12"> 
+     
+        </div>
+          <br>
+          <hr>
+          <br>
+
+<!-- PREPISI LEK MODAL-->
+
+      <div class="container" id="prepisiLekDiv">
+        <div class="row">
+          <div class="col-md-12">
+
+            <div class="modal fade" data-keyboard="false" data-backdrop="static" id="prepisiLekModal" tabindex="-1">
+              <div class="modal-dialog modal-md">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                      <h4 class="modal-title w-100" id="modalTitle"> Prepisivanje leka </h4>
+                      <button class="close" data-dismiss="modal">&times;</button>
+
+                    </div>
+
+                    <div class ="modal-body">
+                      <form id="form1">
+                        <div class="form-group">
+                          <label>Pacijent: </label>
+                          <input class="form-control" type="text" placeholder="" id="pac" readonly='true'>
+                        </div>
+
+                        <div class="form-group">
+                          <label>Email: </label>
+                          <input class="form-control" type="text" placeholder="" id="mail1" readonly='true'>
+                        </div>
+
+                        <div class="form-group">
+                          <label>Lek: </label>
+                          <br>
+                          
+                          <select class="form-select" >
+                            <option selected>Open this select menu</option>
+                            <option value="1">Bromazepan</option>
+                            <option value="2">Aspirin</option>
+                            <option value="3">Nasic</option>
+                          </select>
+                          <br>
+                          <br>
+
+                          <a href="#" role="button" class="btn btn-secondary" id ="specLeka" >Specifikacija leka</a>
+
+
+                        </div>
+
+                        <div class="form-group">
+                          <label>Trajanje terapije u danima: </label>
+                          <input class="form-control" type="number" name="trajanje"  placeholder="" id="trajanje">
+                        </div>
+
+
+                        <div class="form-group">
+                          <label>Pre preporuke leka, proverite dostupnost u Vašoj apoteci: </label>
+
+                          <a href="#" role="button" class="btn btn-secondary" id ="dostupnostLeka" >Proveri dostupnost</a>
+
+                        </div>
+
+
+                      </form>
+                    </div>
+
+                    <br>
+
+                    <div class="modal-footer">
+                      <button class="btn btn-dark" id="closeBtn" data-dismiss="modal">Odustani</button>
+                      <button class="btn btn-primary" type="submit" id="saveReceptBtn">Sačuvaj</button>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+<!-- END OF PREPISI LEK MODAL-->
+
+
+<!-- ZAKAZI DODATNO SAVETOVANJE MODAL-->
+
+<div class="container" id="dodatniPregledDiv">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="modal fade" data-keyboard="false" data-backdrop="static" id="dodatniPregledModal" tabindex="-1">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+
+              <div class="modal-header">
+                <h4 class="modal-title w-100" id="modalTitle"> Zakazivanje dodatnog savetovanja </h4>
+                <button class="close" data-dismiss="modal">&times;</button>
+
+              </div>
+
+              <div class ="modal-body">
+                <form id="form2">
+                  <div class="form-group">
+                    <label>Pacijent: </label>
+                    <input class="form-control" type="text" placeholder="" id="pac" readonly='true'>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Email: </label>
+                    <input class="form-control" type="text" placeholder="" id="mail2" readonly='true'>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Apoteka: </label>
+                    <input class="form-control" type="text" placeholder="" id="apoteka" readonly='true'>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label>Datum pregleda: </label>
+                    <input class="form-control" type="date" placeholder="" id="datumpregleda">
+                  </div>
+
+                  <div class="form-group">
+                    <label>Slobodni termini: </label>
+                    <input class="form-control timepicker" type="time" placeholder="" id="datumpregleda">
+                  </div>
+
+                
+                </form>
+              </div>
+
+              <br>
+
+              <div class="modal-footer">
+                <button class="btn btn-dark" id="closeZakazivanjeBtn" data-dismiss="modal">Odustani</button>
+                <button class="btn btn-primary" type="submit" id="savePregledBtn">Zakaži</button>
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- END OF ZAKAZI DODATNO SAVETOVANJE MODAL-->
+
+</div>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="../js/zapocniPregled.js"></script>
+
+  </body>
+</html>
