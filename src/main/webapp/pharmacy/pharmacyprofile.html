@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="../css/style.css" />
+        <link rel="stylesheet" href="../css/pharmacy/pharmacystyle.css"/>
+        
+        <title>Pharmacy profile</title>
+
+    </head>
+    <body>
+        <div class="img-background background-tint" id="">
+        <nav class="navbar navbar-expand-md navbar-light fixed-top">
+            <div class="container-fluid">
+            <button
+                class="navbar-toggler custom-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarResponsive"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="container">
+                <ul class="navbar-nav w-100 justify-content-center">
+                    <li class="nav-item">
+                    <a class="nav-link surround-item" href="#contact">CONTACT</a>
+                    </li>
+        
+                    <li class="nav-item">
+                    <a class="nav-link surround-item" href="#about">ABOUT US</a>
+                    </li>
+        
+                    <li class="nav-item middle-nav">
+                    <a class="nav-link" href="#">MDNN</a>
+                    </li>
+        
+                    <li class="nav-item active">
+                    <a class="nav-link surround-item" href="">PHARMACIES</a>
+                    </li>
+        
+                    <li class="nav-item">
+                    <a class="nav-link surround-item"  href="">LOGOUT</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+        </nav>
+
+        <section id="under-nav-fake" class="under-nav-fake">
+        </section>
+
+        <section id="under-nav-real" class="under-nav-real">
+            <div class="container pt-5">
+                <div class="row no-gutters">
+                    <div class="col-3 left-panel">
+                        <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <br>
+                            <br>
+                            <a class="nav-link active" id="v-pills-pharmacy-tab" data-toggle="pill" href="#v-pills-pharmacy" role="tab" aria-controls="v-pills-pharmacy" aria-selected="true">Pharmacy</a>
+                            <a class="nav-link" id="v-pills-dermatologists-tab" data-toggle="pill" href="#v-pills-dermatologists" role="tab" aria-controls="v-pills-dermatologists" aria-selected="false">Dermatologists</a>         
+                            <a class="nav-link" id="v-pills-pharmacists-tab" data-toggle="pill" href="#v-pills-pharmacists" role="tab" aria-controls="v-pills-pharmacists" aria-selected="false">Pharmacists</a>
+                            <a class="nav-link" id="v-pills-drugs-tab" data-toggle="pill" href="#v-pills-drugs" role="tab" aria-controls="v-pills-drugs" aria-selected="false">Drugs</a>
+                            <a class="nav-link" id="v-pills-epresc-tab" data-toggle="pill" href="#v-pills-epresc" role="tab" aria-controls="v-pills-epresc" aria-selected="false">E Prescription</a>
+                            <a class="nav-link" id="v-pills-appointments-tab" data-toggle="pill" href="#v-pills-appointments" role="tab" aria-controls="v-pills-appointments" aria-selected="false">Available appointments</a>                        
+                        </div>
+                    </div>
+                    <div class="col-9 right-panel">
+                        <div class="tab-content" id="v-pills-tabContent">
+
+                            <!--Pharmacy profile-->
+                            <div class="tab-pane fade show active" id="v-pills-pharmacy" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <br>
+                                <br>
+                                <div class="container text-pad" >
+                                    <div class="row pharm-color" style="font-size: 20pt;">Pharmacy profile</div>
+                                    <br>
+                                    <br>
+                                    <div class="row" style="font-size: 2vh;">
+                                        <div class="col-3 left-pad">
+                                            <label>Name</label>
+                                        </div>
+    
+                                        <div class="col-4">
+                                            <input type="text" style="width: 100%;" class="input-border" disabled id="phName" value="Apoteka123">
+                                        </div>                   
+                                    </div> 
+                                    <div class="row" style="font-size: 2vh;">
+                                        <div class="col-3 left-pad">
+                                            <label>Address</label>
+                                        </div>
+                                        <div class="col-4">
+                                            <input type="text" style="width: 100%;" class="input-border" disabled id="phAddress" value="Prvomajska 20 Backa Topola">
+                                        </div>
+    
+                                        <div class="col-2 offset-1">
+                                            <button class="btn btn-info-profile">&nbsp&nbsp&nbspMap&nbsp&nbsp&nbsp</button>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row" style="font-size: 2vh;">
+                                        <div class="col-3 left-pad">
+                                            <label>Description</label>
+                                        </div>
+    
+                                        <div class="col-7">
+                                            <textarea class="form-control" disabled rows="5" id="phDesc">Najbolja apoteka u Backoj Topoli</textarea>
+                                        </div>                   
+                                    </div>
+                                    <br> 
+                                    <div class="row" style="font-size: 2vh;">
+                                        <div class="col-3 left-pad">
+                                            <label>Average grade</label>
+                                        </div>
+    
+                                        <div class="col-4" >
+                                            <input type="text" style="width: 100%;" class="input-border" disabled id="phGrade" value="4.5">
+                                        </div>                   
+                                    </div>
+                                    <br>
+                                    <div class="row" style="font-size: 2vh;">
+                                        <div class="col-3 left-pad">
+                                            <label>Subscribe for actions/promotions</label>
+                                        </div>
+    
+                                        <div class="col-4 offset-1">
+                                            <label class="switch">
+                                              <input type="checkbox">
+                                              <span class="slider round"></span>
+                                            </label>
+                                        </div>                   
+                                    </div>                                     
+                                </div>
+                            </div>
+
+                            <!--Dermatologists-->
+                            <div class="tab-pane fade" id="v-pills-dermatologists" role="tabpanel" aria-labelledby="v-pills-dermatologists-tab">
+                                <br>
+                                <br>
+                                <div class="text-pad">
+                                    <div class="row pharm-color" style="font-size: 20pt;">Dermatologists</div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5"  style="width: 60%;">
+                                        <table class="table table-bordered table-striped mb-0">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">Full name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                            <td>dr Ana Anic</td>
+                                            </tr> 
+                                            <tr>
+                                            <td>dr Branko Brankovic</td>
+                                            </tr> 
+                                            <tr>
+                                            <td>dr Ceda Cedic</td>
+                                            </tr>
+                                            <tr>
+                                            <td>dr Dejan Dejanovic</td>
+                                            </tr>  
+                                            <tr>
+                                            <td>dr Eva Evic</td>
+                                            </tr>
+                                            <tr>
+                                            <td>dr Filip Filipovic</td>
+                                            </tr>                            
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                            
+                            <!--Pharmacists-->
+                            <div class="tab-pane fade" id="v-pills-pharmacists" role="tabpanel" aria-labelledby="v-pills-pharmacists-tab">
+                                <br>
+                                <br>
+                                <div class="text-pad">
+                                    <div class="row pharm-color" style="font-size: 20pt;">Pharmacists</div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5"  style="width: 60%;">
+                                        <table class="table table-bordered table-striped mb-0">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">Full name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                            <td>dr Zika Zikic</td>
+                                            </tr> 
+                                            <tr>
+                                            <td>dr Petar Petrovic</td>
+                                            </tr> 
+                                            <tr>
+                                            <td>dr Ivana Ivanovic</td>
+                                            </tr>
+                                            <tr>
+                                            <td>dr Stefan Stefanovic</td>
+                                            </tr>  
+                                            <tr>
+                                            <td>dr Milica Milicic</td>
+                                            </tr>
+                                            <tr>
+                                            <td>dr Una Unic</td>
+                                            </tr>                            
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="col text-center">
+                                        <button class="btn btn-info-pharmacists">Schedule a consultation</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Drugs-->
+                            <div class="tab-pane fade" id="v-pills-drugs" role="tabpanel" aria-labelledby="v-pills-drugs-tab">
+                                <br>
+                                <br>
+                                <div class="text-pad">
+                                    <div class="row pharm-color" style="font-size: 20pt;">Available Drugs</div>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5"  style="width: 80%;">
+                                        <table class="table table-bordered table-striped mb-0">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">Drug name</th>
+                                            <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                            <td>Aspirin</td>
+                                            <td><button class="btn btn-info-reserve">Reserve</button></td>
+                                            </tr> 
+                                            <tr>
+                                            <td>Panklav</td>
+                                            <td><button class="btn btn-info-reserve">Reserve</button></td>
+                                            </tr> 
+                                            <tr>
+                                            <td>Brufen</td>
+                                            <td><button class="btn btn-info-reserve">Reserve</button></td>
+                                            </tr>
+                                            <tr>
+                                            <td>Xyzal</td>
+                                            <td><button class="btn btn-info-reserve">Reserve</button></td>
+                                            </tr>  
+                                            <tr>
+                                            <td>Sinacilin</td>
+                                            <td><button class="btn btn-info-reserve">Reserve</button></td>
+                                            </tr>
+                                            <tr>
+                                            <td>Eritromicin</td>
+                                            <td><button class="btn btn-info-reserve">Reserve</button></td>
+                                            </tr>
+                                            <tr>
+                                            <td>Bromazepam</td>
+                                            <td><button class="btn btn-info-reserve">Reserve</button></td>
+                                            </tr>                                
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+
+
+                            <!--E Presrcription-->
+                            <div class="tab-pane fade" id="v-pills-epresc" role="tabpanel" aria-labelledby="v-pills-epresc-tab">
+
+                            </div>
+
+
+                            <!--Available appointments-->
+                            <div class="tab-pane fade" id="v-pills-appointments" role="tabpanel" aria-labelledby="v-pills-appointments-tab">
+                                <br>
+                                <br>
+                                <div class="text-pad">
+                                    <div class="row pharm-color" style="font-size: 20pt;">Available appointments at dermatologists</div>
+                                    <br>
+                                    <br>
+                                    <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                        <table class="table table-bordered table-striped mb-0">
+                                            <thead>
+                                                <tr>
+                                                <th scope="col">Doctor</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Time</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <td>dr Ana Anic</td>
+                                                <td>25/05/2021</td>
+                                                <td>17:15</td>
+                                                <td>1000 din</td>
+                                                <td><button class="btn btn-info-reserve">Reserve</button></td>
+                                                </tr>   
+                                                <tr>
+                                                <td>dr Ceda Cedic</td>
+                                                <td>25/05/2021</td>
+                                                <td>18:00</td>
+                                                <td>1500 din</td>
+                                                <td><button class="btn btn-info-reserve">Reserve</button></td>
+                                                </tr>
+                                                <tr>
+                                                <td>dr Ceda Cedic</td>
+                                                <td>26/05/2021</td>
+                                                <td>14:30</td>
+                                                <td>1400 din</td>
+                                                <td><button class="btn btn-info-reserve">Reserve</button></td>
+                                                </tr> 
+                                                <tr>
+                                                <td>dr Eva Evic</td>
+                                                <td>26/05/2021</td>
+                                                <td>12:00</td>
+                                                <td>1000 din</td>
+                                                <td><button class="btn btn-info-reserve">Reserve</button></td>
+                                                </tr> 
+                                                <tr>
+                                                <td>dr Eva Evic</td>
+                                                <td>26/05/2021</td>
+                                                <td>14:00</td>
+                                                <td>1000 din</td>
+                                                <td><button class="btn btn-info-reserve">Reserve</button></td>
+                                                </tr>
+                                                <tr>
+                                                <td>dr Eva Evic</td>
+                                                <td>26/05/2021</td>
+                                                <td>15:00</td>
+                                                <td>1000 din</td>
+                                                <td><button class="btn btn-info-reserve">Reserve</button></td>
+                                                </tr>                       
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!--Subscribe-->
+                            <div class="tab-pane fade" id="v-pills-subscriptions" role="tabpanel" aria-labelledby="v-subscriptions-tab">
+                                <br>
+                                <br>
+                                <div class="text-pad">
+                                  <div class="row pretty-color" style="font-size: 2.5vh;">Subscriptions</div>
+                                  <br>
+                                  <br>
+                                  <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                    <table class="table table-bordered mb-0">
+                                      <thead>
+                                        <tr>
+                                          <th scope="col">Dermatologist name</th>
+                                          <th scope="col">Subscribed</th>
+    
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td>MDNN 5</td>
+                                          <td>
+                                            <label class="switch">
+                                            <input type="checkbox">
+                                            <span class="slider round"></span>
+                                          </label>
+                                        </td>
+                                        </tr>   
+                                        <tr>
+                                          <td>MDNN 7</td>
+                                          <td>
+                                            <label class="switch">
+                                              <input type="checkbox">
+                                              <span class="slider round"></span>
+                                            </label>
+                                          </td>
+                                        </tr>
+                                                               
+                                      </tbody>
+                                    </table>
+                                    <div class="container py-3">
+                                      <div class="row">
+                                        <div class="offset-7 col-2">
+                                          <button class="btn-info-profile btn">&nbsp&nbspSave Changes&nbsp&nbsp</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+      
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </section>
+
+    </div>
+    <div class="img-about" id="about">
+                
+    </div>
+    <div class="img-contact" id="contact">
+
+    </div>
+
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+    ></script>
+    <script src="../js/user/history.js"></script>
+    
+  </body>
+</html>
