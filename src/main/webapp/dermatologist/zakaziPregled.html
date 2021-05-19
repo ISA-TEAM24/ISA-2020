@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/dermatologist/dermstyle.css" />
     <link rel="stylesheet" href="../css/dermatologist/navbar-dermpharm.css"/>
 
-    <title>Welcome page</title>
+    <title>Make appointment</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
@@ -30,7 +30,7 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="indexDermatolog.html">Početna</a>
             </li>
 
@@ -54,12 +54,12 @@
               <a class="nav-link" href="mojProfilDermatolog.html">Moj profil</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="zakaziPregled.html">Zakazivanje pregleda</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">Izloguj se</a>
+              <a class="nav-link" href="">Izloguj se</a>
             </li>
           </ul>
         </div>
@@ -67,13 +67,58 @@
     </nav>
 
     <br>
-    <h1 class="text-center">Dermatolog</h1>
+
+    <h2 class="text-center">Zakazivanje pregleda</h2>
     <hr>
     <br>
     <div class="container">
-      <img src="../img/welcomeDermPharm.jpg" class="rounded img" alt="Responsive image" id="welcome">
+
+      <div class="col-md-20 col-centered">
+        <div class="form-group">
+          <label>Ime pacijenta: </label>
+          <input class="form-control" type="text" placeholder="" id="imepac">
+        </div>
+
+        <div class="form-group">
+          <label>Prezime pacijenta: </label>
+          <input class="form-control" type="text" placeholder="" id="prezimepac">
+        </div>
+
+        <div class="form-group">
+          <label>Email pacijenta: </label>
+          <input class="form-control" type="text" placeholder="" id="mail">
+        </div>
+
+        <div class="form-group">
+          <label>Apoteka: </label>
+          <input class="form-control" type="text" placeholder="" id="apoteka" readonly='true'>
+        </div>
+
+
+        <div class="form-group">
+          <label>Datum pregleda: </label>
+          <input class="form-control" type="date" placeholder="" id="datumpregleda">
+        </div>
+
+        <div class="form-group">
+          <label>Slobodni termini: </label>
+          <input class="form-control timepicker" type="time" placeholder="" id="datumpregleda">
+        </div>
+        
+        <br>
+        <div class="row">
+          <div class="col text-center">
+            <button class="btn btn-primary customBtn" type="submit" id="savePregled">Zakaži</button>
+          </div>
+        </div>
+
+        <br>
+        <br>
+
+      </div>
+
+
     </div>
-    
 
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -91,7 +136,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script type="text/javascript" src="../js/indexDermatolog.js"></script>
+    <script type="text/javascript" src="../js/zakaziPregled.js"></script>
 
   </body>
 </html>

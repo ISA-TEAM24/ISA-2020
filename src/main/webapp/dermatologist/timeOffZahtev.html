@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="../css/dermatologist/dermstyle.css" />
     <link rel="stylesheet" href="../css/dermatologist/navbar-dermpharm.css"/>
 
-    <title>Welcome page</title>
+    <title>TimeOff request</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
       <div class="container-fluid">
-        <a class="navbar-brand brand" href="#"> <img src="../img/logo2.png" alt="" /></a>
+        <a class="navbar-brand brand" href="indexDermatolog.html"> <img src="../img/logo2.png" alt="" /></a>
         <h2 id='systemName'>MDNN</h2>
         <button
           class="navbar-toggler"
@@ -30,40 +30,36 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="indexFarmaceut.html">Početna</a>
+            <li class="nav-item">
+              <a class="nav-link" href="indexDermatolog.html">Početna</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">Pregledani klijenti</a>
+              <a class="nav-link" href="pregledaniKlijenti.html">Pregledani klijenti</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">Savetovanje</a>
+              <a class="nav-link" href="pregled.html">Pregled</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">Radni kalendar</a>
+              <a class="nav-link" href="radniKalendar.html">Radni kalendar</a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">Izdavanje leka</a>
-              </li>
             
-            <li class="nav-item">
-              <a class="nav-link" href="">Godišnji/odsustvo</a>
+            <li class="nav-item active">
+              <a class="nav-link" href="timeOffZahtev.html">Godišnji/odsustvo</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="mojProfilFarmaceut.html">Moj profil</a>
+              <a class="nav-link" href="mojProfilDermatolog.html">Moj profil</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">Zakazivanje savetovanja</a>
+              <a class="nav-link" href="zakaziPregled.html">Zakazivanje pregleda</a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#">Izloguj se</a>
+              <a class="nav-link" href="">Izloguj se</a>
             </li>
           </ul>
         </div>
@@ -71,11 +67,48 @@
     </nav>
 
     <br>
-    <h1 class="text-center">Farmaceut</h1>
+
+    <h2 class="text-center">Podnošenje zahteva za godišnji odmor/odustvo</h2>
     <hr>
     <br>
     <div class="container">
-      <img src="../img/welcomeDermPharm.jpg" class="rounded img" alt="Responsive image" id="welcome">
+        <div class="col-md-20 col-centered">
+            <div class="form-group">
+                <label>Od datuma: </label>
+                <input class="form-control" type="date" placeholder="" id="odDatuma">
+            </div>  
+
+            <div class="form-group">
+                <label>Do datuma: </label>
+                <input class="form-control" type="date" placeholder="" id="doDatuma">
+            </div>
+
+            <div class="form-group">
+                <label>Vrsta zahteva: </label>
+                <select class="form-control" id="vrstaZahteva">
+                    <option>Godišnji odmor</option>
+                    <option>Odsustvo</option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+                <label for="razlogZahteva">Razlog: </label>
+                <textarea class="form-control zahtevtxtArea" id="razlogZahteva" rows="2"></textarea>
+            </div>
+
+        <br>
+            <div class="row">
+            <div class="col text-center">
+                <button class="btn btn-primary customBtn" type="submit" id="podnesiZahtev">Podnesi zahtev</button>
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+      </div>
+
+
     </div>
 
     <script
@@ -93,6 +126,8 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+
+    <script type="text/javascript" src="../js/zakaziPregled.js"></script>
 
   </body>
 </html>
