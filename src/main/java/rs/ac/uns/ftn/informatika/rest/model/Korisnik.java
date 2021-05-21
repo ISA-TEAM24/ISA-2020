@@ -40,7 +40,7 @@ public class Korisnik implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Terapija> terapije;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private LoyaltyInfo loyaltyInfo;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -49,7 +49,7 @@ public class Korisnik implements UserDetails {
     //Zaposleni
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Map<String, RadnoInfo> radnoInfo;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private GodisnjiInfo godisnjiInfo;
     @Column(nullable = false, unique = false)
     private float ocena;
@@ -57,6 +57,14 @@ public class Korisnik implements UserDetails {
     private boolean prvoLogovanje;
 
     public Korisnik() {
+        this.activated = false;
+        this.terapije = new HashSet<>();
+        this.loyaltyInfo = new LoyaltyInfo();
+        this.alergije = new HashSet<Lek>();
+        this.radnoInfo = new HashMap<String, RadnoInfo>();
+        this.godisnjiInfo = new GodisnjiInfo();
+        this.ocena = 5;
+        this.prvoLogovanje = true;
     }
 
     public Korisnik(Long ID, String email, String username, String password, Date lastPasswordResetDate, String ime,

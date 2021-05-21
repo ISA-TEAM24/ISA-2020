@@ -67,7 +67,7 @@
                     <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <br>
                         <br>
-                        <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
+                        <a class="nav-link active" onclick="reloadProfile()" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
                         <a class="nav-link" id="v-pills-allergies-tab" data-toggle="pill" href="#v-pills-allergies" role="tab" aria-controls="v-pills-allergies" aria-selected="false">Allergies</a>         
                         <a class="nav-link" id="v-pills-appointments-tab" data-toggle="pill" href="#v-pills-appointments" role="tab" aria-controls="v-pills-appointments" aria-selected="false">Appointments</a>
                         <a class="nav-link" id="v-pills-loyalty-tab" data-toggle="pill" href="#v-pills-loyalty" role="tab" aria-controls="v-pills-loyalty" aria-selected="false">Loyalty/Penalties</a>
@@ -96,14 +96,14 @@
                                     </div>
 
                                     <div class="col-2 mx-1">
-                                        <input type="text" class="input-border" disabled id="" value="mark@mdnn.com">
+                                        <input type="text" class="input-border" disabled id="profile-email-input" value="mark@mdnn.com">
                                     </div>
 
                                     <div class="offset-2 col-2 left-pad">
                                         <label>current password</label>
                                     </div>
                                     <div class="col-2 mx-0">
-                                        <input type="password" class="input-border" id="">
+                                        <input type="password" class="input-border" id="profile-password-old-input">
                                     </div>                    
                                 </div> 
                                 
@@ -112,14 +112,14 @@
                                         <label>name</label>
                                     </div>
                                     <div class="col-1 mx-1">
-                                        <input type="text" class="input-border" id="" value="Mark">
+                                        <input type="text" class="input-border" id="profile-name-input" value="Mark">
                                     </div>
 
                                     <div class="offset-3 left-pad">
                                         <label>new password</label>
                                     </div>
                                     <div class="col-2 mx-3">
-                                        <input type="password" class="input-border" id="">
+                                        <input type="password" class="input-border" id="profile-password-new-input">
                                     </div>
 
                                 </div>
@@ -129,8 +129,11 @@
                                         <label>last name</label>
                                     </div>
                                     <div class="col-1 mx-0">
-                                        <input type="text" class="input-border" id="" value="Ristic">
+                                        <input type="text" class="input-border" id="profile-lastname-input" value="Ristic">
                                     </div>
+                                    <div class="offset-5 col-3">
+                                      <button id="profile-change-password-button" class="btn btn-info-profile" onclick="changePassword()">&nbsp&nbsp&nbspChange password&nbsp&nbsp</button>
+                                  </div>
                                 </div>
 
                                 <div class="row" style="font-size: 2vh;">
@@ -138,12 +141,10 @@
                                         <label>address</label>
                                     </div>
                                     <div class="col-2 mx-0">
-                                        <input type="text" class="input-border" id="" value="Software St 5">
+                                        <input type="text" class="input-border" id="profile-address-input" value="Software St 5">
                                     </div>
                                     
-                                    <div class="offset-4 col-3">
-                                        <button class="btn btn-info-profile">&nbsp&nbsp&nbspSave changes&nbsp&nbsp</button>
-                                    </div>
+                                    
 
                                 </div>
 
@@ -152,10 +153,29 @@
                                         <label>phone number</label>
                                     </div>
                                     <div class="col-2 mx-0">
-                                        <input type="text" class="input-border" id="" value="5161 16141 525">
+                                        <input type="text" class="input-border" id="profile-phone-input" value="5161 16141 525">
+                                    </div>
+
+                                    <div class="offset-4 col-3">
+                                      <button id="profile-save-button" class="btn btn-info-profile" onclick="saveUser()">&nbsp&nbsp&nbspSave changes&nbsp&nbsp</button>
                                     </div>
                                 </div>
 
+                                <div class="row" style="font-size: 2vh;">
+                                  <div class="col-2 left-pad">
+                                      <label>country</label>
+                                  </div>
+                                  <div class="col-2 mx-0">
+                                      <input type="text" class="input-border" id="profile-country-input" value="Serbia">
+                                  </div>
+                                  <div class="offset-2 col-2 left-pad">
+                                    <label>city</label>
+                                </div>
+                                <div class="col-2 mx-0">
+                                    <input type="text" class="input-border" id="profile-city-input" value="Novi Sad">
+                                </div>
+                                  
+                              </div>
                                 
 
 
@@ -736,10 +756,10 @@
 
 
     <script
-            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"
-    ></script>
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+  </script>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -751,6 +771,6 @@
             crossorigin="anonymous"
     ></script>
     <script src="../js/user/history.js"></script>
-    
+    <script src="../js/user/profile.js"></script>
   </body>
 </html>

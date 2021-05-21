@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import rs.ac.uns.ftn.informatika.rest.dto.UserEditDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.UserRequest;
 import rs.ac.uns.ftn.informatika.rest.model.Authority;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
@@ -55,19 +56,44 @@ public class KorisnikService {
 		k.setPassword(passwordEncoder.encode(userRequest.getPassword()));
 		k.setIme(userRequest.getFirstname());
 		k.setPrezime(userRequest.getLastname());
-		k.setActivated(true);
+		k.setActivated(false);
 		k.setAdresa(userRequest.getAddress());
 		k.setDrzava(userRequest.getCountry());
 		k.setGrad(userRequest.getCity());
 		k.setLastPasswordResetDate(new Date());
 		k.setTelefon(userRequest.getPhone());
-		k.setEmail("email");
+		k.setEmail(userRequest.getEmail());
 		List<Authority> auth = findByName("ROLE_USER");
 		if (auth == null)
 			throw new Exception("No role with such name");
 		// u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
 		k.setAuthorities(new HashSet<>(auth));
 		
+		k = this.userRepository.save(k);
+		return k;
+	}
+
+	public Korisnik editKorisnik(UserEditDTO user) {
+		Korisnik k = findByEmail(user.getEmail());
+		k.setIme(user.getName());
+		k.setPrezime(user.getLastName());
+		k.setAdresa(user.getAddress());
+		k.setTelefon(user.getPhoneNumber());
+		k.setDrzava(user.getCountry());
+		k.setGrad(user.getCity());
+
+		if (user.getOldPassword() != null && !user.getOldPassword().equalsIgnoreCase("")) {
+			k.setPassword(user.getNewPassword());
+		}
+
+		k = this.userRepository.save(k);
+		return k;
+	}
+
+	public Korisnik verifyKorisnik(String username) {
+		System.out.println("I am in verify korisnik");
+		Korisnik k = findByUsername(username);
+		k.setActivated(true);
 		k = this.userRepository.save(k);
 		return k;
 	}
@@ -84,6 +110,10 @@ public class KorisnikService {
 		List<Authority> auths = new ArrayList<>();
 		auths.add(auth);
 		return auths;
+	}
+
+	public Korisnik findByEmail(String email) {
+		return userRepository.findOneByEmail(email);
 	}
 
 
