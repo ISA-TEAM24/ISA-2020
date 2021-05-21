@@ -14,7 +14,7 @@
 }
 
 body {
-    background-image: url('/pharmacyadmin/index.png');
+    background-image: url('../../img/phadminindex.png');
     background-repeat: no-repeat;
     background-size: cover;
     height: 100% !important;
