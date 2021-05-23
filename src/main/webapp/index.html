@@ -10,14 +10,21 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/user/userLogin_style.css" />
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     
     <title>Homepage</title>
   </head>
   <body>
+    
     <div class="index-img" id="">
       <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
-          <!--<a class="navbar-brand" href="#"> <img class="logo-img" src="img/logo.png" alt="" /></a>-->
+
+         
+         <!--<a class="navbar-brand" href="#"> <img class="logo-img" src="img/logo.png" alt="" /></a>-->
           <button
             class="navbar-toggler custom-toggler"
             type="button"
@@ -43,18 +50,143 @@
                 </li>
     
                 <li class="nav-item">
-                  <a class="nav-link surround-item" href="">SIGN UP</a>
+                  <a class="nav-link surround-item" id="signUpNavBtn" href="#">SIGN UP</a>
                 </li>
     
                 <li class="nav-item">
-                  <a class="nav-link surround-item"  href="user/me.html">LOGIN</a>
+                  <a class="nav-link surround-item" id="loginNavBtn" href="#"> LOGIN</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
       </nav>
-  
+
+      <div id="loginFormModal" class="container">
+        <div class="d-flex justify-content-center h-100">
+          <div class="card">
+            <div class="card-header">
+              <h3>Sign In</h3>
+              <div class="d-flex justify-content-end social_icon">
+                <span><i class="fab fa-facebook-square"></i></span>
+                <span><i class="fab fa-google-plus-square"></i></span>
+                <span><i class="fab fa-twitter-square"></i></span>
+              </div>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Username">
+      
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="row align-items-center remember">
+                  <input type="checkbox">Remember Me
+                </div>
+                <div class="form-group">
+                  <input type="submit" value="Cancel" id="cancelBtn" class="btn float-right login_btn">
+                  <input type="submit" value="Login" class="btn float-right login_btn">
+                </div>
+              </form>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-center links">
+                Don't have an account?<a href="#">Sign Up</a>
+              </div>
+              <div class="d-flex justify-content-center">
+                <a href="#">Forgot your password?</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="registrationFormModal" class="container">
+        <div class="d-flex justify-content-center h-100">
+          <div class="card-reg">
+            <div class="card-header">
+              <h3>Sign Up</h3>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="First name">
+      
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Last name">
+                
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Username">
+                
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  <input type="password" class="form-control" placeholder="Confirm password">
+                </div>
+
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="far fa-address-card"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Address">
+                
+                </div>
+
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-city"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="City">
+                
+                </div>
+
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fab fa-font-awesome-flag"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="State">
+                
+                </div>
+                
+              </form>
+              
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Cancel" id="cancelRegBtn" class="btn float-right login_btn">
+              <input type="submit" value="Submit" class="btn float-right login_btn">
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!--searchbar start-->
       <section id="search" class="search-contain">
         <div class="container">
@@ -145,5 +277,8 @@
             crossorigin="anonymous"
     ></script>
     <script src="js/navscript.js"></script>
+    <script src="js/user/login.js"></script>
+    <script src="js/user/registration.js"></script>
+
   </body>
 </html>
