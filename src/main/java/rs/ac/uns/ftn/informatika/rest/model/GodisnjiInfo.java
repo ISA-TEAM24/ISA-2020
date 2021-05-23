@@ -10,10 +10,13 @@ public class GodisnjiInfo {
     private Long ID;
     @Column(nullable = false)
     private boolean naGodisnjem;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date odDatuma;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date doDatuma;
 
+    public GodisnjiInfo(){
+        naGodisnjem = false;
 
+    }
 }

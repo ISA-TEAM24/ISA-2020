@@ -18,6 +18,7 @@ import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.security.TokenUtils;
 import rs.ac.uns.ftn.informatika.rest.security.auth.JwtAuthenticationRequest;
 import rs.ac.uns.ftn.informatika.rest.service.CustomUserDetailsService;
+import rs.ac.uns.ftn.informatika.rest.service.EmailService;
 import rs.ac.uns.ftn.informatika.rest.service.KorisnikService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +41,9 @@ public class AuthenticationController {
 
     @Autowired
     private KorisnikService userService;
+
+    @Autowired
+    private EmailService emailService;
 
     // Prvi endpoint koji pogadja korisnik kada se loguje.
     // Tada zna samo svoje korisnicko ime i lozinku i to prosledjuje na backend.
@@ -67,9 +71,33 @@ public class AuthenticationController {
         return ResponseEntity.ok(new UserTokenState(jwt, expiresIn));
     }
 
+
+
+    @GetMapping("/verify/{username}")
+    public ResponseEntity<Korisnik> verifyUser(@PathVariable String username) {
+        System.out.println("--------------" + username + "---------------");
+        Korisnik user = null;
+        try {
+          user = this.userService.verifyKorisnik(username);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (user == null)
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+
     // Endpoint za registraciju novog korisnika
     @PostMapping("/signup")
-    public ResponseEntity<Korisnik> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) throws Exception{
+    public ResponseEntity<Korisnik> addUser(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) throws Exception {
+
+        boolean flag = sendEmail(userRequest.getUsername(), userRequest.getEmail());
+
+        if (!flag)
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 
         Korisnik existUser = this.userService.findByUsername(userRequest.getUsername());
         if (existUser != null) {
@@ -79,6 +107,9 @@ public class AuthenticationController {
         Korisnik user = this.userService.saveKorisnik(userRequest);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/api/user/{userId}").buildAndExpand(user.getID()).toUri());
+
+
+
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
@@ -109,6 +140,18 @@ public class AuthenticationController {
         Map<String, String> result = new HashMap<>();
         result.put("result", "success");
         return ResponseEntity.accepted().body(result);
+    }
+
+    public boolean sendEmail(String username, String email) {
+
+        String text = "Hello " + username;
+        text += ". Thank you for registering on our website please use the appropriate link bellow to confirm your ";
+        text += "registration. For locally hosted servers please use ";
+        text += "http://localhost:8080/user/verify.html?" + username;
+        text += " For remotely hosted servers please use ";
+        text += "https://isa-2020-team-24.herokuapp.com/user/verify.html?" + username;
+        boolean flag = emailService.sendSimpleMessage(email, "MDNN Confirm your registration", text);
+        return flag;
     }
 
     static class PasswordChanger {

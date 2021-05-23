@@ -67,10 +67,10 @@
                     <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <br>
                         <br>
-                        <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
-                        <a class="nav-link" id="v-pills-allergies-tab" data-toggle="pill" href="#v-pills-allergies" role="tab" aria-controls="v-pills-allergies" aria-selected="false">Allergies</a>         
+                        <a class="nav-link active" onclick="reloadProfile()" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
+                        <a class="nav-link" onclick="reloadAllergies()" id="v-pills-allergies-tab" data-toggle="pill" href="#v-pills-allergies" role="tab" aria-controls="v-pills-allergies" aria-selected="false">Allergies</a>         
                         <a class="nav-link" id="v-pills-appointments-tab" data-toggle="pill" href="#v-pills-appointments" role="tab" aria-controls="v-pills-appointments" aria-selected="false">Appointments</a>
-                        <a class="nav-link" id="v-pills-loyalty-tab" data-toggle="pill" href="#v-pills-loyalty" role="tab" aria-controls="v-pills-loyalty" aria-selected="false">Loyalty/Penalties</a>
+                        <a class="nav-link" onclick="reloadInfo()" id="v-pills-loyalty-tab" data-toggle="pill" href="#v-pills-loyalty" role="tab" aria-controls="v-pills-loyalty" aria-selected="false">Loyalty/Penalties</a>
                         <a class="nav-link" id="v-pills-subscriptions-tab" data-toggle="pill" href="#v-pills-subscriptions" role="tab" aria-controls="v-pills-subscriptions" aria-selected="false">Subscriptions</a>
                         <a class="nav-link" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
                         <a class="nav-link" id="v-pills-upcoming-tab" data-toggle="pill" href="#v-pills-upcoming" role="tab" aria-controls="v-pills-upcoming" aria-selected="false">Meds via EPrescription</a>
@@ -96,14 +96,14 @@
                                     </div>
 
                                     <div class="col-2 mx-1">
-                                        <input type="text" class="input-border" disabled id="" value="mark@mdnn.com">
+                                        <input type="text" class="input-border" disabled id="profile-email-input" value="mark@mdnn.com">
                                     </div>
 
                                     <div class="offset-2 col-2 left-pad">
                                         <label>current password</label>
                                     </div>
                                     <div class="col-2 mx-0">
-                                        <input type="password" class="input-border" id="">
+                                        <input type="password" class="input-border" id="profile-password-old-input">
                                     </div>                    
                                 </div> 
                                 
@@ -112,14 +112,14 @@
                                         <label>name</label>
                                     </div>
                                     <div class="col-1 mx-1">
-                                        <input type="text" class="input-border" id="" value="Mark">
+                                        <input type="text" class="input-border" id="profile-name-input" value="Mark">
                                     </div>
 
                                     <div class="offset-3 left-pad">
                                         <label>new password</label>
                                     </div>
                                     <div class="col-2 mx-3">
-                                        <input type="password" class="input-border" id="">
+                                        <input type="password" class="input-border" id="profile-password-new-input">
                                     </div>
 
                                 </div>
@@ -129,8 +129,14 @@
                                         <label>last name</label>
                                     </div>
                                     <div class="col-1 mx-0">
-                                        <input type="text" class="input-border" id="" value="Ristic">
+                                        <input type="text" class="input-border" id="profile-lastname-input" value="Ristic">
                                     </div>
+                                    <div class="offset-3 col-2 left-pad">
+                                      <label>confirm password</label>
+                                  </div>
+                                  <div class="col-1 mx-0">
+                                      <input type="text" class="input-border" id="profile-password-confirm-input" value="">
+                                  </div>
                                 </div>
 
                                 <div class="row" style="font-size: 2vh;">
@@ -138,12 +144,14 @@
                                         <label>address</label>
                                     </div>
                                     <div class="col-2 mx-0">
-                                        <input type="text" class="input-border" id="" value="Software St 5">
+                                        <input type="text" class="input-border" id="profile-address-input" value="Software St 5">
                                     </div>
-                                    
+
                                     <div class="offset-4 col-3">
-                                        <button class="btn btn-info-profile">&nbsp&nbsp&nbspSave changes&nbsp&nbsp</button>
-                                    </div>
+                                      <button id="profile-change-password-button" class="btn btn-info-profile" onclick="changePassword()">&nbsp&nbsp&nbspChange password&nbsp&nbsp</button>
+                                  </div>
+                                    
+                                    
 
                                 </div>
 
@@ -152,10 +160,29 @@
                                         <label>phone number</label>
                                     </div>
                                     <div class="col-2 mx-0">
-                                        <input type="text" class="input-border" id="" value="5161 16141 525">
+                                        <input type="text" class="input-border" id="profile-phone-input" value="5161 16141 525">
+                                    </div>
+
+                                    <div class="offset-4 col-3">
+                                      <button id="profile-save-button" class="btn btn-info-profile" onclick="saveUser()">&nbsp&nbsp&nbspSave changes&nbsp&nbsp</button>
                                     </div>
                                 </div>
 
+                                <div class="row" style="font-size: 2vh;">
+                                  <div class="col-2 left-pad">
+                                      <label>country</label>
+                                  </div>
+                                  <div class="col-2 mx-0">
+                                      <input type="text" class="input-border" id="profile-country-input" value="Serbia">
+                                  </div>
+                                  <div class="offset-2 col-2 left-pad">
+                                    <label>city</label>
+                                </div>
+                                <div class="col-2 mx-0">
+                                    <input type="text" class="input-border" id="profile-city-input" value="Novi Sad">
+                                </div>
+                                  
+                              </div>
                                 
 
 
@@ -177,23 +204,8 @@
                                     <th scope="col"></th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>Penicillin</td>
-                                    <td> <button class="btn btn-info-allergies">Remove</button></td>
-                                  </tr>   
-                                  <tr>
-                                    <td>Penicillin</td>
-                                    <td> <button class="btn btn-info-allergies">Remove</button></td>
-                                  </tr> 
-                                  <tr>
-                                    <td>Penicillin</td>
-                                    <td> <button class="btn btn-info-allergies">Remove</button></td>
-                                  </tr> 
-                                  <tr>
-                                    <td>Penicillin</td>
-                                    <td> <button class="btn btn-info-allergies">Remove</button></td>
-                                  </tr>                        
+                                <tbody id="allergies_body">
+                                                          
                                 </tbody>
                               </table>
                             </div>
@@ -202,10 +214,10 @@
                             <div class="container py-5">
                               <div class="row">
                                 <div class="offset-3 col-2">
-                                  <input type="text" placeholder="Allergy name">
+                                  <input id="allergies-input" type="text" placeholder="Allergy name">
                                 </div>
                                 <div class="offset-1 col-2">
-                                  <button class="btn btn-info-allergies">Add new allergy </button>
+                                  <button onclick="addAllergy()" class="btn btn-info-allergies" id="allergies-add-button">Add new allergy </button>
                                 </div>
                               </div>
                             </div>
@@ -292,14 +304,14 @@
                           <br>
                           <div class="text-pad">
                             <div class="row pretty-color" style="font-size: 2.5vh;">Loyalty/Penalties</div>
-                            <h5 class="py-5 "> 
-                              You currently belong in the GOLD category - 10% off on all products and exams
+                            <h5 id="cat_div" class="py-5 "> 
+                              
                             </h5>
-                            <h5 class="py-3"> 
-                              You currently have no penalty points - no punishment
+                            <h5 id="pen_div" class="py-3"> 
+                              
                             </h5>
-                            <h5 class="py-5"> 
-                              Your current grade : 5.0 / 5.0
+                            <h5 id="grade_div" class="py-5"> 
+                              
                             </h5>
 
                           </div>
@@ -736,10 +748,10 @@
 
 
     <script
-            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"
-    ></script>
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+  </script>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -751,6 +763,8 @@
             crossorigin="anonymous"
     ></script>
     <script src="../js/user/history.js"></script>
-    
+    <script src="../js/user/profile.js"></script>
+    <script src="../js/user/allergies.js"></script>
+    <script src="../js/user/loyaltyPen.js"></script>
   </body>
 </html>
