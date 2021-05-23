@@ -16,6 +16,8 @@
 body {
     background-image: url('../../img/phadminindex.png');
     background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
     background-size: cover;
     height: 100% !important;
 }
@@ -42,7 +44,7 @@ html {
 }
 
 #pharmacyeditcont {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.932);
     height: 100%;
 }
 
@@ -52,8 +54,78 @@ textarea {
 
 #inputfield {
     text-align: center;
+    font-size: 15pt;
 }
 
 button {
     align-items: center;
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 50vh;
+  overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+  display: block;
+}
+
+table, #phName, #phAddress, #phGrade {
+    text-align: center; 
+}
+
+.btn-info-fire {
+    background: #ffffff;  /* fallback for old browsers */
+    color: rgb(0, 99, 156);
+    border-width: 2pt;
+    border-color: rgb(0, 99, 156);
+    border-radius: 30px;
+    font-weight: bolder;
+}
+
+tr {
+    font-size: 15pt;
+}
+
+#search {
+    font-size: 15pt;
+}
+
+#Hire {
+    border: 0;
+    border-color: black;
+    border-radius: 30px;
+    font-size: 14pt;
+}
+
+#labels {
+    font-size: 15pt;
+}
+
+#Edit1, #Edit2, #Edit3, #Save, #Register {
+    font-size: 15pt;
+}
+
+.form-control {
+    font-size: 15pt;
+}
+
+hr.solid {
+    border-top: 1px solid rgb(0, 0, 0);
+}
+
+#nonworkingdays {
+    height: 160pt;
+}
+
+#info {
+    font-size: 12pt;
+}
+
+#Register {
+    border: 0;
+    border-color: black;
+    border-radius: 30px;
+    font-size: 16pt;
 }
