@@ -43,8 +43,8 @@ public class Korisnik implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private LoyaltyInfo loyaltyInfo;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Lek> alergije;
+    @ElementCollection
+    private Set<String> alergije;
 
     //Zaposleni
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -60,7 +60,7 @@ public class Korisnik implements UserDetails {
         this.activated = false;
         this.terapije = new HashSet<>();
         this.loyaltyInfo = new LoyaltyInfo();
-        this.alergije = new HashSet<Lek>();
+        this.alergije = new HashSet<String>();
         this.radnoInfo = new HashMap<String, RadnoInfo>();
         this.godisnjiInfo = new GodisnjiInfo();
         this.ocena = 5;
@@ -87,7 +87,7 @@ public class Korisnik implements UserDetails {
         this.authorities = authorities;
         this.terapije = new HashSet<>();
         this.loyaltyInfo = new LoyaltyInfo();
-        this.alergije = new HashSet<Lek>();
+        this.alergije = new HashSet<String>();
         this.radnoInfo = new HashMap<String, RadnoInfo>();
         this.godisnjiInfo = new GodisnjiInfo();
         this.ocena = 5;
@@ -237,11 +237,11 @@ public class Korisnik implements UserDetails {
         this.loyaltyInfo = loyaltyInfo;
     }
 
-    public Set<Lek> getAlergije() {
+    public Set<String> getAlergije() {
         return alergije;
     }
 
-    public void setAlergije(Set<Lek> alergije) {
+    public void setAlergije(Set<String> alergije) {
         this.alergije = alergije;
     }
 

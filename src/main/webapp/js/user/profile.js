@@ -11,8 +11,10 @@
 // perhaps a check for whether we're changing passwords too
 // id="v-pills-profile-tab" 
 // profile-change-password-button
+// #profile-password-confirm-input
 $(document).ready(function() {
     test_login();
+    
 })
 
 function saveUser(){
@@ -64,6 +66,7 @@ function test_login() {
             console.log('LOGGED IN')
             console.log('your token is' + retToken.accessToken)
             localStorage.setItem('myToken', retToken.accessToken);
+            reloadProfile();
         },
         error : function() {
             console.log('FAIL LOGIN')
@@ -86,7 +89,7 @@ function reloadProfile() {
             fillProfile(user);
         },
         error : function() {
-            console.log('DAMN SON')
+            console.log('An Error has occured while trying to reload the profile')
         }
         
     })
@@ -103,5 +106,78 @@ function fillProfile(user) {
 }
 
 function changePassword() {
-    console.log('hey i wanna change my pw')
+    // /auth/change-password
+
+    if ($('#profile-password-old-input').val() == "") {
+        return;
+    }
+
+    if ($('#profile-password-new-input').val() == "") {
+        return;
+    }
+
+    if ($('#profile-password-confirm-input').val() == "") {
+        return;
+    }
+
+    if ($('#profile-password-new-input').val() != $('#profile-password-confirm-input').val()) {
+        $('#profile-change-password-button').html('Passwords must match!')
+        console.log('bad match')
+        countDownToButtonEdit(2)   
+        return;
+    }
+
+    var obj = {
+        oldPassword : $('#profile-password-old-input').val(),
+        newPassword : $('#profile-password-new-input').val()
+    }
+
+    $.ajax({
+        type:'POST',
+        url: '/auth/change-password',
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        data : JSON.stringify(obj),
+        success : function() {
+            $('#profile-change-password-button').html('Successfully changed pw!')
+            countDownToReload(2);
+
+        },
+        error : function() {
+            console.log('An Error has occured while trying to reload the profile')
+            $('#profile-change-password-button').html('Failed to change pw!')
+            countDownToReload(2);
+        }
+        
+    })
+}
+
+function countDownToReload(x) {
+    var counter = x;
+    var interval = setInterval(function() {
+        counter--;
+        // Display 'counter' wherever you want to display it.
+        if (counter < 1) {
+            // Display a login box
+            window.location.reload();
+        }
+
+
+    }, 1000);
+}
+
+function countDownToButtonEdit(x) {
+    var counter = x;
+    var interval = setInterval(function() {
+        counter--;
+        // Display 'counter' wherever you want to display it.
+        if (counter < 1) {
+            // Display a login box
+            $('#profile-change-password-button').html('Change Password')
+        }
+
+
+    }, 1000);
 }

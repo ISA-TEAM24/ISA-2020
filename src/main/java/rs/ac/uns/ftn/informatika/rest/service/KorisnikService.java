@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import rs.ac.uns.ftn.informatika.rest.dto.AllergiesDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.UserEditDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.UserRequest;
 import rs.ac.uns.ftn.informatika.rest.model.Authority;
@@ -114,6 +115,31 @@ public class KorisnikService {
 
 	public Korisnik findByEmail(String email) {
 		return userRepository.findOneByEmail(email);
+	}
+
+	public AllergiesDTO findAllergiesForUser(String username) {
+		Korisnik k = findByUsername(username);
+		return new AllergiesDTO(new ArrayList<String>(k.getAlergije()));
+	}
+
+	public List<String> addAllergyForUser(String username, AllergiesDTO dto) {
+		Korisnik k = findByUsername(username);
+		k.getAlergije().addAll(dto.getAllergies());
+		userRepository.save(k);
+		return new ArrayList<String>(k.getAlergije());
+	}
+
+	public boolean removeAllergyForUser(String username, String allergy) {
+		Korisnik k = findByUsername(username);
+
+		for(String s : k.getAlergije()) {
+			if (s.equalsIgnoreCase(allergy)) {
+				k.getAlergije().remove(s);
+				userRepository.save(k);
+				return true;
+			}
+		}
+		return false;
 	}
 
 
