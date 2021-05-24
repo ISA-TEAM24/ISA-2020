@@ -1,56 +1,56 @@
 html {
   scroll-behavior: smooth;
-  font-family: 'Molengo';
+  font-family: "Molengo";
 }
 
 @font-face {
-  font-family: 'Molengo';
-  src: url('/fonts/Molengo-Regular.ttf'); /* IE9 Compat Modes */
-  src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
-       url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
-       url('/fonts/Molengo-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+  font-family: "Molengo";
+  src: url("/fonts/Molengo-Regular.ttf"); /* IE9 Compat Modes */
+  src: url("webfont.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("webfont.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("webfont.woff") format("woff"),
+    /* Pretty Modern Browsers */ url("/fonts/Molengo-Regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("webfont.svg#svgFontName") format("svg"); /* Legacy iOS */
 }
 
 @font-face {
-  font-family: 'Montseratt';
-  src: url('/fonts/Montserrat-Bold.ttf'); /* IE9 Compat Modes */
-  src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
-       url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
-       url('/fonts/Montserrat-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+  font-family: "Montseratt";
+  src: url("/fonts/Montserrat-Bold.ttf"); /* IE9 Compat Modes */
+  src: url("webfont.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("webfont.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("webfont.woff") format("woff"),
+    /* Pretty Modern Browsers */ url("/fonts/Montserrat-Bold.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("webfont.svg#svgFontName") format("svg"); /* Legacy iOS */
 }
-
 
 .logo-img {
   width: 70px;
   height: 70px;
-  
 }
 
 .index-img {
-  background-image: url('/img/poli-dark.png');
+  background-image: url("/img/poli-dark.png");
   font-family: Molengo;
-    /* Center and scale the image nicely */
-  height : 100vh;
+  /* Center and scale the image nicely */
+  height: 100vh;
   background-repeat: no-repeat;
 }
 
 .img-about {
-  background-image: url('/img/about.png');
+  background-image: url("/img/about.png");
   font-family: Molengo;
-    /* Center and scale the image nicely */
-  height : 100vh;
+  /* Center and scale the image nicely */
+  height: 100vh;
   background-repeat: no-repeat;
 }
 
 .img-contact {
-  background-image: url('/img/contact.png');
+  background-image: url("/img/contact.png");
   font-family: Molengo;
   /* Center and scale the image nicely */
-  height : 100vh;
+  height: 100vh;
   background-repeat: no-repeat;
 }
 
@@ -63,12 +63,12 @@ html {
 }
 
 .nav-item {
-  padding-top: 15px
+  padding-top: 15px;
 }
 
-.navbar-nav > li{
-  padding-left:30px;
-  padding-right:30px;
+.navbar-nav > li {
+  padding-left: 30px;
+  padding-right: 30px;
 }
 /* MDNN item in the middle */
 .middle-nav {
@@ -92,7 +92,7 @@ html {
   background-color: rgb(18, 18, 19);
   color: white;
   border: solid 1px rgb(134, 128, 128);
-  letter-spacing:3px;
+  letter-spacing: 3px;
   z-index: -10;
 }
 
@@ -102,7 +102,7 @@ html {
   color: rgb(7, 149, 126);
   border: solid 1px rgb(134, 128, 128);
   margin-left: 53px;
-  letter-spacing:3px;
+  letter-spacing: 3px;
 }
 
 .use-montseratt {
@@ -110,7 +110,7 @@ html {
   font-size: 70px;
   letter-spacing: 5px;
   padding-top: 175px;
-  padding-right:525px;
+  padding-right: 525px;
 }
 
 .custom-green {
@@ -118,8 +118,13 @@ html {
 }
 
 .custom-white {
-  color: rgba(255,255,255, 0.5);
-  
+  color: rgba(255, 255, 255, 0.5);
 }
 
-.row-bottom-margin { margin-bottom:-40px; }
+.row-bottom-margin {
+  margin-bottom: -40px;
+}
+
+#searchPage {
+  display: none;
+}

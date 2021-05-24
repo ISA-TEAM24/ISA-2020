@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../css/user/search.css" />
+    <title>Document</title>
+</head>
+<body class="backgroundSearch">
+</br></br>
+    <div class="container">
+        
+        <br>
+        <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search for medicine..." title="Type in a name">
+        
+        <table id="myTable" class="backgroundTable">
+            <tr class="header">
+                <th id="medicine_header" scope="col" onclick="sortTable(0,'myTable')">Medicine</th>
+                <th id="type_header" scope="col" onclick="sortTable(1,'myTable')">Type</th>
+                <th id="pharmacy_header" scope="col" onclick="sortTable(2,'myTable')">Pharmacy</th>
+                <th id="price_header" scope="col" onclick="sortTable(3,'myTable')">Price</th>
+                <th id="rating_header" scope="col" onclick="sortTable(4,'myTable')">Rating</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+            <tr>
+                <td>Brufen</td>
+                <td>Capsules</td>
+                <td>Benu</td>
+                <td>300</td>
+                <td>4.53</td>
+                <td>
+                    <button type="button" class="btn btn-info">Specification</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary">Reserve</button>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>Aspirin</td>
+                <td>Tablet</td>
+                <td>Zegin</td>
+                <td>400</td>
+                <td>4.31</td>
+                <td>
+                    <button type="button" class="btn btn-info">Specification</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary">Reserve</button>
+                </td>
+
+                
+            </tr>
+            <tr>
+                <td>Lekadol</td>
+                <td>Tablet</td>
+                <td>Benu</td>
+                <td>450</td>
+                <td>3.52</td>
+                <td>
+                    <button type="button" class="btn btn-info">Specification</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary">Reserve</button>
+                </td>
+                
+
+            </tr>
+            <tr>
+                <td>Caffetin</td>
+                <td>Tablet</td>
+                <td>Galen pharm</td>
+                <td>250</td>
+                <td>4.56</td>
+                <td>
+                    <button type="button" class="btn btn-info">Specification</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary">Reserve</button>
+                </td>
+
+
+            </tr>
+            <tr>
+                <td>Vitamin C</td>
+                <td>Capsules</td>
+                <td>Zelena apoteka</td>
+                <td>350</td>
+                <td>4.82</td>
+                <td>
+                    <button type="button" class="btn btn-info">Specification</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary">Reserve</button>
+                </td>
+
+            </tr>
+            <tr>
+                <td>Vitamin D3</td>
+                <td>Capsules</td>
+                <td>Benu</td>
+                <td>400</td>
+                <td>4.92</td>
+                <td>
+                    <button type="button" class="btn btn-info">Specification</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary">Reserve</button>
+                </td>
+        </table>
+
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    
+
+    <script src="../js/user/search.js"></script>
+
+</body>
+</html>

@@ -36,3 +36,9 @@ $('#cancelBtn').click(function(){
         enableScroll();
         $('#loginFormModal').hide();
     }); 
+
+ function hideModal(){
+       $("#loginFormModal").hide();
+       $("#registrationFormModal").hide();
+       enableScroll();
+  }

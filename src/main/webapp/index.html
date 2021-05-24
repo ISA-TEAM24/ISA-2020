@@ -38,15 +38,15 @@
             <div class="container">
               <ul class="navbar-nav w-100 justify-content-center">
                 <li class="nav-item">
-                  <a class="nav-link surround-item" href="#contact">CONTACT</a>
+                  <a class="nav-link surround-item"  onclick="hideModal()" href="#contact">CONTACT</a>
                 </li>
     
                 <li class="nav-item">
-                  <a class="nav-link surround-item" href="#about">ABOUT US</a>
+                  <a class="nav-link surround-item" onclick="hideModal()" href="#about">ABOUT US</a>
                 </li>
     
                 <li class="nav-item active middle-nav">
-                  <a class="nav-link" href="#">MDNN</a>
+                  <a class="nav-link" onclick="hideModal()" href="#">MDNN</a>
                 </li>
     
                 <li class="nav-item">
@@ -56,12 +56,15 @@
                 <li class="nav-item">
                   <a class="nav-link surround-item" id="loginNavBtn" href="#"> LOGIN</a>
                 </li>
+                <li class="nav-item">
+                  
+                </li>
               </ul>
             </div>
+            
           </div>
         </div>
-      </nav>
-
+      </nav> 
       <div id="loginFormModal" class="container">
         <div class="d-flex justify-content-center h-100">
           <div class="card">
@@ -192,7 +195,7 @@
         <div class="container">
           <div class="row no-gutters">
             <div class="offset-lg-2 col-lg-5">
-              <input class="col-lg-12 search-bar" type="text" placeholder="Find what you need today">
+              <input onclick="showSearch()" class="col-lg-12 search-bar" type="text" placeholder="Find what you need today">
             </div>
             <div class="col-lg-1 pr-2-4">
                 <select class="selectpicker drop-me-down" data-show-tokens= "false" data-live-search="true">
@@ -278,7 +281,8 @@
     ></script>
     <script src="js/navscript.js"></script>
     <script src="js/user/login.js"></script>
-    <script src="js/user/registration.js"></script>
+    <script src="js/user/registration.js"></script> 
+    <script src="js/user/search.js"></script>
 
   </body>
 </html>
