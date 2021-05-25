@@ -5,8 +5,11 @@ import java.util.Date;
 @Entity
 public class GodisnjiInfo {
 
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="Event_Seq", sequenceName="Event_Seq", initialValue = 15, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event_Seq")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID;
     @Column(nullable = false)
     private boolean naGodisnjem;
