@@ -4,12 +4,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
 public class Korisnik implements UserDetails {
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="Event_Seq", sequenceName="Event_Seq", initialValue = 15, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event_Seq")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID;
     @Column(nullable = false, unique = true)
     private String email;
@@ -33,7 +37,7 @@ public class Korisnik implements UserDetails {
     private String telefon;
     @Column(nullable = false, unique = false)
     private boolean activated;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Authority> authorities;
 
     //Pacijent

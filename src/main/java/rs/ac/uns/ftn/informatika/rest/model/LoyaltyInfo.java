@@ -1,14 +1,18 @@
 package rs.ac.uns.ftn.informatika.rest.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 @Entity
 public class LoyaltyInfo {
 
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="Event_Seq", sequenceName="Event_Seq", initialValue = 15, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event_Seq")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long ID;
     @Column(nullable = true)
