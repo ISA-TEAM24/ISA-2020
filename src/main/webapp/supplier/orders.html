@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="../css/dermatologist/navbar-dermpharm.css" />
+    <link rel="stylesheet" href="../css/dermatologist/dermstyle.css" /> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/supplier/supplierStyle.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand brand" href="indexSupplier.html"> <img src="../img/logo2.png" alt="" /></a>
+            <h2 id='systemName'>MDNN</h2>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="indexSupplier.html">Home</a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="myOffers.html">My offers</a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="orders.html">Orders</a>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="myProfile.html">My profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Log out</a>
+                        </div>
+                    </li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Orders</h1>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Create offer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ol>
+                            <li>
+                                Brufen
+                                <input type="text" placeholder="Price per unit">
+                            </li>
+                            <hr>
+                            <li>
+                                Lekadol
+                                <input type="text" placeholder="Price per unit">
+                            </li>
+                            <hr>
+                            <li>
+                                Aspirin
+                                <input type="text" placeholder="Price per unit">
+                            </li>
+                            <hr>
+                        </ol>
+
+                        <ul>
+                            <li>
+                                Deadline
+                                <input type="date">
+                            </li>
+
+                        </ul>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Create offer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End Modal Create order -->
+    <div id="offerCont" class="container">
+
+        <table id="tableOffers" class="backgroundTable">
+            <tr class="header">
+                <th scope="col" onclick="sortTable(0,'tableOffers')">Order ID</th>
+                <th scope="col" onclick="sortTable(1,'tableOffers')">Pharmacy</th>
+                <th scope="col" onclick="sortTable(2,'tableOffers')">Price</th>
+                <th></th>
+
+            </tr>
+            <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
+                <td>#123</td>
+                <td>Zegin</td>
+                <td>4000</td>
+                <td>
+                    <button type="button" class="btn btn-info">Details</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" class="hiddenRow">
+                    <div class="accordian-body collapse" id="demo1">
+                        <!--        POCETAK UBACENE TABELE                             -->
+
+                        <div id="offerCont" class="container">
+
+                            <table id="tableOffers" class="backgroundTable">
+                                <tr class="header">
+                                    <th scope="col" onclick="sortTable(0,'tableOffers')">Medicine</th>
+                                    <th scope="col" onclick="sortTable(3,'tableOffers')">Amount</th>
+
+                                </tr>
+                                <tr>
+                                    <td>Brufen</td>
+                                    <td>20</td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>Andol</td>
+                                    <td>15</td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>Aspirin</td>
+                                    <td>22</td>
+
+                                </tr>
+                            </table>
+                            </br>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModal">
+                                Create offer
+                            </button>
+                            <button type="button" class="btn btn-danger">
+                                Delete
+                            </button>
+                            </br>
+                            </br>
+                        </div>
+
+                    </div>
+                </td>
+            </tr>
+            <!--        KRAJ UBACENE TABELE                             -->
+            <tr>
+                <td colspan="6" class="hiddenRow">
+                    <div class="accordian-body collapse" id="demo1">NEBITNO</div>
+
+                </td>
+            </tr>
+            <tr>
+                <td>#534</td>
+                <td>Benu</td>
+                <td>3000</td>
+                <td>
+                    <button type="button" class="btn btn-info">Details</button>
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td>#323</td>
+                <td>Benu</td>
+                <td>4500</td>
+                <td>
+                    <button type="button" class="btn btn-info">Details</button>
+                </td>
+            </tr>
+
+        </table>
+        </br>
+
+    </div>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src="../js/supplier/supplier.js"></script>
+
+</body>
+
+</html>

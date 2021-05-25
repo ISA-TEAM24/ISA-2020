@@ -1,0 +1,186 @@
+h1 {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 3.5em;
+  font-weight: bold;
+}
+
+a.dropdown-item {
+  background-color: gray;
+}
+
+div.dropdown-menu.show {
+  background-color: gray;
+}
+
+body {
+  background-image: url("../../img/poli-light-blur.jpg");
+  height: 100vh;
+  background-repeat: no-repeat;
+}
+
+.jumbotron {
+  background-color: rgba(220, 220, 220, 0.671);
+}
+
+#offerCont {
+  background-color: rgba(231, 223, 223, 0.567);
+}
+
+#tableOffers {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#tableOffers th,
+#tableOffers td {
+  text-align: left;
+  padding: 12px;
+}
+
+#tableOffers tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#tableOffers tr.header,
+#tableOffers tr:hover {
+  background-color: #f1f1f1;
+}
+
+tr > th {
+  width: 20%;
+}
+
+.backgroundTable {
+  background: rgb(255, 255, 255, 0.4);
+}
+
+/* ---------------------------------------------------------------------------------*/
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Molengo";
+}
+
+@font-face {
+  font-family: "Molengo";
+  src: url("/fonts/Molengo-Regular.ttf"); /* IE9 Compat Modes */
+  src: url("webfont.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("webfont.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("webfont.woff") format("woff"),
+    /* Pretty Modern Browsers */ url("/fonts/Molengo-Regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("webfont.svg#svgFontName") format("svg"); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: "Montseratt";
+  src: url("/fonts/Montserrat-Bold.ttf"); /* IE9 Compat Modes */
+  src: url("webfont.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("webfont.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("webfont.woff") format("woff"),
+    /* Pretty Modern Browsers */ url("/fonts/Montserrat-Bold.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("webfont.svg#svgFontName") format("svg"); /* Legacy iOS */
+}
+
+/* change the background color */
+.navbar-custom {
+  background-color: #ffffff;
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+  color: #ffffff;
+  background-color: #4794db; /* add background-color to active links */
+}
+
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+  color: rgb(41, 46, 56);
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+  color: #ffffff;
+}
+
+/* for dropdown only - change the color of droodown */
+.navbar-custom .dropdown-menu {
+  background-color: #114ff8;
+}
+.navbar-custom .dropdown-item {
+  color: #ffffff;
+}
+.navbar-custom .dropdown-item:hover,
+.navbar-custom .dropdown-item:focus {
+  color: #333333;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar .brand {
+  max-height: 60px;
+  max-width: 20%;
+  overflow: visible;
+  padding-top: 0;
+  padding-bottom: 2%;
+}
+
+#systemName {
+  color: #4794db;
+  font-family: "Molengo";
+  padding-top: 10px;
+}
+
+img {
+  width: 70px;
+  height: 70px;
+}
+
+.table tr td {
+  cursor: pointer;
+}
+.hiddenRow {
+  padding: 0 4px !important;
+  background-color: #eeeeee;
+  font-size: 13px;
+}
+
+#offerFormModal {
+  z-index: 1;
+}
+
+li > input {
+  position: absolute;
+  left: 12em;
+}
+
+.myProfileCont {
+  background-color: rgba(93, 87, 87, 0.37);
+}
+div > label {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.33em;
+}
+
+span {
+  font-size: 19px;
+}
+
+li > a {
+  font-size: 19px;
+  padding: 40px;
+}
+
+#changePassBtn {
+  margin-left: 15px;
+}
