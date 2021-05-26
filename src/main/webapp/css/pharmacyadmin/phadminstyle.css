@@ -55,6 +55,8 @@ textarea {
 #inputfield {
     text-align: center;
     font-size: 15pt;
+    border: 2pt;
+    border-color: black;
 }
 
 button {
@@ -66,6 +68,12 @@ button {
   height: 50vh;
   overflow: auto;
 }
+
+.my-custom-scrollbar2 {
+    position: relative;
+    height: 25vh;
+    overflow: auto;
+  }
 
 .table-wrapper-scroll-y {
   display: block;
@@ -128,4 +136,17 @@ hr.solid {
     border-color: black;
     border-radius: 30px;
     font-size: 16pt;
+}
+
+.btn-primary-appointment {
+    background: #0275d8;  /* fallback for old browsers */
+    color: rgb(255, 255, 255);
+    border-radius: 30px;
+}
+
+.btn-primary-custom {
+    font-size: 15pt;
+    background: #0275d8;  /* fallback for old browsers */
+    color: rgb(255, 255, 255);
+    border-radius: 30px;
 }

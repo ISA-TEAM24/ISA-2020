@@ -20,7 +20,7 @@
 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto topnav">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="pharmacyedit.html">Pharmacy</a>
                 </li>
                 <li class="nav-item">
@@ -33,14 +33,14 @@
                     <a class="nav-link" href="meds.html">Medicines</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Pricelist
-                    </a>
-                    <div class="dropdown-menu">
-                    <a class="dropdown-item" href="medspricelist.html">Medicines</a>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="medspricelist.html">Medicine</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="examinationpricelist.html">Examination</a>
-                    </div>
+                    <a class="dropdown-item active" href="examinationpricelist.html">Examination</a>
+                </div>
                 </li>
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -96,48 +96,32 @@
 
         <div class="container" id="pharmacyeditcont">
             <br><br>
-            <h1 align="center">Pharmacy informations</h1>
+            <h1 align="center">Examination pricelist</h1>
             <br><br><br>
             <div class="row">
-                <div class="col-4 text-center" id="labels">
-                    Pharmacy name
+                <div class="col-3"></div>
+                <div class="col-3" id="labels">
+                    Pharmacist's examination
                 </div>
-                <div class="col-6 text-center" id="inputfield">
+                <div class="col-3 text-center" id="inputfield">
                     <div class="form-group">
-                        <input type="text" id="field1" disabled class="form-control" value="Apoteka123" aria-label="Pharmacyname" aria-describedby="basic-addon1">
+                        <input type="text" id="medicine1" class="form-control" value="1000">
                     </div>
                 </div>
-                <div class="col-2 text-center">
-                    <button type="button" id="Edit1" class="btn btn-primary">Edit</button>
-                </div>
+                <div class="col-3"></div>
             </div>
-            <br><br>
+            <br>
             <div class="row">
-                <div class="col-4 text-center" id="labels">
-                    Pharmacy address
+                <div class="col-3"></div>
+                <div class="col-3" id="labels">
+                    Dermatologist's examination
                 </div>
-                <div class="col-6 text-center" id="inputfield">
+                <div class="col-3 text-center" id="inputfield">
                     <div class="form-group">
-                        <input value="Prvomajska 20 Backa Topola" id="field2" disabled type="text" class="form-control" aria-label="Pharmacyname" aria-describedby="basic-addon1">
+                        <input type="text" id="medicine2" class="form-control" value="1200">
                     </div>
                 </div>
-                <div class="col-2 text-center">
-                    <button type="button" id="Edit2" class="btn btn-primary">Edit</button>
-                </div>
-            </div>
-            <br><br>
-            <div class="row">
-                <div class="col-4 text-center" id="labels"> 
-                    Description
-                </div>
-                <div class="col-6 text-center" id="inputfield">
-                    <div class="form-group">
-                        <textarea class="form-control" disabled rows="5" id="field3">Najbolja apoteka u Backoj Topoli</textarea>
-                    </div>
-                </div>
-                <div class="col-2 text-center" style="width: 50px;">
-                    <button type="button" id="Edit3" class="btn btn-primary">Edit</button>
-                </div>
+                <div class="col-3"></div>
             </div>
             <br>
             <div class="text-center">
@@ -162,7 +146,6 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
-  <script src="../js/pharmacyadmin/phadminpharmacyeditjs.js"></script>
 
 </body>
 </html>
