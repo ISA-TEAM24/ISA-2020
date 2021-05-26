@@ -74,9 +74,14 @@
 
     <h2 class="text-center">Podnošenje zahteva za godišnji odmor/odustvo</h2>
     <hr>
-    <br>
+
     <div class="container">
         <div class="col-md-20 col-centered">
+
+          <div class="form-group">
+            <label style="color:red" id="errormsg"> </label>
+            <label style="color:green" id="successmsg"> </label>
+          </div>
             <div class="form-group">
                 <label>Od datuma: </label>
                 <input class="form-control" type="date" placeholder="" id="odDatuma">
@@ -103,7 +108,7 @@
         <br>
             <div class="row">
             <div class="col text-center">
-                <button class="btn btn-primary customBtn" type="submit" id="podnesiZahtev">Podnesi zahtev</button>
+                <button class="btn btn-primary customBtn" type="submit" id="podnesiZahtev" onclick="sendRequest()">Podnesi zahtev</button>
             </div>
         </div>
 
@@ -116,10 +121,10 @@
     </div>
 
     <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+    </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -132,6 +137,7 @@
     ></script>
 
     <script type="text/javascript" src=""></script>
+    <script type="text/javascript" src="../js/dermatologist/timeOffRequest.js"></script>
 
   </body>
 </html>
