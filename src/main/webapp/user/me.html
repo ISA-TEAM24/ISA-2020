@@ -658,16 +658,18 @@
                                         <label for="">At date</label>
                                       </div>
                                       <div class="col-3">
-                                        <input type="date">
+                                        <input type="date" id="consult-date-picker">
                                       </div>
-                                      <div class="offset- 1 col-3"><button class="btn btn-info-profile">&nbsp&nbspFind term&nbsp&nbsp</button></div>
+                                      <div class="offset- 1 col-3">
+                                        <button onclick="findPharmacies()" class="btn btn-info-profile">&nbsp&nbspFind term&nbsp&nbsp</button>
+                                      </div>
                                     </div>
                                     <div class="row">
                                       <div class="col-2">
                                         <label for="">On time</label>
                                       </div>
                                       <div class="col-3">
-                                        <input type="time">
+                                        <input type="time" id="consult-time-picker">
                                       </div>
                                     </div>
                                   </div>
@@ -766,5 +768,6 @@
     <script src="../js/user/profile.js"></script>
     <script src="../js/user/allergies.js"></script>
     <script src="../js/user/loyaltyPen.js"></script>
+    <script src="../js/user/consult.js"></script>
   </body>
 </html>

@@ -34,6 +34,7 @@ public class KorisnikController {
     public Korisnik user(Principal user) {
         return this.korisnikService.findByUsername(user.getName());
     }
+
     @PostMapping("/user/allergy/add")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity addAllergy(Principal user, @RequestBody AllergiesDTO dto) {
@@ -42,6 +43,7 @@ public class KorisnikController {
     }
 
     @PostMapping("user/allergy/remove")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity removeAllergy(Principal user, @RequestBody AllergiesDTO dto) {
         if (korisnikService.removeAllergyForUser(user.getName(), dto.getAllergies().get(0)))
             return new ResponseEntity<>(null, HttpStatus.OK);
