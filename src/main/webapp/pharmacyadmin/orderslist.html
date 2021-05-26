@@ -20,7 +20,7 @@
 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto topnav">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="pharmacyedit.html">Pharmacy</a>
                 </li>
                 <li class="nav-item">
@@ -67,7 +67,7 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="purchaseorder.html">New</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="orderslist.html">Active</a>
+                    <a class="dropdown-item active" href="orderslist.html">Active</a>
                 </div>
                 </li>
                 <li class="nav-item">
@@ -96,56 +96,48 @@
 
         <div class="container" id="pharmacyeditcont">
             <br><br>
-            <h1 align="center">Pharmacy informations</h1>
-            <br><br><br>
-            <div class="row">
-                <div class="col-4 text-center" id="labels">
-                    Pharmacy name
-                </div>
-                <div class="col-6 text-center" id="inputfield">
-                    <div class="form-group">
-                        <input type="text" id="field1" disabled class="form-control" value="Apoteka123" aria-label="Pharmacyname" aria-describedby="basic-addon1">
-                    </div>
-                </div>
-                <div class="col-2 text-center">
-                    <button type="button" id="Edit1" class="btn btn-primary">Edit</button>
-                </div>
-            </div>
+            <h1 align="center">Active purchase orders</h1>
             <br><br>
-            <div class="row">
-                <div class="col-4 text-center" id="labels">
-                    Pharmacy address
-                </div>
-                <div class="col-6 text-center" id="inputfield">
-                    <div class="form-group">
-                        <input value="Prvomajska 20 Backa Topola" id="field2" disabled type="text" class="form-control" aria-label="Pharmacyname" aria-describedby="basic-addon1">
-                    </div>
-                </div>
-                <div class="col-2 text-center">
-                    <button type="button" id="Edit2" class="btn btn-primary">Edit</button>
-                </div>
+
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-bordered table-striped mb-0">
+                <thead>
+                    <tr>
+                    <th scope="col">Created by</th>
+                    <th scope="col">Lasts up to</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>admin123</td>
+                    <td>30/05/2021</td>
+                    <td><button type="button" id="ViewOffers1" class="btn btn-primary-appointment">View offers</button></td>
+                    <td><button type="button" id="Editbtn1" class="btn btn-primary-appointment">Edit</button></td>
+                    <td><button type="button" id="Delete1" class="btn btn-primary-appointment">Delete</button></td>
+                    </tr> 
+                    <tr>
+                    <td>admin123</td>
+                    <td>10/06/2021</td>
+                    <td><button type="button" id="ViewOffers1" class="btn btn-primary-appointment">View offers</button></td>
+                    <td><button type="button" id="Editbtn1" class="btn btn-primary-appointment">Edit</button></td>
+                    <td><button type="button" id="Delete1" class="btn btn-primary-appointment">Delete</button></td>
+                    </tr> 
+                    <tr>
+                    <td>admin999</td>
+                    <td>05/06/2021</td>
+                    <td><button type="button" id="ViewOffers1" class="btn btn-primary-appointment">View offers</button></td>
+                    <td><button type="button" id="Editbtn1" class="btn btn-primary-appointment">Edit</button></td>
+                    <td><button type="button" id="Delete1" class="btn btn-primary-appointment">Delete</button></td>
+                    </tr>
+                </tbody>
+                </table>
             </div>
-            <br><br>
-            <div class="row">
-                <div class="col-4 text-center" id="labels"> 
-                    Description
-                </div>
-                <div class="col-6 text-center" id="inputfield">
-                    <div class="form-group">
-                        <textarea class="form-control" disabled rows="5" id="field3">Najbolja apoteka u Backoj Topoli</textarea>
-                    </div>
-                </div>
-                <div class="col-2 text-center" style="width: 50px;">
-                    <button type="button" id="Edit3" class="btn btn-primary">Edit</button>
-                </div>
-            </div>
-            <br>
-            <div class="text-center">
-                <button type="button" id="Save" class="btn btn-primary">Save</button>
-            </div>
-            <br><br>
-        </div>
-    </div>
+            <br><br><br><br>
+          </div>
+    </div>      
   
   <script
   src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -162,7 +154,7 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
-  <script src="../js/pharmacyadmin/phadminpharmacyeditjs.js"></script>
+  <script src="../js/pharmacyadmin/purchaseorder.js"></script>
 
 </body>
 </html>

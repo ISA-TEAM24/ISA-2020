@@ -97,13 +97,13 @@
 }
 
 .btn-info-pharmacists {
-background: #19e62a;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #19e62a, #0d8618);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #19e62a, #0d8618); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-border: none;
-border-radius: 50px;
-height: 6vh;
-color: white;
+    background: #19e62a;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #19e62a, #0d8618);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #19e62a, #0d8618); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border: none;
+    border-radius: 50px;
+    height: 6vh;
+    color: white;
 }
 
 input[type="text"]:disabled {
