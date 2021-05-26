@@ -1,48 +1,44 @@
 package rs.ac.uns.ftn.informatika.rest.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 import rs.ac.uns.ftn.informatika.rest.dto.UserEditDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.UserRequest;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.service.CustomUserDetailsService;
-import rs.ac.uns.ftn.informatika.rest.service.DermatologistService;
+import rs.ac.uns.ftn.informatika.rest.service.PharmacistService;
 
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/dermatologist", produces = MediaType.APPLICATION_JSON_VALUE)
-public class DermatologistController {
+@RequestMapping(value = "/pharmacist", produces = MediaType.APPLICATION_JSON_VALUE)
+public class PharmacistController {
 
     @Autowired
-    private DermatologistService dermatologistService;
+    private PharmacistService pharmacistService;
 
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
     @GetMapping("/whoami")
-    @PreAuthorize("hasRole('DERMATOLOGIST')")
+    @PreAuthorize("hasRole('PHARMACIST')")
     public Korisnik user(Principal user) {
-        return this.dermatologistService.findByUsername(user.getName());
+        return this.pharmacistService.findByUsername(user.getName());
     }
 
     @PostMapping("/firstlogpwchange")
-    @PreAuthorize("hasRole('DERMATOLOGIST')")
+    @PreAuthorize("hasRole('PHARMACIST')")
     public ResponseEntity<Korisnik> firstLogPwChange(Principal p) {
         System.out.println("***" + p.getName() + "***");
         String username = p.getName();
         Korisnik user = null;
         try {
-            user = this.dermatologistService.changeFirstLoginState(username);
+            user = this.pharmacistService.changeFirstLoginState(username);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -54,14 +50,14 @@ public class DermatologistController {
     }
 
     @PutMapping("/editdata")
-    @PreAuthorize("hasRole('DERMATOLOGIST')")
+    @PreAuthorize("hasRole('PHARMACIST')")
     public Korisnik editUser(@RequestBody UserEditDTO user) {
         System.out.println(user);
-        return this.dermatologistService.editDermatologist(user);
+        return this.pharmacistService.editPharmacist(user);
     }
 
     @RequestMapping(value = "/changepw", method = RequestMethod.POST)
-    @PreAuthorize("hasRole('DERMATOLOGIST')")
+    @PreAuthorize("hasRole('PHARMACIST')")
     public ResponseEntity<?> changePassword(@RequestBody AuthenticationController.PasswordChanger passwordChanger) {
         userDetailsService.changePassword(passwordChanger.oldPassword, passwordChanger.newPassword);
 
@@ -69,22 +65,4 @@ public class DermatologistController {
         result.put("result", "success");
         return ResponseEntity.accepted().body(result);
     }
-
-    // Endpoint za registraciju novog dermatologa
-    @PostMapping("/signupDerm")
-    @PreAuthorize("hasRole('ADMINISTRATOR')")
-    public ResponseEntity<Korisnik> addDermatologist(@RequestBody UserRequest userRequest, UriComponentsBuilder ucBuilder) throws Exception {
-
-        Korisnik existUser = this.dermatologistService.findByUsername(userRequest.getUsername());
-
-        if (existUser != null) {
-            throw new Exception("Username already exists");
-        }
-
-        Korisnik user = this.dermatologistService.saveDermatologist(userRequest);
-        HttpHeaders headers = new HttpHeaders();
-
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
-    }
-
 }

@@ -1,18 +1,3 @@
-// imeId
-// prezimeId
-// telId
-// adresaId
-// drzavaId
-// gradId
-// mailId
-
-// changepwbtn
-// changeDatabtn
-
-// CHANGE PW MODAL:  oldpw, newpw1, newpw2 --> savepwBtn , closeBtn
-// CHANGE DATA MODAL: ime1, prezime1, telefon1, adresa1, drzava1, grad1, mail1 
-//            --> closedatabBtn, savedataBtn 
-
 $(document).ready(function() {
     test_login();
 })
@@ -20,7 +5,7 @@ $(document).ready(function() {
 
 function test_login() {
     var form = {
-        "username" : "dermUsername",
+        "username" : "farmaceut1",
         "password" : "test"
     };
 
@@ -38,24 +23,23 @@ function test_login() {
         error : function() {
             console.log('FAIL LOGIN')
         }
-        
     })
 }
 
 function getMe() {
     $.ajax({
         type:'GET',
-        url: '/dermatologist/whoami',
+        url: '/pharmacist/whoami',
         contentType : 'application/json',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
         },
-        success : function(dermatologist) {
-            addProfileData(dermatologist);
-            addProfileDataToChangeDataModal(dermatologist);
-            if(dermatologist.prvoLogovanje == true) {
+        success : function(pharmacist) {
+            addProfileData(pharmacist);
+            addProfileDataToChangeDataModal(pharmacist);
+            if(pharmacist.prvoLogovanje == true) {
                 console.log('Prvi put je logovan.')
-                requirePwChange(dermatologist.username.toString());
+                requirePwChange(pharmacist.username.toString());
             }
         },
         error : function() {
@@ -64,7 +48,7 @@ function getMe() {
     })
 }
 
-function addProfileData(dermatologist) {
+function addProfileData(pharmacist) {
     $('#imeId').attr('readonly','true');
     $('#prezimeId').attr('readonly','true');
     $('#telId').attr('readonly','true');
@@ -73,31 +57,30 @@ function addProfileData(dermatologist) {
     $('#gradId').attr('readonly','true');
     $('#mailId').attr('readonly','true');
 	
-    $( "div.punoIme" ).replaceWith( "<h2>" + dermatologist.ime + ' ' +dermatologist.prezime + "</h2>" );
+    $( "div.punoIme" ).replaceWith( "<h2>" + pharmacist.ime + ' ' + pharmacist.prezime + "</h2>" );
 
-    $('#imeId').val(dermatologist.ime)
-    $('#prezimeId').val(dermatologist.prezime)
-    $('#telId').val(dermatologist.telefon)
-    $('#adresaId').val(dermatologist.adresa)
-    $('#drzavaId').val(dermatologist.drzava)
-    $('#gradId').val(dermatologist.grad)
-    $('#mailId').val(dermatologist.email)
+    $('#imeId').val(pharmacist.ime)
+    $('#prezimeId').val(pharmacist.prezime)
+    $('#telId').val(pharmacist.telefon)
+    $('#adresaId').val(pharmacist.adresa)
+    $('#drzavaId').val(pharmacist.drzava)
+    $('#gradId').val(pharmacist.grad)
+    $('#mailId').val(pharmacist.email)
 }
 
-function addProfileDataToChangeDataModal(dermatologist) {
-    $('#ime1').val(dermatologist.ime)
-    $('#prezime1').val(dermatologist.prezime)
-    $('#telefon1').val(dermatologist.telefon)
-    $('#adresa1').val(dermatologist.adresa)
-    $('#drzava1').val(dermatologist.drzava)
-    $('#grad1').val(dermatologist.grad)
-    $('#mail1').val(dermatologist.email)
+function addProfileDataToChangeDataModal(pharmacist) {
+    $('#ime1').val(pharmacist.ime)
+    $('#prezime1').val(pharmacist.prezime)
+    $('#telefon1').val(pharmacist.telefon)
+    $('#adresa1').val(pharmacist.adresa)
+    $('#drzava1').val(pharmacist.drzava)
+    $('#grad1').val(pharmacist.grad)
+    $('#mail1').val(pharmacist.email)
 
     $('#mail1').attr('readonly','true');
 }
 
 function saveNewData(){
-    
     var obj = {
      email :  $('#mail1').val().trim(),
      name :  $('#ime1').val().trim(),
@@ -110,15 +93,15 @@ function saveNewData(){
 
     $.ajax({
         type:'PUT',
-        url: '/dermatologist/editdata',
+        url: '/pharmacist/editdata',
         contentType : 'application/json',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
         },
         data : JSON.stringify(obj),
-        success : function(dermatologist) {
-            addProfileData(dermatologist);
-            addProfileDataToChangeDataModal(dermatologist);
+        success : function(pharmacist) {
+            addProfileData(pharmacist);
+            addProfileDataToChangeDataModal(pharmacist);
 
             $('#successmsgData').text("Uspešno izmenjeni podaci!");
 
@@ -171,7 +154,7 @@ function changepw() {
 
     $.ajax({
         type:'POST',
-        url: '/dermatologist/changepw',
+        url: '/pharmacist/changepw',
         contentType : 'application/json',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
@@ -188,7 +171,7 @@ function changepw() {
 
             $.ajax({
                 type:'POST',
-                url: '/dermatologist/firstlogpwchange',
+                url: '/pharmacist/firstlogpwchange',
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
                 },
@@ -235,5 +218,4 @@ function requirePwChange(username) {
 
     console.log(username)
     changepw()
-
 }

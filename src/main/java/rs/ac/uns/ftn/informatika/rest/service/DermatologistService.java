@@ -51,7 +51,6 @@ public class DermatologistService {
         // registrujem samo dermatologa
         k.setAuthorities(new HashSet<>(auth));
 
-
         k = this.userRepository.save(k);
         return k;
     }

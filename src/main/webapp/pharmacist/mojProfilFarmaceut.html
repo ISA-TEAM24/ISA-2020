@@ -89,7 +89,7 @@
             <div class="col-lg-4">
                 <br>
                 <label>
-                    <h2  id="punoImeId"> dr. Farmaceut farmaceut</h2>
+                  <div class = "punoIme"> </div>
                 </label>
 
                 <br>
@@ -184,11 +184,11 @@
             <div class="col-lg-3"></div>
 
             <div class="col-lg-3">
-                <button class="btn btn-primary" id="changepwBtn" data-target="#changepwModal" data-toggle="modal">&nbsp&nbsp&nbsp&nbsp&nbsp Izmenu lozinku &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                <button class="btn btn-primary" id="changepwBtn" data-target="#changepwModal" data-toggle="modal" onclick = 'clearpwFields()'>&nbsp&nbsp&nbsp&nbsp&nbsp Izmeni lozinku &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
             </div> 
 
             <div class="col-lg-3">
-                <button class="btn btn-dark" id="changeDatabtn" data-target="#changeDataModal" data-toggle="modal">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Izmeni podatke &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                <button class="btn btn-dark" id="changeDatabtn" data-target="#changeDataModal" data-toggle="modal" onclick = 'getMe()' >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Izmeni podatke &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
             </div> 
             
           </div>
@@ -223,7 +223,7 @@
 
                     <div class="modal-header">
                       <h4 class="modal-title w-100" id="modalTitle"> Izmena lozinke </h4>
-                      <button class="close" data-dismiss="modal">&times;</button>
+                      <button class="close" data-dismiss="modal" id='closepwModal'>&times;</button>
 
                     </div>
 
@@ -243,12 +243,18 @@
                           <label>Ponovi novu lozinku: </label>
                           <input class="form-control" type="password" name="password" placeholder="" id="newpw2">
                         </div>
+
+                        <div class="form-group">
+                          <label style="color:red" id="errormsg"> </label>
+                          <label style="color:green" id="successmsg"> </label>
+                        </div>
+
                       </form>
                     </div>
 
                     <div class="modal-footer">
                       <button class="btn btn-dark" id="closeBtn" data-dismiss="modal">Odustani</button>
-                      <button class="btn btn-primary" type="submit" id="savepwBtn">Sačuvaj</button>
+                      <button class="btn btn-primary" type="submit" id="savepwBtn" onclick='changepw()'>Sačuvaj</button>
                     </div>
 
                 </div>
@@ -312,16 +318,20 @@
 
                       <div class="form-group">
                         <label>Email: </label>
-                        <input class="form-control" type="text" placeholder="" id="email1">
+                        <input class="form-control" type="text" placeholder="" id="mail1">
                       </div>
 
+                      <div class="form-group">
+                        <label style="color:red" id="errormsgData"> </label>
+                        <label style="color:green" id="successmsgData"> </label>
+                      </div>
 
                     </form>
                   </div>
 
                   <div class="modal-footer">
                     <button class="btn btn-dark" id="closeBtn" data-dismiss="modal">Odustani</button>
-                    <button class="btn btn-primary" type="submit" id="savepwBtn">Sačuvaj</button>
+                    <button class="btn btn-primary" type="submit" id="savedataBtn" onclick='saveNewData()'>Sačuvaj</button>
                   </div>
 
               </div>
@@ -336,13 +346,12 @@
 
     </div>
 
-    
-
+  
     <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+    </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -354,7 +363,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script type="text/javascript" src="js/mojProfilFarmaceut.js"></script>
+    <script type="text/javascript" src="../js/pharmacist/myprofile.js"></script>
 
   </body>
 </html>
