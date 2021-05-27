@@ -6,7 +6,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import rs.ac.uns.ftn.informatika.rest.dto.AllergiesDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.TimeOffDTO;
 import rs.ac.uns.ftn.informatika.rest.model.TimeOffZahtev;
 import rs.ac.uns.ftn.informatika.rest.service.TimeOffRequestService;
