@@ -169,12 +169,26 @@ function fillRequestTable(data) {
     console.log(data)
     table.innerHTML = ''
     for(var i = 0; i < data.length; i++ ) {
+        var vrsta = '';
+        if(data[i].vrsta == "GODISNJI") {
+            vrsta = "Godišnji odmor"
+        } else {
+            vrsta = "Odsustvo"
+        }
+
+        var status = '';
+        if(data[i].stanjeZahteva == 'PRIHVACEN') {
+            status = "PRIHVAĆEN"
+        } else {
+            status = data[i].stanjeZahteva;
+        }
+
         var row = `<tr>
                         <td>${data[i].odDatuma.split('T')[0]}</td>
                         <td>${data[i].doDatuma.split('T')[0]}</td>
-                        <td>${data[i].vrsta}</td>
+                        <td>${vrsta}</td>
                         <td>${data[i].razlog}</td>
-                        <td>${data[i].stanjeZahteva}</td>
+                        <td>${status}</td>
                     </tr>`
 
         table.innerHTML += row
