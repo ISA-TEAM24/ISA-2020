@@ -8,21 +8,22 @@ public class TimeOffDTO {
     private Date doDatuma;
     private String vrsta;
     private String razlog;
+    private String stanje;
 
     public TimeOffDTO() {
     }
 
-    public TimeOffDTO(Date odDatuma, Date doDatuma, String vrsta, String razlog) {
+    public TimeOffDTO(Date odDatuma, Date doDatuma, String vrsta, String razlog, String stanje) {
         this.odDatuma = odDatuma;
         this.doDatuma = doDatuma;
         this.vrsta = vrsta;
         this.razlog = razlog;
+        this.stanje = stanje;
     }
 
     public Date getOdDatuma() {
         return odDatuma;
     }
-
 
     public void setOdDatuma(Date odDatuma) {
         this.odDatuma = odDatuma;
@@ -52,5 +53,11 @@ public class TimeOffDTO {
         this.razlog = razlog;
     }
 
+    public String getStanje() {
+        return stanje;
+    }
 
+    public void setStanje(String stanje) {
+        this.stanje = stanje;
+    }
 }

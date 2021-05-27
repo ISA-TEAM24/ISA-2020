@@ -35,7 +35,8 @@ public class TimeOffRequestService {
         t.setOdDatuma(req.getOdDatuma());
         t.setDoDatuma(req.getDoDatuma());
         t.setRazlog(req.getRazlog());
-        t.setPrihvacen(false);
+        // Novo poslat zahtev je uvek aktivan dok se ne prihvati/odbije
+        t.setStanjeZahteva(TimeOffZahtev.Stanje.AKTIVAN);
         if(req.getVrsta().equals("Odsustvo")) {
             t.setVrsta(TimeOffZahtev.Vrsta.ODSUSTVO);
         } else {
@@ -47,5 +48,12 @@ public class TimeOffRequestService {
 
         t = this.timeOffZahtevRepository.save(t);
         return t;
+    }
+
+    public List<TimeOffZahtev> getAllMyRequests(String username) {
+        Korisnik k = korisnikService.findByUsername(username);
+        List<TimeOffZahtev> requestList = timeOffZahtevRepository.findAllByPodnosilac(k);
+
+        return requestList;
     }
 }

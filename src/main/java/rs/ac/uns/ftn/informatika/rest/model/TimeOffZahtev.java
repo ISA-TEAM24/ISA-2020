@@ -14,7 +14,7 @@ public class TimeOffZahtev {
     @OneToOne
     private Korisnik podnosilac;
     @Column(nullable = false)
-    private boolean prihvacen;
+    private Stanje stanjeZahteva;
     @Column(nullable = false)
     private String razlog;
     @Column(nullable = false)
@@ -23,12 +23,12 @@ public class TimeOffZahtev {
     public TimeOffZahtev() {
     }
 
-    public TimeOffZahtev(Long ID, Date odDatuma, Date doDatuma, Korisnik podnosilac, boolean prihvacen, String razlog, Vrsta vrsta) {
+    public TimeOffZahtev(Long ID, Date odDatuma, Date doDatuma, Korisnik podnosilac, Stanje stanjeZahteva, String razlog, Vrsta vrsta) {
         this.ID = ID;
         this.odDatuma = odDatuma;
         this.doDatuma = doDatuma;
         this.podnosilac = podnosilac;
-        this.prihvacen = prihvacen;
+        this.stanjeZahteva = stanjeZahteva;
         this.razlog = razlog;
         this.vrsta = vrsta;
     }
@@ -36,6 +36,12 @@ public class TimeOffZahtev {
     public enum Vrsta {
         GODISNJI,
         ODSUSTVO
+    }
+
+    public enum Stanje {
+        AKTIVAN,
+        PRIHVACEN,
+        ODBIJEN
     }
 
     public Long getID() {
@@ -70,12 +76,12 @@ public class TimeOffZahtev {
         this.podnosilac = podnosilac;
     }
 
-    public boolean isPrihvacen() {
-        return prihvacen;
+    public Stanje getStanjeZahteva() {
+        return stanjeZahteva;
     }
 
-    public void setPrihvacen(boolean prihvacen) {
-        this.prihvacen = prihvacen;
+    public void setStanjeZahteva(Stanje stanjeZahteva) {
+        this.stanjeZahteva = stanjeZahteva;
     }
 
     public String getRazlog() {
@@ -92,18 +98,5 @@ public class TimeOffZahtev {
 
     public void setVrsta(Vrsta vrsta) {
         this.vrsta = vrsta;
-    }
-
-    @Override
-    public String toString() {
-        return "TimeOffZahtev{" +
-                "ID=" + ID +
-                ", odDatuma=" + odDatuma +
-                ", doDatuma=" + doDatuma +
-                ", podnosilac=" + podnosilac +
-                ", prihvacen=" + prihvacen +
-                ", razlog='" + razlog + '\'' +
-                ", vrsta=" + vrsta +
-                '}';
     }
 }

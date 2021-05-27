@@ -6,6 +6,11 @@
 $(document).ready(function() {
     test_login();   // just for testing
 
+    var millisecondsToWait = 1000;
+    setTimeout(function() {
+        getRequests();
+    }, millisecondsToWait);
+
 })
 
 function test_login() {
@@ -138,4 +143,40 @@ function refreshPageWithDelay(){
         location.reload();
     }, millisecondsToWait);
 
+}
+
+function getRequests() {
+    $.ajax ({
+        type : 'GET',
+        url : '/timeoff/requests/all',
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        success : function(data) {
+            console.log('Loaded requests')
+            fillRequestTable(data)
+        },
+        error : function() {
+            console.log('Could not load Requests!')
+        }
+    })
+}
+
+function fillRequestTable(data) {
+    
+    var table = document.getElementById('requestBody')
+    console.log(data)
+    table.innerHTML = ''
+    for(var i = 0; i < data.length; i++ ) {
+        var row = `<tr>
+                        <td>${data[i].odDatuma.split('T')[0]}</td>
+                        <td>${data[i].doDatuma.split('T')[0]}</td>
+                        <td>${data[i].vrsta}</td>
+                        <td>${data[i].razlog}</td>
+                        <td>${data[i].stanjeZahteva}</td>
+                    </tr>`
+
+        table.innerHTML += row
+    }    
 }
