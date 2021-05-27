@@ -84,6 +84,8 @@ public class ApotekaService {
             dto.setOcena(a.getOcena());
             dto.setFarmaceuti(new ArrayList<>());
             for (Korisnik farm : farmaceuti) {
+                if (farm.getGodisnjiInfo().isNaGodisnjem())
+                    continue;
                 if (checkIfPharmacistIsFree(farm, date, time, a)) {
                     FarmaceutDTO f = new FarmaceutDTO();
                     f.setIme(farm.getIme());

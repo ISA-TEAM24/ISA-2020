@@ -64,25 +64,28 @@ public class RadnoInfo {
             return false;
         }
         boolean isInRange = true;
+
         for (Period p : this.businessHours) {
-            if (p.getOdDatum().after(date)){
+            System.out.println("Comparing " + p.getOdDatum() + " to " + date);
+
+            if (p.getOdDatum().compareTo(date) > 0){
                 isInRange = false;
                 System.out.println("AAA");
             }
 
-
-            if (p.getDoDatum().before(date)) {
+            System.out.println("Comparing " + p.getDoDatum() + " to " + date);
+            if (p.getDoDatum().compareTo(date) < 0) {
                 isInRange = false;
                 System.out.println("BBB");
             }
-
-            if (p.getOdVreme().isAfter(time)){
+            System.out.println("Comparing " + p.getDoVreme() + " to " + time);
+            if (p.getOdVreme().compareTo(time) > 0){
                 isInRange = false;
                 System.out.println("CCC");
             }
 
-
-            if (p.getDoVreme().isBefore(time)) {
+            System.out.println("Comparing " + p.getOdVreme() + " to " + time);
+            if (p.getDoVreme().compareTo(time) < 0) {
                 isInRange = false;
                 System.out.println("DDD");
             }
