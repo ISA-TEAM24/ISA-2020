@@ -10,4 +10,6 @@ import java.util.List;
 public interface ApotekaRepository extends JpaRepository<Apoteka, Long> {
 
     List<Apoteka> findAll();
+
+    Apoteka findByNaziv(String naziv);
 }

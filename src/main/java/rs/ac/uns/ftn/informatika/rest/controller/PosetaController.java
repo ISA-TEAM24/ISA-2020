@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import rs.ac.uns.ftn.informatika.rest.dto.AllergiesDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.ApotekaWithExamsDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.DateTimeDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.PosetaDTO;
 import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
+import rs.ac.uns.ftn.informatika.rest.service.PosetaService;
 
 import java.security.Principal;
 import java.text.ParseException;
@@ -23,7 +25,10 @@ import java.util.List;
 public class PosetaController {
 
     @Autowired
-    ApotekaService apotekaService;
+    private ApotekaService apotekaService;
+
+    @Autowired
+    private PosetaService posetaService;
 
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/user/consult/check")
@@ -31,5 +36,16 @@ public class PosetaController {
         System.out.println("received dto" + dto.getDate() + " *** " + dto.getTime());
         return this.apotekaService.findApotekaWithFreePharmacist
                 (dto.parseDateStringToDate(), dto.parseTimeStringToLocalTime());
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping("/user/consult/add")
+    public ResponseEntity addConsult(@RequestBody PosetaDTO dto, Principal p) throws ParseException {
+
+        boolean success = posetaService.addConsult(dto, p.getName());
+
+        if (success) return new ResponseEntity<>(null, HttpStatus.CREATED);
+
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 }

@@ -63,34 +63,37 @@ public class RadnoInfo {
             System.out.println(date.toString());
             return false;
         }
-        boolean isInRange = true;
+        //pretpostavicemo da farmaceut ne radi za to timestamp koji je poslat
+        boolean isWorking = false;
 
         for (Period p : this.businessHours) {
             System.out.println("Comparing " + p.getOdDatum() + " to " + date);
 
             if (p.getOdDatum().compareTo(date) > 0){
-                isInRange = false;
                 System.out.println("AAA");
+                continue;
             }
 
             System.out.println("Comparing " + p.getDoDatum() + " to " + date);
             if (p.getDoDatum().compareTo(date) < 0) {
-                isInRange = false;
+
                 System.out.println("BBB");
+                continue;
             }
             System.out.println("Comparing " + p.getDoVreme() + " to " + time);
             if (p.getOdVreme().compareTo(time) > 0){
-                isInRange = false;
                 System.out.println("CCC");
+                continue;
             }
 
             System.out.println("Comparing " + p.getOdVreme() + " to " + time);
             if (p.getDoVreme().compareTo(time) < 0) {
-                isInRange = false;
                 System.out.println("DDD");
+                continue;
             }
+            isWorking = true;
 
         }
-        return isInRange;
+        return isWorking;
     }
 }

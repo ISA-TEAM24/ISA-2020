@@ -23,7 +23,7 @@ public class ApotekaService {
     @Autowired
     private PosetaRepository posetaRepository;
 
-    List<Apoteka> findAll() {
+    public List<Apoteka> findAll() {
         return this.apotekaRepository.findAll();
     }
 
@@ -101,6 +101,10 @@ public class ApotekaService {
         }
 
         return retList;
+    }
+
+    public Apoteka findApotekaByNaziv(String naziv) {
+        return apotekaRepository.findByNaziv(naziv);
     }
 
 }

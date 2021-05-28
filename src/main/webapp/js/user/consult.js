@@ -1,6 +1,7 @@
-var table_body_apoteke = "";
-var table_body_farmaceuti = "";
+var apoteka;
 var retData;
+var pick_date;
+var pick_time;
 function findPharmacies() {
 
     //alert($('#consult-date-picker').val() + "**" + $('#consult-time-picker').val())
@@ -9,6 +10,9 @@ function findPharmacies() {
         "date" : $('#consult-date-picker').val().trim(),
         "time" : $('#consult-time-picker').val().trim()
     }
+    
+    pick_date = obj.date;
+    pick_time = obj.time;
     
     $.ajax({
         type:'POST',
@@ -100,11 +104,39 @@ function findPharmacists(btn){
             farms = apoteka.farmaceuti
         }
     })
-
+    apoteka = apoteka_id;
     fillPharmacistTable(farms)
     
 }
 
 function bookConsult(id) {
-    alert(id);
+    
+    //"date" : $('#consult-date-picker').val().trim(),
+    //"time" : $('#consult-time-picker').val().trim()
+    var obj = {
+        "vreme" : pick_time, 
+        "datum" : pick_date,
+        "trajanje" : "30",
+        "zaposleni" : id.split("-")[1],
+        "apoteka" : apoteka,
+        "poeni" : "10"
+    }
+
+    $.ajax({
+        type:'POST',
+        url: '/api/user/consult/add',
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        data : JSON.stringify(obj),
+        success : function(data) {
+            alert("successfully saved consultation")
+            
+        },
+        error : function() {
+            console.log('An Error has occured while trying to check the consult availability')
+        }
+        
+    })
 }
