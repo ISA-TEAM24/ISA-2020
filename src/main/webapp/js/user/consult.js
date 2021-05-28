@@ -88,7 +88,7 @@ function fillPharmacistTable(farmaceuti) {
         html += "<tr> <td>" + f.ime + "</td>"
         html += " <td>" + f.prezime + " </td>"
         html += " <td>" + f.ocena + " </td>"
-        html +=" <td> <button onclick='bookConsult(this.id)' id='button-" + f.username + "' class='btn btn-info-allergies'>Open</button> </td></tr>"
+        html +=" <td> <button onclick='bookConsult(this.id)' id='button-" + f.username + "' class='btn btn-info-allergies'>Book consult</button> </td></tr>"
     })
     html += '</tbody>'
     $('#new_consult_table').html(html)
@@ -132,6 +132,7 @@ function bookConsult(id) {
         data : JSON.stringify(obj),
         success : function(data) {
             alert("successfully saved consultation")
+            $('#new_consult_table').html(buildInitialTable_1())
             
         },
         error : function() {

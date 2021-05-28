@@ -35,7 +35,7 @@ INSERT INTO public.apoteka(id, adresa, naziv, ocena, opis) VALUES (1, 'adresaApo
 INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 4);
 
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)
-VALUES (100,  '2021-05-23', '', 5, 30, '11:30', 0, 1, 1, 4);
+VALUES (100,  '2021-05-29', '', 5, 30, '19:56', 0, 1, 1, 4);
 
 INSERT INTO public.apoteka_cenovnik_mapping(
     apoteka_id, cena, naziv_predmeta)

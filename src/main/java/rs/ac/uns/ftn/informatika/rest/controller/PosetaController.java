@@ -1,18 +1,14 @@
 package rs.ac.uns.ftn.informatika.rest.controller;
 
+import com.google.api.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import rs.ac.uns.ftn.informatika.rest.dto.AllergiesDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.ApotekaWithExamsDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.DateTimeDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.PosetaDTO;
+import org.springframework.web.bind.annotation.*;
+import rs.ac.uns.ftn.informatika.rest.dto.*;
+import rs.ac.uns.ftn.informatika.rest.model.Poseta;
 import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
 import rs.ac.uns.ftn.informatika.rest.service.PosetaService;
 
@@ -47,5 +43,29 @@ public class PosetaController {
         if (success) return new ResponseEntity<>(null, HttpStatus.CREATED);
 
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/user/consults")
+    public List<Poseta> getUpcomingVisits(Principal p) throws ParseException {
+
+        List<Poseta> retList = posetaService.findUpcomingVisitsForUser(p.getName());
+        return retList;
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping("/user/consults/cancel")
+    public ResponseEntity cancelVisit(@RequestBody IdDTO dto) throws ParseException {
+        // -1 for not existing , 1 for less than 24h, 0 for ok
+        System.out.println("LOOKING FOR VISIT WITH ID" + dto.getId());
+        int cancel = posetaService.cancelVisit(Long.parseLong(dto.getId()));
+        if (cancel == -1)
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+
+        if (cancel == 1)
+            return new ResponseEntity<>(null , HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+
     }
 }
