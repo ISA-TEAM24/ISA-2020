@@ -23,13 +23,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="pharmacyedit.html">Pharmacy</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="pharmacistslist.html">Pharmacists</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="dermatologistslist.html">Dermatologists</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="meds.html">Medicines</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -59,7 +59,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Incomes</a>
                       </div>
-                    </li>
+                  </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         Purchase order
@@ -88,7 +88,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="../index.html">Log out</a>
                         </div>
-                    </div>
+                      </div>  
                     </li>
                 </ul>
             </div>
@@ -96,9 +96,25 @@
 
         <div class="container" id="pharmacyeditcont" align="center">
             <br><br>
-            <h1>Employed pharmacists</h1>
+            <h1>Medicines in your pharmacy</h1>
             <br><br>
   
+            <div class="row">
+                <div class="col-4 text-center">
+                    <button type="button" id="AddMedBtn" class="btn btn-primary">Add new medicine</button>
+                </div>
+                <div class="col-4 text-center">
+                    <button type="button" id="OrderMedBtn" class="btn btn-primary">Order medicine</button>
+                </div>
+                <div class="col-4 text-center">
+                    <button type="button" id="MedsPricelistBtn" class="btn btn-primary">Change medicine price</button>
+                </div>
+            </div>
+            <br>
+            <hr class="solid">
+            <br>
+
+
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-6">
@@ -107,55 +123,50 @@
                 <div class="col-3"></div>
             </div>
   
-            <br><br>
+            <br>
+            <br>
     
-            <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5"  style="width: 60%;">
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
                 <table class="table table-bordered table-striped mb-0">
                 <thead>
                     <tr>
-                    <th scope="col">First name</th>
-                    <th scope="col">Last name</th>
+                    <th scope="col">Medicine</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Shape</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Price</th>
                     <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                    <td>Ana</td>
-                    <td>Anic</td>
-                    <td><button type="button" id="Fire1" class="btn btn-info-fire">&nbsp&nbspFire&nbsp&nbsp</button></td>
-                    </tr> 
-                    <tr>
-                    <td>Branko</td>
-                    <td>Brankovic</td>
-                    <td><button type="button" id="Fire2" class="btn btn-info-fire">&nbsp&nbspFire&nbsp&nbsp</button></td>
-                    </tr> 
-                    <tr>
-                    <td>Ceda</td>
-                    <td>Cedic</td>
-                    <td><button type="button" id="Fire3" class="btn btn-info-fire">&nbsp&nbspFire&nbsp&nbsp</button></td>
+                    <td>Brufen</td>
+                    <td>antibiotik</td>
+                    <td>sirup</td>
+                    <td>30</td>
+                    <td>1000</td>
+                    <td><button type="button" id="Order1" class="btn btn-info-fire">Remove</button></td>
                     </tr>
                     <tr>
-                    <td>Dejan</td>
-                    <td>Dejanovic</td>
-                    <td><button type="button" id="Fire4" class="btn btn-info-fire">&nbsp&nbspFire&nbsp&nbsp</button></td>
-                    </tr>  
+                    <td>Aspirin</td>
+                    <td>antibiotik</td>
+                    <td>tableta</td>
+                    <td>30</td>
+                    <td>500</td>
+                    <td><button type="button" id="Order1" class="btn btn-info-fire">Remove</button></td>
+                    </tr> 
                     <tr>
-                    <td>Eva</td>
-                    <td>Evic</td>
-                    <td><button type="button" id="Fire5" class="btn btn-info-fire">&nbsp&nbspFire&nbsp&nbsp</button></td>
-                    </tr>
-                    <tr>
-                    <td>Filip</td>
-                    <td>Filipovic</td>
-                    <td><button type="button" id="Fire6" class="btn btn-info-fire">&nbsp&nbspFire&nbsp&nbsp</button></td>
+                    <td>Vitamin C</td>
+                    <td>antibiotik</td>
+                    <td>tableta</td>
+                    <td>50</td>
+                    <td>300</td>
+                    <td><button type="button" id="Order1" class="btn btn-info-fire">Remove</button></td>
                     </tr>
                 </tbody>
                 </table>
             </div>
-            <br><br>
-            <div class="text-center">
-                <button type="button" id="Hire" class="btn btn-primary">&nbspRegister new pharmacist&nbsp</button>
-            </div>
+            <br>
             <br><br>
         </div>
     </div>
@@ -175,7 +186,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-    <script src="../js/pharmacyadmin/pharmacists.js"></script>
+    <script src="../js/pharmacyadmin/meds.js"></script>
 
 </body>
 </html>

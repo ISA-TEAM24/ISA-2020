@@ -20,7 +20,7 @@
 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto topnav">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="pharmacyedit.html">Pharmacy</a>
                 </li>
                 <li class="nav-item">
@@ -79,16 +79,16 @@
                 <li class="nav-item">
                 <a class="nav-link" href="absencerequestpage.html">Absence requests</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <div class="btn-group">
-                        <a href="myprofile.html" class="btn btn-link nav-link">My profile</a>
-                        <a href="#" class="btn btn-link nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="../index.html">Log out</a>
-                        </div>
+                <li class="nav-item active dropdown">
+                <div class="btn-group">
+                    <a href="myprofile.html" class="btn btn-link nav-link">My profile</a>
+                    <a href="#" class="btn btn-link nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="../index.html">Log out</a>
                     </div>
+                </div>
                 </li>
             </ul>
         </div>
@@ -96,48 +96,123 @@
 
         <div class="container" id="pharmacyeditcont">
             <br><br>
-            <h1 align="center">Pharmacy informations</h1>
-            <br><br><br>
-            <div class="row">
-                <div class="col-4 text-center" id="labels">
-                    Pharmacy name
-                </div>
-                <div class="col-6 text-center" id="inputfield">
-                    <div class="form-group">
-                        <input type="text" id="field1" disabled class="form-control" value="Apoteka123" aria-label="Pharmacyname" aria-describedby="basic-addon1">
-                    </div>
-                </div>
-                <div class="col-2 text-center">
-                    <button type="button" id="Edit1" class="btn btn-primary">Edit</button>
-                </div>
-            </div>
+            <h1 align="center">My profile</h1>
             <br><br>
             <div class="row">
-                <div class="col-4 text-center" id="labels">
-                    Pharmacy address
+                <div class="col-2"></div>
+                <div class="col-3" id="labels">
+                    Username
                 </div>
-                <div class="col-6 text-center" id="inputfield">
+                <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input value="Prvomajska 20 Backa Topola" id="field2" disabled type="text" class="form-control" aria-label="Pharmacyname" aria-describedby="basic-addon1">
+                        <input id="field1" value="admin1" disabled type="text" class="form-control">
                     </div>
                 </div>
-                <div class="col-2 text-center">
-                    <button type="button" id="Edit2" class="btn btn-primary">Edit</button>
-                </div>
+                <div class="col-2"></div>
             </div>
-            <br><br>
+            <br>
             <div class="row">
-                <div class="col-4 text-center" id="labels"> 
-                    Description
+                <div class="col-2"></div>
+                <div class="col-3" id="labels">
+                    Email
                 </div>
-                <div class="col-6 text-center" id="inputfield">
+                <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <textarea class="form-control" disabled rows="5" id="field3">Najbolja apoteka u Backoj Topoli</textarea>
+                        <input id="field2" value="admin1@gmail.com" disabled type="text" class="form-control">
                     </div>
                 </div>
-                <div class="col-2 text-center" style="width: 50px;">
-                    <button type="button" id="Edit3" class="btn btn-primary">Edit</button>
+                <div class="col-2"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-3" id="labels">
+                    First name
                 </div>
+                <div class="col-5 text-center" id="inputfield">
+                    <div class="form-group">
+                        <input id="field3" value="Danilo" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-3" id="labels">
+                    Last name
+                </div>
+                <div class="col-5 text-center" id="inputfield">
+                    <div class="form-group">
+                        <input id="field4" value="Paripovic" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-3" id="labels">
+                    Address
+                </div>
+                <div class="col-5 text-center" id="inputfield">
+                    <div class="form-group">
+                        <input id="field5" value="Prvomajska 20" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-3" id="labels">
+                    Phone number
+                </div>
+                <div class="col-5 text-center" id="inputfield">
+                    <div class="form-group">
+                        <input id="field6" value="066451299" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-3" id="labels">
+                    Old password
+                </div>
+                <div class="col-5 text-center" id="inputfield">
+                    <div class="form-group">
+                        <input id="field7" type="password" class="form-control">
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-3" id="labels">
+                    New password
+                </div>
+                <div class="col-5 text-center" id="inputfield">
+                    <div class="form-group">
+                        <input id="field8" type="password" class="form-control">
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-3" id="labels">
+                    Confirm password
+                </div>
+                <div class="col-5 text-center" id="inputfield">
+                    <div class="form-group">
+                        <input id="field7" type="password" class="form-control">
+                    </div>
+                </div>
+                <div class="col-2"></div>
             </div>
             <br>
             <div class="text-center">
@@ -162,7 +237,6 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
-  <script src="../js/pharmacyadmin/phadminpharmacyeditjs.js"></script>
 
 </body>
 </html>

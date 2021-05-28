@@ -1,0 +1,152 @@
+.navbar {
+    background-color: rgba(0,0,0,.3);
+    border-bottom: 1px solid rgb(255, 255, 255);
+    font-family: Montserrat, sans-serif;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: white !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: rgb(255, 255, 255) !important;
+    background-color: rgba(0, 0, 0, 0.267) !important;
+}
+
+body {
+    background-image: url('../../img/phadminindex.png');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100% !important;
+}
+
+html {
+    height: 100% !important;
+}
+
+.jumbotron {
+    background-color: rgba(0,0,0,0);
+    color: white;
+}
+
+.navbar-nav > li > .dropdown-menu { 
+    background-color: rgb(18, 66, 168);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 0%;
+}
+
+.navbar-nav > li > div > .dropdown-menu { 
+    background-color: rgb(18, 66, 168);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 0%; 
+}
+
+#pharmacyeditcont {
+    background-color: rgba(255, 255, 255, 0.932);
+    height: 100%;
+}
+
+textarea {
+    resize: none;
+}
+
+#inputfield {
+    text-align: center;
+    font-size: 15pt;
+    border: 2pt;
+    border-color: black;
+}
+
+button {
+    align-items: center;
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 50vh;
+  overflow: auto;
+}
+
+.my-custom-scrollbar2 {
+    position: relative;
+    height: 25vh;
+    overflow: auto;
+  }
+
+.table-wrapper-scroll-y {
+  display: block;
+}
+
+table, #phName, #phAddress, #phGrade {
+    text-align: center; 
+}
+
+.btn-info-fire {
+    background: #ffffff;  /* fallback for old browsers */
+    color: rgb(0, 99, 156);
+    border-width: 2pt;
+    border-color: rgb(0, 99, 156);
+    border-radius: 30px;
+    font-weight: bolder;
+}
+
+tr {
+    font-size: 15pt;
+}
+
+#search {
+    font-size: 15pt;
+}
+
+#Hire {
+    border: 0;
+    border-color: black;
+    border-radius: 30px;
+    font-size: 14pt;
+}
+
+#labels {
+    font-size: 15pt;
+}
+
+#Edit1, #Edit2, #Edit3, #Save, #Register {
+    font-size: 15pt;
+}
+
+.form-control {
+    font-size: 15pt;
+}
+
+hr.solid {
+    border-top: 1px solid rgb(0, 0, 0);
+}
+
+#nonworkingdays {
+    height: 160pt;
+}
+
+#info {
+    font-size: 12pt;
+}
+
+#Register {
+    border: 0;
+    border-color: black;
+    border-radius: 30px;
+    font-size: 16pt;
+}
+
+.btn-primary-appointment {
+    background: #0275d8;  /* fallback for old browsers */
+    color: rgb(255, 255, 255);
+    border-radius: 30px;
+}
+
+.btn-primary-custom {
+    font-size: 15pt;
+    background: #0275d8;  /* fallback for old browsers */
+    color: rgb(255, 255, 255);
+    border-radius: 30px;
+}
