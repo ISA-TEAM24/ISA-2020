@@ -89,30 +89,25 @@
                 <br>
                 <br>
 
-                <button class="btn btn-primary" id="proveribtn">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Proveri &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                <button class="btn btn-primary" id="proveribtn" onclick="getReservationById()">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Proveri &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
             </div>
 
             <br>
             <br>
 
-            <div class="container col-lg-12"> 
+            <div class="container col-lg-12">
               <table class="table text-center table-striped" id = "mydatatable" >
                 <thead class="thead">
                   <tr>
-                    <th class="th-sm" scope="col" data-column="ime" data-order ="">Ime </th>
-                    <th class="th-sm" scope="col" data-column="prezime" data-order ="">Prezime </th>
+                    <th class="th-sm" scope="col" data-column="pacijent" data-order ="">Pacijent </th>
+                    <th class="th-sm" scope="col" data-column="lek" data-order ="">Lek </th>
                     <th class="th-sm" scope="col" data-column="brRezervacije" data-order ="">Broj rezervacije </th>
                     <th class="th-sm" scope="col" data-column="preuzmi" data-order =""></th>
                   </tr>
                 </thead>
   
                 <tbody class="customtbody" id="tableBody">
-                    <tr>
-                      <td>Nikola</td>
-                      <td>Tomik</td>
-                      <td>111111</td>
-                      <td><button class="btn btn-warning" id="preuzmiId"> preuzmi </button></td>
-                    </tr>
+
                 </tbody>
               </table>
         
@@ -141,7 +136,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script type="text/javascript" src=""></script>
+    <script type="text/javascript" src="../js/pharmacist/issueMed.js"></script>
 
   </body>
 </html>
