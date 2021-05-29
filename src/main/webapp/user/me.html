@@ -69,7 +69,7 @@
                         <br>
                         <a class="nav-link active" onclick="reloadProfile()" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
                         <a class="nav-link" onclick="reloadAllergies()" id="v-pills-allergies-tab" data-toggle="pill" href="#v-pills-allergies" role="tab" aria-controls="v-pills-allergies" aria-selected="false">Allergies</a>         
-                        <a class="nav-link" id="v-pills-appointments-tab" data-toggle="pill" href="#v-pills-appointments" role="tab" aria-controls="v-pills-appointments" aria-selected="false">Appointments</a>
+                        <a class="nav-link" onclick="reloadUpcoming()" id="v-pills-appointments-tab" data-toggle="pill" href="#v-pills-appointments" role="tab" aria-controls="v-pills-appointments" aria-selected="false">Appointments</a>
                         <a class="nav-link" onclick="reloadInfo()" id="v-pills-loyalty-tab" data-toggle="pill" href="#v-pills-loyalty" role="tab" aria-controls="v-pills-loyalty" aria-selected="false">Loyalty/Penalties</a>
                         <a class="nav-link" id="v-pills-subscriptions-tab" data-toggle="pill" href="#v-pills-subscriptions" role="tab" aria-controls="v-pills-subscriptions" aria-selected="false">Subscriptions</a>
                         <a class="nav-link" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
@@ -233,66 +233,19 @@
                               <br>
                               <br>
                               <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
-                                <table class="table table-bordered table-striped mb-0">
+                                <table class="table table-bordered table-striped mb-0" id="upcoming_table">
                                   <thead>
                                     <tr>
-                                      <th scope="col">Type of visit</th>
-                                      <th scope="col">Doctor</th>
-                                      <th scope="col">Time</th>
-                                      <th scope="col">Date</th>
-                                      <th scope="col">Pharmacy</th>
+                                      <th scope="col" onclick="sortTable(0,'upcoming_table')">Type of visit</th>
+                                      <th scope="col" onclick="sortTable(1,'upcoming_table')">Doctor</th>
+                                      <th scope="col" onclick="sortTable(2,'upcoming_table')">Time</th>
+                                      <th scope="col" onclick="sortTable(3,'upcoming_table')">Date</th>
+                                      <th scope="col" onclick="sortTable(4,'upcoming_table')">Pharmacy</th>
                                       <th scope="col"></th>
                                     </tr>
                                   </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td>Exam</td>
-                                      <td>Mark Ristic</td>
-                                      <td>17:15</td>
-                                      <td>21/07/2021</td>
-                                      <td>MDNN 5</td>
-                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
-                                    </tr>   
-                                    <tr>
-                                      <td>Exam</td>
-                                      <td>Mark Ristic</td>
-                                      <td>17:15</td>
-                                      <td>21/07/2021</td>
-                                      <td>MDNN 5</td>
-                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
-                                    </tr>
-                                    <tr>
-                                      <td>Exam</td>
-                                      <td>Mark Ristic</td>
-                                      <td>17:15</td>
-                                      <td>21/07/2021</td>
-                                      <td>MDNN 5</td>
-                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
-                                    </tr> 
-                                    <tr>
-                                      <td>Exam</td>
-                                      <td>Mark Ristic</td>
-                                      <td>17:15</td>
-                                      <td>21/07/2021</td>
-                                      <td>MDNN 5</td>
-                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
-                                    </tr> 
-                                    <tr>
-                                      <td>Exam</td>
-                                      <td>Mark Ristic</td>
-                                      <td>17:15</td>
-                                      <td>21/07/2021</td>
-                                      <td>MDNN 5</td>
-                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
-                                    </tr>
-                                    <tr>
-                                      <td>Exam</td>
-                                      <td>Mark Ristic</td>
-                                      <td>17:15</td>
-                                      <td>21/07/2021</td>
-                                      <td>MDNN 5</td>
-                                      <td><button class="btn btn-info-allergies">Cancel</button></td>
-                                    </tr>                       
+                                  <tbody id="upcoming_body">
+                                                        
                                   </tbody>
                                 </table>
                               </div>
@@ -621,35 +574,7 @@
                                   <br>
                                   <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
                                     <table class="table table-bordered mb-0" id="new_consult_table">
-                                      <thead>
-                                        <tr>
-                                          <th scope="col" onclick="sortTable(0,'new_consult_table')">Pharmacy</th>
-                                          <th scope="col" onclick="sortTable(1,'new_consult_table')">Address</th>
-                                          <th scope="col" onclick="sortTable(2,'new_consult_table')">Grade</th>
-                                          <th scope="col" onclick="sortTable(3,'new_consult_table')">Price</th>
-                                        </tr>
-                                        
-                                      </thead>
-                                      <tbody>  
-                                        <tr>
-                                          <td>MDNN 7</td>
-                                          <td>Software St.5</td>
-                                          <td>4.7</td>
-                                          <td>50</td>                                 
-                                        </tr> 
-                                        <tr>
-                                          <td>MDNN 9</td>
-                                          <td>Software St.1337</td>
-                                          <td>4.2</td>
-                                          <td>35</td>                                 
-                                        </tr>
-                                        <tr>
-                                          <td>MDNN 1</td>
-                                          <td>Software St.15</td>
-                                          <td>5</td>
-                                          <td>78</td>                                 
-                                        </tr>            
-                                      </tbody>
+                                      
                                     </table>                            
                                   </div>
                                   <div class="container">
@@ -658,16 +583,18 @@
                                         <label for="">At date</label>
                                       </div>
                                       <div class="col-3">
-                                        <input type="date">
+                                        <input type="date" id="consult-date-picker">
                                       </div>
-                                      <div class="offset- 1 col-3"><button class="btn btn-info-profile">&nbsp&nbspFind term&nbsp&nbsp</button></div>
+                                      <div class="offset- 1 col-3">
+                                        <button onclick="findPharmacies()" class="btn btn-info-profile">&nbsp&nbspFind term&nbsp&nbsp</button>
+                                      </div>
                                     </div>
                                     <div class="row">
                                       <div class="col-2">
                                         <label for="">On time</label>
                                       </div>
                                       <div class="col-3">
-                                        <input type="time">
+                                        <input type="time" id="consult-time-picker">
                                       </div>
                                     </div>
                                   </div>
@@ -766,5 +693,8 @@
     <script src="../js/user/profile.js"></script>
     <script src="../js/user/allergies.js"></script>
     <script src="../js/user/loyaltyPen.js"></script>
+    <script src="../js/user/consult.js"></script>
+    <script src="../js/user/upcoming.js"></script>
+
   </body>
 </html>
