@@ -30,6 +30,7 @@ public class UserEditDTO {
         this.newPassword = newPassword;
     }
 
+
     public String getEmail() {
         return email;
     }

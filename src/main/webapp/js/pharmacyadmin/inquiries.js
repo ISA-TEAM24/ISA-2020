@@ -2,6 +2,7 @@ $(document).ready(function() {
     getMe();
 })
 
+
 function getMe() {
     $.ajax({
         type:'GET',
@@ -15,18 +16,6 @@ function getMe() {
                 console.log('Prvi put je logovan.')
                 window.location.href = 'index.html';
             }
-        }
+        }  
     })
 }
-
-$("#AddMedBtn").click(function() {
-    document.location.href = 'allmeds.html';
-});
-
-$("#OrderMedBtn").click(function() {
-    document.location.href = 'allmeds.html';
-});
-
-$("#MedsPricelistBtn").click(function() {
-    document.location.href = 'allmeds.html';
-});

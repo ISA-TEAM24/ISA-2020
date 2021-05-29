@@ -150,3 +150,10 @@ hr.solid {
     color: rgb(255, 255, 255);
     border-radius: 30px;
 }
+
+.btn-dark-custom {
+    font-size: 15pt;
+    background: #292b2c;
+    color: rgb(255, 255, 255);
+    border-radius: 30px;
+}
