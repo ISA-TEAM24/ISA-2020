@@ -35,6 +35,7 @@ function getMe() {
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
         },
         success : function(phadmin) {
+            localStorage.setItem('role', 'phadmin');
             if(phadmin.prvoLogovanje == true) {
                 console.log('Prvi put je logovan.')
                 requirePwChange(phadmin.username.toString());

@@ -1,30 +1,6 @@
 $(document).ready(function() {
-    test_login();
+    getMe();
 })
-
-
-function test_login() {
-    var form = {
-        "username" : "phadmin",
-        "password" : "test"
-    };
-
-    $.ajax({
-        type:'POST',
-        url: '/auth/login',
-        contentType : 'application/json',
-        data : JSON.stringify(form),
-        success : function(retToken) {
-            console.log('LOGGED IN')
-            console.log('your token is' + retToken.accessToken)
-            localStorage.setItem('myToken', retToken.accessToken);
-            getMe();
-        },
-        error : function() {
-            window.location.href = '../index.html'; 
-        }
-    })
-}
 
 function getMe() {
     $.ajax({
@@ -39,10 +15,7 @@ function getMe() {
                 console.log('Prvi put je logovan.')
                 window.location.href = 'index.html';
             }
-        },
-        error : function() {
-            window.location.href = '../index.html';
-        }    
+        }  
     })
 }
 
