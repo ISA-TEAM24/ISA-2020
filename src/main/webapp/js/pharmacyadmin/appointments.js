@@ -2,7 +2,6 @@ $(document).ready(function() {
     test_login();
 })
 
-
 function test_login() {
     var form = {
         "username" : "phadmin",
@@ -45,15 +44,3 @@ function getMe() {
         }    
     })
 }
-
-$("#AddMedBtn").click(function() {
-    document.location.href = 'allmeds.html';
-});
-
-$("#OrderMedBtn").click(function() {
-    document.location.href = 'allmeds.html';
-});
-
-$("#MedsPricelistBtn").click(function() {
-    document.location.href = 'allmeds.html';
-});

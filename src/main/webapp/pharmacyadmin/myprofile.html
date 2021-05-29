@@ -105,7 +105,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field1" value="admin1" disabled type="text" class="form-control">
+                        <input id="usernameid" value="" disabled type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field2" value="admin1@gmail.com" disabled type="text" class="form-control">
+                        <input id="emailid" value="" disabled type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -131,7 +131,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field3" value="Danilo" type="text" class="form-control">
+                        <input id="nameid" value="" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -144,20 +144,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field4" value="Paripovic" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-2"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-3" id="labels">
-                    Address
-                </div>
-                <div class="col-5 text-center" id="inputfield">
-                    <div class="form-group">
-                        <input id="field5" value="Prvomajska 20" type="text" class="form-control">
+                        <input id="lastnameid" value="" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -170,7 +157,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field6" value="066451299" type="text" class="form-control">
+                        <input id="phoneid" value="" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -179,11 +166,11 @@
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-3" id="labels">
-                    Old password
+                    Address
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field7" type="password" class="form-control">
+                        <input id="addressid" value="" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -192,11 +179,11 @@
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-3" id="labels">
-                    New password
+                    City
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field8" type="password" class="form-control">
+                        <input id="cityid" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -205,28 +192,95 @@
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-3" id="labels">
-                    Confirm password
+                    Country
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field7" type="password" class="form-control">
+                        <input id="countryid" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
             </div>
             <br>
-            <div class="text-center">
-                <button type="button" id="Save" class="btn btn-primary">Save</button>
+            <br>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-4">
+                    <div class="text-center">
+                        <button type="button" id="Save" class="btn btn-primary-custom" onclick='saveNewData()'>Save</button>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="text-center">
+                        <button type="button" id="ChangePsw" class="btn btn-primary-custom" onclick='requirePwChange()'>Change password</button>
+                    </div>
+                </div>
+                <div class="col-2"></div>
             </div>
             <br><br>
+        </div>
+
+        <!--MODAL password-->
+
+        <div class="container" id="changepwDiv">
+            <div class="row">
+              <div class="col-xs-12">
+    
+                <div class="modal fade" data-keyboard="false" data-backdrop="static" id="myModal" tabindex="-1">
+                  <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+    
+                        <div class="modal-header">
+                          <h4 class="modal-title w-100" id="modalTitle">Password change</h4>
+                          <button class="close" data-dismiss="modal" id='closepwModal'>&times;</button>
+    
+                        </div>
+    
+                        <div class ="modal-body">
+                          <form id="formXYZ">
+                            <div class="form-group">
+                              <label id=labels>Old password: </label>
+                              <input class="form-control" type="password" placeholder="" id="oldpw">
+                            </div>
+    
+                            <div class="form-group">
+                              <label id=labels>New password</label>: </label>
+                              <input class="form-control" type="password" name="password" placeholder="" id="newpw1">
+                            </div>
+    
+                            <div class="form-group">
+                              <label id=labels>Confirm password: </label>
+                              <input class="form-control" type="password" name="password" placeholder="" id="newpw2">
+                            </div>
+    
+                            <div class="form-group">
+                              <label style="color:red" id="errormsg"> </label>
+                              <label style="color:green" id="successmsg"> </label>
+                            </div>
+    
+                          </form>
+                        </div>
+                        <div class="text-center">
+                            <div class="modal-footer">   
+                                <button class="btn btn-dark-custom" id="closeBtn" data-dismiss="modal">Cancel</button>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp           
+                                <button class="btn btn-primary-custom" type="submit" id="savepwBtn" onclick='changepw()'>Confirm</button>
+                            </div>
+                        </div>
+    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
     </div>
   
   <script
-  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-  crossorigin="anonymous"
-  ></script>
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous">
+  </script>
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -237,6 +291,7 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
+  <script src="../js/pharmacyadmin/myprofile.js"></script>
 
 </body>
 </html>
