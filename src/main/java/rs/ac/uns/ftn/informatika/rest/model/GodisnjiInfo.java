@@ -22,4 +22,36 @@ public class GodisnjiInfo {
         naGodisnjem = false;
 
     }
+
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
+
+    public boolean isNaGodisnjem() {
+        return naGodisnjem;
+    }
+
+    public void setNaGodisnjem(boolean naGodisnjem) {
+        this.naGodisnjem = naGodisnjem;
+    }
+
+    public Date getOdDatuma() {
+        return odDatuma;
+    }
+
+    public void setOdDatuma(Date odDatuma) {
+        this.odDatuma = odDatuma;
+    }
+
+    public Date getDoDatuma() {
+        return doDatuma;
+    }
+
+    public void setDoDatuma(Date doDatuma) {
+        this.doDatuma = doDatuma;
+    }
 }

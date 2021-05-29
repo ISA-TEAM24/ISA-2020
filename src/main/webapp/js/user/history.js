@@ -29,7 +29,7 @@ function addListenerToSaveButton() {
 
 function sortTable(n,ttt) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    console.log(ttt);
+    //console.log(ttt);
     table = document.getElementById(ttt);
     switching = true;
     // Set the sorting direction to ascending:
