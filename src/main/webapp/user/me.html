@@ -79,6 +79,7 @@
                         <a class="nav-link" id="v-pills-complaints-tab" data-toggle="pill" href="#v-pills-complaints" role="tab" aria-controls="v-pills-complaints" aria-selected="false">Complaints</a>
                         <a class="nav-link" id="v-pills-pickup-tab" data-toggle="pill" href="#v-pills-pickup" role="tab" aria-controls="v-pills-pickup" aria-selected="false">New Consult</a>
                         <a class="nav-link" id="v-pills-penalties-tab" data-toggle="pill" href="#v-pills-penalties" role="tab" aria-controls="v-pills-penalties" aria-selected="false">Grading</a>
+                        <a class="nav-link" id="v-pills-reservemeds-tab" data-toggle="pill" href="#v-pills-reservemeds" role="tab" aria-controls="v-pills-reservemeds" aria-selected="false">Reserve medicine</a>
                     </div>
                 </div>
                 <div class="col-9 right-panel">
@@ -647,6 +648,47 @@
                                 
 
                         </div>
+                        <div class="tab-pane fade" id="v-pills-reservemeds" role="tabpanel" aria-labelledby="v-pills-reservemeds-tab">
+                          <br>
+                          <br>
+                          <div class="text-pad">
+                            <div class="row pretty-color" style="font-size: 2.5vh;">Reserve medicine (search je uradjen ovde jer student4 nije uradio jos pretragu lekova)</div>
+                            <br>
+                            <br>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                              <table class="table table-bordered mb-0" id="history_pharmacist_table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col" onclick="">Medicine name</th>
+                                    <th scope="col" onclick="">Available in</th>
+                                    <th scope="col" onclick="">Address</th>
+                                    <th scope="col">Pick up by</th>
+                                    <th scope="col" onclick=""></th>
+                                  </tr>
+                                  
+                                </thead>
+                                <tbody id="new_reserve_body">  
+                                                 
+                                </tbody>
+                              </table>                            
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-1">
+                                  <label for="">medicine name:</label>
+                                </div>
+                                <div class="offset-1 col-2">
+                                  <input id="new_reserved_input" type="text" placeholder="medicine name">
+                                </div>
+                                <div class="offset-1 col-2">
+                                  <button onclick="searchMedicine()" class="btn btn-info-allergies">Search</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+
+                  </div>
                         
                       </div>          
                 </div>

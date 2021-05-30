@@ -68,3 +68,101 @@ function cancelReservation(id) {
         
     })
 }
+
+//new_reserved_input
+
+function searchMedicine() {
+
+    var input = $('#new_reserved_input').val().trim()
+
+    var obj = {
+        id : input
+    }
+
+    $.ajax({
+        type:'POST',
+        url: '/reservation/findmeds',
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        data : JSON.stringify(obj),
+        success : function(data) {
+            fillTableWithFoundMeds(data);
+        },
+        error : function() {
+            console.log('Could not load reserved medicine')
+        }
+        
+    })
+}
+
+function fillTableWithFoundMeds(data) {
+    
+    var body = $('#new_reserve_body')
+
+    var html = "";
+
+    data.forEach(function(m){
+        //name pharmacy adresa pickupby reserve
+        var button_id = 'button-' + m.apoteka + '-' + m.idLeka
+        html += "<tr>"
+        html += "<td>" + m.lek + "</td>" + "<td>" + m.apoteka + "</td>" + "<td>" + m.adresa + "</td>"
+        html += "<td>" + '<input type="date" id="date-picker-' + m.idLeka + '"> </td>'
+        html += "<td>" + "<button onclick='reserveMedicine(this.id)' class='btn btn-info-allergies' id='" + button_id + "'>Reserve</button>"
+    })
+
+    body.html(html)
+    data.forEach(function(m){
+        limitDatePicker('date-picker-' + m.idLeka)
+    })
+}
+
+function reserveMedicine(id) {
+
+    var apoteka_naziv = id.split("-")[1]
+    var idLeka = id.split("-")[2]
+    var date_string = $('#date-picker-' + idLeka).val()
+    var obj = {
+        lek : idLeka,
+        apoteka : apoteka_naziv,
+        rokZaPreuzimanje : date_string
+    }
+
+    //console.log(obj)
+    $.ajax({
+        type:'POST',
+        url: '/reservation/create',
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        data : JSON.stringify(obj),
+        success : function(data) {
+            alert('Successfully reserved')
+            $('#new_reserve_body').html("")
+        },
+        error : function() {
+            console.log('Could not load reserved medicine')
+        }
+        
+    })
+
+
+}
+
+function limitDatePicker(dp) {
+    var today = new Date();
+    var dd = today.getDate() + 1;
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+            dd='0'+dd
+        } 
+        if(mm<10){
+            mm='0'+mm
+        } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById(dp).setAttribute("min", today);
+}

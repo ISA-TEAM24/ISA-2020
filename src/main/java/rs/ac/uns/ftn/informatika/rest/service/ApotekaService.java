@@ -4,15 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.informatika.rest.dto.ApotekaWithExamsDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.ApotekaWithMedicineDto;
 import rs.ac.uns.ftn.informatika.rest.dto.FarmaceutDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.IdDTO;
 import rs.ac.uns.ftn.informatika.rest.model.*;
-import rs.ac.uns.ftn.informatika.rest.repository.ApotekaRepository;
-import rs.ac.uns.ftn.informatika.rest.repository.PosetaRepository;
+import rs.ac.uns.ftn.informatika.rest.repository.*;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class ApotekaService {
@@ -22,6 +24,15 @@ public class ApotekaService {
 
     @Autowired
     private PosetaRepository posetaRepository;
+
+    @Autowired
+    protected LekRepository lekRepository;
+
+    @Autowired
+    private RezervacijaRepository rezervacijaRepository;
+
+    @Autowired
+    private KorisnikRepository korisnikRepository;
 
     public List<Apoteka> findAll() {
         return this.apotekaRepository.findAll();
@@ -107,4 +118,43 @@ public class ApotekaService {
         return apotekaRepository.findByNaziv(naziv);
     }
 
+    public List<ApotekaWithMedicineDto> findPharmaciesWithMedicine(IdDTO dto, String username) {
+
+        Korisnik k = korisnikRepository.findByUsername(username);
+        List<Apoteka> apoteke = apotekaRepository.findAll();
+        List<ApotekaWithMedicineDto> retList = new ArrayList<>();
+
+        for(Apoteka a : apoteke) {
+            for(Long id : a.getMagacin().keySet()) {
+
+                Lek l = lekRepository.findLekByID(id);
+                String input = dto.getId().toLowerCase();
+                String naziv_leka = l.getNaziv().toLowerCase();
+
+                if (!naziv_leka.startsWith(input))
+                    continue;
+
+                if (a.getMagacin().get(id) <= 0)
+                    continue;
+
+                boolean shouldContinue = false;
+                for(Rezervacija r :
+                        rezervacijaRepository.findRezervacijaByApotekaIDAndLekIDAndPacijentId(a.getID(), id, k.getID())) {
+                    if (r.getDatumPreuz() == null && r.getRokZaPreuzimanje().after(new Date())) {
+                        shouldContinue = true;
+                        System.out.println("CANNOT RESERVE SAME MEDICINE TWICE");
+                    }
+                }
+                if (shouldContinue) continue;
+
+                retList.add(new ApotekaWithMedicineDto(a.getNaziv(), a.getAdresa(), l.getNaziv(), l.getID()));
+
+            }
+        }
+        return retList;
+    }
+
+    public void saveApoteka(Apoteka a) {
+        apotekaRepository.save(a);
+    }
 }

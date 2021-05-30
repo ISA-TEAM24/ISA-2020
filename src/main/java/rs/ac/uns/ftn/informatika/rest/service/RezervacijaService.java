@@ -4,22 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import rs.ac.uns.ftn.informatika.rest.dto.DateTimeDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.RezervacijaDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.RezervacijaWithFlagDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
+import rs.ac.uns.ftn.informatika.rest.model.Lek;
 import rs.ac.uns.ftn.informatika.rest.model.Rezervacija;
 import rs.ac.uns.ftn.informatika.rest.repository.RezervacijaRepository;
 
 import javax.validation.constraints.Email;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class RezervacijaService {
@@ -145,6 +147,29 @@ public class RezervacijaService {
             return false;
 
         rezervacijaRepository.deleteRezervacijaByID(id);
+        return true;
+    }
+
+    public boolean createReservation(RezervacijaDTO dto, String username) throws ParseException {
+
+        Lek l = apotekaService.lekRepository.findLekByID(dto.getLek());
+        Korisnik k = korisnikService.findByUsername(username);
+        Apoteka a = apotekaService.findApotekaByNaziv(dto.getApoteka());
+        DateTimeDTO dateTimeDTO = new DateTimeDTO();
+        dateTimeDTO.setDate(dto.getRokZaPreuzimanje());
+        if (l == null || k == null || a == null)
+            return false;
+
+        Rezervacija newRez = new Rezervacija();
+        newRez.setRokZaPreuzimanje(dateTimeDTO.parseDateStringToDate());
+        newRez.setApoteka(a);
+        newRez.setLek(l);
+        newRez.setPacijent(k);
+        rezervacijaRepository.save(newRez);
+        Map<Long, Integer> map = a.getMagacin();
+        a.getMagacin().put(dto.getLek(), map.get(dto.getLek()) - 1);
+        apotekaService.saveApoteka(a);
+
         return true;
     }
 }
