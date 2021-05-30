@@ -70,19 +70,18 @@
 
     <br>
 
-    <h2 class="text-center">Pregledani klijenti</h2>
+    <h2 class="text-center">Pretraga pregledanih klijenata</h2>
     <hr>
 
-
     <div class ="container">
-      
+
         <div class="row">
-            <div class="col-lg-2">             
+            <div class="col-lg-3">             
             </div>
 
             <div class="col-lg-2">
                 <label>Ime:</label>
-                <input type="text" id="imeId">
+                <input type="text" id="imeId" onkeyup="searchIme()">
             </div>
 
             <div class="col-lg-1">             
@@ -90,14 +89,14 @@
     
             <div class="col-lg-2">
                 <label>Prezime:</label>
-                <input type="text" id="prezimeId">
+                <input type="text" id="prezimeId" onkeyup="searchPrezime()">
             </div>
 
             <div class="col-lg-1">             
             </div>
 
             <div class="col-lg-2">
-                <button class="btn btn-primary" id="searchbtn">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Pretraži &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                <!--<button class="btn btn-primary" id="searchbtn">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Pretraži &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>  -->
             </div> 
   
         </div>
@@ -113,9 +112,9 @@
               <thead class="thead">
                 <tr>
 
-                  <th class="th-sm" scope="col" data-column="ime" data-order ="desc">Ime &#9650</th>
-                  <th class="th-sm" scope="col" data-column="prezime" data-order ="desc">Prezime &#9650</th>
-                  <th class="th-sm" scope="col" data-column="datum" data-order ="desc">Datum pregleda &#9650</th>
+                  <th class="th-sm asd" scope="col" data-column="ime" data-order ="desc">Ime &#9650</th>
+                  <th class="th-sm asd" scope="col" data-column="prezime" data-order ="desc">Prezime &#9650</th>
+                  <th class="th-sm asd" scope="col" data-column="datum" data-order ="desc">Datum pregleda &#9650</th>
 
                 </tr>
               </thead>
@@ -133,10 +132,10 @@
     
 
     <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+    </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -151,11 +150,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
-
-
-
     <script type="text/javascript" src="../js/dermatologist/pregledaniKlijenti.js"></script>
-
+    <script type="text/javascript" src="../js/dermatologist/userSearch.js"></script>
 
   </body>
 </html>

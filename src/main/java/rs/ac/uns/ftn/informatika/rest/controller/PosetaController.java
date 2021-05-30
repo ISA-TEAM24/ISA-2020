@@ -1,6 +1,5 @@
 package rs.ac.uns.ftn.informatika.rest.controller;
 
-import com.google.api.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +13,7 @@ import rs.ac.uns.ftn.informatika.rest.service.PosetaService;
 
 import java.security.Principal;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -67,5 +67,27 @@ public class PosetaController {
 
         return new ResponseEntity<>(null, HttpStatus.OK);
 
+    }
+
+    @PreAuthorize("hasAnyRole('PHARMACIST', 'DERMATOLOGIST')")
+    @GetMapping("/poseta/getfinished")
+    public List<MyPosetaDTO> getFinished(Principal p) {
+        List<Poseta> getList = posetaService.getFinishedPoseteByDermOrPharm(p.getName());
+        List<MyPosetaDTO> retList = new ArrayList<>();
+
+        for(Poseta po : getList) {
+
+            String imepac = po.getPacijent().getIme();
+            String prezpac = po.getPacijent().getPrezime();
+            String datum = po.getDatum().toString().split(" ")[0];
+            String vreme = po.getVreme().toString();
+            int trajanje = po.getTrajanje();
+            String dijagnoza = po.getDijagnoza();
+            String zaposleni = po.getZaposleni().getIme() + " " + po.getZaposleni().getPrezime();
+
+            retList.add(new MyPosetaDTO(imepac, prezpac, datum, vreme, trajanje, dijagnoza,zaposleni));
+        }
+
+        return retList;
     }
 }
