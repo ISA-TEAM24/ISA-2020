@@ -7,6 +7,7 @@ import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.Rezervacija;
 import rs.ac.uns.ftn.informatika.rest.repository.RezervacijaRepository;
 
+import javax.validation.constraints.Email;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -23,6 +24,9 @@ public class RezervacijaService {
 
     @Autowired
     private ApotekaService apotekaService;
+
+    @Autowired
+    private EmailService emailService;
 
 
     public Rezervacija findRezervacijaByID(Long id) {
@@ -86,11 +90,31 @@ public class RezervacijaService {
         return true;
     }
 
-    private LocalDate createLocalDateFromString(Date d) {
+    public LocalDate createLocalDateFromString(Date d) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String datumPosete = dateFormat.format(d);
         LocalDate ret = LocalDate.parse(datumPosete);
         return ret;
+    }
+
+    public Rezervacija issueReservation(String id) {
+        Rezervacija r = rezervacijaRepository.findByID(Long.parseLong(id));
+
+        if(!sendConfirmationMailToPatient(r.getPacijent().getUsername(), id, r.getPacijent().getEmail())) {
+            return null;
+        }
+
+        r.setDatumPreuz(new Date());
+        r = rezervacijaRepository.save(r);
+
+        return r;
+    }
+
+    public boolean sendConfirmationMailToPatient(String username, String resId ,String email) {
+        String msg = "Dear " + username + ", ";
+        msg += "Your reservation with code: " + resId + " has been issued!";
+        boolean flag = emailService.sendSimpleMessage(email, "Reservation issue CONFIRMATION", msg);
+        return flag;
     }
 
 }

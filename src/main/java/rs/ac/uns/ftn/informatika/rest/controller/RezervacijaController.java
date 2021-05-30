@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.rest.dto.IdDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.RezervacijaInfoDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Rezervacija;
-import rs.ac.uns.ftn.informatika.rest.service.KorisnikService;
 import rs.ac.uns.ftn.informatika.rest.service.RezervacijaService;
 
 import java.security.Principal;
@@ -23,11 +23,25 @@ public class RezervacijaController {
 
     @PreAuthorize("hasRole('PHARMACIST')")
     @GetMapping("/find/{id}")
-    public ResponseEntity<Rezervacija> getReservation(Principal pharmacist, @PathVariable Long id) {
-        Rezervacija r = rezervacijaService.findActiveRezervacijaByID(id, pharmacist.getName());
+    public ResponseEntity<RezervacijaInfoDTO> getReservation(Principal pharmacist, @PathVariable String id) {
+        Rezervacija r = rezervacijaService.findActiveRezervacijaByID(Long.parseLong(id), pharmacist.getName());
 
         if(r == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        RezervacijaInfoDTO dto = new RezervacijaInfoDTO(r.getPacijent().getIme() + " " + r.getPacijent().getPrezime(), r.getLek().getNaziv(), r.getID().toString());
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @PostMapping("/issue")
+    @PreAuthorize("hasRole('PHARMACIST')")
+    public ResponseEntity<Rezervacija> issueReservation(@RequestBody String idReservation) {
+
+        Rezervacija r = rezervacijaService.issueReservation(idReservation);
+
+        if(r == null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
 
         return new ResponseEntity<>(r, HttpStatus.OK);
@@ -39,4 +53,5 @@ public class RezervacijaController {
 
         return null;
     }
+
 }
