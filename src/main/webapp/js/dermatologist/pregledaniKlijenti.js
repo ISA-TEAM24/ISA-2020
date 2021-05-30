@@ -11,7 +11,7 @@ var allVisits = []
 function getMyFinishedVisits() {
     $.ajax({
         type:'GET',
-        url: '/api/poseta/getfinished',
+        url: '/api/visit/getfinishedvisits',
         contentType : 'application/json',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));

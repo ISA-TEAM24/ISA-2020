@@ -70,7 +70,7 @@ public class PosetaController {
     }
 
     @PreAuthorize("hasAnyRole('PHARMACIST', 'DERMATOLOGIST')")
-    @GetMapping("/poseta/getfinished")
+    @GetMapping("/visit/getfinishedvisits")
     public List<MyPosetaDTO> getFinished(Principal p) {
         List<Poseta> getList = posetaService.getFinishedPoseteByDermOrPharm(p.getName());
         List<MyPosetaDTO> retList = new ArrayList<>();
