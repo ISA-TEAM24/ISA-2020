@@ -5,10 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import rs.ac.uns.ftn.informatika.rest.dto.IdDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Rezervacija;
 import rs.ac.uns.ftn.informatika.rest.service.KorisnikService;
 import rs.ac.uns.ftn.informatika.rest.service.RezervacijaService;
@@ -33,5 +31,12 @@ public class RezervacijaController {
         }
 
         return new ResponseEntity<>(r, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping("/cancel/")
+    public ResponseEntity<Rezervacija> getReservation(@RequestBody IdDTO dto) {
+
+        return null;
     }
 }
