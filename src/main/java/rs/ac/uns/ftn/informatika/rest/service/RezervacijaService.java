@@ -165,7 +165,8 @@ public class RezervacijaService {
         newRez.setApoteka(a);
         newRez.setLek(l);
         newRez.setPacijent(k);
-        rezervacijaRepository.save(newRez);
+        Rezervacija rez = rezervacijaRepository.save(newRez);
+        emailService.sendReservationCreatedMessage(rez);
         Map<Long, Integer> map = a.getMagacin();
         a.getMagacin().put(dto.getLek(), map.get(dto.getLek()) - 1);
         apotekaService.saveApoteka(a);

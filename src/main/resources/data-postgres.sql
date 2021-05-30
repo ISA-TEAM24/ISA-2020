@@ -75,7 +75,7 @@ INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, 
 INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id) values (158, '2021-06-10 13:12:00', '2021-06-12 0:00:00', 2, 56, 1);
 INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id) values (159, null, '2021-06-12 0:00:00', 2, 56, 1);
 
-INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 4);
+
 
 INSERT INTO public.apoteka_magacin_mapping(apoteka_id, kolicina, id_leka) VALUES (1, 50, 55);
 INSERT INTO public.apoteka_magacin_mapping(apoteka_id, kolicina, id_leka) VALUES (2, 50, 55);
