@@ -116,10 +116,10 @@
               <thead class="thead">
                 <tr>
 
-                  <th class="th-sm" scope="col" data-column="ime" data-order ="desc">Ime &#9650</th>
-                  <th class="th-sm" scope="col" data-column="prezime" data-order ="desc">Prezime &#9650</th>
-                  <th class="th-sm" scope="col" data-column="datum" data-order ="desc">Datum pregleda &#9650</th>
-
+                  <th class="th-sm" scope="col" data-column="ime" data-order ="desc" onclick="sortTable2(0,'mydatatable')">Ime &#9650&#9660</th>
+                  <th class="th-sm" scope="col" data-column="prezime" data-order ="desc" onclick="sortTable2(0,'mydatatable')">Prezime &#9650&#9660</th>
+                  <th class="th-sm" scope="col" data-column="datum" data-order ="desc" onclick="sortTable2(0,'mydatatable')">Datum pregleda &#9650&#9660</th>
+                  <th class="th-sm" scope="col" data-column="btn" onclick="sortTable2(0,'mydatatable')"></th>
                 </tr>
               </thead>
 
@@ -129,6 +129,67 @@
             </table>
       
       </div>
+        <!-- IZVESTAJ MODAL-->
+
+        <div class="container" id="izvestajDiv">
+          <div class="row">
+            <div class="col-xs-12">
+    
+              <div class="modal fade" data-keyboard="false" data-backdrop="static" id="izvestajModal" tabindex="-1">
+                <div class="modal-dialog modal-md">
+                  <div class="modal-content">
+    
+                      <div class="modal-header">
+                        <h4 class="modal-title w-100" id="modalTitle"> Izveštaj </h4>
+                        <button class="close" data-dismiss="modal">&times;</button>
+    
+                      </div>
+    
+                      <div class ="modal-body">
+                        <form id="form2">
+    
+                          <div class="form-group">
+                            <label>Pacijent: </label>
+                            <input class="form-control" type="text" placeholder="" id="pacijentid">
+                          </div>
+    
+                          <div class="form-group">
+                            <label>Datum: </label>
+                            <input class="form-control" type="text" placeholder="" id="datumid">
+                          </div>
+    
+                          <div class="form-group">
+                            <label>Vreme početka: </label>
+                            <input class="form-control" type="text" placeholder="" id="vremeid">
+                          </div>
+    
+                          <div class="form-group">
+                            <label>Trajanje: </label>
+                            <input class="form-control" type="text" placeholder="" id="trajanjeid">
+                          </div>
+    
+                          <div class="form-group">
+                            <label>Dijagnoza: </label>
+                            <input class="form-control" type="text" placeholder="" id="dijagnozaid">
+                          </div>
+        
+                        </form>
+                      </div>
+    
+                      <div class="modal-footer">
+                        <button class="btn btn-dark" id="closedataBtn" data-dismiss="modal">Zatvori</button>
+  
+                      </div>
+    
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+          </div>
+        </div>
+        
+        <!-- END OF IZVESTAJ MODAL-->
     </div>
 
     <script
