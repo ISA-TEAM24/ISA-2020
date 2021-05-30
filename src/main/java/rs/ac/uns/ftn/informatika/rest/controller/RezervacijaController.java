@@ -1,16 +1,20 @@
 package rs.ac.uns.ftn.informatika.rest.controller;
 
+import com.google.api.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import rs.ac.uns.ftn.informatika.rest.dto.RezervacijaInfoDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.*;
 import rs.ac.uns.ftn.informatika.rest.model.Rezervacija;
+import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
 import rs.ac.uns.ftn.informatika.rest.service.RezervacijaService;
 
 import java.security.Principal;
+import java.text.ParseException;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/reservation", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -18,6 +22,9 @@ public class RezervacijaController {
 
     @Autowired
     private RezervacijaService rezervacijaService;
+
+    @Autowired
+    private ApotekaService apotekaService;
 
 
     @PreAuthorize("hasRole('PHARMACIST')")
@@ -44,6 +51,46 @@ public class RezervacijaController {
         }
 
         return new ResponseEntity<>(r, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping("/cancel")
+    public ResponseEntity<Rezervacija> cancelReservation(@RequestBody IdDTO dto) {
+
+        boolean flag = rezervacijaService.cancelReservation(Long.parseLong(dto.getId()));
+
+        if (flag == false) return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/all")
+    public List<RezervacijaWithFlagDTO> getReservationsForUser(Principal p) {
+
+        List<RezervacijaWithFlagDTO> retList = rezervacijaService.findAllActiveReservationsForUser(p.getName());
+
+        return retList;
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping("/create")
+    public ResponseEntity createReservation(@RequestBody RezervacijaDTO dto, Principal p) throws ParseException {
+
+        boolean flag = rezervacijaService.createReservation(dto, p.getName());
+
+        if (!flag) return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(null, HttpStatus.CREATED);
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping("/findmeds")
+    public List<ApotekaWithMedicineDto> findMedicineByQuery(@RequestBody IdDTO dto, Principal p) {
+
+        List<ApotekaWithMedicineDto> retList = apotekaService.findPharmaciesWithMedicine(dto, p.getName());
+
+        return retList;
     }
 
 }

@@ -2,19 +2,26 @@ package rs.ac.uns.ftn.informatika.rest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import rs.ac.uns.ftn.informatika.rest.dto.DateTimeDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.RezervacijaDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.RezervacijaWithFlagDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
+import rs.ac.uns.ftn.informatika.rest.model.Lek;
 import rs.ac.uns.ftn.informatika.rest.model.Rezervacija;
 import rs.ac.uns.ftn.informatika.rest.repository.RezervacijaRepository;
 
 import javax.validation.constraints.Email;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
-import java.util.Date;
+import java.util.*;
 
 @Service
 public class RezervacijaService {
@@ -27,6 +34,9 @@ public class RezervacijaService {
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private KorisnikService korisnikService;
 
 
     public Rezervacija findRezervacijaByID(Long id) {
@@ -117,4 +127,50 @@ public class RezervacijaService {
         return flag;
     }
 
+    public List<RezervacijaWithFlagDTO> findAllActiveReservationsForUser(String username) {
+
+        Long id = korisnikService.findByUsername(username).getID();
+        List<Rezervacija> all = rezervacijaRepository.findAllByPacijentID(id);
+        List<RezervacijaWithFlagDTO> filteredList = new ArrayList<>();
+        for(Rezervacija r : all) {
+            if(r.getDatumPreuz() == null && r.getRokZaPreuzimanje().after(new Date())) {
+                filteredList.add(new RezervacijaWithFlagDTO(r, isCancellingDateMoreThenOneDay(r.getRokZaPreuzimanje())));
+            }
+        }
+        return filteredList;
+    }
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public boolean cancelReservation(long id) {
+
+        Rezervacija r = rezervacijaRepository.findByID(id);
+        if (r == null)
+            return false;
+
+        rezervacijaRepository.deleteRezervacijaByID(id);
+        return true;
+    }
+
+    public boolean createReservation(RezervacijaDTO dto, String username) throws ParseException {
+
+        Lek l = apotekaService.lekRepository.findLekByID(dto.getLek());
+        Korisnik k = korisnikService.findByUsername(username);
+        Apoteka a = apotekaService.findApotekaByNaziv(dto.getApoteka());
+        DateTimeDTO dateTimeDTO = new DateTimeDTO();
+        dateTimeDTO.setDate(dto.getRokZaPreuzimanje());
+        if (l == null || k == null || a == null)
+            return false;
+
+        Rezervacija newRez = new Rezervacija();
+        newRez.setRokZaPreuzimanje(dateTimeDTO.parseDateStringToDate());
+        newRez.setApoteka(a);
+        newRez.setLek(l);
+        newRez.setPacijent(k);
+        Rezervacija rez = rezervacijaRepository.save(newRez);
+        emailService.sendReservationCreatedMessage(rez);
+        Map<Long, Integer> map = a.getMagacin();
+        a.getMagacin().put(dto.getLek(), map.get(dto.getLek()) - 1);
+        apotekaService.saveApoteka(a);
+
+        return true;
+    }
 }
