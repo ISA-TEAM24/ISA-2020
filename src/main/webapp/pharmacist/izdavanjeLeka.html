@@ -89,30 +89,25 @@
                 <br>
                 <br>
 
-                <button class="btn btn-primary" id="proveribtn">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Proveri &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                <button class="btn btn-primary" id="proveribtn" onclick="getReservationById()">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Proveri &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
             </div>
 
             <br>
             <br>
 
-            <div class="container col-lg-12"> 
+            <div class="container col-lg-12">
               <table class="table text-center table-striped" id = "mydatatable" >
                 <thead class="thead">
                   <tr>
-                    <th class="th-sm" scope="col" data-column="ime" data-order ="">Ime </th>
-                    <th class="th-sm" scope="col" data-column="prezime" data-order ="">Prezime </th>
+                    <th class="th-sm" scope="col" data-column="pacijent" data-order ="">Pacijent </th>
+                    <th class="th-sm" scope="col" data-column="lek" data-order ="">Lek </th>
                     <th class="th-sm" scope="col" data-column="brRezervacije" data-order ="">Broj rezervacije </th>
                     <th class="th-sm" scope="col" data-column="preuzmi" data-order =""></th>
                   </tr>
                 </thead>
   
                 <tbody class="customtbody" id="tableBody">
-                    <tr>
-                      <td>Nikola</td>
-                      <td>Tomik</td>
-                      <td>111111</td>
-                      <td><button class="btn btn-warning" id="preuzmiId"> preuzmi </button></td>
-                    </tr>
+
                 </tbody>
               </table>
         
@@ -126,10 +121,10 @@
     
 
     <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+    </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -141,7 +136,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script type="text/javascript" src=""></script>
+    <script type="text/javascript" src="../js/pharmacist/issueMed.js"></script>
 
   </body>
 </html>
