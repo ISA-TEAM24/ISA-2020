@@ -13,5 +13,6 @@ public interface RezervacijaRepository extends JpaRepository<Rezervacija, Long> 
     Rezervacija findByID(Long ID);
     List<Rezervacija> findAllByApotekaID(Long ID);
     List<Rezervacija> findAllByPacijentID(Long ID);
+    void deleteRezervacijaByID(Long ID);
 
 }

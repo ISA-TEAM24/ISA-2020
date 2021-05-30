@@ -8,10 +8,12 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.rest.dto.IdDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.RezervacijaInfoDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.RezervacijaWithFlagDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Rezervacija;
 import rs.ac.uns.ftn.informatika.rest.service.RezervacijaService;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/reservation", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -48,10 +50,21 @@ public class RezervacijaController {
     }
 
     @PreAuthorize("hasRole('USER')")
-    @PostMapping("/cancel/")
-    public ResponseEntity<Rezervacija> getReservation(@RequestBody IdDTO dto) {
+    @PostMapping("/cancel")
+    public ResponseEntity<Rezervacija> cancelReservation(@RequestBody IdDTO dto) {
+
+        boolean flag = rezervacijaService.cancelReservation(Long.parseLong(dto.getId()));
 
         return null;
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/all")
+    public List<RezervacijaWithFlagDTO> getReservationsForUser(Principal p) {
+
+        List<RezervacijaWithFlagDTO> retList = rezervacijaService.findAllActiveReservationsForUser(p.getName());
+
+        return retList;
     }
 
 }

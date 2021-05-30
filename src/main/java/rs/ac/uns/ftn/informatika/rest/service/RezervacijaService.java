@@ -2,6 +2,9 @@ package rs.ac.uns.ftn.informatika.rest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import rs.ac.uns.ftn.informatika.rest.dto.RezervacijaWithFlagDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.Rezervacija;
@@ -14,7 +17,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class RezervacijaService {
@@ -27,6 +32,9 @@ public class RezervacijaService {
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private KorisnikService korisnikService;
 
 
     public Rezervacija findRezervacijaByID(Long id) {
@@ -117,4 +125,26 @@ public class RezervacijaService {
         return flag;
     }
 
+    public List<RezervacijaWithFlagDTO> findAllActiveReservationsForUser(String username) {
+
+        Long id = korisnikService.findByUsername(username).getID();
+        List<Rezervacija> all = rezervacijaRepository.findAllByPacijentID(id);
+        List<RezervacijaWithFlagDTO> filteredList = new ArrayList<>();
+        for(Rezervacija r : all) {
+            if(r.getDatumPreuz() == null && r.getRokZaPreuzimanje().after(new Date())) {
+                filteredList.add(new RezervacijaWithFlagDTO(r, isCancellingDateMoreThenOneDay(r.getRokZaPreuzimanje())));
+            }
+        }
+        return filteredList;
+    }
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public boolean cancelReservation(long id) {
+
+        Rezervacija r = rezervacijaRepository.findByID(id);
+        if (r == null)
+            return false;
+
+        rezervacijaRepository.deleteRezervacijaByID(id);
+        return true;
+    }
 }
