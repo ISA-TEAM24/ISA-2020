@@ -105,7 +105,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field1" type="text" class="form-control">
+                        <input id="ime" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field2" type="text" class="form-control">
+                        <input id="prezime" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -131,7 +131,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field3" type="text" class="form-control">
+                        <input id="email" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -144,7 +144,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field4" type="text" class="form-control">
+                        <input id="username" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -157,7 +157,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field5" type="text" class="form-control">
+                        <input id="drzava" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -170,7 +170,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field6" type="text" class="form-control">
+                        <input id="grad" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -183,7 +183,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field7" type="text" class="form-control">
+                        <input id="adresa" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -196,7 +196,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field8" type="number" class="form-control">
+                        <input id="telefon" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -209,7 +209,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field7" type="password" class="form-control">
+                        <input id="password" type="password" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -222,7 +222,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field8" type="password" class="form-control">
+                        <input id="cpassword" type="password" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -237,7 +237,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field9" type="date" class="form-control">
+                        <input id="odDatum" type="date" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -250,7 +250,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field10" type="date" class="form-control">
+                        <input id="doDatum" type="date" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -263,7 +263,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field11" type="time" class="form-control">
+                        <input id="odVreme" type="time" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -276,7 +276,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field12" type="time" class="form-control">
+                        <input id="doVreme" type="time" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -289,14 +289,14 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <select multiple class="form-control" id="nonworkingdays">
-                            <option>Monday</option>
-                            <option>Tuesday</option>
-                            <option>Wednesday</option>
-                            <option>Thursday</option>
-                            <option>Friday</option>
-                            <option>Saturday</option>
-                            <option>Sunday</option>
+                        <select multiple class="form-control" id="neradniDani">
+                            <option value="1">Monday</option>
+                            <option value="2">Tuesday</option>
+                            <option value="3">Wednesday</option>
+                            <option value="4">Thursday</option>
+                            <option value="5">Friday</option>
+                            <option value="6">Saturday</option>
+                            <option value="7">Sunday</option>
                         </select>
                     </div>
                 </div>
@@ -310,7 +310,7 @@
             </div>
             <br><br>
             <div class="text-center">
-                <button type="button" id="Register" class="btn btn-primary">Register</button>
+                <button type="button" id="Register" onclick='register()' class="btn btn-primary">Register</button>
             </div>
             <br><br>
         </div>
