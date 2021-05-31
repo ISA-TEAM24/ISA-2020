@@ -166,10 +166,12 @@ public class ApotekaService {
             dto.setBrojDermatologa(0);
             dto.setBrojFarmaceuta(0);
             for(Korisnik k : a.getZaposleni()) {
-                if (k.getAuthorities().contains("ROLE_PHARMACIST"))
-                    dto.setBrojFarmaceuta(dto.getBrojFarmaceuta()+1);
-                if (k.getAuthorities().contains("ROLE_DERMATOLOGIST"))
-                    dto.setBrojDermatologa(dto.getBrojDermatologa()+1);
+                for(GrantedAuthority ga : k.getAuthorities()) {
+                    if (ga.getAuthority().equalsIgnoreCase("ROLE_PHARMACIST"))
+                        dto.setBrojFarmaceuta(dto.getBrojFarmaceuta()+1);
+                    if (ga.getAuthority().equalsIgnoreCase("ROLE_DERMATOLOGIST"))
+                        dto.setBrojDermatologa(dto.getBrojDermatologa()+1);
+                }
             }
             retList.add(dto);
         }
