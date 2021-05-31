@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import rs.ac.uns.ftn.informatika.rest.dto.DateTimeDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.PosetaDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.ScheduleDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
@@ -17,7 +18,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
@@ -152,5 +152,43 @@ public class PosetaService {
 
         return retList;
 
+    }
+
+    public int scheduleConsultByPharmacist(String pharmacistUsername, ScheduleDTO dto) throws ParseException {
+        Korisnik pharmacist = korisnikService.findByUsername(pharmacistUsername);
+        Poseta p = new Poseta();
+
+        DateTimeDTO dt = new DateTimeDTO();
+        dt.setDate(dto.getDatum());
+        dt.setTime(dto.getVreme());
+
+        Apoteka a = apotekaService.findByZaposleni(pharmacist);
+        Korisnik pacijent = korisnikService.findByEmail(dto.getEmail());
+
+        if(pacijent == null) {
+            System.out.println("--- Ne postoji pacijent sa zadatim mailom");
+            return 2;
+        }
+
+        //ako je farmaceut slobodan ...
+        if(apotekaService.checkIfPharmacistIsFree(pharmacist, dt.parseDateStringToDate(), dt.parseTimeStringToLocalTime(), a)) {
+            System.out.println("FARMACEUT JE FREE ===============");
+
+            p.setApoteka(a);
+            p.setDijagnoza("");
+            p.setTrajanje(dto.getTrajanje());
+            p.setVrsta(p.getSAVETOVANJE());
+            p.setPoeni(5);
+            p.setPacijent(pacijent);
+            p.setZaposleni(pharmacist);
+            p.setDatum(dt.parseDateStringToDate());
+            p.setVreme(dt.parseTimeStringToLocalTime());
+
+            posetaRepository.save(p);
+        } else {
+            return 0;
+        }
+
+        return 1;
     }
 }

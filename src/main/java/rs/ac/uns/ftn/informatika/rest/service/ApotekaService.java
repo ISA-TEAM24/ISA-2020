@@ -157,4 +157,8 @@ public class ApotekaService {
     public void saveApoteka(Apoteka a) {
         apotekaRepository.save(a);
     }
+
+    public Apoteka findByZaposleni(Korisnik zaposleni){
+        return apotekaRepository.findByZaposleni(zaposleni);
+    }
 }

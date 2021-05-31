@@ -8,7 +8,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.rest.dto.*;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
+import rs.ac.uns.ftn.informatika.rest.repository.KorisnikRepository;
 import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
+import rs.ac.uns.ftn.informatika.rest.service.KorisnikService;
 import rs.ac.uns.ftn.informatika.rest.service.PosetaService;
 
 import java.security.Principal;
@@ -89,5 +91,22 @@ public class PosetaController {
         }
 
         return retList;
+    }
+
+    @PreAuthorize("hasRole('PHARMACIST')")
+    @PostMapping("/consult/schedule")
+    public ResponseEntity scheduleConsultByPharmacist(@RequestBody ScheduleDTO dto, Principal pharmacist) throws ParseException {
+
+        int answer = posetaService.scheduleConsultByPharmacist(pharmacist.getName(), dto);
+
+        if(answer == 1) {
+            return new ResponseEntity(null, HttpStatus.CREATED);
+        }
+        else if(answer == 2 ) {
+            return new ResponseEntity(null, HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
+        }
     }
 }
