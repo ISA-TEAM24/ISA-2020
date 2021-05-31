@@ -95,18 +95,18 @@ public class PosetaController {
 
     @PreAuthorize("hasRole('PHARMACIST')")
     @PostMapping("/consult/schedule")
-    public ResponseEntity scheduleConsultByPharmacist(@RequestBody ScheduleDTO dto, Principal pharmacist) throws ParseException {
+    public ResponseEntity<String> scheduleConsultByPharmacist(@RequestBody ScheduleDTO dto, Principal pharmacist) throws ParseException {
 
         int answer = posetaService.scheduleConsultByPharmacist(pharmacist.getName(), dto);
 
         if(answer == 1) {
-            return new ResponseEntity(null, HttpStatus.CREATED);
+            return new ResponseEntity("CREATED", HttpStatus.CREATED);
         }
         else if(answer == 2 ) {
-            return new ResponseEntity(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity("NOT_FOUND", HttpStatus.NOT_FOUND);
         }
         else {
-            return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity("BAD_REQUEST", HttpStatus.BAD_REQUEST);
         }
     }
 }

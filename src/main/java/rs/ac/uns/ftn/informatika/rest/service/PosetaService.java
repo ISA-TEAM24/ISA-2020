@@ -185,6 +185,18 @@ public class PosetaService {
             p.setVreme(dt.parseTimeStringToLocalTime());
 
             posetaRepository.save(p);
+
+            //send mail
+            Format formatter = new SimpleDateFormat("dd-MM-YYYY");
+            String s = formatter.format(p.getDatum());
+
+            String msg = "Dear " + pacijent.getIme() + " " + pacijent.getPrezime();
+            msg += ", We've successfully scheduled your consult. Consult information: ";
+            msg += "Pharmacist: " + pharmacist.getIme() +  " " + pharmacist.getPrezime();
+            msg += " // ";
+            msg += " Pharmacy: " + a.getNaziv() + ", " + a.getAdresa() + " // ";
+            msg += " When: " + s + " at " + p.getVreme();
+            boolean inform =  emailService.sendSimpleMessage(pacijent.getEmail(), "New scheduled consult", msg);
         } else {
             return 0;
         }
