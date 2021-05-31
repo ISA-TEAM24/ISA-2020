@@ -127,6 +127,19 @@ public class PosetaService {
 
     }
 
+
+    public boolean fireAllowed(String username) {
+        Korisnik k = korisnikService.findByUsername(username);
+        List<Poseta> all_visits = posetaRepository.findPosetaByZaposleniID(k.getID());
+
+        for (Poseta p : all_visits) {
+            if (p.getDatum().after(new Date())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public List<Poseta> getFinishedPoseteByDermOrPharm(String username) {
         Korisnik worker = korisnikService.findByUsername(username);
 

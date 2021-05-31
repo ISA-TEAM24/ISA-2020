@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.informatika.rest.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
+import rs.ac.uns.ftn.informatika.rest.dto.ApotekaEditDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.ApotekaWithExamsDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.ApotekaWithMedicineDto;
 import rs.ac.uns.ftn.informatika.rest.dto.FarmaceutDTO;
@@ -117,6 +118,76 @@ public class ApotekaService {
     public Apoteka findApotekaByNaziv(String naziv) {
         return apotekaRepository.findByNaziv(naziv);
     }
+
+
+    public Apoteka getPharmacyByAdmin(String username) {
+        List<Apoteka> pharmacies = this.apotekaRepository.findAll();
+        for (Apoteka a : pharmacies) {
+            List<Korisnik> pharmacyAdmins = findPharmacyAdmin(a);
+            for (Korisnik phadmin : pharmacyAdmins) {
+                if (phadmin.getUsername().equalsIgnoreCase(username)) {
+                    return a;
+                }
+            }
+        }
+        return null;
+    }
+
+    private List<Korisnik> findPharmacyAdmin(Apoteka a) {
+        ArrayList<Korisnik> pharmacyAdmins = new ArrayList<>();
+        for(Korisnik k : a.getZaposleni()) {
+            boolean isPharmacyAdmin = false;
+            for (GrantedAuthority auth : k.getAuthorities()) {
+                if (!auth.getAuthority().equalsIgnoreCase("ROLE_PH_ADMIN"))
+                    continue;
+                isPharmacyAdmin = true;
+            }
+            if (isPharmacyAdmin)
+                pharmacyAdmins.add(k);
+        }
+        return pharmacyAdmins;
+    }
+
+    public boolean editPharmacy(ApotekaEditDTO apotekaEditDTO) {
+        Apoteka apoteka = apotekaRepository.findByNaziv(apotekaEditDTO.getStarinaziv());
+
+        if (apotekaEditDTO.isMenjannaziv() && apotekaRepository.findByNaziv(apotekaEditDTO.getNaziv()) != null) {
+            return false;
+        }
+
+        apoteka.setNaziv(apotekaEditDTO.getNaziv());
+        apoteka.setAdresa(apotekaEditDTO.getAdresa());
+        apoteka.setOpis(apotekaEditDTO.getOpis());
+
+        apotekaRepository.save(apoteka);
+
+        return true;
+    }
+
+    public boolean firePharmacist(String username) {
+        List<Apoteka> pharmacies = apotekaRepository.findAll();
+        for (Apoteka a : pharmacies) {
+            for (Korisnik k : a.getZaposleni()) {
+                if (k.getUsername().equalsIgnoreCase(username)) {
+                    List<Korisnik> users = a.getZaposleni();
+                    users.remove(k);
+                    a.setZaposleni(users);
+                    apotekaRepository.save(a);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void hirePharmacist(Korisnik user, String naziv) {
+        Apoteka a = apotekaRepository.findByNaziv(naziv);
+        List<Korisnik> zaposleni = a.getZaposleni();
+        zaposleni.add(user);
+        a.setZaposleni(zaposleni);
+        apotekaRepository.save(a);
+    }
+
 
     public List<ApotekaWithMedicineDto> findPharmaciesWithMedicine(IdDTO dto, String username) {
 
