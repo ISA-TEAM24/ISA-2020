@@ -139,7 +139,7 @@ INSERT INTO public.radno_info_neradni_dani(radno_info_id, neradni_dani) VALUES (
 INSERT INTO public.korisnik_radno_info(korisnik_id, radno_info_id, radno_info_key) VALUES (4, 4, 'apoteka1');
 
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)
-    VALUES (100,  '2021-05-29', '', 5, 30, '19:56', 0, 1, 1, 4);
+    VALUES (555,  '2021-05-29', '', 5, 30, '19:56', 0, 1, 1, 4);
 
 INSERT INTO public.apoteka_cenovnik_mapping(
   apoteka_id, cena, naziv_predmeta)
