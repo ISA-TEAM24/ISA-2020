@@ -12,6 +12,8 @@ public class Rezervacija {
     @OneToOne
     private Apoteka apoteka;
     @Column(nullable = false)
+    private Date rokZaPreuzimanje;
+    @Column(nullable = true)
     private Date datumPreuz;
     @OneToOne
     private Korisnik pacijent;
@@ -19,10 +21,11 @@ public class Rezervacija {
     public Rezervacija() {
     }
 
-    public Rezervacija(Long ID, Lek lek, Apoteka apoteka, Date datumPreuz, Korisnik pacijent) {
+    public Rezervacija(Long ID, Lek lek, Apoteka apoteka, Date rokZaPreuzimanje, Date datumPreuz, Korisnik pacijent) {
         this.ID = ID;
         this.lek = lek;
         this.apoteka = apoteka;
+        this.rokZaPreuzimanje = rokZaPreuzimanje;
         this.datumPreuz = datumPreuz;
         this.pacijent = pacijent;
     }
@@ -67,12 +70,21 @@ public class Rezervacija {
         this.pacijent = pacijent;
     }
 
+    public Date getRokZaPreuzimanje() {
+        return rokZaPreuzimanje;
+    }
+
+    public void setRokZaPreuzimanje(Date rokZaPreuzimanje) {
+        this.rokZaPreuzimanje = rokZaPreuzimanje;
+    }
+
     @Override
     public String toString() {
         return "Rezervacija{" +
                 "ID=" + ID +
                 ", lek=" + lek +
                 ", apoteka=" + apoteka +
+                ", rokZaPreuzimanje=" + rokZaPreuzimanje +
                 ", datumPreuz=" + datumPreuz +
                 ", pacijent=" + pacijent +
                 '}';

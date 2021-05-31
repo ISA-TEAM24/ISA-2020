@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import rs.ac.uns.ftn.informatika.rest.model.Rezervacija;
 
 import java.util.Properties;
 
@@ -33,6 +34,17 @@ public class EmailService {
             retBool = false;
         }
         return retBool;
+    }
+
+    public boolean sendReservationCreatedMessage(Rezervacija r) {
+
+        String text = "Hello " + r.getPacijent().getUsername();
+        text += ", you successfully reserved " + r.getLek().getNaziv() + " in Pharmacy " + r.getApoteka().getNaziv();
+        text += ", " + r.getApoteka().getAdresa();
+        text += ". Your unique reservation ID is " + r.getID() + ".";
+        text += " Your due pick up date is " + r.getRokZaPreuzimanje().toString().split("T")[0];
+
+        return sendSimpleMessage(r.getPacijent().getEmail(), "You reserved some medicine", text);
     }
 
 

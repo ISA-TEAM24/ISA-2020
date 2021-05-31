@@ -46,7 +46,7 @@ function register() {
         },
         data : JSON.stringify(pharmacist),
         success : function(pharmacy) {
-            console.log('yes')
+            document.location.href = 'pharmacistslist.html';
         },
         error : function() {
             console.log('error occured')

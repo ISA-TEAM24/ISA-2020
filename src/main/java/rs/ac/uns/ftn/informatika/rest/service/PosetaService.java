@@ -126,15 +126,44 @@ public class PosetaService {
 
     }
 
+
     public boolean fireAllowed(String username) {
         Korisnik k = korisnikService.findByUsername(username);
         List<Poseta> all_visits = posetaRepository.findPosetaByZaposleniID(k.getID());
 
-        for(Poseta p : all_visits) {
+        for (Poseta p : all_visits) {
             if (p.getDatum().after(new Date())) {
                 return false;
             }
         }
         return true;
+    }
+
+    public List<Poseta> getFinishedPoseteByDermOrPharm(String username) {
+        Korisnik worker = korisnikService.findByUsername(username);
+
+        List<Poseta> posetaList = posetaRepository.findPosetaByZaposleniID(worker.getID());
+        Date today = new Date();
+
+        List<Poseta> retList = new ArrayList<Poseta>();
+
+        for(Poseta p : posetaList) {
+            System.out.println("---- TODAY IS: " + today);
+            System.out.println("---- POSETA WAS ON : " + p.getDatum());
+
+            // posetas date occurs before todays date
+            if (p.getDatum().compareTo(today) < 0) {
+                System.out.println("bio je pre");
+
+                retList.add(p);
+            } else {
+
+                System.out.println("tek ce biti");
+
+            }
+        }
+
+        return retList;
+
     }
 }
