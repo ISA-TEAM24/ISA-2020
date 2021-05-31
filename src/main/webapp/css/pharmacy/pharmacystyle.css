@@ -212,3 +212,9 @@ input:checked + .slider:before {
     width: 20vw;
     height: 35vh;
 }
+
+.header{
+    position:sticky;
+    top: 0 ;
+    background-color: white;
+  }
