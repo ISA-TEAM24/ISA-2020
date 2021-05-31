@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
@@ -171,7 +172,8 @@ public class PosetaService {
         }
 
         //ako je farmaceut slobodan ...
-        if(apotekaService.checkIfPharmacistIsFree(pharmacist, dt.parseDateStringToDate(), dt.parseTimeStringToLocalTime(), a)) {
+        if(apotekaService.checkIfPharmacistIsFree(pharmacist, dt.parseDateStringToDate(), dt.parseTimeStringToLocalTime(), a)
+           && checkIfUserIsFree(pacijent.getUsername(), dto.getDatum(), dto.getVreme(),dto.getTrajanje())) {
             System.out.println("FARMACEUT JE FREE ===============");
 
             p.setApoteka(a);
@@ -202,5 +204,53 @@ public class PosetaService {
         }
 
         return 1;
+    }
+
+    public boolean checkIfUserIsFree(String username, String datum, String vreme, int trajanje) {
+        List<Poseta> upcoming = findUpcomingVisitsForUser(username);
+
+        DateTimeDTO dt = new DateTimeDTO();
+        dt.setDate(datum);
+        dt.setTime(vreme);
+
+        LocalTime newPosetaStart = dt.parseTimeStringToLocalTime();
+        LocalTime newPosetaEnd = dt.parseTimeStringToLocalTime().plusMinutes(trajanje);
+
+        for(Poseta p: upcoming) {
+            if(p.getDatum().toString().split(" ")[0].equals(datum)){
+                System.out.println("DATUMI SU JEDNAKI: " + p.getDatum().toString().split(" ")[0] + " == " + datum);
+
+                LocalTime startTimePoseta = p.getVreme();
+                LocalTime endTimePoseta = p.getVreme().plusMinutes(p.getTrajanje());
+
+                if(newPosetaStart.compareTo(endTimePoseta) < 0)
+                {
+                    if(newPosetaStart.compareTo(startTimePoseta) < 0
+                        && newPosetaEnd.compareTo(startTimePoseta)< 0) {
+                        //OK
+
+                        continue;
+                    } else {
+                        //BAD
+                        System.out.println("FIRST fail");
+                        return false;
+                    }
+                }
+
+                if(newPosetaStart.compareTo(startTimePoseta) > 0) {
+                    if(newPosetaStart.compareTo(endTimePoseta) > 0) {
+                        // OK
+                        continue;
+                    } else {
+                        // BAD
+                        System.out.println("SECOND fail");
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        return true;
     }
 }

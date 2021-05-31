@@ -108,7 +108,7 @@ INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, a
 VALUES (504,  '2021-05-29', 'A00 B99', 5, 30, '08:00', 1, 1, 250, 3);
 
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)
-VALUES (505,  '2021-06-29', 'H00 H59', 5, 30, '09:30', 1, 1, 1, 3);
+VALUES (505,  '2021-06-29', 'H00 H59', 5, 30, '12:30', 1, 1, 1, 3);
 
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)
 VALUES (506,  '2021-05-12', 'L00 L99', 5, 30, '07:30', 1, 1, 1, 3);

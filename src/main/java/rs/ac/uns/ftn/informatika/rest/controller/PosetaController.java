@@ -16,6 +16,7 @@ import rs.ac.uns.ftn.informatika.rest.service.PosetaService;
 import java.security.Principal;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -97,6 +98,7 @@ public class PosetaController {
     @PostMapping("/consult/schedule")
     public ResponseEntity<String> scheduleConsultByPharmacist(@RequestBody ScheduleDTO dto, Principal pharmacist) throws ParseException {
 
+        System.out.println(new Date() + "___________________________________");
         int answer = posetaService.scheduleConsultByPharmacist(pharmacist.getName(), dto);
 
         if(answer == 1) {
