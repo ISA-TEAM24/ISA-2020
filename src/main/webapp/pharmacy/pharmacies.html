@@ -112,7 +112,7 @@
                                                 </div>
                                                 <div class="col-1">
                                                     <select id="grade_select">
-                                                        <option id="no_grade"></option>
+                                                        <option value="grade0" id="no_grade"></option>
                                                         <option id="low_grade">&#60 2</option>
                                                         <option id="medium_grade">2-4</option>
                                                         <option id="high_grade">4+</option>
@@ -126,7 +126,7 @@
                                                 </div>
                                                 <div class="col-1">
                                                     <select id="derm_select">
-                                                        <option id="no_derm"></option>
+                                                        <option value="derm0" id="no_derm"></option>
                                                         <option id="low_derm">&#60 10</option>
                                                         <option id="medium_derm">10-50</option>
                                                         <option id="high_derm">50+</option>
@@ -137,7 +137,7 @@
                                                 </div>
                                                 <div class="col-1">
                                                     <select id="farm_select">
-                                                        <option id="no_farm"></option>
+                                                        <option value="farm0" id="no_farm"></option>
                                                         <option id="low_farm">&#60 10</option>
                                                         <option id="medium_farm">10-50</option>
                                                         <option id="high_farm">50+</option>
@@ -147,7 +147,7 @@
                                             <br>
                                             <div class="row">
                                                 <div class="offset-5 col-2">
-                                                    <button class="btn btn-info-reserve">Reset filters</button>
+                                                    <button onclick="resetFilters()" class="btn btn-info-reserve">Reset filters</button>
                                                 </div>
                                             </div>
                                             

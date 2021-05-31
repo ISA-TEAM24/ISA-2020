@@ -163,4 +163,18 @@ function checkQuery(){
     }
 }
 
+function resetFilters() {
+    //$("#select_id").val("val2").change();
+    search_field.val("")
+    grade_select.val("grade0").change()
+    derm_select.val("derm0").change()
+    farm_select.val("farm0").change()
+    
+}
+
+function openPharmacy(id) {
+    var url = "pharmacyprofile.html?id=" + id.split("-")[1]
+    window.location.href = url
+}
+
 getAllPharmacies();
