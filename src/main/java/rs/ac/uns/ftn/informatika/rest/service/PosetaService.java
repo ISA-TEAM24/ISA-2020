@@ -125,4 +125,16 @@ public class PosetaService {
         return ret;
 
     }
+
+    public boolean fireAllowed(String username) {
+        Korisnik k = korisnikService.findByUsername(username);
+        List<Poseta> all_visits = posetaRepository.findPosetaByZaposleniID(k.getID());
+
+        for(Poseta p : all_visits) {
+            if (p.getDatum().after(new Date())) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

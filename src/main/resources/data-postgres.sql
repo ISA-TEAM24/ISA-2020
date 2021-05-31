@@ -35,11 +35,11 @@ INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (3,
 --INSERT INTO public.korisnik_radno_info(korisnik_id, radno_info_id, radno_info_key) VALUES (4, 4, 'apoteka1');
 -- skripte za apoteke
 -- a1
---INSERT INTO public.apoteka(id, adresa, naziv, ocena, opis) VALUES (1, 'adresaApoteke1', 'apoteka1', 5, 'Najbolja apoteka');
---INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 4);
+INSERT INTO public.apoteka(id, adresa, naziv, ocena, opis) VALUES (1, 'adresaApoteke1', 'apoteka1', 5, 'Najbolja apoteka');
 
---INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)
---VALUES (100,  '2021-05-29', '', 5, 30, '19:56', 0, 1, 1, 4);
+
+
+
 
 --INSERT INTO public.apoteka_cenovnik_mapping(
   --  apoteka_id, cena, naziv_predmeta)
@@ -49,11 +49,20 @@ INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (3,
 -- farmaceut1 - pw: test
 INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (4, true, 'Rakoci Ferenca 22', 'SRB', 'farmaceut123@gmail.com', 'BG', 'Jovan', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Jovic', true, '0691100555', 'farmaceut1', NULL, NULL);
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (4, 4);
+INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 4);
 
+INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (6, true, 'Rakoci Ferenca 32', 'SRB', 'farmaceut1234@gmail.com', 'BG', 'Jovanko', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Jovicic', true, '0691100525', 'farmaceut2', NULL, NULL);
+INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (6, 4);
+INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 6);
+
+INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (7, true, 'Rakoci Ferenca 12', 'SRB', 'farmaceut12345@gmail.com', 'BG', 'Arsen', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Zdravkovic', true, '0611100525', 'farmaceut23', NULL, NULL);
+INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (7, 4);
+INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 7);
 
 -- admin apoteke: - pw: test
 INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (5, true, 'Prvomajska 20', 'Srbija', 'phadmin123@gmail.com', 'Backa Topola', 'Danilo', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Paripovic', false, '066451299', 'phadmin', NULL, NULL);
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (5, 5);
+INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 5);
 
 -- TimeOff zahtevi
 INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (20, '2021-05-27', '2021-05-15', 'seminar', 1,1, 3);
@@ -62,3 +71,5 @@ INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zaht
 INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (22, '2021-01-12', '2021-02-15', 'putovanje', 1,0, 4);
 INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (23, '2021-03-12', '2021-03-18', 'putovanje', 2,1, 4);
 
+INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)
+VALUES (100,  '2021-06-25', '', 5, 30, '19:56', 0, 1, 1, 4);
