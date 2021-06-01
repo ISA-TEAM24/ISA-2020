@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.rest.dto.ApotekaEditDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.DermatologDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.HireDermatologistDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.UserEditDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
@@ -30,6 +32,9 @@ public class PharmacyAdminController {
 
     @Autowired
     private PosetaService posetaService;
+
+    @Autowired
+    private DermatologistService dermatologistService;
 
     @Autowired
     private CustomUserDetailsService userDetailsService;
@@ -100,6 +105,15 @@ public class PharmacyAdminController {
         return pharmacists;
     }
 
+    @GetMapping("/getmydermatologists")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public List<Korisnik> getMyDermatologists(Principal p) {
+        String username = p.getName();
+        Apoteka a = apotekaService.getPharmacyByAdmin(username);
+        List<Korisnik> dermatologists = apotekaService.findDermatologists(a);
+        return dermatologists;
+    }
+
     @PutMapping(value = "/firepharmacist/{username}")
     @PreAuthorize("hasRole('PH_ADMIN')")
     public ResponseEntity<?> firePharmacist(@PathVariable("username") String username) {
@@ -108,6 +122,48 @@ public class PharmacyAdminController {
             return new ResponseEntity<>(null, HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping(value = "/firedermatologist/{username}")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public ResponseEntity<?> fireDermatologist(@PathVariable("username") String username, Principal p) {
+        if (posetaService.fireAllowed(username)) {
+            String phAdminUsername = p.getName();
+            Apoteka a = apotekaService.getPharmacyByAdmin(phAdminUsername);
+            apotekaService.fireDermatologist(username, a);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping(value = "/worksinmine/{username}")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public boolean worksInMine(@PathVariable("username") String username, Principal p) {
+        String phAdminUsername = p.getName();
+        Apoteka a = apotekaService.getPharmacyByAdmin(phAdminUsername);
+
+        return apotekaService.worksHere(username, a);
+    }
+
+    @GetMapping(value = "/getalldermatologists")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public List<DermatologDTO> getAllDermatologists(Principal p) {
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        List<Korisnik> dermatologists = dermatologistService.getAll();
+        return pharmacyAdminService.createDeramtologDtos(dermatologists, a);
+    }
+
+    @PostMapping(value = "/hiredermatologist")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public ResponseEntity<?> hireDermatologist(@RequestBody HireDermatologistDTO hireDermatologistDTO, Principal p) {
+        System.out.println(hireDermatologistDTO.getUsername());
+        System.out.println(hireDermatologistDTO.getDoDatum());
+        System.out.println(hireDermatologistDTO.getOdDatum());
+        System.out.println(hireDermatologistDTO.getDoVreme());
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        pharmacyAdminService.hireDermatologist(hireDermatologistDTO, a);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 }

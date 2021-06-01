@@ -99,46 +99,19 @@
         <h1>All dermatologists</h1>
         <br><br>
 
-        <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5"  style="width: 60%;">
-            <table class="table table-bordered table-striped mb-0">
+        <div class="table-wrapper-scroll-y my-custom-scrollbar"  style="width: 60%;">
+            <table class="table table-bordered table-striped mb-0" id="allTable">
             <thead>
                 <tr>
-                <th scope="col">First name</th>
-                <th scope="col">Last name</th>
-                <th scope="col"></th>
+                <th scope="col" onclick="sortTable(0,'allTable')">First name</th>
+                <th scope="col" onclick="sortTable(0,'allTable')">Last name</th>
+                <th scope="col" onclick="sortTable(0,'allTable')">Grade</th>
+                <th scope="col" onclick="sortTable(0,'allTable')">Pharmacies</th>
+                <th scope="col" onclick="sortTable(0,'allTable')"></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                <td>Ana</td>
-                <td>Anic</td>
-                <td><button type="button" id="Hiredermatolgbtn1" class="btn btn-info-fire">&nbsp&nbspHire&nbsp&nbsp</button></td>
-                </tr> 
-                <tr>
-                <td>Branko</td>
-                <td>Brankovic</td>
-                <td></td>
-                </tr> 
-                <tr>
-                <td>Ceda</td>
-                <td>Cedic</td>
-                <td></td>
-                </tr>
-                <tr>
-                <td>Dejan</td>
-                <td>Dejanovic</td>
-                <td><button type="button" id="Hiredermatolgbtn2" class="btn btn-info-fire">&nbsp&nbspHire&nbsp&nbsp</button></td>
-                </tr>  
-                <tr>
-                <td>Eva</td>
-                <td>Evic</td>
-                <td><button type="button" id="Hiredermatolgbtn3" class="btn btn-info-fire">&nbsp&nbspHire&nbsp&nbsp</button></td>
-                </tr>
-                <tr>
-                <td>Filip</td>
-                <td>Filipovic</td>
-                <td></td>
-                </tr>
+            <tbody id="myTable">
+                
             </tbody>
             </table>
         </div>

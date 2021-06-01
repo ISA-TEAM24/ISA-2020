@@ -48,7 +48,7 @@ function addPharmacistsToTable(pharmacists) {
     pharmacists.forEach(function(ph) {
         $(document).on('click', '#Fire-'+ ph.username, function() {
             $.ajax({
-                type:'PUt',
+                type:'PUT',
                 url:'/phadmin/firepharmacist/' + ph.username,
                 contentType : 'application/json',
                 beforeSend: function (xhr) {

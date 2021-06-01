@@ -164,22 +164,6 @@ public class ApotekaService {
         return true;
     }
 
-    public boolean firePharmacist(String username) {
-        List<Apoteka> pharmacies = apotekaRepository.findAll();
-        for (Apoteka a : pharmacies) {
-            for (Korisnik k : a.getZaposleni()) {
-                if (k.getUsername().equalsIgnoreCase(username)) {
-                    List<Korisnik> users = a.getZaposleni();
-                    users.remove(k);
-                    a.setZaposleni(users);
-                    apotekaRepository.save(a);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     public void hirePharmacist(Korisnik user, String naziv) {
         Apoteka a = apotekaRepository.findByNaziv(naziv);
         List<Korisnik> zaposleni = a.getZaposleni();
@@ -227,5 +211,57 @@ public class ApotekaService {
 
     public void saveApoteka(Apoteka a) {
         apotekaRepository.save(a);
+    }
+
+    public List<Korisnik> findDermatologists(Apoteka a) {
+        ArrayList<Korisnik> dermatolozi = new ArrayList<>();
+        for(Korisnik k : a.getZaposleni()) {
+            boolean isDermatologist = false;
+            for (GrantedAuthority auth : k.getAuthorities()) {
+                if (!auth.getAuthority().equalsIgnoreCase("ROLE_DERMATOLOGIST"))
+                    continue;
+
+                isDermatologist = true;
+            }
+            if (isDermatologist) dermatolozi.add(k);
+        }
+        return dermatolozi;
+    }
+
+    public boolean firePharmacist(String username) {
+        List<Apoteka> pharmacies = apotekaRepository.findAll();
+        for (Apoteka a : pharmacies) {
+            List<Korisnik> users = a.getZaposleni();
+            for (Korisnik k : users) {
+                if (k.getUsername().equalsIgnoreCase(username)) {
+                    users.remove(k);
+                    a.setZaposleni(users);
+                    apotekaRepository.save(a);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean fireDermatologist(String username, Apoteka apoteka) {
+        List<Korisnik> users = apoteka.getZaposleni();
+        for (Korisnik k : users) {
+            if (k.getUsername().equalsIgnoreCase(username)) {
+                users.remove(k);
+                apoteka.setZaposleni(users);
+                apotekaRepository.save(apoteka);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean worksHere(String username, Apoteka a) {
+        for (Korisnik k : a.getZaposleni()) {
+            if (k.getUsername().equalsIgnoreCase(username))
+                return true;
+        }
+        return false;
     }
 }
