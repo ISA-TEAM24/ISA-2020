@@ -140,7 +140,7 @@ public class Poseta {
         return false;
     }
 
-    private enum VrstaPosete {
+    public enum VrstaPosete {
         SAVETOVANJE,
         PREGLED
     }
