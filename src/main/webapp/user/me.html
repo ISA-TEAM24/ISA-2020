@@ -606,11 +606,12 @@
                                         <label for="" >Group</label>
                                       </div>
                                       <div class="col-2">
-                                        <select>
-                                          <option>Pharmacy</option>
-                                          <option>Medicine</option>
-                                          <option>Pharmacist</option>
-                                          <option>Dermatologist</option>
+                                        <select id="select_group">
+                                          <option id="select_none"></option>
+                                          <option id="select_pharmacy">Pharmacy</option>
+                                          <option id="select_meds">Medicine</option>
+                                          <option id="select_farm">Pharmacist</option>
+                                          <option id="select_derm">Dermatologist</option>
                                         </select>
                                       </div>
                                     </div>
@@ -621,26 +622,35 @@
                                         <label for="" >Specifically for</label>
                                       </div>
                                       <div class="col-2">
-                                        <select>
-                                          <option>x</option>
-                                          <option>y</option>
-                                          <option>Z</option>
-                                          <option>y</option>
+                                        <select id="select_specific">
                                         </select>
                                       </div>
 
                                     </div>
-
+                                    <br>
+                                    <br>
                                     <div class="row">
-                                      <div class="col-3">
+                                      <div class="col-2">
                                         <label for="" >Grade</label>
                                       </div>  
-                                      <div class="col-1">
-                                        <input type="number" placeholder="grade">    
+                                      <div class="offset-1">
+                                        <input id="grade_number" type="number" min="0.5" max="5" step="0.5" placeholder="grade" style="min-width: 5vw;">    
                                       </div> 
-                                      <div class="offset-2 col-2">
-                                        <button class="btn btn-info-profile">Send grade</button>
-                                      </div>                           
+                                                                
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                      <div class="col-3">
+                                        <label for="" >Reason for grade</label>
+                                      </div>  
+                                      <div class="">
+                                        <textarea id="grade_note" rows="5" cols="35" id="TITLE" placeholder="Complaint text">
+                                        </textarea>    
+                                      </div>  
+                                      <div class="offset-1 col-2">
+                                        <button onclick="sendGrade()" class="btn btn-info-profile">Send grade</button>
+                                      </div>                                                             
                                     </div>
 
                                   </div>
@@ -730,6 +740,7 @@
     <script src="../js/user/consult.js"></script>
     <script src="../js/user/upcoming.js"></script>
     <script src="../js/user/reserved.js"></script>
+    <script src="../js/user/grading.js"></script>
 
   </body>
 </html>

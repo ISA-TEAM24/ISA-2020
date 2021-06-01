@@ -13,12 +13,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import rs.ac.uns.ftn.informatika.rest.dto.AllergiesDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.OcenaDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.UserEditDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.UserRequest;
-import rs.ac.uns.ftn.informatika.rest.model.Authority;
-import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
-import rs.ac.uns.ftn.informatika.rest.repository.AuthorityRepository;
-import rs.ac.uns.ftn.informatika.rest.repository.KorisnikRepository;
+import rs.ac.uns.ftn.informatika.rest.model.*;
+import rs.ac.uns.ftn.informatika.rest.repository.*;
 
 
 @Service
@@ -29,6 +28,15 @@ public class KorisnikService {
 
 	@Autowired
 	private AuthorityRepository authorityRepository;
+
+	@Autowired
+	private OcenaRepository ocenaRepository;
+
+	@Autowired
+	private LekRepository lekRepository;
+
+	@Autowired
+	private ApotekaRepository apotekaRepository;
 
 	@Lazy
 	@Autowired
@@ -140,6 +148,129 @@ public class KorisnikService {
 			}
 		}
 		return false;
+	}
+
+
+    public void leaveGrade(OcenaDTO dto, String username) {
+
+		Korisnik k = findByUsername(username);
+
+		Ocena o = new Ocena();
+		o.setNote(dto.getNote());
+		o.setOd(k);
+		o.setRecipientID(dto.getRecipientID());
+		o.setOcena(dto.getOcena());
+		Ocena.VrstaPrimaoca vp;
+		if (dto.getVrstaPrimaoca().equalsIgnoreCase("apoteka")) {
+			o.setVrstaPrimaoca(Ocena.VrstaPrimaoca.APOTEKA);
+			vp = Ocena.VrstaPrimaoca.APOTEKA;
+		}
+		else if (dto.getVrstaPrimaoca().equalsIgnoreCase("lek")) {
+			o.setVrstaPrimaoca(Ocena.VrstaPrimaoca.LEK);
+			vp = Ocena.VrstaPrimaoca.LEK;
+		}
+		else {
+			o.setVrstaPrimaoca(Ocena.VrstaPrimaoca.OSOBA);
+			vp = Ocena.VrstaPrimaoca.OSOBA;
+		}
+		if (checkIfGradeAlreadyExists(o, k)) {
+
+			updateRecipientGrade(vp, o);
+			return;
+		}
+
+		o = ocenaRepository.save(o);
+
+		updateRecipientGrade(vp,o);
+
+    }
+
+    private void updateRecipientGrade(Ocena.VrstaPrimaoca vp, Ocena o) {
+		List<Ocena> ocene = ocenaRepository.findAll();
+
+		if(vp == Ocena.VrstaPrimaoca.APOTEKA) {
+			Apoteka a = apotekaRepository.findByID(o.getRecipientID());
+			leaveGradeForPharmacy(a, ocene);
+		}
+		else if(vp == Ocena.VrstaPrimaoca.LEK) {
+			Lek l = lekRepository.findLekByID(o.getRecipientID());
+			leaveGradeForMedicine(l, ocene);
+		}
+		else if(vp == Ocena.VrstaPrimaoca.OSOBA) {
+			Korisnik korisnik = userRepository.findByID(o.getRecipientID());
+			leaveGradeForEmployee(korisnik, ocene);
+
+		}
+	}
+
+	private boolean checkIfGradeAlreadyExists(Ocena ocena, Korisnik k) {
+
+		List<Ocena> ocene = ocenaRepository.findAll();
+		for(Ocena g : ocene) {
+			if(g.getRecipientID() == ocena.getRecipientID() && g.getVrstaPrimaoca() == ocena.getVrstaPrimaoca() &&
+			   g.getOd().getID() == ocena.getOd().getID()) {
+				//ako postoji vec ova ocena treba je promeniti i to je to
+				g.setNote(ocena.getNote());
+				g.setOcena(ocena.getOcena());
+				ocenaRepository.save(g);
+				return true;
+			}
+		}
+
+		return false;
+
+	}
+
+	private void leaveGradeForPharmacy(Apoteka a, List<Ocena> ocene) {
+		int counter = 1;
+		float sum = 5;
+		for (Ocena grade : ocene) {
+			if(a.getID() == grade.getRecipientID()) {
+				sum += grade.getOcena();
+				counter = counter + 1;
+			}
+		}
+		// +5 +1 da bi se pocetna ocena 5 uzela u obzir
+		a.setOcena(sum / counter);
+		apotekaRepository.save(a);
+		System.out.println("SUM // Counter");
+		System.out.println(sum + " // " + counter);
+	}
+
+	private void leaveGradeForMedicine(Lek l, List<Ocena> ocene) {
+
+		int counter = 1;
+		float sum = 5;
+		for (Ocena grade : ocene) {
+			if(l.getID() == grade.getRecipientID()) {
+				sum += grade.getOcena();
+				counter = counter + 1;
+			}
+
+
+		}
+
+		l.setOcena(sum / counter);
+		lekRepository.save(l);
+		System.out.println("SUM // Counter");
+		System.out.println(sum + " // " + counter);
+	}
+
+	private void leaveGradeForEmployee(Korisnik k, List<Ocena> ocene) {
+
+		int counter = 1;
+		float sum = 5;
+		for (Ocena grade : ocene) {
+			if(k.getID() == grade.getRecipientID()) {
+				sum += grade.getOcena();
+				counter = counter + 1;
+			}
+		}
+
+		k.setOcena(sum / counter);
+		userRepository.save(k);
+		System.out.println("SUM // Counter");
+		System.out.println(sum + " // " + counter);
 	}
 
 

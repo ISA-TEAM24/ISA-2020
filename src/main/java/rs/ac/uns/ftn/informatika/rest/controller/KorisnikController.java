@@ -7,9 +7,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import rs.ac.uns.ftn.informatika.rest.dto.AllergiesDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.UserEditDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.*;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
+import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
 import rs.ac.uns.ftn.informatika.rest.service.KorisnikService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +22,9 @@ public class KorisnikController {
 
     @Autowired
     private KorisnikService korisnikService;
+
+    @Autowired
+    private ApotekaService apotekaService;
 
     @GetMapping("/user/{id}")
     @PreAuthorize("hasRole('USER')")
@@ -70,6 +73,47 @@ public class KorisnikController {
         System.out.println(user);
         return this.korisnikService.editKorisnik(user);
     }
+
+    @GetMapping("/user/grading/pharmacies")
+    @PreAuthorize("hasRole('USER')")
+    public List<ApotekaGradeDTO> getInteractedPharmaciesForUser(Principal p) {
+
+        return this.apotekaService.getInteractedPharmaciesForUser(p.getName());
+    }
+
+    @GetMapping("/user/grading/meds")
+    @PreAuthorize("hasRole('USER')")
+    public List<MedicineDTO> getInteractedMedicineForUser(Principal p) {
+
+        return this.apotekaService.getInteractedMedicineForUser(p.getName());
+    }
+
+    @GetMapping("/user/grading/derms")
+    @PreAuthorize("hasRole('USER')")
+    public List<ZaposleniDTO> getInteractedDermatologistsForUser(Principal p) {
+
+        return this.apotekaService.getInteractedDermatologistsForUser(p.getName());
+    }
+
+    @GetMapping("/user/grading/farms")
+    @PreAuthorize("hasRole('USER')")
+    public List<ZaposleniDTO> getInteractedPharmacistsForUser(Principal p) {
+
+        return this.apotekaService.getInteractedPharmacistsForUser(p.getName());
+    }
+
+    @PostMapping("/user/grading/add")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity getInteractedPharmacistsForUser(@RequestBody OcenaDTO dto, Principal p) {
+
+        if (dto.getOcena() > 5)
+            dto.setOcena(5);
+        if (dto.getOcena() < 0)
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        korisnikService.leaveGrade(dto, p.getName());
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
 
 
 

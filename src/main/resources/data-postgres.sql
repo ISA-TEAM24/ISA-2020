@@ -62,7 +62,7 @@ INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 13);
 -- farmaceut1 - pw: test
 
 --insert into authority values (4, 'ROLE_PHARMACIST');
-INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (4, true, 'Rakoci Ferenca 22', 'SRB', 'farmaceut123@gmail.com', 'BG', 'Jovan', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Jovic', true, '0691100555', 'farmaceut1', NULL, NULL);
+INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (4, true, 'Rakoci Ferenca 22', 'SRB', 'farmaceut123@gmail.com', 'BG', 'Boban', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Bobic', true, '0691100555', 'farmaceut1', NULL, NULL);
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (4, 4);
 INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 4);
 

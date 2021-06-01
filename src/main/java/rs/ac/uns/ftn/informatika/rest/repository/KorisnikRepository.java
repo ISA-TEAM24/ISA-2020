@@ -21,4 +21,6 @@ public interface KorisnikRepository extends JpaRepository<Korisnik, Long> {
 
     List<Korisnik> findAll();
 
+    Korisnik findByID(Long ID);
+
 }
