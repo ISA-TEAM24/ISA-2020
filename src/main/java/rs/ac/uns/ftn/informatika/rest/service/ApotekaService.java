@@ -36,6 +36,9 @@ public class ApotekaService {
     @Autowired
     private KorisnikRepository korisnikRepository;
 
+    @Autowired
+    private EReceptRepository eReceptRepository;
+
     public List<Apoteka> findAll() {
         return this.apotekaRepository.findAll();
     }
@@ -255,5 +258,59 @@ public class ApotekaService {
   
     public Apoteka findByZaposleni(Korisnik zaposleni){
         return apotekaRepository.findByZaposleni(zaposleni);
+    }
+
+    //samo ukoliko je bar jednom rezervisao i preuzeo lek ili mu je
+    //prepisan putem eRecepta ili je imao održan bar jedan pregled ili jedno
+    //savetovanje u toj apoteci
+    public List<ApotekaGradeDTO> getInteractedPharmaciesForUser(String username) {
+
+        List<ApotekaGradeDTO> retList = new ArrayList<>();
+        Korisnik k = korisnikRepository.findByUsername(username);
+        List<Rezervacija> rezervacije = rezervacijaRepository.findAllByPacijentID(k.getID());
+        List<ERecept> recepti = eReceptRepository.findAllByEmail(k.getEmail());
+        List<Poseta> posete = posetaRepository.findPosetaByPacijentID(k.getID());
+
+        for(Apoteka a : findAll()){
+            boolean isAdded = false; // nismo jos dodali apoteku u listu
+            for(Rezervacija r : rezervacije) {
+                if (r.getApoteka().getID() == a.getID()) {
+                    retList.add(createApotekaGradeFromApoteka(a));
+                    isAdded = true;
+                    break; // break from rezervacija for loop
+                }
+            }
+
+            if (isAdded) continue;
+
+            for(ERecept er : recepti) {
+                if (er.getApotekaID() == a.getID()) {
+                    retList.add(createApotekaGradeFromApoteka(a));
+                    isAdded = true;
+                    break; // break from rezervacija for loop
+                }
+            }
+
+            if (isAdded) continue;
+
+            for(Poseta p : posete) {
+                if(p.getApoteka().getID() == a.getID()) {
+                    retList.add(createApotekaGradeFromApoteka(a));
+                    isAdded = true;
+                    break; // break from rezervacija for loop
+                }
+            }
+        }
+
+        return retList;
+    }
+
+    private ApotekaGradeDTO createApotekaGradeFromApoteka(Apoteka a) {
+
+        ApotekaGradeDTO dto = new ApotekaGradeDTO();
+        dto.setAdresa(a.getAdresa());
+        dto.setID(a.getID());
+        dto.setNaziv(a.getNaziv());
+        return dto;
     }
 }

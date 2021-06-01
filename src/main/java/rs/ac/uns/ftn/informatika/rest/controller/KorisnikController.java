@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.rest.dto.AllergiesDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.ApotekaGradeDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.UserEditDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
+import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
 import rs.ac.uns.ftn.informatika.rest.service.KorisnikService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +24,9 @@ public class KorisnikController {
 
     @Autowired
     private KorisnikService korisnikService;
+
+    @Autowired
+    private ApotekaService apotekaService;
 
     @GetMapping("/user/{id}")
     @PreAuthorize("hasRole('USER')")
@@ -70,6 +75,14 @@ public class KorisnikController {
         System.out.println(user);
         return this.korisnikService.editKorisnik(user);
     }
+
+    @GetMapping("/user/grading/pharmacies")
+    @PreAuthorize("hasRole('USER')")
+    public List<ApotekaGradeDTO> getInteractedPharmaciesForUser(Principal p) {
+
+        return this.apotekaService.getInteractedPharmaciesForUser(p.getName());
+    }
+
 
 
 
