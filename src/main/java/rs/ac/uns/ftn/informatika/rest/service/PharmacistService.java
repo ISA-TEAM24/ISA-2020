@@ -83,7 +83,7 @@ public class PharmacistService {
         p.setDoVreme(dto.getDoVreme());
         p.setOdDatum(dto.getOdDatum());
         p.setDoDatum(dto.getDoDatum());
-        ArrayList<Period> periods = new ArrayList<Period>();
+        List<Period> periods = new ArrayList<>();
         periods.add(p);
 
         RadnoInfo ri = new RadnoInfo();

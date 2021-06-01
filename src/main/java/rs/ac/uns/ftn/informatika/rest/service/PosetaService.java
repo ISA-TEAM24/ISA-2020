@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import rs.ac.uns.ftn.informatika.rest.dto.DateTimeDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.NewPosetaDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.PosetaDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.ScheduleDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
@@ -23,6 +24,7 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 @Service
 public class PosetaService {
@@ -168,6 +170,34 @@ public class PosetaService {
 
     }
 
+    public List<Poseta> findUpcomingVisitsForDermatologInPharmacy(Korisnik user, Apoteka a) {
+        List<Poseta> visits = posetaRepository.findPosetaByZaposleniID(user.getID());
+        List<Poseta> filtered_visits = new ArrayList<>();
+
+        for (Poseta p : visits) {
+            if (p.getApoteka().equals(a) && p.getDatum().after(new Date())) {
+                filtered_visits.add(p);
+            }
+        }
+        return filtered_visits;
+    }
+
+    public void createNewAppointment(NewPosetaDTO dto, Apoteka a) {
+        Poseta poseta = new Poseta();
+        Korisnik dermatolog = korisnikService.findByUsername(dto.getDermatologist());
+        poseta.setApoteka(a);
+        poseta.setZaposleni(dermatolog);
+        poseta.setDatum(dto.getDate());
+        poseta.setVreme(dto.getTime());
+        poseta.setTrajanje(dto.getDuration());
+        poseta.setVrsta(poseta.getPREGLED());
+        poseta.setDijagnoza(null);
+        poseta.setPoeni(0);
+        poseta.setPacijent(null);
+
+        posetaRepository.save(poseta);
+    }
+
     public int scheduleConsultByPharmacist(String pharmacistUsername, ScheduleDTO dto) throws ParseException {
         Korisnik pharmacist = korisnikService.findByUsername(pharmacistUsername);
         Poseta p = new Poseta();
@@ -265,5 +295,6 @@ public class PosetaService {
             return true;
         }
         return true;
+
     }
 }

@@ -17,7 +17,7 @@ public class Apoteka {
     private String adresa;
     @Column(nullable = false, unique = false)
     private String opis;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Korisnik> zaposleni;
     @ElementCollection
     @CollectionTable(name = "apoteka_cenovnik_mapping",

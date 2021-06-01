@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.rest.dto.*;
+import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
 import rs.ac.uns.ftn.informatika.rest.repository.KorisnikRepository;
 import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
@@ -92,6 +93,14 @@ public class PosetaController {
         }
 
         return retList;
+    }
+
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    @PostMapping("/addnewappointment")
+    public ResponseEntity<?> addNewDermatologistAppointmentPhAdmin(@RequestBody NewPosetaDTO dto, Principal p) {
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        posetaService.createNewAppointment(dto, a);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('PHARMACIST')")
