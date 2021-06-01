@@ -13,10 +13,7 @@ import rs.ac.uns.ftn.informatika.rest.model.*;
 import rs.ac.uns.ftn.informatika.rest.repository.*;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Service
 public class ApotekaService {
@@ -274,7 +271,7 @@ public class ApotekaService {
         for(Apoteka a : findAll()){
             boolean isAdded = false; // nismo jos dodali apoteku u listu
             for(Rezervacija r : rezervacije) {
-                if (r.getApoteka().getID() == a.getID()) {
+                if (r.getApoteka().getID() == a.getID() && r.getDatumPreuz() != null && r.getPacijent().getID() == k.getID()) {
                     retList.add(createApotekaGradeFromApoteka(a));
                     isAdded = true;
                     break; // break from rezervacija for loop
@@ -284,7 +281,7 @@ public class ApotekaService {
             if (isAdded) continue;
 
             for(ERecept er : recepti) {
-                if (er.getApotekaID() == a.getID()) {
+                if (er.getApotekaID() == a.getID() && er.getEmail().equals(k.getEmail())) {
                     retList.add(createApotekaGradeFromApoteka(a));
                     isAdded = true;
                     break; // break from rezervacija for loop
@@ -294,7 +291,7 @@ public class ApotekaService {
             if (isAdded) continue;
 
             for(Poseta p : posete) {
-                if(p.getApoteka().getID() == a.getID()) {
+                if(p.getApoteka().getID() == a.getID() && p.getPacijent().getID() == k.getID()) {
                     retList.add(createApotekaGradeFromApoteka(a));
                     isAdded = true;
                     break; // break from rezervacija for loop
@@ -312,5 +309,93 @@ public class ApotekaService {
         dto.setID(a.getID());
         dto.setNaziv(a.getNaziv());
         return dto;
+    }
+
+    public List<MedicineDTO> getInteractedMedicineForUser(String username) {
+
+        List<MedicineDTO> retList = new ArrayList<>();
+
+        Korisnik k = korisnikRepository.findByUsername(username);
+        List<Rezervacija> rezervacije = rezervacijaRepository.findAllByPacijentID(k.getID());
+        List<ERecept> recepti = eReceptRepository.findAllByEmail(k.getEmail());
+
+        for(Lek l : lekRepository.findAll()) {
+
+            boolean isAdded = false;
+
+            for(Rezervacija r : rezervacije) {
+                if (r.getDatumPreuz() != null && r.getLek().getID() == l.getID()){
+                    isAdded = true;
+                    retList.add(createMedicineDTOFromLek(l));
+                    break;
+                }
+            }
+
+            if(isAdded) continue;
+
+            for(ERecept er : recepti) {
+                if (er.getLekovi().contains(l)) {
+                    isAdded = true;
+                    retList.add(createMedicineDTOFromLek(l));
+                    break;
+                }
+            }
+
+        }
+
+        return retList;
+
+    }
+
+    private MedicineDTO createMedicineDTOFromLek(Lek l) {
+        MedicineDTO dto = new MedicineDTO();
+        dto.setID(l.getID());
+        dto.setNaziv(l.getNaziv());
+        return dto;
+    }
+
+    public List<ZaposleniDTO> getInteractedEmployeesForUser(String username, boolean lookingForDermatologists) {
+
+        Poseta.VrstaPosete vp;
+
+        if (lookingForDermatologists)
+            vp = Poseta.VrstaPosete.PREGLED;
+        else
+            vp = Poseta.VrstaPosete.SAVETOVANJE;
+
+        List<ZaposleniDTO> retList = new ArrayList<>();
+        Korisnik k = korisnikRepository.findByUsername(username);
+        List<Poseta> posete = posetaRepository.findPosetaByPacijentID(k.getID());
+        Set<Korisnik> dermatolozi = new HashSet<>();
+
+        for(Poseta p : posete) {
+            if(p.getVrsta() == vp)
+                dermatolozi.add(p.getZaposleni());
+        }
+
+        for (Korisnik z : dermatolozi) {
+            retList.add(createZaposleniDTOFromKorisnik(z));
+        }
+
+        return retList;
+    }
+
+    private ZaposleniDTO createZaposleniDTOFromKorisnik(Korisnik z) {
+
+        ZaposleniDTO dto = new ZaposleniDTO();
+        dto.setIme(z.getIme());
+        dto.setPrezime(z.getPrezime());
+        dto.setID(z.getID());
+        return dto;
+    }
+
+    public List<ZaposleniDTO> getInteractedPharmacistsForUser(String username) {
+
+        return getInteractedEmployeesForUser(username, false);
+    }
+
+    public List<ZaposleniDTO> getInteractedDermatologistsForUser(String username) {
+
+        return getInteractedEmployeesForUser(username, true);
     }
 }

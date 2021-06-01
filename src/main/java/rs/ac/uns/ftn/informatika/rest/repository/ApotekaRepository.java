@@ -15,4 +15,6 @@ public interface ApotekaRepository extends JpaRepository<Apoteka, Long> {
     Apoteka findByNaziv(String naziv);
 
     Apoteka findByZaposleni(Korisnik zaposleni);
+
+    Apoteka findByID(Long ID);
 }

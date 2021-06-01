@@ -634,7 +634,7 @@
                                         <label for="" >Grade</label>
                                       </div>  
                                       <div class="offset-1">
-                                        <input type="number" min="0.5" max="5" step="0.5" placeholder="grade" style="min-width: 5vw;">    
+                                        <input id="grade_number" type="number" min="0.5" max="5" step="0.5" placeholder="grade" style="min-width: 5vw;">    
                                       </div> 
                                                                 
                                     </div>
@@ -645,11 +645,11 @@
                                         <label for="" >Reason for grade</label>
                                       </div>  
                                       <div class="">
-                                        <textarea rows="5" cols="35" id="TITLE" placeholder="Complaint text">
+                                        <textarea id="grade_note" rows="5" cols="35" id="TITLE" placeholder="Complaint text">
                                         </textarea>    
                                       </div>  
                                       <div class="offset-1 col-2">
-                                        <button class="btn btn-info-profile">Send grade</button>
+                                        <button onclick="sendGrade()" class="btn btn-info-profile">Send grade</button>
                                       </div>                                                             
                                     </div>
 
