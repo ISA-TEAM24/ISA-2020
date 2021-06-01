@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static rs.ac.uns.ftn.informatika.rest.model.Poseta.VrstaPosete.PREGLED;
 
 @Service
 public class PosetaService {
@@ -191,7 +190,7 @@ public class PosetaService {
         poseta.setDatum(dto.getDate());
         poseta.setVreme(dto.getTime());
         poseta.setTrajanje(dto.getDuration());
-        poseta.setVrsta(PREGLED);
+        poseta.setVrsta(poseta.getPREGLED());
         poseta.setDijagnoza(null);
         poseta.setPoeni(0);
         poseta.setPacijent(null);
