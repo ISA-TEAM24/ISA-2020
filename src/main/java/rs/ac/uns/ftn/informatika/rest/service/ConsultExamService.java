@@ -34,12 +34,14 @@ public class ConsultExamService {
         LocalTime time = LocalTime.now();
 
         for(Poseta p : allVisits) {
-            if(p.getDatum().compareTo(today) > 0) {
-                retList.add(p);
-            }
-            if(p.getDatum().compareTo(today) == 0) {
-                if(p.getVreme().compareTo(time) > 0) {
+            if(p.getPacijent() != null) {
+                if (p.getDatum().compareTo(today) > 0) {
                     retList.add(p);
+                }
+                if (p.getDatum().compareTo(today) == 0) {
+                    if (p.getVreme().compareTo(time) > 0) {
+                        retList.add(p);
+                    }
                 }
             }
         }
@@ -57,6 +59,10 @@ public class ConsultExamService {
         Poseta ret = posetaRepository.save(p);
 
         return ret;
+    }
+
+    public Poseta getPosetaByID(String id) {
+        return posetaRepository.findPosetaByID(Long.parseLong(id));
     }
 
 }

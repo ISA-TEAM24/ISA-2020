@@ -2,7 +2,6 @@ package rs.ac.uns.ftn.informatika.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.rest.dto.ConsultExamDTO;
@@ -59,5 +58,26 @@ public class ConsultExamController {
         Poseta p = consultExamService.savePosetaReport(Long.parseLong(dto.getId()), dto.getDijagnoza());
 
         return p;
+    }
+
+    @PreAuthorize("hasAnyRole('PHARMACIST', 'DERMATOLOGIST')")
+    @PostMapping("/visit/findVisit")
+    public ConsultExamDTO findPoseta(@RequestBody String id) {
+        ConsultExamDTO dto = new ConsultExamDTO();
+
+        Poseta p = consultExamService.getPosetaByID(id);
+
+        dto.setId(p.getID().toString());
+        dto.setIme(p.getPacijent().getIme());
+        dto.setPrezime(p.getPacijent().getPrezime());
+        dto.setDatum(p.getDatum().toString().split(" ")[0]);
+        dto.setVreme(p.getVreme().toString());
+        dto.setEmail(p.getPacijent().getEmail());
+        dto.setTelefon(p.getPacijent().getTelefon());
+        dto.setAlergije(korisnikService.findAllergiesForUser(p.getPacijent().getUsername()));
+        dto.setDijagnoza("");
+        dto.setApoteka(p.getApoteka().getNaziv());
+
+        return dto;
     }
 }
