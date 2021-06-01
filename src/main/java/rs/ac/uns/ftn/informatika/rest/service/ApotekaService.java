@@ -3,6 +3,7 @@ package rs.ac.uns.ftn.informatika.rest.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
+import rs.ac.uns.ftn.informatika.rest.dto.*;
 import rs.ac.uns.ftn.informatika.rest.dto.ApotekaEditDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.ApotekaWithExamsDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.ApotekaWithMedicineDto;
@@ -263,5 +264,32 @@ public class ApotekaService {
                 return true;
         }
         return false;
+    }
+
+    public List<ApotekaSafeDTO> findAllPharmaciesLimitInfo() {
+        List<ApotekaSafeDTO> retList = new ArrayList<>();
+        for(Apoteka a : findAll()) {
+            ApotekaSafeDTO dto = new ApotekaSafeDTO();
+            dto.setNaziv(a.getNaziv());
+            dto.setOcena(a.getOcena());
+            dto.setAdresa(a.getAdresa());
+            dto.setID(a.getID());
+            dto.setBrojDermatologa(0);
+            dto.setBrojFarmaceuta(0);
+            for(Korisnik k : a.getZaposleni()) {
+                for(GrantedAuthority ga : k.getAuthorities()) {
+                    if (ga.getAuthority().equalsIgnoreCase("ROLE_PHARMACIST"))
+                        dto.setBrojFarmaceuta(dto.getBrojFarmaceuta()+1);
+                    if (ga.getAuthority().equalsIgnoreCase("ROLE_DERMATOLOGIST"))
+                        dto.setBrojDermatologa(dto.getBrojDermatologa()+1);
+                }
+            }
+            retList.add(dto);
+        }
+        return retList;
+    }
+  
+    public Apoteka findByZaposleni(Korisnik zaposleni){
+        return apotekaRepository.findByZaposleni(zaposleni);
     }
 }

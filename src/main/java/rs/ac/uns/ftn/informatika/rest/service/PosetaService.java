@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import rs.ac.uns.ftn.informatika.rest.dto.DateTimeDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.NewPosetaDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.PosetaDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.ScheduleDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
@@ -196,5 +197,105 @@ public class PosetaService {
         poseta.setPacijent(null);
 
         posetaRepository.save(poseta);
+    }
+
+    public int scheduleConsultByPharmacist(String pharmacistUsername, ScheduleDTO dto) throws ParseException {
+        Korisnik pharmacist = korisnikService.findByUsername(pharmacistUsername);
+        Poseta p = new Poseta();
+
+        DateTimeDTO dt = new DateTimeDTO();
+        dt.setDate(dto.getDatum());
+        dt.setTime(dto.getVreme());
+
+        Apoteka a = apotekaService.findByZaposleni(pharmacist);
+        Korisnik pacijent = korisnikService.findByEmail(dto.getEmail());
+
+        if(pacijent == null) {
+            System.out.println("--- Ne postoji pacijent sa zadatim mailom");
+            return 2;
+        }
+
+        //ako je farmaceut slobodan ...
+        if(apotekaService.checkIfPharmacistIsFree(pharmacist, dt.parseDateStringToDate(), dt.parseTimeStringToLocalTime(), a)
+           && checkIfUserIsFree(pacijent.getUsername(), dto.getDatum(), dto.getVreme(),dto.getTrajanje())) {
+            System.out.println("FARMACEUT JE FREE ===============");
+
+            p.setApoteka(a);
+            p.setDijagnoza("");
+            p.setTrajanje(dto.getTrajanje());
+            p.setVrsta(p.getSAVETOVANJE());
+            p.setPoeni(5);
+            p.setPacijent(pacijent);
+            p.setZaposleni(pharmacist);
+            p.setDatum(dt.parseDateStringToDate());
+            p.setVreme(dt.parseTimeStringToLocalTime());
+
+            posetaRepository.save(p);
+
+            //send mail
+            Format formatter = new SimpleDateFormat("dd-MM-YYYY");
+            String s = formatter.format(p.getDatum());
+
+            String msg = "Dear " + pacijent.getIme() + " " + pacijent.getPrezime();
+            msg += ", We've successfully scheduled your consult. Consult information: ";
+            msg += "Pharmacist: " + pharmacist.getIme() +  " " + pharmacist.getPrezime();
+            msg += " // ";
+            msg += " Pharmacy: " + a.getNaziv() + ", " + a.getAdresa() + " // ";
+            msg += " When: " + s + " at " + p.getVreme();
+            boolean inform =  emailService.sendSimpleMessage(pacijent.getEmail(), "New scheduled consult", msg);
+        } else {
+            return 0;
+        }
+
+        return 1;
+    }
+
+    public boolean checkIfUserIsFree(String username, String datum, String vreme, int trajanje) {
+        List<Poseta> upcoming = findUpcomingVisitsForUser(username);
+
+        DateTimeDTO dt = new DateTimeDTO();
+        dt.setDate(datum);
+        dt.setTime(vreme);
+
+        LocalTime newPosetaStart = dt.parseTimeStringToLocalTime();
+        LocalTime newPosetaEnd = dt.parseTimeStringToLocalTime().plusMinutes(trajanje);
+
+        for(Poseta p: upcoming) {
+            if(p.getDatum().toString().split(" ")[0].equals(datum)){
+                System.out.println("DATUMI SU JEDNAKI: " + p.getDatum().toString().split(" ")[0] + " == " + datum);
+
+                LocalTime startTimePoseta = p.getVreme();
+                LocalTime endTimePoseta = p.getVreme().plusMinutes(p.getTrajanje());
+
+                if(newPosetaStart.compareTo(endTimePoseta) < 0)
+                {
+                    if(newPosetaStart.compareTo(startTimePoseta) < 0
+                        && newPosetaEnd.compareTo(startTimePoseta)< 0) {
+                        //OK
+
+                        continue;
+                    } else {
+                        //BAD
+                        System.out.println("FIRST fail");
+                        return false;
+                    }
+                }
+
+                if(newPosetaStart.compareTo(startTimePoseta) > 0) {
+                    if(newPosetaStart.compareTo(endTimePoseta) > 0) {
+                        // OK
+                        continue;
+                    } else {
+                        // BAD
+                        System.out.println("SECOND fail");
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        return true;
+
     }
 }

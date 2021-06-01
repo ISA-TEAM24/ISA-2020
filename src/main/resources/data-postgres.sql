@@ -133,11 +133,28 @@ INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, a
 VALUES (504,  '2021-05-29', 'A00 B99', 5, 30, '08:00', 1, 1, 250, 3);
 
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)
-VALUES (505,  '2021-06-29', 'H00 H59', 5, 30, '09:30', 1, 1, 1, 3);
+VALUES (505,  '2021-06-29', 'H00 H59', 5, 30, '12:30', 1, 1, 1, 3);
 
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)
 VALUES (506,  '2021-05-12', 'L00 L99', 5, 30, '07:30', 1, 1, 1, 3);
 
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)
 VALUES (507,  '2021-04-10', 'S00 T98', 5, 30, '10:00', 1, 1, 1, 3);
+
+
+--Pharmacist scheduling test
+INSERT INTO public.godisnji_info (id, do_datuma, na_godisnjem, od_datuma) VALUES (4, NULL, false, NULL);
+INSERT INTO public.period(id, do_datum, do_vreme, od_datum, od_vreme) VALUES (4, '2021-08-23', '19:30', '2021-03-23',  '11:30');
+INSERT INTO public.radno_info(id) VALUES (4);
+INSERT INTO public.radno_info_business_hours(radno_info_id, business_hours_id) VALUES (4, 4);
+INSERT INTO public.radno_info_neradni_dani(radno_info_id, neradni_dani) VALUES (4, 1);
+
+INSERT INTO public.korisnik_radno_info(korisnik_id, radno_info_id, radno_info_key) VALUES (4, 4, 'apoteka1');
+
+INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)
+    VALUES (555,  '2021-05-29', '', 5, 30, '19:56', 0, 1, 1, 4);
+
+INSERT INTO public.apoteka_cenovnik_mapping(
+  apoteka_id, cena, naziv_predmeta)
+    VALUES (1, 66, 'SAVETOVANJE');
 

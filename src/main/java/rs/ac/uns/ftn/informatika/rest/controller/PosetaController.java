@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.rest.dto.*;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
+import rs.ac.uns.ftn.informatika.rest.repository.KorisnikRepository;
 import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
+import rs.ac.uns.ftn.informatika.rest.service.KorisnikService;
 import rs.ac.uns.ftn.informatika.rest.service.PosetaService;
 
 import java.security.Principal;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -100,4 +103,21 @@ public class PosetaController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('PHARMACIST')")
+    @PostMapping("/consult/schedule")
+    public ResponseEntity<String> scheduleConsultByPharmacist(@RequestBody ScheduleDTO dto, Principal pharmacist) throws ParseException {
+
+        System.out.println(new Date() + "___________________________________");
+        int answer = posetaService.scheduleConsultByPharmacist(pharmacist.getName(), dto);
+
+        if(answer == 1) {
+            return new ResponseEntity("CREATED", HttpStatus.CREATED);
+        }
+        else if(answer == 2 ) {
+            return new ResponseEntity("NOT_FOUND", HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity("BAD_REQUEST", HttpStatus.BAD_REQUEST);
+        }
+    }
 }
