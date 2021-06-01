@@ -6,4 +6,6 @@ import rs.ac.uns.ftn.informatika.rest.model.Ocena;
 
 @Repository
 public interface OcenaRepository extends JpaRepository<Ocena, Long> {
+
+
 }

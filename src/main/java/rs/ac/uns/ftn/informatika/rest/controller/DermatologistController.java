@@ -9,14 +9,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import rs.ac.uns.ftn.informatika.rest.dto.UserEditDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.UserRequest;
+import rs.ac.uns.ftn.informatika.rest.dto.*;
+import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
+import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
 import rs.ac.uns.ftn.informatika.rest.service.CustomUserDetailsService;
 import rs.ac.uns.ftn.informatika.rest.service.DermatologistService;
 
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -25,6 +28,9 @@ public class DermatologistController {
 
     @Autowired
     private DermatologistService dermatologistService;
+
+    @Autowired
+    private ApotekaService pharmacyService;
 
     @Autowired
     private CustomUserDetailsService userDetailsService;
@@ -87,4 +93,28 @@ public class DermatologistController {
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
+    @GetMapping("/getall")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public List<Korisnik> getAllDermatologists() {
+        return dermatologistService.getAll();
+    }
+
+    @GetMapping("/getmypharmacies/{username}")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public List<Apoteka> getMyPharmacies(@PathVariable("username") String username) {
+        return dermatologistService.getMyPharmacies(username);
+    }
+
+    @GetMapping("/getdermwithradnoinfo/{username}")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public DermatologRadnoVremeDTO getDermatologistWithWorkTimes(@PathVariable("username") String username) {
+        return dermatologistService.createDermatologistWTDTO(username);
+    }
+
+    @GetMapping("/getdermwithappointments/{username}")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public DermatologRViTermDTO getDermWithAppointments(@PathVariable("username") String username, Principal p) {
+        Apoteka a = pharmacyService.getPharmacyByAdmin(p.getName());
+        return dermatologistService.createDermatologRViTermDTO(username, a);
+    }
 }

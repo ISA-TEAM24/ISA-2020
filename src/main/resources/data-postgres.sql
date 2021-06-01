@@ -20,8 +20,19 @@ INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (2,
 INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (3, true, 'adresaDerm', 'SRB', 'derm99933211@gmail.com', 'BG', 'Predrag', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Kon', true, '11244432', 'dermUsername', NULL, NULL);
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (3, 2);
 
+INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (9, true, 'adresaaDerm', 'SRB', 'derm9993a3211@gmail.com', 'BG', 'Zika', '2021-05-23 11:30:17.518', 3, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Zoc', true, '105644432', 'de321rmUsername', NULL, NULL);
+INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (9, 2);
 
+INSERT INTO public.apoteka(id, adresa, naziv, ocena, opis) VALUES (7, 'adresaApoteke11', 'BENU', 4, 'Najbolja apdsaoteka');
+INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (7, 9);
 
+INSERT INTO public.radno_info(id) VALUES (1);
+INSERT INTO public.korisnik_radno_info(korisnik_id, radno_info_id, radno_info_key) VALUES (9, 1, 'BENU');
+INSERT INTO public.period(id, do_datum, do_vreme, od_datum, od_vreme) VALUES (1, '2021-06-27', '20:00', '2021-05-27', '12:00');
+INSERT INTO public.period(id, do_datum, do_vreme, od_datum, od_vreme) VALUES (2, '2021-07-27', '16:00', '2021-6-28', '07:00');
+INSERT INTO public.radno_info_business_hours(radno_info_id, business_hours_id) VALUES (1, 1);
+INSERT INTO public.radno_info_business_hours(radno_info_id, business_hours_id) VALUES (1, 2);
+INSERT INTO public.radno_info_neradni_dani(radno_info_id, neradni_dani) VALUES (1, null);
 --skripte za test farmaceuta
 --INSERT INTO public.godisnji_info (id, do_datuma, na_godisnjem, od_datuma) VALUES (4, NULL, false, NULL);
 --INSERT INTO public.period(id, do_datum, do_vreme, od_datum, od_vreme) VALUES (4, '2021-08-23', '19:30', '2021-03-23',  '11:30');
@@ -38,7 +49,9 @@ INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (3,
 INSERT INTO public.apoteka(id, adresa, naziv, ocena, opis) VALUES (1, 'adresaApoteke1', 'apoteka1', 5, 'Najbolja apoteka');
 
 
-
+INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (13, true, 'adresaDedsrm', 'SRsadB', 'derm9993das3211@gmail.com', 'BGdas', 'Nenad', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Zvrk', true, '112434432', 'dermUs4ername', NULL, NULL);
+INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (13, 2);
+INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 13);
 
 
 --INSERT INTO public.apoteka_cenovnik_mapping(
@@ -49,7 +62,7 @@ INSERT INTO public.apoteka(id, adresa, naziv, ocena, opis) VALUES (1, 'adresaApo
 -- farmaceut1 - pw: test
 
 --insert into authority values (4, 'ROLE_PHARMACIST');
-INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (4, true, 'Rakoci Ferenca 22', 'SRB', 'farmaceut123@gmail.com', 'BG', 'Jovan', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Jovic', true, '0691100555', 'farmaceut1', NULL, NULL);
+INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (4, true, 'Rakoci Ferenca 22', 'SRB', 'farmaceut123@gmail.com', 'BG', 'Boban', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Bobic', true, '0691100555', 'farmaceut1', NULL, NULL);
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (4, 4);
 INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 4);
 
