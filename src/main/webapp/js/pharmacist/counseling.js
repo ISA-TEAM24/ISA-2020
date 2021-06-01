@@ -54,7 +54,7 @@ function buildTable(data){
     for(var i = 0; i < data.length; i++ ) {
 
         var pocniId = data[i].id;
-        var otkaziId = data[i].id;
+        var otkaziId = data[i].email + '-' + data[i].id;
 
         var row = `<tr>
                         <td>${data[i].datum}</td>
@@ -80,11 +80,41 @@ function redirectToCounseling(id) {
 
 }
 
-function addPenalToPatient(id) {
+function addPenalToPatient(data) {
 
+    var email = data.split('-')[0];
+    var visitId = data.split('-')[1];
+    console.log(email);
+    console.log(visitId);
 
+    var obj = {
+        "email" : email,
+        "id" : visitId
+    }
+
+    $.ajax({
+        type:'POST',
+        url: '/api/visit/givePenalty',
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        data : JSON.stringify(obj),
+        success : function() {
+            console.log('Success');
+            alert('Pacijentu je dodeljen 1 penal!');
+
+            location.reload();
+        },
+        error : function() {
+            console.log('Error');
+        }
+        
+    }) 
 
 }
+
+
 
 
 function searchIme() {

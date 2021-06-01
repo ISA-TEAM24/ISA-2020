@@ -1,10 +1,13 @@
 package rs.ac.uns.ftn.informatika.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.rest.dto.ConsultExamDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.PenaltyDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
 import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
 import rs.ac.uns.ftn.informatika.rest.service.ConsultExamService;
@@ -79,5 +82,19 @@ public class ConsultExamController {
         dto.setApoteka(p.getApoteka().getNaziv());
 
         return dto;
+    }
+
+    @PreAuthorize("hasAnyRole('PHARMACIST', 'DERMATOLOGIST')")
+    @PostMapping("/visit/givePenalty")
+    public ResponseEntity givePenalty(@RequestBody PenaltyDTO dto) {
+
+        if(consultExamService.addPenalToPatient(dto.getEmail())) {
+            consultExamService.removePatientFromVisit(dto.getId());
+
+            return new ResponseEntity(null, HttpStatus.OK);
+
+        }
+
+        return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
     }
 }

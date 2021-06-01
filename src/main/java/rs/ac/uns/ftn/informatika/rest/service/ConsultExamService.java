@@ -2,8 +2,11 @@ package rs.ac.uns.ftn.informatika.rest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import rs.ac.uns.ftn.informatika.rest.dto.PenaltyDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
+import rs.ac.uns.ftn.informatika.rest.model.LoyaltyInfo;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
+import rs.ac.uns.ftn.informatika.rest.repository.LoyaltyInfoRepository;
 import rs.ac.uns.ftn.informatika.rest.repository.PosetaRepository;
 
 import java.time.LocalTime;
@@ -22,7 +25,7 @@ public class ConsultExamService {
     private KorisnikService korisnikService;
 
     @Autowired
-    private ApotekaService apotekaService;
+    private LoyaltyInfoRepository loyaltyInfoRepository;
 
     public List<Poseta> findUpcomingVisitsForEmployee(String username) {
         Korisnik employee = korisnikService.findByUsername(username);
@@ -63,6 +66,37 @@ public class ConsultExamService {
 
     public Poseta getPosetaByID(String id) {
         return posetaRepository.findPosetaByID(Long.parseLong(id));
+    }
+
+    // pacijent dobija penal ako se ne pojavi na savetovanju
+    public boolean addPenalToPatient(String mail) {
+        Korisnik k = korisnikService.findByEmail(mail);
+
+        if(k.getLoyaltyInfo() == null) {
+            System.out.println("LOYALTY JE NULL ");
+            LoyaltyInfo l = new LoyaltyInfo();
+            l.setPenali(1);
+            k.setLoyaltyInfo(l);
+        } else {
+
+            k.getLoyaltyInfo().setPenali(k.getLoyaltyInfo().getPenali() + 1);
+
+            loyaltyInfoRepository.save(k.getLoyaltyInfo());
+            System.out.println(k.getLoyaltyInfo().getPenali() + "***************************");
+
+        }
+        return true;
+
+    }
+
+    public boolean removePatientFromVisit(String visitId) {
+
+        Poseta p = posetaRepository.findPosetaByID(Long.parseLong(visitId));
+        p.setPacijent(null);
+
+        posetaRepository.save(p);
+
+        return true;
     }
 
 }
