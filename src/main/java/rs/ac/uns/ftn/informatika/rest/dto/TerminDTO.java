@@ -8,6 +8,15 @@ public class TerminDTO {
     private Korisnik zaposleni;
     private String datum;
     private String vreme;
+    private int cena;
+
+    public int getCena() {
+        return cena;
+    }
+
+    public void setCena(int cena) {
+        this.cena = cena;
+    }
 
     public Long getID() {
         return ID;

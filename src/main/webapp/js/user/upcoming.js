@@ -28,12 +28,19 @@ function fillUpcoming(data) {
         <th scope="col" onclick="sortTable(2,'upcoming_table')">Time</th>
         <th scope="col" onclick="sortTable(3,'upcoming_table')">Date</th>
         <th scope="col" onclick="sortTable(4,'upcoming_table')">Pharmacy</th> */
+
+        var ed = new Date(v.datum)
+        var string = ed.toString()
+        var array = string.split(" ")
+        var show_date = array[0] + ' ' + array[1] + ' ' + array[2] + ' ' + array[3]
+        //console.log(ed.getTimezoneOffset())
+        //ed.setMinutes(ed.getMinutes() + ed.getTimezoneOffset())
         var btn_id = 'button-' + v.id  
         html += '<tr>'
         html += '<td>' + v.vrsta +'</td>'
         html += '<td>' + v.zaposleni.ime + '&nbsp'  + v.zaposleni.prezime + '</td>'
         html += '<td>' + v.vreme +'</td>'
-        html += '<td>' + v.datum.split("T")[0] +'</td>'
+        html += '<td>' + show_date +'</td>'
         html += '<td>' + v.apoteka.naziv +'</td>'
         html += '<td>' + '<button onclick="cancelConsult(this.id)" class="btn btn-info-allergies" id=' + '"' + btn_id + '">Cancel </button></td>'
         html += '</tr>'

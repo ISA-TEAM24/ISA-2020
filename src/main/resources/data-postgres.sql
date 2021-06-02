@@ -65,7 +65,7 @@ INSERT INTO public.radno_info_neradni_dani(radno_info_id, neradni_dani) VALUES (
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id) VALUES (22, '2021-06-03', null, 0, 30, '14:00', 1, 1, null, 13);
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id) VALUES (23, '2021-06-04', null, 0, 30, '15:00', 1, 1, null, 13);
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id) VALUES (24, '2021-06-05', null, 0, 30, '16:00', 1, 1, null, 13);
-INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id) VALUES (25, '2021-06-06', null, 0, 30, '17:00', 1, 1, null, 13);
+INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id) VALUES (25, '2021-06-29', null, 0, 30, '12:30', 1, 1, null, 13);
 
 
 --INSERT INTO public.apoteka_cenovnik_mapping(
@@ -142,7 +142,8 @@ INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, a
 VALUES (503,  '2021-04-10', 'S00 T98', 5, 30, '10:00', 0, 1, 1, 4);
 
 --pregledi dermatologa
-
+INSERT INTO public.apoteka_cenovnik_mapping(apoteka_id, cena, naziv_predmeta)
+VALUES (1, 50, 'PREGLED');
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)
 VALUES (504,  '2021-05-29', 'A00 B99', 5, 30, '08:00', 1, 1, 250, 3);
 

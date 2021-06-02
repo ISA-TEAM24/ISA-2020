@@ -100,6 +100,8 @@ public class PosetaService {
             return -1;
 
 
+
+
         //posetaRepository.deletePosetaByID(id);
         LocalDate date = createLocalDateFromString(p.getDatum());
         LocalDateTime ldt = date.atTime(p.getVreme());
@@ -112,6 +114,11 @@ public class PosetaService {
         System.out.println(ldt_in_seconds - ldt_now_in_seconds);
         if (ldt_in_seconds - ldt_now_in_seconds < seconds_in_24_hours)
             return 1;
+
+        if(p.getVrsta() == p.getPREGLED()){
+            p.setPacijent(null);
+            return 0;
+        }
 
         posetaRepository.deletePosetaByID(id);
         if (posetaRepository.findPosetaByID(id) == null)
@@ -296,5 +303,44 @@ public class PosetaService {
         }
         return true;
 
+    }
+
+    public boolean isPatientFreeForExam(Poseta e, Korisnik k) {
+        List<Poseta> upcoming = findUpcomingVisitsForUser(k.getUsername());
+        LocalTime wanted_end = e.getVreme().plusMinutes(e.getTrajanje());
+
+        for(Poseta p : upcoming) {
+            System.out.println("isPatientFree comparing dates " + p.getDatum() + " // " + e.getDatum());
+            if(p.getDatum().compareTo(e.getDatum()) != 0) {
+                System.out.println("continued");
+                continue;
+            }
+
+
+            LocalTime current_end = p.getVreme().plusMinutes(p.getTrajanje());
+            System.out.println("CURRENT TIME " + p.getVreme().toString() + " -- " + current_end.toString());
+            System.out.println("WANTED TIME " + e.getVreme().toString() + " -- " + wanted_end.toString());
+            // wanted_start - wanted_end   // current_start - current_end
+            // ili pocetak ili kraj zeljenog termina ako je unutar nekog termina onda je zauzet
+            if(e.getVreme().compareTo(p.getVreme()) >= 0 || e.getVreme().compareTo(current_end) < 0)
+                return false;
+            if(wanted_end.compareTo(p.getVreme()) > 0 || wanted_end.compareTo(current_end) <= 0)
+                return false;
+
+        }
+        return true;
+    }
+
+    public boolean addExam(Long appID, String username) {
+
+        Poseta p = posetaRepository.findPosetaByID(appID);
+        Korisnik k = korisnikService.findByUsername(username);
+
+        if (!isPatientFreeForExam(p, k)) return false;
+
+        p.setPacijent(k);
+        posetaRepository.save(p);
+
+        return true;
     }
 }

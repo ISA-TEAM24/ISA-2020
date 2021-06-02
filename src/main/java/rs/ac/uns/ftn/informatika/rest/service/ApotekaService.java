@@ -331,6 +331,7 @@ public class ApotekaService {
             dto.setZaposleni(p.getZaposleni());
             dto.setDatum(dateFormat.format(p.getDatum()));
             dto.setVreme(p.getVreme().toString());
+            dto.setCena(p.getApoteka().getCenovnik().get("PREGLED"));
             termini.add(dto);
         }
         return termini;
