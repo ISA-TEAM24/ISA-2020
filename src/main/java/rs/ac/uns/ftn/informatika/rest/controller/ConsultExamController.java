@@ -80,6 +80,7 @@ public class ConsultExamController {
         dto.setAlergije(korisnikService.findAllergiesForUser(p.getPacijent().getUsername()));
         dto.setDijagnoza("");
         dto.setApoteka(p.getApoteka().getNaziv());
+        dto.setApotekaId(p.getApoteka().getID());
 
         return dto;
     }

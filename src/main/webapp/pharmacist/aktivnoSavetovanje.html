@@ -201,7 +201,7 @@
               <div class="col-lg-2"></div>
 
               <div class="col-lg-1">
-                <button class="btn btn-dark" id="prepisiLekId" data-target="#prepisiLekModal" data-toggle="modal" >&nbsp&nbsp&nbsp&nbsp&nbsp Prepiši lek &nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                <button class="btn btn-dark" id="prepisiLekId" data-target="#prepisiLekModal" data-toggle="modal" onclick="preparePrescription()">&nbsp&nbsp&nbsp&nbsp&nbsp Prepiši lek &nbsp&nbsp&nbsp&nbsp&nbsp</button>
               </div>
 
               <div class="col-lg-1"></div>
@@ -257,19 +257,17 @@
                         </div>
 
                         <div class="form-group">
-                          <label>Lek: </label>
+                          <label>Lekovi u Vašoj apoteci na koje pacijent nije alergičan: </label>
                           <br>
                           
-                          <select class="form-select" >
-                            <option selected>Open this select menu</option>
-                            <option value="1">Bromazepan</option>
-                            <option value="2">Aspirin</option>
-                            <option value="3">Nasic</option>
+                          <select class="form-select" id='drugsInput' >
+                           
+
                           </select>
                           <br>
                           <br>
 
-                          <a href="#" role="button" class="btn btn-secondary" id ="specLeka" >Specifikacija leka</a>
+                          <a href="#" role="button" class="btn btn-secondary" id ="specLeka" data-target="#specifikacijaModal" data-toggle="modal" onclick="printDrugSpecification()">Specifikacija leka</a>
 
 
                         </div>
@@ -283,8 +281,13 @@
                         <div class="form-group">
                           <label>Pre preporuke leka, proverite dostupnost u Vašoj apoteci: </label>
 
-                          <a href="#" role="button" class="btn btn-secondary" id ="dostupnostLeka" >Proveri dostupnost</a>
-
+                          <a href="#" role="button" class="btn btn-secondary" id ="dostupnostLeka" onclick="checkAvailability()" >Proveri dostupnost</a>
+                          
+                        </div>
+                        
+                        <div class="form-group">
+                          <label>Dostupni alternativni lekovi: </label>
+                          <select class="form-select" id='alternativeDrugs' ></select>
                         </div>
 
 
@@ -295,7 +298,7 @@
 
                     <div class="modal-footer">
                       <button class="btn btn-dark" id="closeBtn" data-dismiss="modal">Odustani</button>
-                      <button class="btn btn-primary" type="submit" id="saveReceptBtn">Sačuvaj</button>
+                      <button class="btn btn-primary" type="submit" id="saveReceptBtn" disabled onclick="prescribe()">Prepiši</button>
                     </div>
 
                 </div>
@@ -373,6 +376,68 @@
 </div>
 
 <!-- END OF ZAKAZI DODATNO SAVETOVANJE MODAL-->
+
+<!-- SPECIFIKACIJA LEKA MODAL-->
+
+<div class="container" id="specifikacijaDiv">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="modal fade" data-keyboard="false" data-backdrop="static" id="specifikacijaModal" tabindex="-1">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+
+              <div class="modal-header">
+                <h4 class="modal-title w-100" id="modalTitle"> Specifikacija leka </h4>
+                <button class="close" data-dismiss="modal">&times;</button>
+
+              </div>
+
+              <div class ="modal-body">
+                <form id="form1">
+                  <div class="form-group">
+                    <label>Naziv: </label>
+                    <input class="form-control" type="text" placeholder="" id="nazivLeka" readonly='true'>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Napomena: </label>
+                    <input class="form-control" type="text" placeholder="" id="napomeneLeka" readonly='true'>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Oblik: </label>
+                    <input class="form-control" type="text" placeholder="" id="oblikLeka" readonly='true'>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Sastav: </label>
+                    <input class="form-control" type="text" placeholder="" id="sastavLeka" readonly='true'>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Proizvodjač: </label>
+                    <input class="form-control" type="text" placeholder="" id="proizvLeka" readonly='true'>
+                  </div>
+
+                </form>
+              </div>
+
+              <br>
+
+              <div class="modal-footer">
+                <button class="btn btn-dark" id="closeBtn" data-dismiss="modal">Zatvori</button>
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- END OF SPECIFIKACIJA LEKA MODAL-->
 
 </div>
     <script

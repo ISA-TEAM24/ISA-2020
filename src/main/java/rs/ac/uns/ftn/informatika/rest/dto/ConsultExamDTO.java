@@ -12,12 +12,13 @@ public class ConsultExamDTO {
     private AllergiesDTO alergije;
     private String dijagnoza;
     private String apoteka;
+    private Long apotekaId;
 
     public ConsultExamDTO() {
 
     }
 
-    public ConsultExamDTO(String id, String ime, String prezime, String datum, String vreme, String email, String telefon, AllergiesDTO alergije, String dijagnoza, String apoteka) {
+    public ConsultExamDTO(String id, String ime, String prezime, String datum, String vreme, String email, String telefon, AllergiesDTO alergije, String dijagnoza, String apoteka, Long apotekaId) {
         this.id = id;
         this.ime = ime;
         this.prezime = prezime;
@@ -28,6 +29,7 @@ public class ConsultExamDTO {
         this.alergije = alergije;
         this.dijagnoza = dijagnoza;
         this.apoteka = apoteka;
+        this.apotekaId = apotekaId;
     }
 
     public String getId() {
@@ -108,5 +110,13 @@ public class ConsultExamDTO {
 
     public void setApoteka(String apoteka) {
         this.apoteka = apoteka;
+    }
+
+    public Long getApotekaId() {
+        return apotekaId;
+    }
+
+    public void setApotekaId(Long apotekaId) {
+        this.apotekaId = apotekaId;
     }
 }
