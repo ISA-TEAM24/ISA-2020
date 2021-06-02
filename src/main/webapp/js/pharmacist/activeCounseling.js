@@ -95,6 +95,9 @@ function fillAppointmentFields() {
     $('#mailId1').val(obj.email);
     $('#apotekaId1').val(obj.apoteka);
 
+    $('#pac2').val(obj.ime + " " + obj.prezime);
+    $('#mail2').val(obj.email);
+
 }
 
 function createAddtitionalVisit() {
@@ -149,4 +152,12 @@ function createAddtitionalVisit() {
 
         }
     })
+}
+
+function writePrescription() {
+    
+
+
+
+
 }
