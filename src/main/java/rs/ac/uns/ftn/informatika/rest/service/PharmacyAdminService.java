@@ -75,12 +75,8 @@ public class PharmacyAdminService {
     }
 
     public void hireDermatologist(HireDermatologistDTO dto, Apoteka a) {
-        System.out.println("USERNAME IZ DTO:");
-        System.out.println(dto.getUsername());
+
         Korisnik k = dermatologistService.findByUsername(dto.getUsername());
-        System.out.println("-------------------------------------------");
-        System.out.println(k);
-        System.out.println("-------------------------------------------");
         a.getZaposleni().add(k);
 
         Period p = new Period();
