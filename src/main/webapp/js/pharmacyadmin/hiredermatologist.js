@@ -32,9 +32,6 @@ function getMe() {
 }
 
 function addDermatologistsToTable(dermatologists) {
-    var table = "";
-    var pharmacies = [];
-    let works;
 
     dermatologists.forEach(function(derm) {
 

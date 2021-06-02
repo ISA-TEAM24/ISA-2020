@@ -66,12 +66,11 @@
                         <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                             <br>
                             <br>
-                            <a class="nav-link active" onclick="reloadPharmacyProfile()" id="v-pills-pharmacy-tab" data-toggle="pill" href="#v-pills-pharmacy" role="tab" aria-controls="v-pills-pharmacy" aria-selected="true">Pharmacy</a>
-                            <a class="nav-link" onclick="reloadDermatologists()" id="v-pills-dermatologists-tab" data-toggle="pill" href="#v-pills-dermatologists" role="tab" aria-controls="v-pills-dermatologists" aria-selected="false">Dermatologists</a>         
-                            <a class="nav-link" onclick="reloadPharmacists()" id="v-pills-pharmacists-tab" data-toggle="pill" href="#v-pills-pharmacists" role="tab" aria-controls="v-pills-pharmacists" aria-selected="false">Pharmacists</a>
-                            <a class="nav-link" onclick="reloadDrugs()" id="v-pills-drugs-tab" data-toggle="pill" href="#v-pills-drugs" role="tab" aria-controls="v-pills-drugs" aria-selected="false">Drugs</a>
-                            <a class="nav-link" onclick="" id="v-pills-epresc-tab" data-toggle="pill" href="#v-pills-epresc" role="tab" aria-controls="v-pills-epresc" aria-selected="false">E Prescription</a>
-                            <a class="nav-link" onclick="reloadAppointments()" id="v-pills-appointments-tab" data-toggle="pill" href="#v-pills-appointments" role="tab" aria-controls="v-pills-appointments" aria-selected="false">Available appointments</a>                        
+                            <a class="nav-link active"  id="v-pills-pharmacy-tab" data-toggle="pill" href="#v-pills-pharmacy" role="tab" aria-controls="v-pills-pharmacy" aria-selected="true">Pharmacy</a>
+                            <a class="nav-link" id="v-pills-dermatologists-tab" data-toggle="pill" href="#v-pills-dermatologists" role="tab" aria-controls="v-pills-dermatologists" aria-selected="false">Dermatologists</a>         
+                            <a class="nav-link" id="v-pills-pharmacists-tab" data-toggle="pill" href="#v-pills-pharmacists" role="tab" aria-controls="v-pills-pharmacists" aria-selected="false">Pharmacists</a>
+                            <a class="nav-link" id="v-pills-drugs-tab" data-toggle="pill" href="#v-pills-drugs" role="tab" aria-controls="v-pills-drugs" aria-selected="false">Drugs</a>
+                            <a class="nav-link" id="v-pills-appointments-tab" data-toggle="pill" href="#v-pills-appointments" role="tab" aria-controls="v-pills-appointments" aria-selected="false">Available appointments</a>
                         </div>
                     </div>
                     <div class="col-9 right-panel">
@@ -227,13 +226,6 @@
                                 </div>
                             </div>
 
-
-                            <!--E Presrcription-->
-                            <div class="tab-pane fade" id="v-pills-epresc" role="tabpanel" aria-labelledby="v-pills-epresc-tab">
-
-                            </div>
-
-
                             <!--Available appointments-->
                             <div class="tab-pane fade" id="v-pills-appointments" role="tabpanel" aria-labelledby="v-pills-appointments-tab">
                                 <br>
@@ -249,8 +241,7 @@
                                                 <th onclick="sortTable(0,'app_table')" scope="col">Doctor</th>
                                                 <th onclick="sortTable(1,'app_table')" scope="col">Date</th>
                                                 <th onclick="sortTable(2,'app_table')" scope="col">Time</th>
-                                                <th onclick="sortTable(3,'app_table')" scope="col">Price</th>
-                                                <th onclick="sortTable(4,'app_table')" scope="col"></th>
+                                                <th onclick="sortTable(3,'app_table')" scope="col"></th>
                                                 </tr>
                                             </thead>
                                             <tbody id="app_body">
@@ -329,8 +320,8 @@
 
 
     <script
-            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"
     ></script>
     <script

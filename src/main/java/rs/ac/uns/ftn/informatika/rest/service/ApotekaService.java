@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.rest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.informatika.rest.dto.*;
@@ -12,6 +13,7 @@ import rs.ac.uns.ftn.informatika.rest.dto.IdDTO;
 import rs.ac.uns.ftn.informatika.rest.model.*;
 import rs.ac.uns.ftn.informatika.rest.repository.*;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.*;
 
@@ -291,6 +293,47 @@ public class ApotekaService {
   
     public Apoteka findByZaposleni(Korisnik zaposleni){
         return apotekaRepository.findByZaposleni(zaposleni);
+    }
+
+    public Apoteka findById(Long id) throws AccessDeniedException {
+        Apoteka a = apotekaRepository.findById(id).orElseGet(null);
+        return a;
+    }
+
+    public List<Lek> findMedicines(Apoteka a) {
+        Map<Long, Integer> medicines = a.getMagacin();
+        List<Lek> meds = new ArrayList<>();
+        for (Map.Entry<Long, Integer> entry : medicines.entrySet()) {
+            if (entry.getValue() > 0) {
+                Lek lek = lekRepository.findLekByID(entry.getKey());
+                meds.add(lek);
+            }
+        }
+        return meds;
+    }
+
+
+    public List<TerminDTO> findAvailableAppointments(Apoteka a) {
+        List<Poseta> posete = posetaRepository.findAll();
+        List<Poseta> availableAppointments = new ArrayList<>();
+        for (Poseta p : posete) {
+            if (p.getApoteka().equals(a) && p.getVrsta() == p.getPREGLED() && p.getPacijent() == null && p.getDatum().after(new Date())) {
+                availableAppointments.add(p);
+            }
+        }
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        List<TerminDTO> termini = new ArrayList<>();
+
+        for (Poseta p : availableAppointments) {
+            TerminDTO dto = new TerminDTO();
+            dto.setID(p.getID());
+            dto.setZaposleni(p.getZaposleni());
+            dto.setDatum(dateFormat.format(p.getDatum()));
+            dto.setVreme(p.getVreme().toString());
+            termini.add(dto);
+        }
+        return termini;
     }
 
     //samo ukoliko je bar jednom rezervisao i preuzeo lek ili mu je

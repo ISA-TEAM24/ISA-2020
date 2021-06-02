@@ -19,4 +19,5 @@ public interface PosetaRepository extends JpaRepository<Poseta, Long> {
     void deletePosetaByID(Long ID);
 
     Poseta findPosetaByID(Long ID);
+
 }

@@ -1,6 +1,47 @@
 // the table contains the following headers : name , date-picker for picking up date, button for reserving
-const drugs_body =  $('#drugs_body') // drugs table body
+var drugs_body =  $('#drugs_body') // drugs table body
 
-function reloadDrugs() {
-    console.log('drugs')
+$(document).ready(function() {
+
+    getMyDrugs();
+});
+
+function getMyDrugs() {
+
+    const queryString = window.location.search;
+    console.log(queryString);
+
+    if (queryString == "") {
+        document.location.href="pharmacies.html"
+    }
+
+    const urlParams = new URLSearchParams(queryString);
+    var id = urlParams.get('id')
+
+    $.ajax({
+        type: 'GET',
+        url: '/apoteka/findmedicines/' + id,
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        success : function(drugs) {
+            reloadDrugs(drugs);
+        }, error : function() {
+            console.log('error occured');
+        }
+    });
+}
+
+function reloadDrugs(drugs) {
+    table = "";
+    drugs.forEach(function(drug) {
+        table += `<tr>
+                    <td>${drug.naziv}</td>
+                    <td><input type="date" id="datepick-${drug.ID}"></td>
+                    <td><button type="button" id="reserve-${drug.ID}" class="btn btn-info-reserve">Reserve</button></td>
+                  </tr>`;
+    });
+
+    drugs_body.append(table);
 }
