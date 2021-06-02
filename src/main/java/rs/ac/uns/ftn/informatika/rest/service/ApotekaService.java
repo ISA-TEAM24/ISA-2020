@@ -304,8 +304,10 @@ public class ApotekaService {
         Map<Long, Integer> medicines = a.getMagacin();
         List<Lek> meds = new ArrayList<>();
         for (Map.Entry<Long, Integer> entry : medicines.entrySet()) {
-            Lek lek = lekRepository.findLekByID(entry.getKey());
-            meds.add(lek);
+            if (entry.getValue() > 0) {
+                Lek lek = lekRepository.findLekByID(entry.getKey());
+                meds.add(lek);
+            }
         }
         return meds;
     }
