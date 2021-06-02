@@ -340,7 +340,16 @@ public class PosetaService {
 
         p.setPacijent(k);
         posetaRepository.save(p);
-
+        Format formatter = new SimpleDateFormat("dd-MM-YYYY");
+        String s = formatter.format(p.getDatum());
+        String text = "Hello " + username;
+        text += ". We've successfully scheduled your exam. Exam information: ";
+        text += "Dermatologist: " + p.getZaposleni().getIme() +  " " + p.getZaposleni().getPrezime();
+        text += " // ";
+        text += " Pharmacy: " + p.getApoteka().getNaziv() + ", " + p.getApoteka().getAdresa() + " // ";
+        text += " When: " + s + " at " + p.getVreme();
+        boolean inform =  emailService.sendSimpleMessage(k.getEmail(), "New Exam", text);
+        if(!inform) return false;
         return true;
     }
 }
