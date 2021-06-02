@@ -37,7 +37,7 @@ public class ConsultExamService {
         LocalTime time = LocalTime.now();
 
         for(Poseta p : allVisits) {
-            if(p.getPacijent() != null) {
+            if(p.getPacijent() != null && p.getDijagnoza().equals("")) {
                 if (p.getDatum().compareTo(today) > 0) {
                     retList.add(p);
                 }
