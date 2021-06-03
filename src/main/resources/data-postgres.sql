@@ -35,7 +35,7 @@ INSERT INTO public.radno_info_business_hours(radno_info_id, business_hours_id) V
 INSERT INTO public.radno_info_neradni_dani(radno_info_id, neradni_dani) VALUES (1, null);
 
 --skripte za test farmaceuta
---INSERT INTO public.godisnji_info (id, do_datuma, na_godisnjem, od_datuma) VALUES (4, NULL, false, NULL);
+INSERT INTO public.godisnji_info (id, do_datuma, na_godisnjem, od_datuma) VALUES (4, NULL, false, NULL);
 --INSERT INTO public.period(id, do_datum, do_vreme, od_datum, od_vreme) VALUES (4, '2021-08-23', '19:30', '2021-03-23',  '11:30');
 --INSERT INTO public.radno_info(id) VALUES (4);
 --INSERT INTO public.radno_info_business_hours(radno_info_id, business_hours_id) VALUES (4, 4);
@@ -65,7 +65,7 @@ INSERT INTO public.radno_info_neradni_dani(radno_info_id, neradni_dani) VALUES (
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id) VALUES (22, '2021-06-03', null, 0, 30, '14:00', 1, 1, null, 13);
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id) VALUES (23, '2021-06-04', null, 0, 30, '15:00', 1, 1, null, 13);
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id) VALUES (24, '2021-06-05', null, 0, 30, '16:00', 1, 1, null, 13);
-INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id) VALUES (25, '2021-06-06', null, 0, 30, '17:00', 1, 1, null, 13);
+INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id) VALUES (25, '2021-06-29', null, 0, 30, '12:30', 1, 1, null, 13);
 
 
 --INSERT INTO public.apoteka_cenovnik_mapping(
@@ -76,7 +76,7 @@ INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, a
 -- farmaceut1 - pw: test
 
 --insert into authority values (4, 'ROLE_PHARMACIST');
-INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (4, true, 'Rakoci Ferenca 22', 'SRB', 'farmaceut123@gmail.com', 'BG', 'Boban', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Bobic', true, '0691100555', 'farmaceut1', NULL, NULL);
+INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (4, true, 'Rakoci Ferenca 22', 'SRB', 'farmaceut123@gmail.com', 'BG', 'Boban', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Bobic', true, '0691100555', 'farmaceut1', 4, NULL);
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (4, 4);
 INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 4);
 
@@ -142,7 +142,8 @@ INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, a
 VALUES (503,  '2021-04-10', 'S00 T98', 5, 30, '10:00', 0, 1, 1, 4);
 
 --pregledi dermatologa
-
+INSERT INTO public.apoteka_cenovnik_mapping(apoteka_id, cena, naziv_predmeta)
+VALUES (1, 50, 'PREGLED');
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)
 VALUES (504,  '2021-05-29', 'A00 B99', 5, 30, '08:00', 1, 1, 250, 3);
 
@@ -157,7 +158,7 @@ VALUES (507,  '2021-04-10', 'S00 T98', 5, 30, '10:00', 1, 1, 1, 3);
 
 
 --Pharmacist scheduling test
-INSERT INTO public.godisnji_info (id, do_datuma, na_godisnjem, od_datuma) VALUES (4, NULL, false, NULL);
+--INSERT INTO public.godisnji_info (id, do_datuma, na_godisnjem, od_datuma) VALUES (4, NULL, false, NULL);
 INSERT INTO public.period(id, do_datum, do_vreme, od_datum, od_vreme) VALUES (4, '2021-08-23', '19:30', '2021-03-23',  '11:30');
 INSERT INTO public.radno_info(id) VALUES (4);
 INSERT INTO public.radno_info_business_hours(radno_info_id, business_hours_id) VALUES (4, 4);
@@ -172,3 +173,10 @@ INSERT INTO public.apoteka_cenovnik_mapping(
   apoteka_id, cena, naziv_predmeta)
     VALUES (1, 66, 'SAVETOVANJE');
 
+INSERT INTO public.apoteka_cenovnik_mapping(
+    apoteka_id, cena, naziv_predmeta)
+VALUES (2, 66, 'SAVETOVANJE');
+
+INSERT INTO public.apoteka_cenovnik_mapping(
+    apoteka_id, cena, naziv_predmeta)
+VALUES (7, 66, 'SAVETOVANJE');

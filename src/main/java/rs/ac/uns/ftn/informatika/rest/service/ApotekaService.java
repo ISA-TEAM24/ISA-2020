@@ -99,8 +99,12 @@ public class ApotekaService {
             dto.setOcena(a.getOcena());
             dto.setFarmaceuti(new ArrayList<>());
             for (Korisnik farm : farmaceuti) {
-                if (farm.getGodisnjiInfo().isNaGodisnjem())
+                System.out.println("FARMACEUT IN QUESTION -- " + farm.getID());
+                if (farm.getGodisnjiInfo() == null || farm.getGodisnjiInfo().isNaGodisnjem()) {
+                    System.out.println("continued");
                     continue;
+
+                }
                 if (checkIfPharmacistIsFree(farm, date, time, a)) {
                     FarmaceutDTO f = new FarmaceutDTO();
                     f.setIme(farm.getIme());
@@ -331,6 +335,7 @@ public class ApotekaService {
             dto.setZaposleni(p.getZaposleni());
             dto.setDatum(dateFormat.format(p.getDatum()));
             dto.setVreme(p.getVreme().toString());
+            dto.setCena(p.getApoteka().getCenovnik().get("PREGLED"));
             termini.add(dto);
         }
         return termini;
