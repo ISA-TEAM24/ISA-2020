@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.rest.dto.*;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
+import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
 import rs.ac.uns.ftn.informatika.rest.repository.KorisnikRepository;
 import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
@@ -109,7 +110,7 @@ public class PosetaController {
     public ResponseEntity<String> scheduleConsultByPharmacist(@RequestBody ScheduleDTO dto, Principal pharmacist) throws ParseException {
 
         System.out.println(new Date() + "___________________________________");
-        int answer = posetaService.scheduleConsultByPharmacist(pharmacist.getName(), dto);
+        int answer = posetaService.scheduleVisitByEmployee(pharmacist.getName(), dto);
 
         if(answer == 1) {
             return new ResponseEntity("CREATED", HttpStatus.CREATED);
@@ -133,6 +134,35 @@ public class PosetaController {
 
         return new ResponseEntity<>(null, HttpStatus.CREATED);
 
+    }
+
+    @PreAuthorize("hasRole('DERMATOLOGIST')")
+    @PostMapping("/exam/schedule")
+    public ResponseEntity<String> schedulExamByDermatologist(@RequestBody ScheduleDTO dto, Principal pharmacist) throws ParseException {
+
+        int answer = posetaService.scheduleVisitByEmployee(pharmacist.getName(), dto);
+
+        if(answer == 1) {
+            return new ResponseEntity("CREATED", HttpStatus.CREATED);
+        }
+        else if(answer == 2 ) {
+            return new ResponseEntity("NOT_FOUND", HttpStatus.NOT_FOUND);
+        }
+        else {
+            return new ResponseEntity("BAD_REQUEST", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PreAuthorize("hasRole('DERMATOLOGIST')")
+    @PostMapping("/exam/rewritepredef")
+    public ResponseEntity rewriteExamByDermatologist(@RequestBody RewriteDTO dto, Principal p) throws ParseException {
+
+        Korisnik k = posetaService.findByEmail(dto.getEmail());
+        if(posetaService.addExam(Long.parseLong(dto.getIdpregled()), k.getUsername())) {
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
 }

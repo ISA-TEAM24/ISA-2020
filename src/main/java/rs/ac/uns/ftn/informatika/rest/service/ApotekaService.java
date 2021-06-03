@@ -492,4 +492,31 @@ public class ApotekaService {
         }
         return meds;
     }
+
+    public boolean checkIfEmployeeIsFree(Korisnik k, Date date, LocalTime time, Apoteka a) {
+
+        List<Poseta> posete = posetaRepository.findPosetaByZaposleniID(k.getID());
+        RadnoInfo ri = k.getRadnoInfo().get(a.getNaziv());
+        if (ri == null) {
+            System.out.println("RADNO INFO IS NULL");
+        }
+
+        if (!ri.isDateInRange(date, time))
+            return false;
+
+        System.out.println("DATES ARE NOT THE SAME");
+
+        for (Poseta p : posete) {
+            if(p.getPacijent() == null)
+                return true;
+
+            if (p.isSlotTaken(date,time))
+                return false;
+        }
+
+        System.out.println("TIME IS OUT OF RANGE");
+
+        return true;
+
+    }
 }

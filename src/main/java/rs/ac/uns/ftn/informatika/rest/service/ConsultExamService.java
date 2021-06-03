@@ -2,7 +2,6 @@ package rs.ac.uns.ftn.informatika.rest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rs.ac.uns.ftn.informatika.rest.dto.PenaltyDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.LoyaltyInfo;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
@@ -97,6 +96,35 @@ public class ConsultExamService {
         posetaRepository.save(p);
 
         return true;
+    }
+
+    public List<Poseta> findPredefinedVisitsForDermatologist(Long idVisit) {
+        Poseta poseta = posetaRepository.findPosetaByID(idVisit);
+
+        Korisnik employee = korisnikService.findById(poseta.getZaposleni().getID());
+
+        List<Poseta> allVisits = posetaRepository.findPosetaByZaposleniID(employee.getID());
+        List<Poseta> retList = new ArrayList<>();
+
+        Date today = new Date();
+        LocalTime time = LocalTime.now();
+
+        for(Poseta p : allVisits) {
+            if(p.getPacijent() == null && p.getApoteka() == poseta.getApoteka()) {
+                if (p.getDatum().compareTo(today) > 0) {
+                    retList.add(p);
+                }
+                if (p.getDatum().compareTo(today) == 0) {
+                    if (p.getVreme().compareTo(time) > 0) {
+                        retList.add(p);
+                    }
+                }
+            }
+        }
+
+        retList.sort(Comparator.comparing(Poseta::getDatum));
+
+        return retList;
     }
 
 }
