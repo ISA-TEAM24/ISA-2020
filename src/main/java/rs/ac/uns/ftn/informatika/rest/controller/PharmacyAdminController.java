@@ -7,12 +7,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import rs.ac.uns.ftn.informatika.rest.dto.ApotekaEditDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.DermatologDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.HireDermatologistDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.UserEditDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.*;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
+import rs.ac.uns.ftn.informatika.rest.model.Lek;
+import rs.ac.uns.ftn.informatika.rest.model.Upit;
 import rs.ac.uns.ftn.informatika.rest.service.*;
 
 import java.security.Principal;
@@ -34,10 +33,19 @@ public class PharmacyAdminController {
     private PosetaService posetaService;
 
     @Autowired
+    private RezervacijaService rezervacijaService;
+
+    @Autowired
     private DermatologistService dermatologistService;
 
     @Autowired
     private CustomUserDetailsService userDetailsService;
+
+    @Autowired
+    private LekService lekService;
+
+    @Autowired
+    private NarudzbenicaService narudzbenicaService;
 
     @GetMapping("/whoami")
     @PreAuthorize("hasRole('PH_ADMIN')")
@@ -164,6 +172,82 @@ public class PharmacyAdminController {
         pharmacyAdminService.hireDermatologist(hireDermatologistDTO, a);
 
         return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @GetMapping("/findmedicineswithprice")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public List<PharmacyMedicineDTO> findMedicineWithPriceAndAmount(Principal p) {
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        return apotekaService.findMedicineWithPriceAndAmount(a);
+    }
+
+    @PutMapping("/removemedicine/{medName}")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public ResponseEntity<?> findMedicineWithPriceAndAmount(@PathVariable("medName") String medName,Principal p) {
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        Lek lek = lekService.getLekByNaziv(medName);
+
+        if (rezervacijaService.removeMedicineAllowed(lek.getID(), a)) {
+            apotekaService.removeMedicineFromPharmacy(a, lek.getID());
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+
+    }
+
+    @GetMapping("/getallmeds")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public List<LekDTO> findAllMeds(Principal p) {
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        return lekService.findAllMedsAndAvailabilityInMyPharmacy(a);
+    }
+
+    @PutMapping("/addmedicine/{medName}")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public ResponseEntity<?> addMedicineToPharmacy(@PathVariable("medName") String medName, Principal p) {
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        Lek lek = lekService.getLekByNaziv(medName);
+        apotekaService.addNewMedicineInStorage(lek, a);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @PutMapping("/checkmedicine/{medName}")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public ResponseEntity<?> checkDoesMedicineExists(@PathVariable("medName") String medName,Principal p) {
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        Lek lek = lekService.getLekByNaziv(medName);
+
+        if (lek == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        apotekaService.checkDoesPharmacyHaveMedicine(a, lek);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @PostMapping("/create")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public ResponseEntity<?> createPurchaseOrder(@RequestBody NarudzbenicaDTO narudzbenicaDTO, Principal p) {
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        Korisnik k = pharmacyAdminService.findByUsername(p.getName());
+        narudzbenicaService.createPurchaseOrder(narudzbenicaDTO, a, k);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @GetMapping("/getunsuccessfulqueries")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public List<UpitDTO> getUnscuccessfulQueries(Principal p) {
+        Apoteka apoteka = apotekaService.getPharmacyByAdmin(p.getName());
+        return pharmacyAdminService.getUnscuccessfulQueries(apoteka);
+    }
+
+    @DeleteMapping("/deletequery/{id}")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public ResponseEntity<?> deleteQuery(@PathVariable("id") String id) {
+        Long ID = Long.parseLong(id);
+        pharmacyAdminService.deleteQuery(ID);
+
+        return new ResponseEntity<>(null,HttpStatus.OK);
     }
 
 }

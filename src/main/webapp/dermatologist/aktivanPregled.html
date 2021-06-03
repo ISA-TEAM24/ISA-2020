@@ -95,7 +95,7 @@
             </div>
 
             <div class="col-lg-1">
-                <label id="imeLabel"> Marija </label>
+                <label id="imeLabel"> </label>
             </div>
         </div>
 
@@ -108,7 +108,7 @@
             </div>
 
             <div class="col-lg-1">
-                <label id="prezimeLabel"> Prezimencic </label>
+                <label id="prezimeLabel"> </label>
             </div>
         </div>
 
@@ -121,7 +121,7 @@
             </div>
 
             <div class="col-lg-1">
-                <label id="emailLabel"> mj@gmail.com </label>
+                <label id="emailLabel"> </label>
             </div>
         </div>
         <!--
@@ -147,7 +147,7 @@
             </div>
 
             <div class="col-lg-1">
-                <label id="telLabel"> 0691100321 </label>
+                <label id="telLabel"> </label>
             </div>
         </div>
 
@@ -160,7 +160,7 @@
             </div>
 
             <div class="col-lg-6">
-                <label id="alergijeLabel"> na penicilin, na polen, na laktozu ... </label>
+                <label id="alergijeLabel"> </label>
             </div>
         </div>
 
@@ -185,7 +185,7 @@
     
                 <div class="col-lg-10">
                     <div class="form-group">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" id="dijagnozaId" rows="3"></textarea>
                       </div>
                 </div>
             </div>
@@ -197,19 +197,19 @@
               <div class="col-lg-2"></div>
 
               <div class="col-lg-1">
-                <button class="btn btn-dark" id="prepisiLekId" data-target="#prepisiLekModal" data-toggle="modal" >&nbsp&nbsp&nbsp&nbsp&nbsp Prepiši lek &nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                <button class="btn btn-dark" id="prepisiLekId" data-target="#prepisiLekModal" data-toggle="modal" onclick="preparePrescription()">&nbsp&nbsp&nbsp&nbsp&nbsp Prepiši lek &nbsp&nbsp&nbsp&nbsp&nbsp</button>
               </div>
 
               <div class="col-lg-1"></div>
 
               <div class="col-lg-2">
-                <button class="btn btn-dark" id="noviPregledId" data-target="#dodatniPregledModal" data-toggle="modal">&nbsp&nbsp&nbsp&nbsp&nbsp Zakaži dodatni pregled &nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                <button class="btn btn-dark" id="noviPregledId" data-target="#dodatniPregledModal" data-toggle="modal" onclick="fillDermAppointmentFields(); getPredefinedExamsForDerm()">&nbsp&nbsp&nbsp&nbsp&nbsp Zakaži dodatni pregled &nbsp&nbsp&nbsp&nbsp&nbsp</button>
               </div>
 
               <div class="col-lg-1"></div>
 
               <div class="col-lg-2">
-                <button class="btn btn-primary" id="noviPregledId" >&nbsp&nbsp&nbsp&nbsp&nbsp Sačuvaj izveštaj &nbsp&nbsp&nbsp&nbsp&nbsp</button>
+                <button class="btn btn-primary" id="saveReportID" onclick= "saveReport()" >&nbsp&nbsp&nbsp&nbsp&nbsp Sačuvaj izveštaj &nbsp&nbsp&nbsp&nbsp&nbsp</button>
               </div>
 
           </div>
@@ -248,28 +248,31 @@
                       <form id="form1">
                         <div class="form-group">
                           <label>Pacijent: </label>
-                          <input class="form-control" type="text" placeholder="" id="pac" readonly='true'>
+                          <input class="form-control" type="text" placeholder="" id="pac2" readonly='true'>
                         </div>
 
                         <div class="form-group">
                           <label>Email: </label>
-                          <input class="form-control" type="text" placeholder="" id="mail1" readonly='true'>
+                          <input class="form-control" type="text" placeholder="" id="mail2" readonly='true'>
                         </div>
 
                         <div class="form-group">
-                          <label>Lek: </label>
+                          <label>Apoteka: </label>
+                          <input class="form-control" type="text" placeholder="" id="apoteka2" readonly='true'>
+                        </div>
+
+                        <div class="form-group">
+                          <label>Lekovi u Vašoj apoteci na koje pacijent nije alergičan: </label>
                           <br>
                           
-                          <select class="form-select" >
-                            <option selected>Open this select menu</option>
-                            <option value="1">Bromazepan</option>
-                            <option value="2">Aspirin</option>
-                            <option value="3">Nasic</option>
+                          <select class="form-select" id='drugsInput' >
+                           
+
                           </select>
                           <br>
                           <br>
 
-                          <a href="#" role="button" class="btn btn-secondary" id ="specLeka" >Specifikacija leka</a>
+                          <a href="#" role="button" class="btn btn-secondary" id ="specLeka" data-target="#specifikacijaModal" data-toggle="modal" onclick="printDrugSpecification()" >Specifikacija leka</a>
 
 
                         </div>
@@ -281,12 +284,16 @@
 
 
                         <div class="form-group">
-                          <label>Pre preporuke leka, proverite dostupnost u Vasoj apoteci: </label>
+                          <label>Pre preporuke leka, proverite dostupnost u Vašoj apoteci: </label>
 
-                          <a href="#" role="button" class="btn btn-secondary" id ="dostupnostLeka" >Proveri dostupnost</a>
+                          <a href="#" role="button" class="btn btn-warning" id ="dostupnostLeka" onclick="checkAvailability()">Proveri dostupnost</a>
 
                         </div>
 
+                        <div class="form-group">
+                          <label>Dostupni alternativni lekovi: </label>
+                          <select class="form-select" id='alternativeDrugs' ></select>
+                        </div>
 
                       </form>
                     </div>
@@ -295,7 +302,7 @@
 
                     <div class="modal-footer">
                       <button class="btn btn-dark" id="closeBtn" data-dismiss="modal">Odustani</button>
-                      <button class="btn btn-primary" type="submit" id="saveReceptBtn">Sačuvaj</button>
+                      <button class="btn btn-primary" type="submit" id="saveReceptBtn" disabled onclick="prescribe()">Sačuvaj</button>
                     </div>
 
                 </div>
@@ -329,28 +336,36 @@
                 <form id="form2">
                   <div class="form-group">
                     <label>Pacijent: </label>
-                    <input class="form-control" type="text" placeholder="" id="pac" readonly='true'>
+                    <input class="form-control" type="text" placeholder="" id="pacijentId1" readonly='true'>
                   </div>
 
                   <div class="form-group">
                     <label>Email: </label>
-                    <input class="form-control" type="text" placeholder="" id="mail2" readonly='true'>
+                    <input class="form-control" type="text" placeholder="" id="mailId1" readonly='true'>
                   </div>
 
                   <div class="form-group">
                     <label>Apoteka: </label>
-                    <input class="form-control" type="text" placeholder="" id="apoteka" readonly='true'>
+                    <input class="form-control" type="text" placeholder="" id="apotekaId1" readonly='true'>
                   </div>
 
+                  <div class="form-group">
+                    <label>Dostupni predefinisani termini: </label>
+                    <select class="form-control" id='predefTerminsId' >
+       
+
+                      
+                    </select>
+                  </div>
 
                   <div class="form-group">
                     <label>Datum pregleda: </label>
-                    <input class="form-control" type="date" placeholder="" id="datumpregleda">
+                    <input class="form-control" type="date" placeholder="" id="datumId1">
                   </div>
 
                   <div class="form-group">
-                    <label>Slobodni termini: </label>
-                    <input class="form-control timepicker" type="time" placeholder="" id="datumpregleda">
+                    <label>Izaberite termin: </label>
+                    <input class="form-control timepicker" type="time" placeholder="" id="vremeId1">
                   </div>
 
                 
@@ -361,7 +376,7 @@
 
               <div class="modal-footer">
                 <button class="btn btn-dark" id="closeZakazivanjeBtn" data-dismiss="modal">Odustani</button>
-                <button class="btn btn-primary" type="submit" id="savePregledBtn">Zakaži</button>
+                <button class="btn btn-primary" type="submit" id="savePregledBtn" onclick="createAdditionalExam()">Zakaži</button>
               </div>
 
           </div>
@@ -374,12 +389,74 @@
 
 <!-- END OF ZAKAZI DODATNI PREGLED MODAL-->
 
+<!-- SPECIFIKACIJA LEKA MODAL-->
+
+<div class="container" id="specifikacijaDiv">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="modal fade" data-keyboard="false" data-backdrop="static" id="specifikacijaModal" tabindex="-1">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+
+              <div class="modal-header">
+                <h4 class="modal-title w-100" id="modalTitle"> Specifikacija leka </h4>
+                <button class="close" data-dismiss="modal">&times;</button>
+
+              </div>
+
+              <div class ="modal-body">
+                <form id="form1">
+                  <div class="form-group">
+                    <label>Naziv: </label>
+                    <input class="form-control" type="text" placeholder="" id="nazivLeka" readonly='true'>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Napomena: </label>
+                    <input class="form-control" type="text" placeholder="" id="napomeneLeka" readonly='true'>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Oblik: </label>
+                    <input class="form-control" type="text" placeholder="" id="oblikLeka" readonly='true'>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Sastav: </label>
+                    <input class="form-control" type="text" placeholder="" id="sastavLeka" readonly='true'>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Proizvodjač: </label>
+                    <input class="form-control" type="text" placeholder="" id="proizvLeka" readonly='true'>
+                  </div>
+
+                </form>
+              </div>
+
+              <br>
+
+              <div class="modal-footer">
+                <button class="btn btn-dark" id="closeBtn" data-dismiss="modal">Zatvori</button>
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- END OF SPECIFIKACIJA LEKA MODAL-->
+
 </div>
     <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+    </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -391,7 +468,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="../js/zapocniPregled.js"></script>
+    <script type="text/javascript" src="../js/pharmacist/activeCounseling.js"></script>
 
   </body>
 </html>

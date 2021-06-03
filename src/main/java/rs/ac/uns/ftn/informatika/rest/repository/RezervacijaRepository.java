@@ -20,4 +20,7 @@ public interface RezervacijaRepository extends JpaRepository<Rezervacija, Long> 
             "\tFROM public.rezervacija WHERE apoteka_id=?1 AND lek_id=?2 AND pacijent_id=?3", nativeQuery = true)
     List<Rezervacija> findRezervacijaByApotekaIDAndLekIDAndPacijentId(Long a, Long l, Long p);
 
+    @Query(value = "SELECT id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id\n" +
+            "\tFROM public.rezervacija WHERE apoteka_id=?1 AND lek_id=?2", nativeQuery = true)
+    List<Rezervacija> findRezervacijaByApotekaIDAndLEKID(Long a, Long l);
 }

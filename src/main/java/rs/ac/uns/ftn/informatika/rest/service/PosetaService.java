@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.rest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +41,10 @@ public class PosetaService {
 
     @Autowired
     private EmailService emailService;
+
+    public Korisnik findByEmail(String email) {
+        return korisnikService.findByEmail(email);
+    }
 
     public boolean addConsult(PosetaDTO dto, String pacijent) throws ParseException {
 
@@ -205,15 +210,15 @@ public class PosetaService {
         posetaRepository.save(poseta);
     }
 
-    public int scheduleConsultByPharmacist(String pharmacistUsername, ScheduleDTO dto) throws ParseException {
-        Korisnik pharmacist = korisnikService.findByUsername(pharmacistUsername);
+    public int scheduleVisitByEmployee(String pharmacistUsername, ScheduleDTO dto) throws ParseException {
+        Korisnik employee = korisnikService.findByUsername(pharmacistUsername);
         Poseta p = new Poseta();
 
         DateTimeDTO dt = new DateTimeDTO();
         dt.setDate(dto.getDatum());
         dt.setTime(dto.getVreme());
 
-        Apoteka a = apotekaService.findByZaposleni(pharmacist);
+        Apoteka a = apotekaService.findByZaposleni(employee);
         Korisnik pacijent = korisnikService.findByEmail(dto.getEmail());
 
         if(pacijent == null) {
@@ -222,17 +227,26 @@ public class PosetaService {
         }
 
         //ako je farmaceut slobodan ...
-        if(apotekaService.checkIfPharmacistIsFree(pharmacist, dt.parseDateStringToDate(), dt.parseTimeStringToLocalTime(), a)
+        if(apotekaService.checkIfEmployeeIsFree(employee, dt.parseDateStringToDate(), dt.parseTimeStringToLocalTime(), a)
            && checkIfUserIsFree(pacijent.getUsername(), dto.getDatum(), dto.getVreme(),dto.getTrajanje())) {
             System.out.println("FARMACEUT JE FREE ===============");
 
             p.setApoteka(a);
             p.setDijagnoza("");
             p.setTrajanje(dto.getTrajanje());
-            p.setVrsta(p.getSAVETOVANJE());
+
+            p.setVrsta(p.getPREGLED());
+            boolean pharmacistRole = false;
+            for (GrantedAuthority auth : employee.getAuthorities()) {
+                if (auth.getAuthority().equalsIgnoreCase("ROLE_PHARMACIST")) {
+                    p.setVrsta(p.getSAVETOVANJE());
+                    pharmacistRole = true;
+                }
+            }
+
             p.setPoeni(5);
             p.setPacijent(pacijent);
-            p.setZaposleni(pharmacist);
+            p.setZaposleni(employee);
             p.setDatum(dt.parseDateStringToDate());
             p.setVreme(dt.parseTimeStringToLocalTime());
 
@@ -243,8 +257,13 @@ public class PosetaService {
             String s = formatter.format(p.getDatum());
 
             String msg = "Dear " + pacijent.getIme() + " " + pacijent.getPrezime();
-            msg += ", We've successfully scheduled your consult. Consult information: ";
-            msg += "Pharmacist: " + pharmacist.getIme() +  " " + pharmacist.getPrezime();
+            if(pharmacistRole) {
+                msg += ", We've successfully scheduled your consult. Consult information: ";
+            } else {
+                msg += ", We've successfully scheduled your exam. Consult information: ";
+            }
+
+            msg += "Pharmacist: " + employee.getIme() +  " " + employee.getPrezime();
             msg += " // ";
             msg += " Pharmacy: " + a.getNaziv() + ", " + a.getAdresa() + " // ";
             msg += " When: " + s + " at " + p.getVreme();
@@ -299,7 +318,7 @@ public class PosetaService {
                 }
             }
 
-            return true;
+            //return true;
         }
         return true;
 

@@ -9,11 +9,12 @@ public class MyPosetaDTO {
     private int trajanje;
     private String dijagnoza;
     private String zaposleni;
+    private String apoteka;
 
     public MyPosetaDTO() {
     }
 
-    public MyPosetaDTO(String pacijentIme, String pacijentPrezime, String datum, String vreme, int trajanje, String dijagnoza, String zaposleni) {
+    public MyPosetaDTO(String pacijentIme, String pacijentPrezime, String datum, String vreme, int trajanje, String dijagnoza, String zaposleni, String apoteka) {
         this.pacijentIme = pacijentIme;
         this.pacijentPrezime = pacijentPrezime;
         this.datum = datum;
@@ -21,6 +22,7 @@ public class MyPosetaDTO {
         this.trajanje = trajanje;
         this.dijagnoza = dijagnoza;
         this.zaposleni = zaposleni;
+        this.apoteka = apoteka;
     }
 
     public String getPacijentIme() {
@@ -79,5 +81,11 @@ public class MyPosetaDTO {
         this.zaposleni = zaposleni;
     }
 
+    public String getApoteka() {
+        return apoteka;
+    }
 
+    public void setApoteka(String apoteka) {
+        this.apoteka = apoteka;
+    }
 }

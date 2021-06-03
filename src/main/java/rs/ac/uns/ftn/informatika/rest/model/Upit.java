@@ -18,5 +18,51 @@ public class Upit {
     @OneToOne
     private Korisnik posiljalac;
 
+    public Long getID() {
+        return ID;
+    }
 
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
+
+    public Lek getLek() {
+        return lek;
+    }
+
+    public void setLek(Lek lek) {
+        this.lek = lek;
+    }
+
+    public int getKolicina() {
+        return kolicina;
+    }
+
+    public void setKolicina(int kolicina) {
+        this.kolicina = kolicina;
+    }
+
+    public Apoteka getApoteka() {
+        return apoteka;
+    }
+
+    public void setApoteka(Apoteka apoteka) {
+        this.apoteka = apoteka;
+    }
+
+    public boolean isUspesan() {
+        return uspesan;
+    }
+
+    public void setUspesan(boolean uspesan) {
+        this.uspesan = uspesan;
+    }
+
+    public Korisnik getPosiljalac() {
+        return posiljalac;
+    }
+
+    public void setPosiljalac(Korisnik posiljalac) {
+        this.posiljalac = posiljalac;
+    }
 }
