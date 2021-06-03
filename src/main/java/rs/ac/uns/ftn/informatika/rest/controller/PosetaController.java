@@ -88,8 +88,9 @@ public class PosetaController {
             int trajanje = po.getTrajanje();
             String dijagnoza = po.getDijagnoza();
             String zaposleni = po.getZaposleni().getIme() + " " + po.getZaposleni().getPrezime();
+            String apoteka = po.getApoteka().getNaziv();
 
-            retList.add(new MyPosetaDTO(imepac, prezpac, datum, vreme, trajanje, dijagnoza,zaposleni));
+            retList.add(new MyPosetaDTO(imepac, prezpac, datum, vreme, trajanje, dijagnoza,zaposleni, apoteka));
         }
 
         return retList;
@@ -120,4 +121,18 @@ public class PosetaController {
             return new ResponseEntity("BAD_REQUEST", HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping("/user/exams/add")
+    public ResponseEntity addExam(@RequestBody IdDTO dto, Principal p) throws ParseException {
+
+        Long appID = Long.parseLong(dto.getId());
+        boolean success = posetaService.addExam(appID, p.getName());
+
+        if (!success) return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(null, HttpStatus.CREATED);
+
+    }
+
 }

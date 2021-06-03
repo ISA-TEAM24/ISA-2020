@@ -33,15 +33,47 @@ function getFreeAppointments() {
 }
 
 function reloadAppointments(appointments) {
+    
     table = "";
+    app_body.html("")
     appointments.forEach(function(app) {
+        
         table += `<tr>
                     <td>${app.zaposleni.ime} ${app.zaposleni.prezime}</td>
                     <td>${app.datum}</td>
                     <td>${app.vreme}</td>
-                    <td><button type="button" id="reserve-${app.ID}" class="btn btn-info-reserve">Reserve</button></td>
+                    <td>${app.zaposleni.ocena}</td>
+                    <td>${app.cena}</td>
+                    <td><button onclick="reserveApp(this.id)" id="reserve-${app.id}" class="btn btn-info-reserve">Reserve</button></td>
                   </tr>`;
     });
 
-    app_body.append(table);
+    app_body.html(table);
+}
+
+function reserveApp(id) {
+
+    var id_pregleda = id.split("-")[1]
+    var obj = {
+        id : id_pregleda
+    }
+ 
+    
+
+    $.ajax({
+        type: 'POST',
+        url: '/api/user/exams/add',
+        data : JSON.stringify(obj),
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        success : function() {
+            getFreeAppointments()
+        }, 
+        error : function() {
+            console.log('error occured');
+        }
+    });
+
 }

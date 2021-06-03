@@ -22,7 +22,7 @@ import java.util.*;
 public class ApotekaService {
 
     @Autowired
-    private ApotekaRepository apotekaRepository;
+    protected ApotekaRepository apotekaRepository;
 
     @Autowired
     private PosetaRepository posetaRepository;
@@ -100,8 +100,12 @@ public class ApotekaService {
             dto.setOcena(a.getOcena());
             dto.setFarmaceuti(new ArrayList<>());
             for (Korisnik farm : farmaceuti) {
-                if (farm.getGodisnjiInfo().isNaGodisnjem())
+                System.out.println("FARMACEUT IN QUESTION -- " + farm.getID());
+                if (farm.getGodisnjiInfo() == null || farm.getGodisnjiInfo().isNaGodisnjem()) {
+                    System.out.println("continued");
                     continue;
+
+                }
                 if (checkIfPharmacistIsFree(farm, date, time, a)) {
                     FarmaceutDTO f = new FarmaceutDTO();
                     f.setIme(farm.getIme());
@@ -137,7 +141,7 @@ public class ApotekaService {
         return null;
     }
 
-    private List<Korisnik> findPharmacyAdmin(Apoteka a) {
+    public List<Korisnik> findPharmacyAdmin(Apoteka a) {
         ArrayList<Korisnik> pharmacyAdmins = new ArrayList<>();
         for(Korisnik k : a.getZaposleni()) {
             boolean isPharmacyAdmin = false;
@@ -332,6 +336,7 @@ public class ApotekaService {
             dto.setZaposleni(p.getZaposleni());
             dto.setDatum(dateFormat.format(p.getDatum()));
             dto.setVreme(p.getVreme().toString());
+            dto.setCena(p.getApoteka().getCenovnik().get("PREGLED"));
             termini.add(dto);
         }
         return termini;
@@ -420,11 +425,8 @@ public class ApotekaService {
                     break;
                 }
             }
-
         }
-
         return retList;
-
     }
 
     private MedicineDTO createMedicineDTOFromLek(Lek l) {
@@ -536,5 +538,15 @@ public class ApotekaService {
             }
         }
         apotekaRepository.save(a);
+    }
+
+    public List<Lek> findAllMedicinesInPharmacy(Apoteka a) {
+        Map<Long, Integer> medicines = a.getMagacin();
+        List<Lek> meds = new ArrayList<>();
+        for (Map.Entry<Long, Integer> entry : medicines.entrySet()) {
+            Lek lek = lekRepository.findLekByID(entry.getKey());
+            meds.add(lek);
+        }
+        return meds;
     }
 }

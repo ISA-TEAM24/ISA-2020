@@ -19,12 +19,14 @@ public class ERecept {
     private String email;
     @Column(nullable = false)
     private Date datumIzdavanja;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Lek> lekovi;
     @Column(nullable = false)
     private Status status;
     @Column(nullable = false)
     private Long apotekaID;
+    @Column(nullable = false)
+    private int trajanjeTerapije;
 
     public ERecept(){
 
@@ -94,6 +96,14 @@ public class ERecept {
         this.status = status;
     }
 
+    public int getTrajanjeTerapije() {
+        return trajanjeTerapije;
+    }
+
+    public void setTrajanjeTerapije(int trajanjeTerapije) {
+        this.trajanjeTerapije = trajanjeTerapije;
+    }
+
     @Override
     public String toString() {
         return "ERecept{" +
@@ -104,12 +114,12 @@ public class ERecept {
                 ", datumIzdavanja=" + datumIzdavanja +
                 ", lekovi=" + lekovi +
                 ", status=" + status +
+                ", apotekaID=" + apotekaID +
+                ", trajanjeTerapije=" + trajanjeTerapije +
                 '}';
     }
 
-
-
-    enum Status {
+    public enum Status {
         AKTIVAN,
         OBRADJEN,
         ODBIJEN

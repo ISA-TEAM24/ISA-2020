@@ -80,7 +80,7 @@ function buildTable(data){
                         <td>${data[i].pacijentIme}</td>
                         <td>${data[i].pacijentPrezime}</td>
                         <td>${data[i].datum}</td>
-                        <td><button class="btn btn-primary" onclick='openIzvestaj(this.id)' id="` + data[i].pacijentIme + data[i].pacijentPrezime + data[i].datum + `"> Pogledaj izveštaj </button></td>
+                        <td><button class="btn btn-dark" onclick='openIzvestaj(this.id)' id="` + data[i].pacijentIme + data[i].pacijentPrezime + data[i].datum + `"> Pogledaj izveštaj </button></td>
                     </tr>`
 
         table.innerHTML += row
@@ -108,7 +108,8 @@ function fillAllVisits(data) {
                     'datum' : data[i].datum,
                     'vreme' : data[i].vreme,
                     'trajanje' : data[i].trajanje.toString(),
-                    'dijagnoza': data[i].dijagnoza};
+                    'dijagnoza': data[i].dijagnoza,
+                    'apoteka' : data[i].apoteka};
         allVisits.push(obj);
     }
 
@@ -186,34 +187,38 @@ function  openIzvestaj(id) {
             var vreme = allVisits[i].vreme;
             var trajanje = allVisits[i].trajanje.toString();
             var dijagnoza = allVisits[i].dijagnoza;
+            var apoteka = allVisits[i].apoteka;
 
             console.log('POKLAPA SE : ' + ime + prezime + datum + vreme + trajanje + dijagnoza);
 
-            fillIzvestaj(ime, prezime, datum, vreme, trajanje, dijagnoza);
+            fillIzvestaj(ime, prezime, datum, vreme, trajanje, dijagnoza, apoteka);
         }
     }
 
 }
 
-function fillIzvestaj(ime, prezime, datum, vreme, trajanje, dijagnoza){
+function fillIzvestaj(ime, prezime, datum, vreme, trajanje, dijagnoza, apoteka){
     console.log(ime, prezime, dijagnoza);
     document.getElementById("pacijentid").value = '' ;
     document.getElementById("datumid").value = ''; 
     document.getElementById("vremeid").value = '' ;
     document.getElementById("trajanjeid").value = '' ;
     document.getElementById("dijagnozaid").value = '' ;
+    document.getElementById("pharmacyId").value = '' ;
 
     $('#pacijentid').attr('readonly','true');
     $('#datumid').attr('readonly','true');
     $('#vremeid').attr('readonly','true');
     $('#trajanjeid').attr('readonly','true');
     $('#dijagnozaid').attr('readonly','true');
+    $('#pharmacyId').attr('readonly','true');
 
     document.getElementById("pacijentid").value = ime + ' ' +  prezime;
     document.getElementById("datumid").value = datum;
     document.getElementById("vremeid").value = vreme;
     document.getElementById("trajanjeid").value = trajanje;
     document.getElementById("dijagnozaid").value = dijagnoza;
+    document.getElementById("pharmacyId").value = apoteka;
 
     $('#izvestajModal').modal('show'); 
 }
