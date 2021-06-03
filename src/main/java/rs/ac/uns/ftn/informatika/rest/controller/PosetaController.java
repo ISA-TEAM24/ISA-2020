@@ -88,8 +88,9 @@ public class PosetaController {
             int trajanje = po.getTrajanje();
             String dijagnoza = po.getDijagnoza();
             String zaposleni = po.getZaposleni().getIme() + " " + po.getZaposleni().getPrezime();
+            String apoteka = po.getApoteka().getNaziv();
 
-            retList.add(new MyPosetaDTO(imepac, prezpac, datum, vreme, trajanje, dijagnoza,zaposleni));
+            retList.add(new MyPosetaDTO(imepac, prezpac, datum, vreme, trajanje, dijagnoza,zaposleni, apoteka));
         }
 
         return retList;

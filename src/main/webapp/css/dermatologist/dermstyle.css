@@ -94,3 +94,9 @@ img {
   .zahtevtxtArea {
     height: 100px;
   }
+
+  .btn {
+    position: relative;
+    overflow: visible;
+    z-index : 1000;
+  }

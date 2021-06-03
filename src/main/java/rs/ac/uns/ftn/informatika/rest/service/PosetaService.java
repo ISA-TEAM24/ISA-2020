@@ -299,7 +299,7 @@ public class PosetaService {
                 }
             }
 
-            return true;
+            //return true;
         }
         return true;
 

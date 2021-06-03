@@ -79,12 +79,12 @@
     <div class ="container">
         
         <div class="row">
-            <div class="col-lg-2">             
+            <div class="col-lg-3">             
             </div>
 
             <div class="col-lg-2">
                 <label>Ime:</label>
-                <input type="text" id="imeId">
+                <input type="text" id="imeId" onkeyup="searchIme()">
             </div>
 
             <div class="col-lg-1">             
@@ -92,15 +92,17 @@
     
             <div class="col-lg-2">
                 <label>Prezime:</label>
-                <input type="text" id="prezimeId">
+                <input type="text" id="prezimeId" onkeyup="searchPrezime()">
             </div>
 
             <div class="col-lg-1">             
             </div>
 
+            <!--
             <div class="col-lg-2">
                 <button class="btn btn-primary" id="searchbtn">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Pretraži &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
             </div> 
+            -->
   
         </div>
 
@@ -114,10 +116,10 @@
 
         <div class="form col-lg-12"> 
             
-            <table class="table text-center">
+            <table class="table text-center" id = "mydatatable">
               <thead>
                 <tr>
-                  <th scope="col">Datum</th>
+                  <th scope="col" >Datum</th>
                   <th scope="col">Vreme</th>
                   <th scope="col">Ime</th>
                   <th scope="col">Prezime</th>
@@ -128,7 +130,9 @@
               </thead>
 
               <tbody id="tableBody">
+                <!--
                 <tr>
+ 
                     <td>18-05-2021</td>
                     <td>08:00</td>
                     <td>Test</td>
@@ -137,7 +141,7 @@
                     <td><button class="btn btn-warning" id="">Nije se pojavio/la</button></td>
 
                 </tr>
-
+                -->
               </tbody>
             </table>
           </div>
@@ -149,10 +153,10 @@
     </div>
 
     <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+    </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -164,5 +168,6 @@
       crossorigin="anonymous"
     ></script>
 
+    <script type="text/javascript" src="../js/pharmacist/counseling.js"></script>
   </body>
 </html>
