@@ -15,6 +15,7 @@ import rs.ac.uns.ftn.informatika.rest.service.KorisnikService;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,6 +37,19 @@ public class KorisnikController {
     @PreAuthorize("hasAnyRole('PHARMACIST', 'DERMATOLOGIST', 'USER', 'PH_ADMIN')")
     public Korisnik user(Principal user) {
         return this.korisnikService.findByUsername(user.getName());
+    }
+
+    @GetMapping("/user/subs")
+    @PreAuthorize("hasRole('USER')")
+    public Map<String, Boolean> getSubsForUser(Principal p) {
+        return korisnikService.findByUsername(p.getName()).getLoyaltyInfo().getPratiPromocije();
+    }
+
+    @PutMapping("user/subs/update")
+    public ResponseEntity updateSubsForUser(@RequestBody SubCheckDTO dto, Principal p) {
+
+        korisnikService.updateSubsForUser(dto, p.getName());
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @PostMapping("/user/allergy/add")
