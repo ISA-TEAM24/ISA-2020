@@ -230,9 +230,6 @@ INSERT INTO public.apoteka_cenovnik_mapping(
     apoteka_id, cena, naziv_predmeta)
 VALUES (7, 66, 'SAVETOVANJE');
 
-
-
-
 --actions and promotions test:
 INSERT INTO public.loyalty_info (id, klasa, penali, poeni) VALUES (90, 0, 0, 0);
 INSERT INTO public.loyalty_apoteka_mapping(loyalty_id, prati, naziv_apoteke) VALUES (90, true, 'apoteka1');
@@ -248,3 +245,9 @@ INSERT INTO public.loyalty_info (id, klasa, penali, poeni) VALUES (92, 0, 0, 0);
 INSERT INTO public.loyalty_apoteka_mapping(loyalty_id, prati, naziv_apoteke) VALUES (92, false, 'apoteka1');
 INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (92, true, 'adresa92', 'USA', 'dokvdo@gmail.com', 'New York', 'tasana', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'avdaic', true, '6142331616', 'uue128ru', null, 92);
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (92, 1);
+
+--upiti:
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (1, 5, false, 1, 56, 7);
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (2, 10, true, 1, 55, 7);
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (3, 7, false, 7, 56, 6);
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (4, 2, false, 1, 68, 6);
