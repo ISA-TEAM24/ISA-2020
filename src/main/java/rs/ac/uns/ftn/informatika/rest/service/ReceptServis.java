@@ -5,11 +5,9 @@ import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.informatika.rest.dto.DrugAvabDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.DrugRecommendationDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.PrescriptionDTO;
-import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
-import rs.ac.uns.ftn.informatika.rest.model.ERecept;
-import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
-import rs.ac.uns.ftn.informatika.rest.model.Lek;
+import rs.ac.uns.ftn.informatika.rest.model.*;
 import rs.ac.uns.ftn.informatika.rest.repository.EReceptRepository;
+import rs.ac.uns.ftn.informatika.rest.repository.UpitRepository;
 
 import java.util.*;
 
@@ -28,6 +26,9 @@ public class ReceptServis {
     @Autowired
     private EReceptRepository eReceptRepository;
 
+    @Autowired
+    private UpitRepository upitRepository;
+
     public List<Lek> findRecommendedMedicines(DrugRecommendationDTO dto) {
         Apoteka a = apotekaService.findById(dto.getApotekaId());
         Korisnik pacijent = korisnikService.findByEmail(dto.getPacijentEmail());
@@ -40,7 +41,7 @@ public class ReceptServis {
 
     }
 
-    public boolean checkDrugAvabInPharmacy(DrugAvabDTO dto) {
+    public boolean checkDrugAvabInPharmacy(DrugAvabDTO dto, String username) {
         Apoteka a = apotekaService.findById(Long.parseLong(dto.getApotekaId()));
 
         if(a.getMagacin().get(Long.parseLong(dto.getMedId())) >= 1) {
@@ -49,6 +50,15 @@ public class ReceptServis {
 
         Korisnik admin = apotekaService.findPharmacyAdmin(a).get(0);
         Lek l = apotekaService.lekRepository.findLekByID(Long.parseLong(dto.getMedId()));
+
+        Upit u = new Upit();
+        u.setLek(l);
+        u.setKolicina(1);
+        u.setApoteka(a);
+        u.setPosiljalac(korisnikService.findByUsername(username));
+        u.setUspesan(false);
+        
+        upitRepository.save(u);
 
         boolean notify = emailService.notifyPharmacyAdminAboutDrugDeficit(admin, a.getNaziv(), l);
         return false;
