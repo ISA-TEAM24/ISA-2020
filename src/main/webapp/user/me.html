@@ -72,7 +72,7 @@
                         <a class="nav-link" onclick="reloadUpcoming()" id="v-pills-appointments-tab" data-toggle="pill" href="#v-pills-appointments" role="tab" aria-controls="v-pills-appointments" aria-selected="false">Appointments</a>
                         <a class="nav-link" onclick="reloadInfo()" id="v-pills-loyalty-tab" data-toggle="pill" href="#v-pills-loyalty" role="tab" aria-controls="v-pills-loyalty" aria-selected="false">Loyalty/Penalties</a>
                         <a class="nav-link" onclick="reloadSubs()" id="v-pills-subscriptions-tab" data-toggle="pill" href="#v-pills-subscriptions" role="tab" aria-controls="v-pills-subscriptions" aria-selected="false">Subscriptions</a>
-                        <a class="nav-link" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
+                        <a class="nav-link" onclick="loadPastVisits()" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
                         <a class="nav-link" id="v-pills-upcoming-tab" data-toggle="pill" href="#v-pills-upcoming" role="tab" aria-controls="v-pills-upcoming" aria-selected="false">Meds via EPrescription</a>
                         <a class="nav-link" id="v-pills-eprescriptions-tab" data-toggle="pill" href="#v-pills-eprescriptions" role="tab" aria-controls="v-pills-eprescriptions" aria-selected="true">EPrescriptions</a>
                         <a class="nav-link" onclick="reloadReserved()" id="v-pills-reserved-tab" data-toggle="pill" href="#v-pills-reserved" role="tab" aria-controls="v-pills-reserved" aria-selected="false">Reserved</a>
@@ -314,26 +314,15 @@
                                   <thead>
                                     <tr>
                                       <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Pharmacist</th>
-                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Price</th>
-                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Length</th>
-                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Date</th>
+                                      <th scope="col" onclick="sortTable(1,'history_pharmacist_table')">Price</th>
+                                      <th scope="col" onclick="sortTable(2,'history_pharmacist_table')">Length</th>
+                                      <th scope="col" onclick="sortTable(3,'history_pharmacist_table')">Date</th>
 
                                     </tr>
                                     
                                   </thead>
-                                  <tbody>  
-                                    <tr>
-                                      <td>D</td>
-                                      <td>P</td>
-                                      <td>L</td>
-                                      <td>1</td>
-                                    </tr>  
-                                    <tr>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                      <td>Z</td>
-                                      <td>2</td>
-                                    </tr>               
+                                  <tbody id="farm_body_id">  
+                                                 
                                   </tbody>
                                 </table>
                                 <table class="table table-bordered mb-0" id="history_dermatologist_table">
@@ -345,31 +334,8 @@
                                       <th scope="col" onclick="sortTable(3,'history_dermatologist_table')">Date</th>  
                                     </tr>
                                   </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td>D</td>
-                                      <td>P</td>
-                                      <td>L</td>
-                                      <td>D</td>
-                                    </tr>  
-                                    <tr>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                    </tr> 
-                                    <tr>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                    </tr>    
-                                    <tr>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                    </tr>                                                                             
+                                  <tbody id="derm_body_id">
+                                                                                                                 
                                   </tbody>
                                 </table>
                                 <div class="container py-3">

@@ -134,4 +134,9 @@ public class PosetaController {
 
     }
 
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/user/visits")
+    public List<Poseta> getPastVisitsForUser(Principal p) {
+        return posetaService.getPastVisitsForUser(p.getName());
+    }
 }
