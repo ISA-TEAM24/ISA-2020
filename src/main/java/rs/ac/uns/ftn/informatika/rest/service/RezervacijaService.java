@@ -173,4 +173,15 @@ public class RezervacijaService {
 
         return true;
     }
+
+
+    public boolean removeMedicineAllowed(Long id, Apoteka a) {
+        List<Rezervacija> rezervaije = rezervacijaRepository.findRezervacijaByApotekaIDAndLEKID(a.getID(), id);
+        for (Rezervacija r : rezervaije) {
+            if (r.getRokZaPreuzimanje().after(new Date()) && (r.getDatumPreuz() == null || r.getDatumPreuz().after(new Date()))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import rs.ac.uns.ftn.informatika.rest.model.Ponuda;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.Lek;
 import rs.ac.uns.ftn.informatika.rest.model.Rezervacija;
@@ -25,7 +26,7 @@ public class EmailService {
         boolean retBool = true; // assume success
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("noreply@mdnn.com");
+            message.setFrom("mdnnpharm@gmail.com");
             message.setTo(to);
             message.setSubject(subject);
             message.setText(text);
@@ -49,6 +50,14 @@ public class EmailService {
         return sendSimpleMessage(r.getPacijent().getEmail(), "You reserved some medicine", text);
     }
 
+    public boolean sendOfferDeniedMessage(Ponuda p) {
+        String text = "Hello " + p.getPosiljalac().getUsername();
+        text += ", your offer for purchase order made by " + p.getNarudzbenica().getApoteka().getNaziv() + " pharmacy ";
+        text += " has been rejected. We are sorry and we hope you will make more offers for our purcahse orders in future.";
+
+        return sendSimpleMessage(p.getPosiljalac().getEmail(), "Purchase order closed", text);
+    }
+
     public boolean notifyPharmacyAdminAboutDrugDeficit(Korisnik k, String apoteka, Lek l) {
         String text = "Dear, " + k.getUsername() + ". ";
         text += "You should order more of the following drug: " + l.getNaziv() + " ID: " + l.getID();
@@ -57,5 +66,11 @@ public class EmailService {
         return sendSimpleMessage(k.getEmail(), "Drug deficit", text);
     }
 
+    public boolean sendOfferAcceptedMessage(Ponuda p) {
+        String text = "Hello " + p.getPosiljalac().getUsername();
+        text += ", Congratulations! Your offer for purchase order made by " + p.getNarudzbenica().getApoteka().getNaziv() + " pharmacy ";
+        text += " has been accepted. We hope you will make more offers for our purcahse orders in future.";
 
+        return sendSimpleMessage(p.getPosiljalac().getEmail(), "Purchase order closed", text);
+    }
 }

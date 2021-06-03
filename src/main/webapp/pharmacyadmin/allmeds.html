@@ -101,46 +101,24 @@
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-6">
-                    <input id="search" type="text" class="form-control" placeholder="Search" aria-label="Search" >
+                    <input id="search" onkeyup='search()' type="text" class="form-control" placeholder="Search" aria-label="Search" >
                 </div>
                 <div class="col-3"></div>
             </div>
             <br><br>
             <div class="table-wrapper-scroll-y my-custom-scrollbar" style="width: 80%;">
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped" id="allTable">
                 <thead>
                     <tr>
-                    <th scope="col">Medicine</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Shape</th>
-                    <th scope="col"></th>
+                    <th scope="col" onclick="sortTable(0,'allTable')">Medicine</th>
+                    <th scope="col" onclick="sortTable(1,'allTable')">Structure</th>
+                    <th scope="col" onclick="sortTable(2,'allTable')">Manufacturer</th>
+                    <th scope="col" onclick="sortTable(3,'allTable')">Grade</th>
+                    <th scope="col" onclick="sortTable(4,'allTable')"></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                    <td>Brufen</td>
-                    <td>antibiotik</td>
-                    <td>sirup</td>
-                    <td></td>
-                    </tr>
-                    <tr>
-                    <td>Aspirin</td>
-                    <td>antibiotik</td>
-                    <td>tableta</td>
-                    <td></td>
-                    </tr> 
-                    <tr>
-                    <td>Vitamin C</td>
-                    <td>antibiotik</td>
-                    <td>tableta</td>
-                    <td></td>
-                    </tr>
-                    <tr>
-                    <td>Daktanol</td>
-                    <td>antibiotik</td>
-                    <td>tableta</td>
-                    <td><button type="button" id="AddMedBtn" class="btn btn-info-fire">Add to pharmacy</button></td>
-                    </tr>
+                <tbody id="myTable">
+                    
                 </tbody>
                 </table>
             </div>
