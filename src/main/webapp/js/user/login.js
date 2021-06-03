@@ -7,6 +7,7 @@ $('#loginNavBtn').click(function(){
         $("#registrationFormModal").hide();
         disableScroll();
         $('#loginFormModal').show();
+        hideIndex1()
         
         
     }); 
@@ -35,4 +36,27 @@ function enableScroll(){
 $('#cancelBtn').click(function(){
         enableScroll();
         $('#loginFormModal').hide();
+        showIndex1()
     }); 
+
+function showIndex1() {
+
+    $('#search').show()
+    $('#banner_section').show()
+
+}
+
+function hideIndex1() {
+
+    $('#search').hide()
+    $('#banner_section').hide()
+
+}
+
+function logoListener() {
+
+    $("#registrationFormModal").hide();
+    $('#loginFormModal').hide();
+    showIndex1()
+    enableScroll()
+}
