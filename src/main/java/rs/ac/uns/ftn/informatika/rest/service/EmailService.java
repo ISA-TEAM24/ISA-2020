@@ -8,11 +8,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import rs.ac.uns.ftn.informatika.rest.model.Ponuda;
-import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
-import rs.ac.uns.ftn.informatika.rest.model.Lek;
-import rs.ac.uns.ftn.informatika.rest.model.Rezervacija;
+import rs.ac.uns.ftn.informatika.rest.model.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Properties;
 
 @Service
@@ -72,5 +70,14 @@ public class EmailService {
         text += " has been accepted. We hope you will make more offers for our purcahse orders in future.";
 
         return sendSimpleMessage(p.getPosiljalac().getEmail(), "Purchase order closed", text);
+    }
+
+    public boolean sendPromotionMessage(Korisnik user, Promocija promocija) {
+
+        SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy");
+        String text = promocija.getTekst() + "\n\nUntil: " + dateFormat.format(promocija.getVaziDo());
+        String naslov = promocija.getApoteka().getNaziv() + ": " + promocija.getNaslov();
+
+        return sendSimpleMessage(user.getEmail(), naslov, text);
     }
 }
