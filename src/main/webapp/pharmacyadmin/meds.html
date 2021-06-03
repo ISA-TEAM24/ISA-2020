@@ -74,7 +74,7 @@
                     <a class="nav-link" href="newactionpromotion.html">Actions/promotions</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="inquiries.html">Inquiries</a>
+                      <a class="nav-link" href="queries.html">Queries</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="absencerequestpage.html">Absence requests</a>
@@ -101,13 +101,13 @@
   
             <div class="row">
                 <div class="col-4 text-center">
-                    <button type="button" id="AddMedBtn" class="btn btn-primary">Add new medicine</button>
+                    <button type="button" id="AddMedBtn" onclick='addMeds()' class="btn btn-primary">Add new medicine</button>
                 </div>
                 <div class="col-4 text-center">
-                    <button type="button" id="OrderMedBtn" class="btn btn-primary">Order medicine</button>
+                    <button type="button" id="OrderMedBtn" onclick='purcahseOrder()' class="btn btn-primary">Order medicine</button>
                 </div>
                 <div class="col-4 text-center">
-                    <button type="button" id="MedsPricelistBtn" class="btn btn-primary">Change medicine price</button>
+                    <button type="button" id="MedsPricelistBtn" onclick='priceList()' class="btn btn-primary">Change medicine price</button>
                 </div>
             </div>
             <br>
@@ -118,7 +118,7 @@
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-6">
-                    <input id="search" type="text" class="form-control" placeholder="Search" aria-label="Search" >
+                    <input id="search" onkeyup="search()" type="text" class="form-control" placeholder="Search" aria-label="Search" >
                 </div>
                 <div class="col-3"></div>
             </div>
@@ -127,42 +127,17 @@
             <br>
     
             <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                <table class="table table-bordered table-striped mb-0">
+                <table class="table table-bordered table-striped mb-0" id="allTable">
                 <thead>
                     <tr>
-                    <th scope="col">Medicine</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Shape</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Price</th>
-                    <th scope="col"></th>
+                    <th scope="col" onclick="sortTable(0,'allTable')">Medicine</th>
+                    <th scope="col" onclick="sortTable(1,'allTable')">Amount</th>
+                    <th scope="col" onclick="sortTable(2,'allTable')">Price</th>
+                    <th scope="col" onclick="sortTable(3,'allTable')"></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                    <td>Brufen</td>
-                    <td>antibiotik</td>
-                    <td>sirup</td>
-                    <td>30</td>
-                    <td>1000</td>
-                    <td><button type="button" id="Order1" class="btn btn-info-fire">Remove</button></td>
-                    </tr>
-                    <tr>
-                    <td>Aspirin</td>
-                    <td>antibiotik</td>
-                    <td>tableta</td>
-                    <td>30</td>
-                    <td>500</td>
-                    <td><button type="button" id="Order1" class="btn btn-info-fire">Remove</button></td>
-                    </tr> 
-                    <tr>
-                    <td>Vitamin C</td>
-                    <td>antibiotik</td>
-                    <td>tableta</td>
-                    <td>50</td>
-                    <td>300</td>
-                    <td><button type="button" id="Order1" class="btn btn-info-fire">Remove</button></td>
-                    </tr>
+                <tbody id="myTable">
+                    
                 </tbody>
                 </table>
             </div>

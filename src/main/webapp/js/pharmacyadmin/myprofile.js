@@ -16,7 +16,10 @@ function getMe() {
                 console.log('Prvi put je logovan.')
                 window.location.href = 'index.html';
             }
-        }  
+        },
+        error : function() {
+            window.location.href = '../index.html';
+        }   
     })
 }
 

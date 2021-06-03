@@ -1,29 +1,27 @@
-package rs.ac.uns.ftn.informatika.rest.model;
+package rs.ac.uns.ftn.informatika.rest.dto;
 
-import javax.persistence.*;
+import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
+import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
+import rs.ac.uns.ftn.informatika.rest.model.Lek;
 
-@Entity
-public class Upit {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
-    @OneToOne
+import javax.persistence.Column;
+import javax.persistence.OneToOne;
+
+public class UpitDTO {
+
+    private String id;
     private Lek lek;
-    @Column(nullable = false)
     private int kolicina;
-    @OneToOne
     private Apoteka apoteka;
-    @Column(nullable = false)
     private boolean uspesan;
-    @OneToOne
     private Korisnik posiljalac;
 
-    public Long getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Lek getLek() {
