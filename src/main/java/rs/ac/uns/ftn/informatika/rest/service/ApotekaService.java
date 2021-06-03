@@ -13,6 +13,7 @@ import rs.ac.uns.ftn.informatika.rest.dto.IdDTO;
 import rs.ac.uns.ftn.informatika.rest.model.*;
 import rs.ac.uns.ftn.informatika.rest.repository.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.*;
@@ -476,5 +477,64 @@ public class ApotekaService {
     public List<ZaposleniDTO> getInteractedDermatologistsForUser(String username) {
 
         return getInteractedEmployeesForUser(username, true);
+    }
+
+    public List<PharmacyMedicineDTO> findMedicineWithPriceAndAmount(Apoteka a) {
+        Map<Long, Integer> magacin = a.getMagacin();
+        Map<String, Integer> cenovnik = a.getCenovnik();
+        List<PharmacyMedicineDTO> meds = new ArrayList<>();
+        for (Map.Entry<Long, Integer> entry : magacin.entrySet()) {
+            PharmacyMedicineDTO dto = new PharmacyMedicineDTO();
+            Lek lek = lekRepository.findLekByID(entry.getKey());
+            dto.setID(lek.getID());
+            dto.setLek(lek.getNaziv());
+            dto.setKolicina(entry.getValue());
+            for (Map.Entry<String, Integer> entry2 : cenovnik.entrySet()) {
+                if (entry2.getKey().equalsIgnoreCase(dto.getLek())) {
+                    dto.setCena(entry2.getValue());
+                }
+            }
+            meds.add(dto);
+        }
+        return meds;
+    }
+
+    public void removeMedicineFromPharmacy(Apoteka a, Long id) {
+        a.getMagacin().remove(id);
+        Lek l = lekRepository.findLekByID(id);
+        a.getCenovnik().remove(l.getNaziv());
+
+        apotekaRepository.save(a);
+    }
+
+    public void addNewMedicineInStorage(Lek lek, Apoteka a) {
+        a.getMagacin().put(lek.getID(), 0);
+        a.getCenovnik().put(lek.getNaziv(), 0);
+
+        apotekaRepository.save(a);
+    }
+
+    public void checkDoesPharmacyHaveMedicine(Apoteka a, Lek lek) {
+        if (!a.getMagacin().containsKey(lek.getID())) {
+            a.getMagacin().put(lek.getID(), 0);
+            a.getCenovnik().put(lek.getNaziv(), 0);
+            apotekaRepository.save(a);
+        }
+    }
+
+    public void updateStorage(Ponuda p, Apoteka a) {
+        Map<String, Integer> lekovi = p.getSpisakLekova();
+        Map<Long, Integer> magacin = a.getMagacin();
+        for (Map.Entry<String, Integer> entry1 : lekovi.entrySet()) {
+            Lek l = lekRepository.findLekByNaziv(entry1.getKey());
+            if (magacin.containsKey(l.getID())) {
+                int oldValue = magacin.get(l.getID());
+                int newValue = oldValue + entry1.getValue();
+                magacin.replace(l.getID(), newValue);
+            } else {
+                magacin.put(l.getID(), entry1.getValue());
+            }
+        }
+        apotekaRepository.save(a);
     }
 }

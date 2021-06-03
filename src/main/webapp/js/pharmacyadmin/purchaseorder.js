@@ -31,6 +31,55 @@ function getMe() {
     })
 }
 
+function createPO() {
+
+    var a = $('#closingDate').val();
+    var table = $('#table');
+    var medName = "";
+    var medAmount = "";
+    table.find('tr').each(function (i, el) {
+        var $tds = $(this).find('td'),
+            medName = $tds.eq(0).text(),
+            medAmount = $tds.eq(1).text();               
+        if (medName != "") 
+            map[medName] = medAmount;    
+    });      
+    for (const [key, value] of Object.entries(map)) {
+        var obj = {
+            naziv : key,
+            kolicina : parseInt(value)
+        };
+        reqs.push(obj);
+    }
+    console.log(reqs);
+
+    var order = {
+        rok : a,
+        lekovi : reqs
+    };
+
+    console.log(order);
+    var o = JSON.stringify(order);
+    console.log(o);
+
+    $.ajax({
+        type : 'POST',
+        url : '/order/create',  
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        data : o,                 
+        success : function() {   
+            alert("Successfuly created purchase order.");
+            document.location.href = "orderslist.html";
+        },
+        error : function() {
+            alert("You can't create empty purchase order.");
+        }
+    });
+}
+
 
 function addClickListener(addItemButton) {
 
@@ -41,8 +90,6 @@ function addClickListener(addItemButton) {
     });
 
 }
-
-
 
 function renderItemHTML() {
 
@@ -57,7 +104,6 @@ function renderItemHTML() {
         divvy.empty();
         var amountId = "amount" + counter;
         var medicineNameId = "medicineName" + counter;
-        //var addItemId = "addItem" + counter;
         var addItemButtonId = "addItemButton" + counter;
         var divId = "div" + counter;    
         var myhtml = '';
@@ -77,44 +123,58 @@ function renderItemHTML() {
         amount = $('#' + amountId).val();
 
         if (!validateFields()) {
-            ('Invalid field value');
             shouldRender = false;
             openItems = false;
             return;
         }
-        
-        var buttonId = 'button-' + counter;
-        var rowId = 'row' + counter;
-        var rowwy = $('#tbodyId');
-        rowwyHTML = "";
-        rowwyHTML +='<tr id="'+ rowId +'">';
-        rowwyHTML += "<td>";
-        rowwyHTML += name;
-        rowwyHTML += "</td>";
-        rowwyHTML += "<td>";
-        rowwyHTML += amount;
-        rowwyHTML += "</td>";
-        rowwyHTML += "<td>";
-        rowwyHTML += '<button class="btn btn-primary-custom" id="' + buttonId + '">Remove</button>';
-        rowwyHTML += "</td>";
-        rowwyHTML +="</tr>";
-        rowwy.append(rowwyHTML);
 
-        $('#' + buttonId).click(function(){
+        $.ajax({
+            type: 'PUT',
+            url: '/phadmin/checkmedicine/' + name,
+            contentType : 'application/json',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+            },
+            success : function() {
+                alert("Succesfully added medicine.");
+                var buttonId = 'button-' + counter;
+                var rowId = 'row' + counter;
+                var rowwy = $('#tbodyId');
+                rowwyHTML = "";
+                rowwyHTML +='<tr id="'+ rowId +'">';
+                rowwyHTML += "<td>";
+                rowwyHTML += name;
+                rowwyHTML += "</td>";
+                rowwyHTML += "<td>";
+                rowwyHTML += amount;
+                rowwyHTML += "</td>";
+                rowwyHTML += "<td>";
+                rowwyHTML += '<button class="btn btn-primary-custom" id="' + buttonId + '">Remove</button>';
+                rowwyHTML += "</td>";
+                rowwyHTML +="</tr>";
+                rowwy.append(rowwyHTML);
 
-            var splitty = this.id.split('-');
-            $('#' + 'row' + splitty[1]).remove();
-            
+                $('#' + buttonId).click(function(){
 
-        });
-        
-        //map[name] = amount;
-        console.log('herere')
-        $('#table').show();
-        $('#' + divId).hide();
-        $('#' + addItemButtonId).hide();
-        openItems = false;
-        shouldRender = true;
+                    var splitty = this.id.split('-');
+                    $('#' + 'row' + splitty[1]).remove();
+
+                });
+                
+                map[name] = amount;
+                $('#table').show();
+                $('#' + divId).hide();
+                $('#' + addItemButtonId).hide();
+                openItems = false;
+                shouldRender = true;
+
+            }, error : function() {
+                alert("That medicine doesn't exist in system.")
+                shouldRender = false;
+                openItems = false;
+                return;
+            }
+        })        
     });
 };
 
