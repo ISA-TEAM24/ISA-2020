@@ -6,8 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import rs.ac.uns.ftn.informatika.rest.dto.ConsultExamDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.PenaltyDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.*;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
 import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
 import rs.ac.uns.ftn.informatika.rest.service.ConsultExamService;
@@ -98,4 +97,24 @@ public class ConsultExamController {
 
         return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
     }
+
+    @PreAuthorize("hasRole('DERMATOLOGIST')")
+    @PostMapping("/visit/predefinedtermins")
+    public ResponseEntity<List<PredefExamDTO>> findPredefinedTerminsByDerm(@RequestBody IdDTO dto) {
+
+        List<PredefExamDTO> retList = new ArrayList<>();
+        List<Poseta> predefined = consultExamService.findPredefinedVisitsForDermatologist(Long.parseLong(dto.getId()));
+
+        for(Poseta p : predefined) {
+            PredefExamDTO newdto = new PredefExamDTO();
+            newdto.setDate(p.getDatum().toString());
+            newdto.setTime(p.getVreme().toString());
+            newdto.setIdexam(p.getID());
+
+            retList.add(newdto);
+        }
+
+        return new ResponseEntity<>(retList, HttpStatus.OK);
+    }
+
 }
