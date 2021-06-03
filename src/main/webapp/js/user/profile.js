@@ -12,8 +12,21 @@
 // id="v-pills-profile-tab" 
 // profile-change-password-button
 // #profile-password-confirm-input
+
+//$('#profile-email-input').
+const name_field = $('#profile-name-input')
+const lastname_field = $('#profile-lastname-input')
+const address_field = $('#profile-address-input')
+const country_field = $('#profile-country-input')
+const city_field = $('#profile-city-input')
+const phone_field = $('#profile-phone-input')
+
+const alert_box = $('#alert_modal')
+const alert_title = $('#alert_title')
+const alert_body = $('#alert_body')
+
 $(document).ready(function() {
-    test_login();
+    reloadProfile()
     
 })
 
@@ -30,6 +43,11 @@ function saveUser(){
      phoneNumber :  $('#profile-phone-input').val().trim()    
     }
 
+    if (validateUserFields(obj) == false){
+        return;
+    }
+    
+
     $.ajax({
         type:'PUT',
         url: '/api/user/edit/me',
@@ -39,6 +57,8 @@ function saveUser(){
         },
         data : JSON.stringify(obj),
         success : function(user) {
+            showError('Information change', 'You have successfully edited your information!')
+            console.log('success')
             fillProfile(user);
         },
         error : function() {
@@ -109,21 +129,33 @@ function changePassword() {
     // /auth/change-password
 
     if ($('#profile-password-old-input').val() == "") {
+        showError('Error message', 'Current password field is empty')
         return;
     }
+    
 
     if ($('#profile-password-new-input').val() == "") {
+        showError('Error message', 'New password field is empty')
         return;
     }
 
     if ($('#profile-password-confirm-input').val() == "") {
+        showError('Error message', 'Confirm password field is empty')
         return;
     }
 
+    if ($('#profile-password-new-input').val().length < 4) {
+        showError('Error message', 'New password has to be at least 4 characters or longer')
+        return;
+    }
+
+
+
     if ($('#profile-password-new-input').val() != $('#profile-password-confirm-input').val()) {
-        $('#profile-change-password-button').html('Passwords must match!')
+        //$('#profile-change-password-button').html('Passwords must match!')
         console.log('bad match')
-        countDownToButtonEdit(2)   
+        //countDownToButtonEdit(2)
+        showError('Error message', 'New password and Confirm password fields do not match')   
         return;
     }
 
@@ -141,14 +173,16 @@ function changePassword() {
         },
         data : JSON.stringify(obj),
         success : function() {
-            $('#profile-change-password-button').html('Successfully changed pw!')
-            countDownToReload(2);
+            //$('#profile-change-password-button').html('Successfully changed pw!')
+            //countDownToReload(2);
+            showError('Password change', 'You have successfully changed your password!')
 
         },
         error : function() {
             console.log('An Error has occured while trying to reload the profile')
-            $('#profile-change-password-button').html('Failed to change pw!')
-            countDownToReload(2);
+            //$('#profile-change-password-button').html('Failed to change pw!')
+           // countDownToReload(2);
+           showError('Password change Error', 'There has been an error changing your password please try again.')
         }
         
     })
@@ -180,4 +214,61 @@ function countDownToButtonEdit(x) {
 
 
     }, 1000);
+}
+
+function validateUserFields(obj) {
+
+    var pattern = name_field.attr("pattern");
+    var re = new RegExp(pattern);
+    if (!re.test(name_field.val())) {
+        showError('Error message', 'Forbidden character in name field')
+        console.log('name does not match pattern')
+        return false;
+    }
+
+    if (!re.test(lastname_field.val())) {
+        console.log('last name does not match pattern')
+        showError('Error message', 'Forbidden character in last name field')
+        return false;
+    }
+
+    pattern = address_field.attr("pattern")
+    re = new RegExp(pattern)
+    if (!re.test(address_field.val())) {
+        console.log('address does not match pattern')
+        showError('Error message', 'Forbidden character in address field')
+        return false;
+    }
+
+    pattern = phone_field.attr("pattern")
+    re = new RegExp(pattern)
+    if (!re.test(phone_field.val())) {
+        console.log('phone does not match pattern')
+        showError('Error message', 'Forbidden character in phone field')
+        return false;
+    }
+
+    pattern = name_field.attr("pattern")
+    re = new RegExp(pattern)
+    if (!re.test(city_field.val())) {
+        console.log('city does not match pattern')
+        showError('Error message', 'Forbidden character in city field')
+        return false;
+    }
+
+    if (!re.test(country_field.val())) {
+        console.log('country does not match pattern')
+        showError('Error message', 'Forbidden character in country field')
+        return false;
+    }
+
+    
+    return true;
+}
+
+function showError(title, text) {
+
+    alert_title.html(title)
+    alert_body.html(text)
+    alert_box.modal('show');
 }

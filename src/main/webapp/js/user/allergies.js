@@ -1,5 +1,5 @@
 //allergies_body
-
+const alergies_box = $('#allergies-input')
 function reloadAllergies() {
 
     $.ajax({
@@ -62,12 +62,12 @@ function addAllergy() {
         data : JSON.stringify(obj),
         success : function() {
             $('#allergies-add-button').html("Allergy added!");
-            countDownToAllergyButtonEdit(3);
+            //countDownToAllergyButtonEdit(3);
             reloadAllergies();
         },
         error : function() {
             $('#allergies-add-button').html("Failed to add allergy!");
-            countDownToAllergyButtonEdit(3);
+            //countDownToAllergyButtonEdit(3);
         }
         
     })

@@ -14,7 +14,7 @@ $("#signUpNavBtn").click(function(){
 $("#cancelRegBtn").click(function(){
     enableScroll();
     $("#registrationFormModal").hide();
-    showIndex1()
+    showIndex1() 
 
 });
 

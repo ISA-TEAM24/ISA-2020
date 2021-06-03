@@ -33,7 +33,7 @@ public class KorisnikController {
     }
 
     @GetMapping("/whoami")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAnyRole('PHARMACIST', 'DERMATOLOGIST', 'USER', 'PH_ADMIN')")
     public Korisnik user(Principal user) {
         return this.korisnikService.findByUsername(user.getName());
     }

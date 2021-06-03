@@ -97,7 +97,7 @@
                                     </div>
 
                                     <div class="col-2 mx-1">
-                                        <input type="text" class="input-border" disabled id="profile-email-input" value="mark@mdnn.com">
+                                        <input type="text" class="input-border" disabled id="profile-email-input" value="">
                                     </div>
 
                                     <div class="offset-2 col-2 left-pad">
@@ -113,7 +113,7 @@
                                         <label>name</label>
                                     </div>
                                     <div class="col-1 mx-1">
-                                        <input type="text" class="input-border" id="profile-name-input" value="Mark">
+                                        <input type="text" class="input-border" id="profile-name-input" pattern='^[" "A-ZŠČĆŽĐa-zščćžđ]{2,32}$' value="">
                                     </div>
 
                                     <div class="offset-3 left-pad">
@@ -130,13 +130,13 @@
                                         <label>last name</label>
                                     </div>
                                     <div class="col-1 mx-0">
-                                        <input type="text" class="input-border" id="profile-lastname-input" value="Ristic">
+                                        <input type="text" class="input-border" id="profile-lastname-input" value="">
                                     </div>
                                     <div class="offset-3 col-2 left-pad">
                                       <label>confirm password</label>
                                   </div>
                                   <div class="col-1 mx-0">
-                                      <input type="text" class="input-border" id="profile-password-confirm-input" value="">
+                                      <input type="password" class="input-border" id="profile-password-confirm-input" value="">
                                   </div>
                                 </div>
 
@@ -145,7 +145,7 @@
                                         <label>address</label>
                                     </div>
                                     <div class="col-2 mx-0">
-                                        <input type="text" class="input-border" id="profile-address-input" value="Software St 5">
+                                        <input type="text" class="input-border" id="profile-address-input" pattern='^[" ""/""."0-9A-ZŠČĆŽĐa-zščćžđ]{5,32}$' value="">
                                     </div>
 
                                     <div class="offset-4 col-3">
@@ -161,7 +161,7 @@
                                         <label>phone number</label>
                                     </div>
                                     <div class="col-2 mx-0">
-                                        <input type="text" class="input-border" id="profile-phone-input" value="5161 16141 525">
+                                        <input type="text" class="input-border" id="profile-phone-input" pattern='^[" ""-""/""+"0-9]{5,32}$' value="">
                                     </div>
 
                                     <div class="offset-4 col-3">
@@ -174,13 +174,13 @@
                                       <label>country</label>
                                   </div>
                                   <div class="col-2 mx-0">
-                                      <input type="text" class="input-border" id="profile-country-input" value="Serbia">
+                                      <input type="text" class="input-border" id="profile-country-input" value="">
                                   </div>
                                   <div class="offset-2 col-2 left-pad">
                                     <label>city</label>
                                 </div>
                                 <div class="col-2 mx-0">
-                                    <input type="text" class="input-border" id="profile-city-input" value="Novi Sad">
+                                    <input type="text" class="input-border" id="profile-city-input" value="">
                                 </div>
                                   
                               </div>
@@ -215,7 +215,7 @@
                             <div class="container py-5">
                               <div class="row">
                                 <div class="offset-3 col-2">
-                                  <input id="allergies-input" type="text" placeholder="Allergy name">
+                                  <input id="allergies-input" type="text" placeholder="Allergy name" pattern='^[A-ZŠČĆŽĐa-zščćžđ]{2,32}$'>
                                 </div>
                                 <div class="offset-1 col-2">
                                   <button onclick="addAllergy()" class="btn btn-info-allergies" id="allergies-add-button">Add new allergy </button>
@@ -716,7 +716,38 @@
     <div class="img-contact" id="contact">
 
     </div>
-
+    <!-- MODAL ALERT-->
+    <div class="container" id="custom_alert_box">
+      <div class="row">
+        <div class="col-md-12">
+    
+          <div class="modal fade" data-keyboard="false" data-backdrop="static" id="alert_modal" tabindex="-1">
+            <div class="modal-dialog modal-md">
+              <div class="modal-content">
+    
+                  <div class="modal-header">
+                    <h5 class="modal-title w-100" id="alert_title"> Zakazivanje dodatnog pregleda </h5>
+                    <button class="close" data-dismiss="modal">&times;</button>
+    
+                  </div>
+    
+                  <div class ="modal-body" id="alert_body">
+                    
+                  </div>
+    
+                  <br>
+    
+                  <div class="modal-footer">
+                    <button class="btn btn-info-allergies" id="close_alert" data-dismiss="modal">Close</button>
+                  </div>
+    
+              </div>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </div>
 
     <script
             src="https://code.jquery.com/jquery-3.6.0.min.js"
