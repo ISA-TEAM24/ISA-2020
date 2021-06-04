@@ -11,6 +11,7 @@ import rs.ac.uns.ftn.informatika.rest.dto.DrugAvabDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.DrugRecommendationDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.PrescriptionDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
+import rs.ac.uns.ftn.informatika.rest.model.ERecept;
 import rs.ac.uns.ftn.informatika.rest.model.Lek;
 import rs.ac.uns.ftn.informatika.rest.service.ReceptServis;
 
@@ -61,5 +62,12 @@ public class ReceptController {
             return new ResponseEntity(null, HttpStatus.OK);
         }
         return new ResponseEntity(null, HttpStatus.BAD_REQUEST);
+    }
+
+    @PreAuthorize("hasAnyRole('USER')")
+    @GetMapping("/user/getpastpresc")
+    public List<ERecept> getPastPresc(Principal p) {
+
+        return receptServis.findPrescsForUser(p.getName());
     }
 }

@@ -71,10 +71,10 @@
                         <a class="nav-link" onclick="reloadAllergies()" id="v-pills-allergies-tab" data-toggle="pill" href="#v-pills-allergies" role="tab" aria-controls="v-pills-allergies" aria-selected="false">Allergies</a>         
                         <a class="nav-link" onclick="reloadUpcoming()" id="v-pills-appointments-tab" data-toggle="pill" href="#v-pills-appointments" role="tab" aria-controls="v-pills-appointments" aria-selected="false">Appointments</a>
                         <a class="nav-link" onclick="reloadInfo()" id="v-pills-loyalty-tab" data-toggle="pill" href="#v-pills-loyalty" role="tab" aria-controls="v-pills-loyalty" aria-selected="false">Loyalty/Penalties</a>
-                        <a class="nav-link" id="v-pills-subscriptions-tab" data-toggle="pill" href="#v-pills-subscriptions" role="tab" aria-controls="v-pills-subscriptions" aria-selected="false">Subscriptions</a>
-                        <a class="nav-link" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
+                        <a class="nav-link" onclick="reloadSubs()" id="v-pills-subscriptions-tab" data-toggle="pill" href="#v-pills-subscriptions" role="tab" aria-controls="v-pills-subscriptions" aria-selected="false">Subscriptions</a>
+                        <a class="nav-link" onclick="loadPastVisits()" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
                         <a class="nav-link" id="v-pills-upcoming-tab" data-toggle="pill" href="#v-pills-upcoming" role="tab" aria-controls="v-pills-upcoming" aria-selected="false">Meds via EPrescription</a>
-                        <a class="nav-link" id="v-pills-eprescriptions-tab" data-toggle="pill" href="#v-pills-eprescriptions" role="tab" aria-controls="v-pills-eprescriptions" aria-selected="true">EPrescriptions</a>
+                        <a class="nav-link" onclick="reloadPastPresc()" id="v-pills-eprescriptions-tab" data-toggle="pill" href="#v-pills-eprescriptions" role="tab" aria-controls="v-pills-eprescriptions" aria-selected="true">EPrescriptions</a>
                         <a class="nav-link" onclick="reloadReserved()" id="v-pills-reserved-tab" data-toggle="pill" href="#v-pills-reserved" role="tab" aria-controls="v-pills-reserved" aria-selected="false">Reserved</a>
                         <a class="nav-link" id="v-pills-complaints-tab" data-toggle="pill" href="#v-pills-complaints" role="tab" aria-controls="v-pills-complaints" aria-selected="false">Complaints</a>
                         <a class="nav-link" id="v-pills-pickup-tab" data-toggle="pill" href="#v-pills-pickup" role="tab" aria-controls="v-pills-pickup" aria-selected="false">New Consult</a>
@@ -97,7 +97,7 @@
                                     </div>
 
                                     <div class="col-2 mx-1">
-                                        <input type="text" class="input-border" disabled id="profile-email-input" value="mark@mdnn.com">
+                                        <input type="text" class="input-border" disabled id="profile-email-input" value="">
                                     </div>
 
                                     <div class="offset-2 col-2 left-pad">
@@ -113,7 +113,7 @@
                                         <label>name</label>
                                     </div>
                                     <div class="col-1 mx-1">
-                                        <input type="text" class="input-border" id="profile-name-input" value="Mark">
+                                        <input type="text" class="input-border" id="profile-name-input" pattern='^[" "A-ZŠČĆŽĐa-zščćžđ]{2,32}$' value="">
                                     </div>
 
                                     <div class="offset-3 left-pad">
@@ -130,13 +130,13 @@
                                         <label>last name</label>
                                     </div>
                                     <div class="col-1 mx-0">
-                                        <input type="text" class="input-border" id="profile-lastname-input" value="Ristic">
+                                        <input type="text" class="input-border" id="profile-lastname-input" value="">
                                     </div>
                                     <div class="offset-3 col-2 left-pad">
                                       <label>confirm password</label>
                                   </div>
                                   <div class="col-1 mx-0">
-                                      <input type="text" class="input-border" id="profile-password-confirm-input" value="">
+                                      <input type="password" class="input-border" id="profile-password-confirm-input" value="">
                                   </div>
                                 </div>
 
@@ -145,7 +145,7 @@
                                         <label>address</label>
                                     </div>
                                     <div class="col-2 mx-0">
-                                        <input type="text" class="input-border" id="profile-address-input" value="Software St 5">
+                                        <input type="text" class="input-border" id="profile-address-input" pattern='^[" ""/""."0-9A-ZŠČĆŽĐa-zščćžđ]{5,32}$' value="">
                                     </div>
 
                                     <div class="offset-4 col-3">
@@ -161,7 +161,7 @@
                                         <label>phone number</label>
                                     </div>
                                     <div class="col-2 mx-0">
-                                        <input type="text" class="input-border" id="profile-phone-input" value="5161 16141 525">
+                                        <input type="text" class="input-border" id="profile-phone-input" pattern='^[" ""-""/""+"0-9]{5,32}$' value="">
                                     </div>
 
                                     <div class="offset-4 col-3">
@@ -174,13 +174,13 @@
                                       <label>country</label>
                                   </div>
                                   <div class="col-2 mx-0">
-                                      <input type="text" class="input-border" id="profile-country-input" value="Serbia">
+                                      <input type="text" class="input-border" id="profile-country-input" value="">
                                   </div>
                                   <div class="offset-2 col-2 left-pad">
                                     <label>city</label>
                                 </div>
                                 <div class="col-2 mx-0">
-                                    <input type="text" class="input-border" id="profile-city-input" value="Novi Sad">
+                                    <input type="text" class="input-border" id="profile-city-input" value="">
                                 </div>
                                   
                               </div>
@@ -215,7 +215,7 @@
                             <div class="container py-5">
                               <div class="row">
                                 <div class="offset-3 col-2">
-                                  <input id="allergies-input" type="text" placeholder="Allergy name">
+                                  <input id="allergies-input" type="text" placeholder="Allergy name" pattern='^[A-ZŠČĆŽĐa-zščćžđ]{2,32}$'>
                                 </div>
                                 <div class="offset-1 col-2">
                                   <button onclick="addAllergy()" class="btn btn-info-allergies" id="allergies-add-button">Add new allergy </button>
@@ -281,37 +281,19 @@
                                 <table class="table table-bordered mb-0">
                                   <thead>
                                     <tr>
-                                      <th scope="col">Dermatologist name</th>
+                                      <th scope="col">Pharmacy name</th>
                                       <th scope="col">Subscribed</th>
 
                                     </tr>
                                   </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td>MDNN 5</td>
-                                      <td>
-                                        <label class="switch">
-                                        <input type="checkbox">
-                                        <span class="slider round"></span>
-                                      </label>
-                                    </td>
-                                    </tr>   
-                                    <tr>
-                                      <td>MDNN 7</td>
-                                      <td>
-                                        <label class="switch">
-                                          <input type="checkbox">
-                                          <span class="slider round"></span>
-                                        </label>
-                                      </td>
-                                    </tr>
-                                                           
+                                  <tbody id="subs_body">
+                                                     
                                   </tbody>
                                 </table>
                                 <div class="container py-3">
                                   <div class="row">
                                     <div class="offset-7 col-2">
-                                      <button class="btn-info-profile btn">&nbsp&nbspSave Changes&nbsp&nbsp</button>
+                                      <button class="btn-info-profile btn" hidden>&nbsp&nbspSave Changes&nbsp&nbsp</button>
                                     </div>
                                   </div>
                                 </div>
@@ -332,26 +314,15 @@
                                   <thead>
                                     <tr>
                                       <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Pharmacist</th>
-                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Price</th>
-                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Length</th>
-                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Date</th>
+                                      <th scope="col" onclick="sortTable(1,'history_pharmacist_table')">Price</th>
+                                      <th scope="col" onclick="sortTable(2,'history_pharmacist_table')">Length</th>
+                                      <th scope="col" onclick="sortTable(3,'history_pharmacist_table')">Date</th>
 
                                     </tr>
                                     
                                   </thead>
-                                  <tbody>  
-                                    <tr>
-                                      <td>D</td>
-                                      <td>P</td>
-                                      <td>L</td>
-                                      <td>1</td>
-                                    </tr>  
-                                    <tr>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                      <td>Z</td>
-                                      <td>2</td>
-                                    </tr>               
+                                  <tbody id="farm_body_id">  
+                                                 
                                   </tbody>
                                 </table>
                                 <table class="table table-bordered mb-0" id="history_dermatologist_table">
@@ -363,31 +334,8 @@
                                       <th scope="col" onclick="sortTable(3,'history_dermatologist_table')">Date</th>  
                                     </tr>
                                   </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td>D</td>
-                                      <td>P</td>
-                                      <td>L</td>
-                                      <td>D</td>
-                                    </tr>  
-                                    <tr>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                    </tr> 
-                                    <tr>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                    </tr>    
-                                    <tr>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                      <td>Z</td>
-                                      <td>A</td>
-                                    </tr>                                                                             
+                                  <tbody id="derm_body_id">
+                                                                                                                 
                                   </tbody>
                                 </table>
                                 <div class="container py-3">
@@ -440,35 +388,16 @@
                               <br>
                               <br>
                               <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
-                                <table class="table table-bordered mb-0" id="history_pharmacist_table">
+                                <table class="table table-bordered mb-0"  id="past_epresc_table">
                                   <thead>
-                                    <tr>
-                                      <th scope="col" onclick="">Medicine name</th>
-                                      <th scope="col" onclick="">Date of prescription</th>
-                                      <th scope="col" onclick="">Prescribed by</th>
-                                      <th scope="col" onclick="">Status</th>
-                                    </tr>
+                                    <th scope="col" onclick="sortTableNumeric(0,'past_epresc_table')">Number of meds</th>
+                                    <th scope="col" onclick="sortTable(1,'past_epresc_table')">Date of prescription</th>
+                                    <th scope="col" onclick="sortTableNumeric(2,'past_epresc_table')">Duration of Therapy</th>
+                                    <th scope="col" onclick="sortTable(3,'past_epresc_table')">Status</th>
                                     
                                   </thead>
-                                  <tbody>  
-                                    <tr>
-                                      <td>Aspirin</td>
-                                      <td>25/07/2020</td>
-                                      <td>Marky Mark</td>
-                                      <td>New</td>                                 
-                                    </tr> 
-                                    <tr>
-                                      <td>Aspirin</td>
-                                      <td>25/07/2020</td>
-                                      <td>Darky Dark</td>
-                                      <td>Processed</td>                                 
-                                    </tr> 
-                                    <tr>
-                                      <td>Aspirin</td>
-                                      <td>25/07/2020</td>
-                                      <td>Sparky Spark</td>
-                                      <td>Rejected</td>                                 
-                                    </tr>               
+                                  <tbody id="past_epresc_body">  
+                                               
                                   </tbody>
                                 </table>                            
                               </div>
@@ -478,11 +407,11 @@
                                     <label for="">Filter by status</label>
                                   </div>
                                   <div class="col-3">
-                                    <select class="custom-select modified-select">
-                                      <option selected></option>
-                                      <option value="1">New</option>
-                                      <option value="2">Processed</option>
-                                      <option value="3">Rejected</option>
+                                    <select class="custom-select modified-select" id="past_presc_filter">
+                                      <option selected  id="presc_none"></option>
+                                      <option value="1"  id="presc_new">Active</option>
+                                      <option value="2"  id="presc_processed">Processed</option>
+                                      <option value="3"  id="presc_rejected">Rejected</option>
                                     </select>
                                   </div>
                                 </div>
@@ -716,7 +645,38 @@
     <div class="img-contact" id="contact">
 
     </div>
-
+    <!-- MODAL ALERT-->
+    <div class="container" id="custom_alert_box">
+      <div class="row">
+        <div class="col-md-12">
+    
+          <div class="modal fade" data-keyboard="false" data-backdrop="static" id="alert_modal" tabindex="-1">
+            <div class="modal-dialog modal-md">
+              <div class="modal-content">
+    
+                  <div class="modal-header">
+                    <h5 class="modal-title w-100" id="alert_title"> Zakazivanje dodatnog pregleda </h5>
+                    <button class="close" data-dismiss="modal">&times;</button>
+    
+                  </div>
+    
+                  <div class ="modal-body" id="alert_body">
+                    
+                  </div>
+    
+                  <br>
+    
+                  <div class="modal-footer">
+                    <button class="btn btn-info-allergies" id="close_alert" data-dismiss="modal">Close</button>
+                  </div>
+    
+              </div>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </div>
 
     <script
             src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -737,10 +697,12 @@
     <script src="../js/user/profile.js"></script>
     <script src="../js/user/allergies.js"></script>
     <script src="../js/user/loyaltyPen.js"></script>
+    <script src="../js/user/subscriptions.js"></script>
     <script src="../js/user/consult.js"></script>
     <script src="../js/user/upcoming.js"></script>
     <script src="../js/user/reserved.js"></script>
     <script src="../js/user/grading.js"></script>
+    <script src="../js/user/eprescriptions.js"></script>
 
   </body>
 </html>

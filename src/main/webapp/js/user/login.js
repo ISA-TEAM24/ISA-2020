@@ -1,3 +1,6 @@
+const username = $('#username_input')
+const pw = $('#pw_input')
+
 $(document).ready(function() {
     console.log("asdsasad");
 });
@@ -7,6 +10,7 @@ $('#loginNavBtn').click(function(){
         $("#registrationFormModal").hide();
         disableScroll();
         $('#loginFormModal').show();
+        hideIndex1()
         
         
     }); 
@@ -35,4 +39,90 @@ function enableScroll(){
 $('#cancelBtn').click(function(){
         enableScroll();
         $('#loginFormModal').hide();
+        showIndex1()
     }); 
+
+function showIndex1() {
+
+    $('#search').show()
+    $('#banner_section').show()
+
+}
+
+function hideIndex1() {
+
+    $('#search').hide()
+    $('#banner_section').hide()
+
+}
+
+function logoListener() {
+
+    $("#registrationFormModal").hide();
+    $('#loginFormModal').hide();
+    showIndex1()
+    enableScroll()
+}
+
+function logMeIn() {
+
+    var form = {
+        "username" : username.val(),
+        "password" : pw.val()
+    };
+
+    $.ajax({
+        type:'POST',
+        url: '/auth/login',
+        contentType : 'application/json',
+        data : JSON.stringify(form),
+        success : function(retToken) {
+            console.log('LOGGED IN')
+            console.log('your token is' + retToken.accessToken)
+            localStorage.setItem('myToken', retToken.accessToken);
+            redirectMe()
+            //reloadProfile();
+        },
+        error : function() {
+            console.log('FAIL LOGIN')
+            alert('Bad credentials')
+        }
+        
+    })
+
+}
+
+function redirectMe() {
+
+    $.ajax({
+        type:'GET',
+        url: '/api/whoami',
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        success : function(user) {
+            redirectToDashboard(user)
+        },
+        error : function() {
+            console.log('An Error has occured while trying to reload the profile')
+        }
+        
+    })
+}
+
+function redirectToDashboard(user){
+
+    if (user.activated == false) {
+        alert('Please activate your account')
+    }
+
+    var auth = user.authorities[0]
+    console.log(auth)
+    if(auth.authority == "ROLE_USER") {
+        console.log('You are a user redirecting to me.html')
+        window.location.href = 'user/me.html'
+    }
+        
+}
+

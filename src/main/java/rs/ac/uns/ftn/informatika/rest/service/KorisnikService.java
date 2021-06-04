@@ -12,10 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import rs.ac.uns.ftn.informatika.rest.dto.AllergiesDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.OcenaDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.UserEditDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.UserRequest;
+import rs.ac.uns.ftn.informatika.rest.dto.*;
 import rs.ac.uns.ftn.informatika.rest.model.*;
 import rs.ac.uns.ftn.informatika.rest.repository.*;
 
@@ -271,6 +268,11 @@ public class KorisnikService {
 		System.out.println("SUM // Counter");
 		System.out.println(sum + " // " + counter);
 	}
+
+	public void updateSubsForUser(SubCheckDTO dto, String username) {
+		Korisnik k = findByUsername(username);
+		k.getLoyaltyInfo().getPratiPromocije().put(dto.getNaziv(), dto.isPrati());
+  	}
 
 	public void addGodisnjiInfo(TimeOffZahtev timeOffZahtev) {
 		Korisnik k = timeOffZahtev.getPodnosilac();

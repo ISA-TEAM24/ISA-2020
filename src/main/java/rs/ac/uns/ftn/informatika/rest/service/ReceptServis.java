@@ -136,4 +136,10 @@ public class ReceptServis {
 
         return true;
     }
+
+    public List<ERecept> findPrescsForUser(String username) {
+
+        Korisnik k = korisnikService.findByUsername(username);
+        return eReceptRepository.findAllByEmail(k.getEmail());
+    }
 }
