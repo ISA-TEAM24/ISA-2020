@@ -166,6 +166,12 @@ public class PosetaService {
             System.out.println("---- TODAY IS: " + today);
             System.out.println("---- POSETA WAS ON : " + p.getDatum());
 
+            if(!p.getDijagnoza().equals("")) {
+                retList.add(p);
+
+                continue;
+            }
+
             // posetas date occurs before todays date
             if (p.getDatum().compareTo(today) < 0) {
                 System.out.println("bio je pre");
