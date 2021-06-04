@@ -7,7 +7,7 @@ insert into authority values (5, 'ROLE_PH_ADMIN');
 
 
 INSERT INTO public.godisnji_info (id, do_datuma, na_godisnjem, od_datuma) VALUES (1, NULL, false, NULL);
-INSERT INTO public.loyalty_info (id, klasa, penali, poeni) VALUES (1, 0, 0, 0);
+INSERT INTO public.loyalty_info (id, klasa, penali, poeni) VALUES (1, 0, 2, 0);
 
 INSERT INTO public.loyalty_apoteka_mapping(
     loyalty_id, prati, naziv_apoteke)
