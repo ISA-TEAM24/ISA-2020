@@ -14,6 +14,7 @@ import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Lek;
 import rs.ac.uns.ftn.informatika.rest.service.ReceptServis;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +33,9 @@ public class ReceptController {
 
     @PreAuthorize("hasAnyRole('PHARMACIST', 'DERMATOLOGIST')")
     @PostMapping("/checkDrugAvailabity")
-    public ResponseEntity checkDrugAvailabity(@RequestBody DrugAvabDTO dto) {
+    public ResponseEntity checkDrugAvailabity(@RequestBody DrugAvabDTO dto, Principal p) {
 
-        if(receptServis.checkDrugAvabInPharmacy(dto)) {
+        if(receptServis.checkDrugAvabInPharmacy(dto, p.getName())) {
             return new ResponseEntity(null, HttpStatus.ACCEPTED);
         }
 

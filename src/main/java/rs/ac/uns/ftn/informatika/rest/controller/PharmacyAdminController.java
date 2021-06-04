@@ -11,6 +11,7 @@ import rs.ac.uns.ftn.informatika.rest.dto.*;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.Lek;
+import rs.ac.uns.ftn.informatika.rest.model.Upit;
 import rs.ac.uns.ftn.informatika.rest.service.*;
 
 import java.security.Principal;
@@ -232,4 +233,21 @@ public class PharmacyAdminController {
         narudzbenicaService.createPurchaseOrder(narudzbenicaDTO, a, k);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
+
+    @GetMapping("/getunsuccessfulqueries")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public List<UpitDTO> getUnscuccessfulQueries(Principal p) {
+        Apoteka apoteka = apotekaService.getPharmacyByAdmin(p.getName());
+        return pharmacyAdminService.getUnscuccessfulQueries(apoteka);
+    }
+
+    @DeleteMapping("/deletequery/{id}")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public ResponseEntity<?> deleteQuery(@PathVariable("id") String id) {
+        Long ID = Long.parseLong(id);
+        pharmacyAdminService.deleteQuery(ID);
+
+        return new ResponseEntity<>(null,HttpStatus.OK);
+    }
+
 }

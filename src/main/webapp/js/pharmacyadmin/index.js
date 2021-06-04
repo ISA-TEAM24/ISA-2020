@@ -36,6 +36,8 @@ function getMe() {
         },
         success : function(phadmin) {
             localStorage.setItem('role', 'phadmin');
+            var message = document.getElementById("welcomeMessage");
+            message.innerHTML = `Welcome back ${phadmin.ime} ${phadmin.prezime}`;
             if(phadmin.prvoLogovanje == true) {
                 console.log('Prvi put je logovan.')
                 requirePwChange(phadmin.username.toString());

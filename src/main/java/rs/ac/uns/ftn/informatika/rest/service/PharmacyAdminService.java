@@ -5,12 +5,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.informatika.rest.dto.DermatologDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.HireDermatologistDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.UpitDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.UserEditDTO;
-import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
-import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
-import rs.ac.uns.ftn.informatika.rest.model.Period;
-import rs.ac.uns.ftn.informatika.rest.model.RadnoInfo;
+import rs.ac.uns.ftn.informatika.rest.model.*;
 import rs.ac.uns.ftn.informatika.rest.repository.KorisnikRepository;
+import rs.ac.uns.ftn.informatika.rest.repository.UpitRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +19,9 @@ public class PharmacyAdminService {
 
     @Autowired
     private KorisnikRepository userRepository;
+
+    @Autowired
+    private UpitRepository upitRepository;
 
     @Autowired
     private ApotekaService apotekaService;
@@ -94,5 +96,26 @@ public class PharmacyAdminService {
 
         apotekaService.saveApoteka(a);
         userRepository.save(k);
+    }
+
+    public List<UpitDTO> getUnscuccessfulQueries(Apoteka apoteka) {
+        List<Upit> upiti = upitRepository.findByApotekaAndUspesan(apoteka, false);
+        List<UpitDTO> upitiDTO = new ArrayList<>();
+        for (Upit u : upiti) {
+            UpitDTO dto = new UpitDTO();
+            dto.setApoteka(u.getApoteka());
+            dto.setId(u.getID().toString());
+            dto.setKolicina(u.getKolicina());
+            dto.setLek(u.getLek());
+            dto.setPosiljalac(u.getPosiljalac());
+
+            upitiDTO.add(dto);
+        }
+
+        return upitiDTO;
+    }
+
+    public void deleteQuery(Long id) {
+        upitRepository.deleteById(id);
     }
 }
