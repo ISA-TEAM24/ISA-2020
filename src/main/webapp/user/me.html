@@ -451,32 +451,42 @@
                               <div class="container">
                                 <div class="row">
                                   <div class="col-2">
+                                    <label for="">Complaint group</label>
+                                  </div>
+                                  <div class="col-4">
+                                    <select class="custom-select modified-select" id="select_group_complaint">
+                                      <option selected id="select_none_c"></option>
+                                      <option value="1" id="select_pharmacy_c">Pharmacy</option>
+                                      <option value="2" id="select_meds_c">Medicine</option>
+                                      <option value="3" id="select_farm_c">Pharmacist</option>
+                                      <option value="4" id="select_derm_c">Dermatologist</option>
+                                    </select>
+                                  </div>
+                                </div>                            
+                                <br>
+                                <div class="row">
+                                  <div class="col-2">
                                     <label for="">Complaint about</label>
                                   </div>
                                   <div class="col-4">
-                                    <select class="custom-select modified-select">
-                                      <option selected></option>
-                                      <option value="1">1</option>
-                                      <option value="2">2</option>
-                                      <option value="3">3</option>
+                                    <select class="custom-select modified-select" id="select_specific_complaint">
                                     </select>
                                   </div>
                                 </div>
-                                <br>
                                 <br>
                                 <div class="row">
                                   <div class="col-2">
                                     <label for="">Complaint text</label>
                                   </div>
                                   <div class="col-9">
-                                    <textarea rows="10" cols="70" id="TITLE" placeholder="Complaint text">
+                                    <textarea rows="10" cols="70" id="complaint_text" placeholder="Complaint text">
                                     </textarea>
                                   </div>                                 
                                 </div>
                                 <br>
                                 <div class="row">
                                   <div class="offset-8">
-                                    <button class="btn btn-info-profile">&nbspSend complaint&nbsp</button>
+                                    <button onclick="sendComplaint()" class="btn btn-info-profile">&nbspSend complaint&nbsp</button>
                                   </div>
                                 </div>
                               </div>
@@ -699,6 +709,7 @@
     <script src="../js/user/grading.js"></script>
     <script src="../js/user/eprescriptions.js"></script>
     <script src="../js/user/eprescmeds.js"></script>
+    <script src="../js/user/complaints.js"></script>
 
   </body>
 </html>

@@ -129,6 +129,14 @@ public class KorisnikController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
+    @PostMapping("/user/complaint/add")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity getInteractedPharmacistsForUser(@RequestBody ZalbaDTO dto, Principal p) {
+
+        korisnikService.leaveComplaint(dto, p.getName());
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
 
 
 
