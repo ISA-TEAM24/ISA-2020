@@ -41,6 +41,7 @@ function loadPastVisits() {
         },
         error : function() {
             console.log('An Error has occured while trying to reload the history')
+            showError('Error message', 'Could not load history of visits.')
         }
         
     })

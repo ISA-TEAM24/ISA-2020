@@ -73,13 +73,13 @@
                         <a class="nav-link" onclick="reloadInfo()" id="v-pills-loyalty-tab" data-toggle="pill" href="#v-pills-loyalty" role="tab" aria-controls="v-pills-loyalty" aria-selected="false">Loyalty/Penalties</a>
                         <a class="nav-link" onclick="reloadSubs()" id="v-pills-subscriptions-tab" data-toggle="pill" href="#v-pills-subscriptions" role="tab" aria-controls="v-pills-subscriptions" aria-selected="false">Subscriptions</a>
                         <a class="nav-link" onclick="loadPastVisits()" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
-                        <a class="nav-link" id="v-pills-upcoming-tab" data-toggle="pill" href="#v-pills-upcoming" role="tab" aria-controls="v-pills-upcoming" aria-selected="false">Meds via EPrescription</a>
+                        <a class="nav-link" onclick="reloadPastPrescMeds()" id="v-pills-upcoming-tab" data-toggle="pill" href="#v-pills-upcoming" role="tab" aria-controls="v-pills-upcoming" aria-selected="false">Meds via EPrescription</a>
                         <a class="nav-link" onclick="reloadPastPresc()" id="v-pills-eprescriptions-tab" data-toggle="pill" href="#v-pills-eprescriptions" role="tab" aria-controls="v-pills-eprescriptions" aria-selected="true">EPrescriptions</a>
                         <a class="nav-link" onclick="reloadReserved()" id="v-pills-reserved-tab" data-toggle="pill" href="#v-pills-reserved" role="tab" aria-controls="v-pills-reserved" aria-selected="false">Reserved</a>
                         <a class="nav-link" id="v-pills-complaints-tab" data-toggle="pill" href="#v-pills-complaints" role="tab" aria-controls="v-pills-complaints" aria-selected="false">Complaints</a>
-                        <a class="nav-link" id="v-pills-pickup-tab" data-toggle="pill" href="#v-pills-pickup" role="tab" aria-controls="v-pills-pickup" aria-selected="false">New Consult</a>
+                        <a class="nav-link" onclick="penaltyCheck('Consult scheduling not allowed', 'v-pills-profile-tab')" id="v-pills-pickup-tab" data-toggle="pill" href="#v-pills-pickup" role="tab" aria-controls="v-pills-pickup" aria-selected="false">New Consult</a>
                         <a class="nav-link" id="v-pills-penalties-tab" data-toggle="pill" href="#v-pills-penalties" role="tab" aria-controls="v-pills-penalties" aria-selected="false">Grading</a>
-                        <a class="nav-link" id="v-pills-reservemeds-tab" data-toggle="pill" href="#v-pills-reservemeds" role="tab" aria-controls="v-pills-reservemeds" aria-selected="false">Reserve medicine</a>
+                        <a class="nav-link" onclick="penaltyCheck('Medicine reservation not allowed', 'v-pills-profile-tab')" id="v-pills-reservemeds-tab" data-toggle="pill" href="#v-pills-reservemeds" role="tab" aria-controls="v-pills-reservemeds" aria-selected="false">Reserve medicine</a>                      
                         <a class="nav-link" id="v-pills-dermatologists-tab" data-toggle="pill" href="#v-pills-dermatologists" role="tab" aria-controls="v-pills-dermatologists" aria-selected="false">Dermatologists</a>
                         <a class="nav-link" id="v-pills-pharmacists-tab" data-toggle="pill" href="#v-pills-pharmacists" role="tab" aria-controls="v-pills-pharmacists" aria-selected="false">Pharmacists</a>
                     </div>
@@ -364,17 +364,12 @@
                                   <tr>
                                     <th scope="col" onclick="">Medicine name</th>
                                     <th scope="col" onclick="">Date of prescription</th>
-                                    <th scope="col" onclick="">Prescribed by</th>
+                                    <th scope="col" onclick="">In Pharmacy</th>
                                   </tr>
                                   
                                 </thead>
-                                <tbody>  
-                                  <tr>
-                                    <td>Aspirin</td>
-                                    <td>25/07/2020</td>
-                                    <td>Marky Mark</td>
-                                    
-                                  </tr>                
+                                <tbody id="past_presc_meds_body">  
+               
                                 </tbody>
                               </table>                            
                             </div>
@@ -458,32 +453,42 @@
                               <div class="container">
                                 <div class="row">
                                   <div class="col-2">
+                                    <label for="">Complaint group</label>
+                                  </div>
+                                  <div class="col-4">
+                                    <select class="custom-select modified-select" id="select_group_complaint">
+                                      <option selected id="select_none_c"></option>
+                                      <option value="1" id="select_pharmacy_c">Pharmacy</option>
+                                      <option value="2" id="select_meds_c">Medicine</option>
+                                      <option value="3" id="select_farm_c">Pharmacist</option>
+                                      <option value="4" id="select_derm_c">Dermatologist</option>
+                                    </select>
+                                  </div>
+                                </div>                            
+                                <br>
+                                <div class="row">
+                                  <div class="col-2">
                                     <label for="">Complaint about</label>
                                   </div>
                                   <div class="col-4">
-                                    <select class="custom-select modified-select">
-                                      <option selected></option>
-                                      <option value="1">1</option>
-                                      <option value="2">2</option>
-                                      <option value="3">3</option>
+                                    <select class="custom-select modified-select" id="select_specific_complaint">
                                     </select>
                                   </div>
                                 </div>
-                                <br>
                                 <br>
                                 <div class="row">
                                   <div class="col-2">
                                     <label for="">Complaint text</label>
                                   </div>
                                   <div class="col-9">
-                                    <textarea rows="10" cols="70" id="TITLE" placeholder="Complaint text">
+                                    <textarea rows="10" cols="70" id="complaint_text" placeholder="Complaint text">
                                     </textarea>
                                   </div>                                 
                                 </div>
                                 <br>
                                 <div class="row">
                                   <div class="offset-8">
-                                    <button class="btn btn-info-profile">&nbspSend complaint&nbsp</button>
+                                    <button onclick="sendComplaint()" class="btn btn-info-profile">&nbspSend complaint&nbsp</button>
                                   </div>
                                 </div>
                               </div>
@@ -793,6 +798,8 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"
     ></script>
+    <script src="../js/user/showerror.js"></script>
+    <script src="../js/user/penaltycheck.js"></script>
     <script src="../js/user/history.js"></script>
     <script src="../js/user/profile.js"></script>
     <script src="../js/user/allergies.js"></script>
@@ -803,9 +810,10 @@
     <script src="../js/user/reserved.js"></script>
     <script src="../js/user/grading.js"></script>
     <script src="../js/user/eprescriptions.js"></script>
-
+    <script src="../js/user/eprescmeds.js"></script>
+    <script src="../js/user/complaints.js"></script>
+    <script src="../js/authorization.js"></script>
     <script src="../js/user/dermatologists.js"></script>
     <script src="../js/user/pharmacists.js"></script>
-
   </body>
 </html>

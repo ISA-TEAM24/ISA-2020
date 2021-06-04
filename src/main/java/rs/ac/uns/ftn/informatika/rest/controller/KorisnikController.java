@@ -46,6 +46,7 @@ public class KorisnikController {
     }
 
     @PutMapping("user/subs/update")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity updateSubsForUser(@RequestBody SubCheckDTO dto, Principal p) {
 
         korisnikService.updateSubsForUser(dto, p.getName());
@@ -125,6 +126,14 @@ public class KorisnikController {
         if (dto.getOcena() < 0)
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         korisnikService.leaveGrade(dto, p.getName());
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @PostMapping("/user/complaint/add")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity getInteractedPharmacistsForUser(@RequestBody ZalbaDTO dto, Principal p) {
+
+        korisnikService.leaveComplaint(dto, p.getName());
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 

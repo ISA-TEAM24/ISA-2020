@@ -35,6 +35,9 @@ public class KorisnikService {
 	@Autowired
 	private ApotekaRepository apotekaRepository;
 
+	@Autowired
+	private ZalbaRepository zalbaRepository;
+
 	@Lazy
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -282,5 +285,17 @@ public class KorisnikService {
 		godisnjiInfo.setDoDatuma(timeOffZahtev.getDoDatuma());
 		k.setGodisnjiInfo(godisnjiInfo);
 		userRepository.save(k);
+	}
+
+	public void leaveComplaint(ZalbaDTO dto, String username) {
+
+		Zalba z = new Zalba();
+		z.setDatum(new Date());
+		z.setIdPrimaoca(dto.getIdPrimaoca());
+		z.setVrstaPrimaoca(dto.getVrstaPrimaoca());
+		z.setOd(findByUsername(username));
+		z.setText(dto.getText());
+
+		zalbaRepository.save(z);
 	}
 }
