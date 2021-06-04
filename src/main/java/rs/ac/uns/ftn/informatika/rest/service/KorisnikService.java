@@ -147,7 +147,6 @@ public class KorisnikService {
 		return false;
 	}
 
-
     public void leaveGrade(OcenaDTO dto, String username) {
 
 		Korisnik k = findByUsername(username);
@@ -270,10 +269,18 @@ public class KorisnikService {
 		System.out.println(sum + " // " + counter);
 	}
 
-
 	public void updateSubsForUser(SubCheckDTO dto, String username) {
 		Korisnik k = findByUsername(username);
 		k.getLoyaltyInfo().getPratiPromocije().put(dto.getNaziv(), dto.isPrati());
+  }
+
+	public void addGodisnjiInfo(TimeOffZahtev timeOffZahtev) {
+		Korisnik k = timeOffZahtev.getPodnosilac();
+		GodisnjiInfo godisnjiInfo = new GodisnjiInfo();
+		godisnjiInfo.setNaGodisnjem(true);
+		godisnjiInfo.setOdDatuma(timeOffZahtev.getOdDatuma());
+		godisnjiInfo.setDoDatuma(timeOffZahtev.getDoDatuma());
+		k.setGodisnjiInfo(godisnjiInfo);
 		userRepository.save(k);
 	}
 }

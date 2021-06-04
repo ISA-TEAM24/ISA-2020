@@ -13,5 +13,6 @@ public interface TimeOffZahtevRepository extends JpaRepository<TimeOffZahtev, Lo
 
     List<TimeOffZahtev> findAll();
     List<TimeOffZahtev> findAllByPodnosilac(Korisnik podnosilac);
+    List<TimeOffZahtev> findByStanjeZahteva(TimeOffZahtev.Stanje stanjeZahteva);
 
 }
