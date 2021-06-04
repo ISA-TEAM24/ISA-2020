@@ -6,8 +6,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import rs.ac.uns.ftn.informatika.rest.dto.TOffDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.TimeOffDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.TimeOffRejectDTO;
+import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.TimeOffZahtev;
+import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
+import rs.ac.uns.ftn.informatika.rest.service.EmailService;
+import rs.ac.uns.ftn.informatika.rest.service.KorisnikService;
 import rs.ac.uns.ftn.informatika.rest.service.TimeOffRequestService;
 
 import java.security.Principal;
@@ -19,6 +25,15 @@ public class TimeOffRequestController {
 
     @Autowired
     private TimeOffRequestService timeOffRequestService;
+
+    @Autowired
+    private ApotekaService apotekaService;
+
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private KorisnikService korisnikService;
 
     @PostMapping("/addnew")
     @PreAuthorize("hasAnyRole('PHARMACIST', 'DERMATOLOGIST')")
@@ -38,4 +53,34 @@ public class TimeOffRequestController {
 
         return timeOffRequestService.getAllMyRequests(user.getName());
     }
+
+    @GetMapping("/getrequestsbypharmacy")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public List<TOffDTO> getRequestsByPharmacy(Principal p)  {
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        return timeOffRequestService.getAllTimeOffsByPharmacy(a);
+    }
+
+    @PutMapping("/accept/{id}")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public ResponseEntity<?> acceptTimeOffRequest(@PathVariable("id") String id) {
+        TimeOffZahtev timeOffZahtev = timeOffRequestService.acceptTimeOffRequest(id);
+        korisnikService.addGodisnjiInfo(timeOffZahtev);
+        if (emailService.sendTimeOffAccepted(timeOffZahtev))
+            return new ResponseEntity<>(null, HttpStatus.OK);
+
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+
+    @PutMapping("/reject")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public ResponseEntity<?> rejectTimeOffRequest(@RequestBody TimeOffRejectDTO timeOffRejectDTO) {
+        TimeOffZahtev timeOffZahtev = timeOffRequestService.rejectTimeOffRequest(timeOffRejectDTO.getId());
+        if (emailService.sendTimeOffRejected(timeOffZahtev, timeOffRejectDTO))
+            return new ResponseEntity<>(null, HttpStatus.OK);
+
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+
+
 }

@@ -48,7 +48,7 @@ public class NarudzbenicaController {
     @PreAuthorize("hasRole('PH_ADMIN')")
     public List<OrdersDTO> getActiveOrdersFromPharmacy(Principal p) {
         Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
-        return narudzbenicaService.getActiveOrdersFromPharmacy(a);
+        return narudzbenicaService.getAllOrdersFromPharmacy(a);
     }
 
     @DeleteMapping("/delete/{id}")

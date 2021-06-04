@@ -67,7 +67,7 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="purchaseorder.html">New</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item active" href="orderslist.html">Active</a>
+                    <a class="dropdown-item active" href="orderslist.html">All</a>
                 </div>
                 </li>
                 <li class="nav-item">
@@ -77,7 +77,7 @@
                     <a class="nav-link" href="queries.html">Queries</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="absencerequestpage.html">Absence requests</a>
+                <a class="nav-link" href="absencerequestpage.html">TimeOff requests</a>
                 </li>
                 <li class="nav-item dropdown">
                     <div class="btn-group">
@@ -96,18 +96,19 @@
 
         <div class="container" id="pharmacyeditcont">
             <br><br>
-            <h1 align="center">Active purchase orders</h1>
+            <h1 align="center">Purchase orders</h1>
             <br><br>
 
             <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                <table class="table table-bordered table-striped mb-0">
+                <table class="table table-bordered table-striped mb-0" id="allTable">
                 <thead>
                     <tr>
-                    <th scope="col">Created by</th>
-                    <th scope="col">Lasts up to</th>
-                    <th scope="col">Medicines</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col" onclick="sortTable(0,'allTable')">Created by</th>
+                    <th scope="col" onclick="sortTable(1,'allTable')">Status</th>
+                    <th scope="col" onclick="sortTable(2,'allTable')">Lasts up to</th>
+                    <th scope="col" onclick="sortTable(3,'allTable')">Medicines</th>
+                    <th scope="col" onclick="sortTable(4,'allTable')"></th>
+                    <th scope="col" onclick="sortTable(5,'allTable')"></th>
                     </tr>
                 </thead>
                 <tbody id="myTable">
@@ -136,6 +137,7 @@
   ></script>
   <script src="../js/pharmacyadmin/orderlist.js"></script>
   <script src="../js/authorization.js"></script>
+  <script src="../js/pharmacyadmin/sorttable.js"></script>
 
 </body>
 </html>
