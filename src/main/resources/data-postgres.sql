@@ -5,8 +5,15 @@ insert into authority values (3, 'ROLE_ADMINISTRATOR');
 insert into authority values (4, 'ROLE_PHARMACIST');
 insert into authority values (5, 'ROLE_PH_ADMIN');
 
+
 INSERT INTO public.godisnji_info (id, do_datuma, na_godisnjem, od_datuma) VALUES (1, NULL, false, NULL);
 INSERT INTO public.loyalty_info (id, klasa, penali, poeni) VALUES (1, 0, 0, 0);
+
+INSERT INTO public.loyalty_apoteka_mapping(
+    loyalty_id, prati, naziv_apoteke)
+VALUES (1, true, 'apoteka1');
+
+
 
 INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (1, true, 'adresica', 'USA', 'mdnnpharm@gmail.com', 'New York', 'iva', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'ivic', true, '51561616', 'test', 1, 1);
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (1, 1);
@@ -76,7 +83,7 @@ INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, a
 -- farmaceut1 - pw: test
 
 --insert into authority values (4, 'ROLE_PHARMACIST');
-INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (4, true, 'Rakoci Ferenca 22', 'SRB', 'farmaceut123@gmail.com', 'BG', 'Boban', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Bobic', true, '0691100555', 'farmaceut1', 4, NULL);
+INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (4, true, 'Rakoci Ferenca 22', 'SRB', 'farmaceut123000@gmail.com', 'BG', 'Boban', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Bobic', true, '0691100555', 'farmaceut1', 4, NULL);
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (4, 4);
 INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 4);
 
@@ -96,10 +103,13 @@ INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 2);
 
 -- TimeOff zahtevi
 INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (20, '2021-05-27', '2021-05-15', 'seminar', 1,1, 3);
-INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (21, '2021-03-12', '2021-05-15', 'putovanje', 2,1, 3);
+INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (21, '2021-05-15', '2021-05-12', 'putovanje', 2,1, 3);
 
-INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (22, '2021-01-12', '2021-02-15', 'putovanje', 1,0, 4);
-INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (23, '2021-03-12', '2021-03-18', 'putovanje', 2,1, 4);
+INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (22, '2021-02-15', '2021-02-12', 'putovanje', 1,0, 4);
+INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (23, '2021-03-18', '2021-03-13', 'putovanje', 2,1, 4);
+
+INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (24, '2021-06-15', '2021-06-12', 'putovanje', 0,0, 3);
+INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (25, '2021-06-24', '2021-06-20', 'seminar', 0,1, 4);
 
 
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)
@@ -273,3 +283,27 @@ INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id
 INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (3, 7, false, 7, 56, 6);
 INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (4, 2, false, 1, 68, 6);
 
+--erecepti test
+INSERT INTO public.erecept(
+    id, apotekaid, datum_izdavanja, email, ime, prezime, status, trajanje_terapije)
+VALUES(1, 1, '2021-08-13', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 1, 7);
+
+INSERT INTO public.erecept(
+    id, apotekaid, datum_izdavanja, email, ime, prezime, status, trajanje_terapije)
+VALUES(2, 1, '2021-04-12', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 0, 3);
+
+INSERT INTO public.erecept(
+    id, apotekaid, datum_izdavanja, email, ime, prezime, status, trajanje_terapije)
+VALUES(3, 1, '2021-07-11', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 2, 14);
+
+INSERT INTO public.erecept_lekovi(
+    erecept_id, lekovi_id)
+VALUES (1, 55);
+
+INSERT INTO public.erecept_lekovi(
+    erecept_id, lekovi_id)
+VALUES (2, 55);
+
+INSERT INTO public.erecept_lekovi(
+    erecept_id, lekovi_id)
+VALUES (3, 56);

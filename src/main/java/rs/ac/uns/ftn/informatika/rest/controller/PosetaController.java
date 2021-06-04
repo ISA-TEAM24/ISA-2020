@@ -136,6 +136,13 @@ public class PosetaController {
 
     }
 
+
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/user/visits")
+    public List<Poseta> getPastVisitsForUser(Principal p) {
+        return posetaService.getPastVisitsForUser(p.getName());
+    }
+
     @PreAuthorize("hasRole('DERMATOLOGIST')")
     @PostMapping("/exam/schedule")
     public ResponseEntity<String> schedulExamByDermatologist(@RequestBody ScheduleDTO dto, Principal pharmacist) throws ParseException {

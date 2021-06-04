@@ -7,12 +7,14 @@ $("#signUpNavBtn").click(function(){
     $('#loginFormModal').hide();
     $("#registrationFormModal").show();
     disableScroll();
+    hideIndex1()
 });
 
 
 $("#cancelRegBtn").click(function(){
     enableScroll();
     $("#registrationFormModal").hide();
+    showIndex1() 
 
 });
 

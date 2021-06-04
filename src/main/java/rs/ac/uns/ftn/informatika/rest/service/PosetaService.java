@@ -377,4 +377,16 @@ public class PosetaService {
         if(!inform) return false;
         return true;
     }
+
+    public List<Poseta> getPastVisitsForUser(String username) {
+        List<Poseta> retList = new ArrayList<>();
+        Korisnik k = korisnikService.findByUsername(username);
+        for (Poseta p : posetaRepository.findPosetaByPacijentID(k.getID())) {
+            if(p.getDatum().before(new Date()) && p.getVreme().isBefore(LocalTime.now())) {
+                retList.add(p);
+            }
+
+        }
+        return retList;
+    }
 }

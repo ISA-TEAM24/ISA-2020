@@ -1,5 +1,5 @@
 //allergies_body
-
+const alergies_box = $('#allergies-input')
 function reloadAllergies() {
 
     $.ajax({
@@ -46,6 +46,15 @@ function buildTable(data) {
 
 function addAllergy() {
     var name = $('#allergies-input').val().trim();
+
+    var pattern = alergies_box.attr("pattern");
+    var re = new RegExp(pattern);
+    if (!re.test(alergies_box.val())) {
+        showError('Error message', 'Forbidden character in allergy field')
+        console.log('allergy does not match pattern')
+        return
+    }
+
     var list = [];
     list.push(name);
     var obj = {
@@ -61,13 +70,15 @@ function addAllergy() {
         },
         data : JSON.stringify(obj),
         success : function() {
-            $('#allergies-add-button').html("Allergy added!");
-            countDownToAllergyButtonEdit(3);
+            //$('#allergies-add-button').html("Allergy added!");
+            //countDownToAllergyButtonEdit(3);
+
             reloadAllergies();
         },
         error : function() {
-            $('#allergies-add-button').html("Failed to add allergy!");
-            countDownToAllergyButtonEdit(3);
+            //$('#allergies-add-button').html("Failed to add allergy!");
+            //countDownToAllergyButtonEdit(3);
+            showError('Error message', 'Could not add allergy, please try again later')
         }
         
     })
@@ -105,13 +116,15 @@ function removeAllergy(name) {
         },
         data : JSON.stringify(obj),
         success : function() {
-            $('#allergies-add-button').html("Allergy removed!");
-            countDownToAllergyButtonEdit(3);
+            //$('#allergies-add-button').html("Allergy removed!");
+            //countDownToAllergyButtonEdit(3);
+            showError('Success', 'Allergy list successfully edited')
             reloadAllergies();
         },
         error : function() {
-            $('#allergies-add-button').html("Failed to remove allergy!");
-            countDownToAllergyButtonEdit(3);
+            //$('#allergies-add-button').html("Failed to remove allergy!");
+            //countDownToAllergyButtonEdit(3);
+            showError('Error message', 'Could not remove allergy')
         }
         
     })

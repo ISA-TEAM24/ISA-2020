@@ -27,6 +27,54 @@ function addListenerToSaveButton() {
     });   
 }
 
+function loadPastVisits() {
+
+    $.ajax({
+        type:'GET',
+        url: '/api/user/visits',
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        success : function(data) {
+            fillVisitTables(data)
+        },
+        error : function() {
+            console.log('An Error has occured while trying to reload the history')
+        }
+        
+    })
+}
+
+function fillVisitTables(data){
+
+    var fb = $('#farm_body_id')
+    var db = $('#derm_body_id')
+
+    fb.html('')
+    db.html('')
+
+    var fb_html = ''
+    var db_html = ''
+    //zap, cena, trajanje, datum
+    data.forEach(function(v){
+      var date = new Date(v.datum).toString()
+      var parts = date.split(" ")
+      var date_string = parts[3]  + " " + parts[1]  + " " + parts[2]  + " " + parts[0]
+      if (v.vrsta == 'SAVETOVANJE'){
+        fb_html += `<tr><td>dr ${v.zaposleni.ime} ${v.zaposleni.prezime} </td><td>${v.apoteka.cenovnik['SAVETOVANJE']}</td><td>${v.trajanje}</td><td>${date_string}</td></tr>`
+      }
+      else {
+        db_html += `<tr><td>dr ${v.zaposleni.ime} ${v.zaposleni.prezime} </td><td>${v.apoteka.cenovnik['PREGLED']}</td><td>${v.trajanje}</td><td>${date_string}</td></tr>`
+      }
+      
+    })
+
+    fb.html(fb_html)
+    db.html(db_html)
+
+}
+
 function sortTable(n,ttt) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     //console.log(ttt);
@@ -82,3 +130,45 @@ function sortTable(n,ttt) {
       }
     }
   }
+  
+  function sortTableNumeric(n, ttt) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    
+    table = document.getElementById(ttt);
+    switching = true;
+    dir = "asc";
+    while (switching) {
+        switching = false;
+        rows = table.getElementsByTagName("TR");
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+                    var cmpX=isNaN(parseInt(x.innerHTML))?x.innerHTML.toLowerCase():parseInt(x.innerHTML);
+                    var cmpY=isNaN(parseInt(y.innerHTML))?y.innerHTML.toLowerCase():parseInt(y.innerHTML);
+    cmpX=(cmpX=='-')?0:cmpX;
+    cmpY=(cmpY=='-')?0:cmpY;
+            if (dir == "asc") {
+                if (cmpX > cmpY) {
+                    shouldSwitch= true;
+                    break;
+                }
+            } else if (dir == "desc") {
+                if (cmpX < cmpY) {
+                    shouldSwitch= true;
+                    break;
+                }
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount ++;      
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+        }
+    }
+    }  

@@ -207,4 +207,18 @@ public class DermatologistService {
 
         return dto;
     }
+
+    public List<DermDTO> createDermDtos(List<Korisnik> dermatologists) {
+        List<DermDTO> dermatologDTOS = new ArrayList<>();
+        for (Korisnik d : dermatologists) {
+            DermDTO dermatologDTO = new DermDTO();
+            dermatologDTO.setIme(d.getIme());
+            dermatologDTO.setPrezime(d.getPrezime());
+            dermatologDTO.setOcena(d.getOcena());
+            dermatologDTO.setUsername(d.getUsername());
+            dermatologDTO.setRadiUApotekama(getMyPharmacies(d.getUsername()));
+            dermatologDTOS.add(dermatologDTO);
+        }
+        return  dermatologDTOS;
+    }
 }

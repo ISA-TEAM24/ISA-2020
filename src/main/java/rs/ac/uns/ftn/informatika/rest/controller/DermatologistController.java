@@ -117,4 +117,11 @@ public class DermatologistController {
         Apoteka a = pharmacyService.getPharmacyByAdmin(p.getName());
         return dermatologistService.createDermatologRViTermDTO(username, a);
     }
+
+    @GetMapping(value = "/getalldermatologists")
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
+    public List<DermDTO> getAllDermatologistsWithPharmacies() {
+        List<Korisnik> dermatologists = dermatologistService.getAll();
+        return dermatologistService.createDermDtos(dermatologists);
+    }
 }
