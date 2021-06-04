@@ -223,6 +223,9 @@ function sendComplaint() {
     }
 
     console.log(obj)
+    if (obj.text == "") {
+        return
+    }
     
 
     $.ajax({

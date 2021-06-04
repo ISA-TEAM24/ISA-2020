@@ -13,6 +13,7 @@ function reloadReserved() {
         },
         error : function() {
             console.log('Could not load reserved medicine')
+            showError('Error Message', 'Could not load reservations.')
         }
         
     })
@@ -59,11 +60,12 @@ function cancelReservation(id) {
         },
         data : JSON.stringify(obj),
         success : function() {
-            alert('Succesfully canceled')
+            //alert('Succesfully canceled')
             reloadReserved();
         },
         error : function() {
             console.log('Could not load reserved medicine')
+            showError('Error Message', 'Could not cancel reserved medicine.')
         }
         
     })
@@ -92,6 +94,7 @@ function searchMedicine() {
         },
         error : function() {
             console.log('Could not load reserved medicine')
+            showError('Error message', 'Could not find the medicine.')
         }
         
     })
@@ -139,11 +142,13 @@ function reserveMedicine(id) {
         },
         data : JSON.stringify(obj),
         success : function(data) {
-            alert('Successfully reserved')
+            //alert('Successfully reserved')
+            showError('Success Message', 'Successfully reserved medicine.')
             $('#new_reserve_body').html("")
         },
         error : function() {
             console.log('Could not load reserved medicine')
+            showError('Error Message', 'Failed to reserve medicine.')
         }
         
     })

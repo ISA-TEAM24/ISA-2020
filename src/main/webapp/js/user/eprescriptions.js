@@ -17,7 +17,7 @@ function reloadPastPresc() {
             fillPrescTable(past_presc)
         },
         error : function() {
-            showError('Error message', 'Could not load past prescriptions')
+            showError('Error message', 'Could not load past prescriptions.')
         }
         
     })

@@ -243,11 +243,13 @@ function sendGrade() {
         },
         data : JSON.stringify(obj),
         success : function(data) {
-            alert('Successfully left grade')
+            //alert('Successfully left grade')
+            showError('Success message', 'Successfully left grade!')
             resetDropDowns()
         },
         error : function() {
             console.log('Could not leave grade')
+            showError('Error message', 'Could not leave grade, please try again later')
         }
         
     })

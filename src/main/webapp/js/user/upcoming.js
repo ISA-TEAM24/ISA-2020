@@ -12,6 +12,7 @@ function reloadUpcoming() {
         },
         error : function() {
             console.log('Could not load allergies')
+            showError('Error message', 'Could not load upcoming appointments.')
         }
         
     })
@@ -67,6 +68,7 @@ function cancelConsult(btn_id) {
         },
         error : function() {
             console.log('nope')
+            showError('Error message', 'Could not cancel appointment.')
         }
         
     })

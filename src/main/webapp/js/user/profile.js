@@ -71,7 +71,7 @@ function saveUser(){
     
 }
 
-function test_login() {
+/*function test_login() {
     var form = {
         "username" : "test",
         "password" : "test"
@@ -90,10 +90,11 @@ function test_login() {
         },
         error : function() {
             console.log('FAIL LOGIN')
+            showError('Error message', 'Could not load profile information.')
         }
         
     })
-}
+} */
 
 
 function reloadProfile() {
@@ -110,6 +111,7 @@ function reloadProfile() {
         },
         error : function() {
             console.log('An Error has occured while trying to reload the profile')
+            showError('Error message', 'Could not load profile information.')
         }
         
     })
