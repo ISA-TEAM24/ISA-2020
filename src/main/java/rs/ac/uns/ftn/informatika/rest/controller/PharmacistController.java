@@ -8,10 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import rs.ac.uns.ftn.informatika.rest.dto.AllergiesDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.NewPharmacistDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.UserEditDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.UserRequest;
+import rs.ac.uns.ftn.informatika.rest.dto.*;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.repository.AuthorityRepository;
@@ -22,6 +19,7 @@ import rs.ac.uns.ftn.informatika.rest.service.PharmacistService;
 import java.io.Console;
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -95,5 +93,12 @@ public class PharmacistController {
         HttpHeaders headers = new HttpHeaders();
 
         return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/getallpharmacists")
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
+    public List<PharmacistDTO> getAllPharmacistsWithPharmacy() {
+        List<Korisnik> pharmacists = pharmacistService.getAll();
+        return pharmacistService.createPharmDtos(pharmacists);
     }
 }

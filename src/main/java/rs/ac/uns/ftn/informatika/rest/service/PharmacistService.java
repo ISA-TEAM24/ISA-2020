@@ -2,16 +2,18 @@ package rs.ac.uns.ftn.informatika.rest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import rs.ac.uns.ftn.informatika.rest.dto.DermDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.NewPharmacistDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.PharmacistDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.UserEditDTO;
-import rs.ac.uns.ftn.informatika.rest.model.Authority;
-import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
-import rs.ac.uns.ftn.informatika.rest.model.Period;
-import rs.ac.uns.ftn.informatika.rest.model.RadnoInfo;
+import rs.ac.uns.ftn.informatika.rest.model.*;
+import rs.ac.uns.ftn.informatika.rest.repository.ApotekaRepository;
 import rs.ac.uns.ftn.informatika.rest.repository.AuthorityRepository;
 import rs.ac.uns.ftn.informatika.rest.repository.KorisnikRepository;
 
@@ -25,6 +27,9 @@ public class PharmacistService {
 
     @Autowired
     private AuthorityRepository authorityRepository;
+
+    @Autowired
+    private ApotekaRepository pharmacyRepository;
 
     @Lazy
     @Autowired
@@ -104,5 +109,48 @@ public class PharmacistService {
         List<Authority> auths = new ArrayList<>();
         auths.add(auth);
         return auths;
+    }
+
+    public List<Korisnik> getAll() throws AccessDeniedException {
+        ArrayList<Korisnik> pharmacists = new ArrayList<>();
+        List<Korisnik> allUsers = userRepository.findAll();
+
+        for (Korisnik k : allUsers) {
+            boolean isPharmacists = false;
+            for (GrantedAuthority auth : k.getAuthorities()) {
+                if (!auth.getAuthority().equalsIgnoreCase("ROLE_PHARMACIST"))
+                    continue;
+                isPharmacists = true;
+            }
+            if (isPharmacists) pharmacists.add(k);
+        }
+
+        return pharmacists;
+    }
+
+    public List<PharmacistDTO> createPharmDtos(List<Korisnik> pharmacists) {
+        List<PharmacistDTO> pharmacistDTOS = new ArrayList<>();
+        for (Korisnik p : pharmacists) {
+            PharmacistDTO pharmacistDTO = new PharmacistDTO();
+            pharmacistDTO.setIme(p.getIme());
+            pharmacistDTO.setPrezime(p.getPrezime());
+            pharmacistDTO.setOcena(p.getOcena());
+            pharmacistDTO.setUsername(p.getUsername());
+            pharmacistDTO.setApoteka(getMyPharmacy(p.getUsername()));
+            pharmacistDTOS.add(pharmacistDTO);
+        }
+        return pharmacistDTOS;
+    }
+
+    private String getMyPharmacy(String username) {
+        List<Apoteka> pharmacies = pharmacyRepository.findAll();
+        for (Apoteka a : pharmacies) {
+            for (Korisnik k : a.getZaposleni()) {
+                if (username.equalsIgnoreCase(k.getUsername())) {
+                    return a.getNaziv();
+                }
+            }
+        }
+        return "";
     }
 }
