@@ -1,9 +1,11 @@
 package rs.ac.uns.ftn.informatika.rest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.informatika.rest.dto.DrugAvabDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.DrugRecommendationDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.PrescMedDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.PrescriptionDTO;
 import rs.ac.uns.ftn.informatika.rest.model.*;
 import rs.ac.uns.ftn.informatika.rest.repository.EReceptRepository;
@@ -142,4 +144,23 @@ public class ReceptServis {
         Korisnik k = korisnikService.findByUsername(username);
         return eReceptRepository.findAllByEmail(k.getEmail());
     }
+
+    public List<PrescMedDTO> findPrescribedMedicine(String username) {
+
+        Set<PrescMedDTO> retList = new HashSet<>();
+
+        for(ERecept er : findPrescsForUser(username)) {
+            for(Lek l : er.getLekovi()) {
+                PrescMedDTO dto = new PrescMedDTO();
+                dto.setDatumPrepisivanja(er.getDatumIzdavanja());
+                dto.setNazivLeka(l.getNaziv());
+                dto.setNazivApoteke(apotekaService.findById(er.getApotekaID()).getNaziv());
+                retList.add(dto);
+            }
+        }
+
+        return new ArrayList<PrescMedDTO>(retList);
+    }
+
+
 }

@@ -46,6 +46,7 @@ public class KorisnikController {
     }
 
     @PutMapping("user/subs/update")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity updateSubsForUser(@RequestBody SubCheckDTO dto, Principal p) {
 
         korisnikService.updateSubsForUser(dto, p.getName());
