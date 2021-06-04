@@ -6,8 +6,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import rs.ac.uns.ftn.informatika.rest.dto.TOffDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.TimeOffDTO;
+import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.TimeOffZahtev;
+import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
 import rs.ac.uns.ftn.informatika.rest.service.TimeOffRequestService;
 
 import java.security.Principal;
@@ -19,6 +22,9 @@ public class TimeOffRequestController {
 
     @Autowired
     private TimeOffRequestService timeOffRequestService;
+
+    @Autowired
+    private ApotekaService apotekaService;
 
     @PostMapping("/addnew")
     @PreAuthorize("hasAnyRole('PHARMACIST', 'DERMATOLOGIST')")
@@ -37,5 +43,12 @@ public class TimeOffRequestController {
     public List<TimeOffZahtev> getAllRequests(Principal user) {
 
         return timeOffRequestService.getAllMyRequests(user.getName());
+    }
+
+    @GetMapping("/getrequestsbypharmacy")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public List<TOffDTO> getRequestsByPharmacy(Principal p)  {
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        return timeOffRequestService.getAllTimeOffsByPharmacy(a);
     }
 }

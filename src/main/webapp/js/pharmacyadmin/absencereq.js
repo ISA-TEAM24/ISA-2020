@@ -15,56 +15,67 @@ function getMe() {
                 console.log('Prvi put je logovan.')
                 window.location.href = 'index.html';
             }
+            $.ajax({
+                type:'GET',
+                url: '/timeoff/getrequestsbypharmacy',
+                contentType : 'application/json',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+                },
+                success : function(requests) {
+                    addRequestsToTable(requests);
+                },
+                error : function() {
+                    console.log("error");
+                }
+            });
         } 
-    })
+    });
 }
 
-$("#Reject1ph").click(function() {
-    var textarea = "";
-    textarea += '<div class="form-group">' +
-                    '<textarea class="form-control" rows="5" id="field3" placeholder="Enter reason"></textarea>' +
-                '</div>' +
-                '<button type="button" id="SendAnsw1" class="btn btn-primary">Send answer</button>';
-    
-    $("#insertreject1").append(textarea);
-});
+function addRequestsToTable(requests) {
 
-$("#Reject2ph").click(function() {
-    var textarea = "";
-    textarea += '<div class="form-group">' +
-                    '<textarea class="form-control" rows="5" id="field3" placeholder="Enter reason"></textarea>' +
-                '</div>' +
-                '<button type="button" id="SendAnsw1" class="btn btn-primary">Send answer</button>';
-    
-    $("#insertreject1").append(textarea);
-});
+    var table = "";
+    requests.forEach(function(req) {
+        table += `<tr>
+                    <td>${req.ime}</td>
+                    <td>${req.prezime}</td>
+                    <td>${req.uloga}</td>
+                    <td>${req.odDatuma}</td>
+                    <td>${req.doDatuma}</td>
+                    <td>${req.vrsta}</td>
+                    <td>${req.razlog}</td>
+                    <td><button type="button" id="Accept-${req.id}" class="btn btn-success">Accept</button></td>
+                    <td><button type="button" id="Reject-${req.id}" class="btn btn-danger">Reject</button></td>
+                  </tr>`;
+    });
+
+    $("#myTable").append(table);
+
+    requests.forEach(function(req) {
+        $(document).on('click', '#Accept-'+ req.id, function() {
+            alert("ACCEPT   " + req.id);
+        });
+    });
+
+    requests.forEach(function(req) {
+        $(document).on('click', '#Reject-'+ req.id, function() {
+            $("#insertreject").empty();
+            var textarea = "";
+            textarea += `<div class="form-group">
+                            <textarea class="form-control" rows="5" id="field-${req.id}" placeholder="Enter reason"></textarea>
+                         </div>
+                         <button type="button" id="SendAnsw-${req.id}" class="btn btn-primary">Send answer</button>`;
+
+            $("#insertreject").append(textarea);
+        });
+    });
+
+    requests.forEach(function(req) {
+        $(document).on('click', '#SendAnsw-'+ req.id, function() {
+            alert("REJECT  " + req.id);
+        });
+    });
+}
 
 
-
-$(document).on('click', '#SendAnsw1', function(){ 
-    location.reload(true);
-});
-
-$("#Reject1derm").click(function() {
-    var textarea = "";
-    textarea += '<div class="form-group">' +
-                    '<textarea class="form-control" rows="5" id="field3" placeholder="Enter reason"></textarea>' +
-                '</div>' +
-                '<button type="button" id="SendAnsw2" class="btn btn-primary">Send answer</button>';
-
-    $("#insertreject2").append(textarea);
-});
-
-$("#Reject2derm").click(function() {
-    var textarea = "";
-    textarea += '<div class="form-group">' +
-                    '<textarea class="form-control" rows="5" id="field3" placeholder="Enter reason"></textarea>' +
-                '</div>' +
-                '<button type="button" id="SendAnsw2" class="btn btn-primary">Send answer</button>';
-    
-    $("#insertreject2").append(textarea);
-});
-
-$(document).on('click', '#SendAnsw2', function(){ 
-    location.reload(true);
-});

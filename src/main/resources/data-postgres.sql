@@ -96,10 +96,10 @@ INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 2);
 
 -- TimeOff zahtevi
 INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (20, '2021-05-27', '2021-05-15', 'seminar', 1,1, 3);
-INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (21, '2021-03-12', '2021-05-15', 'putovanje', 2,1, 3);
+INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (21, '2021-05-15', '2021-05-12', 'putovanje', 2,1, 3);
 
-INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (22, '2021-01-12', '2021-02-15', 'putovanje', 1,0, 4);
-INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (23, '2021-03-12', '2021-03-18', 'putovanje', 2,1, 4);
+INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (22, '2021-02-15', '2021-02-12', 'putovanje', 1,0, 4);
+INSERT INTO public.time_off_zahtev(id, do_datuma, od_datuma, razlog, stanje_zahteva, vrsta, podnosilac_id) values (23, '2021-03-18', '2021-03-13', 'putovanje', 2,1, 4);
 
 
 INSERT INTO public.poseta(id, datum, dijagnoza, poeni, trajanje, vreme, vrsta, apoteka_id, pacijent_id, zaposleni_id)

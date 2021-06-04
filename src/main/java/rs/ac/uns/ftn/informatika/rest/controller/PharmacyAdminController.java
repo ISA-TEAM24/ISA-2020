@@ -227,7 +227,6 @@ public class PharmacyAdminController {
     @PostMapping("/create")
     @PreAuthorize("hasRole('PH_ADMIN')")
     public ResponseEntity<?> createPurchaseOrder(@RequestBody NarudzbenicaDTO narudzbenicaDTO, Principal p) {
-        System.out.println("USAOOOOOOOOOO");
         Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
         Korisnik k = pharmacyAdminService.findByUsername(p.getName());
         narudzbenicaService.createPurchaseOrder(narudzbenicaDTO, a, k);
