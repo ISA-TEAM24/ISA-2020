@@ -36,6 +36,7 @@ function addOrdersToTable(orders) {
     orders.forEach(function(order) {
         table += `<tr>
                     <td>${order.kreirao}</td>
+                    <td>${order.status}</td>
                     <td>${order.rok}</td>
                     <td><ul>`;
 
@@ -43,10 +44,16 @@ function addOrdersToTable(orders) {
             table += `<li>${lek}</li>`
         })
 
-        table +=       `</ul></td>
-                    <td><button type="button" id="delete-${order.id}" class="btn btn-info-fire">Delete</button></td>
+        table +=       `</ul></td>`;
+        if (order.status == "Aktivna") {
+            table +=  `<td><button type="button" id="delete-${order.id}" class="btn btn-info-fire">Delete</button></td>
                     <td><button type="button" id="offers-${order.id}" class="btn btn-primary-custom">View offers</button></td>
-                    </tr>`
+                    </tr>`;
+        } else {
+            table += `<td></td>
+                      <td></td>
+                    </tr>`;
+        }
     });
 
     $("#myTable").append(table);

@@ -13,6 +13,7 @@ import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.TimeOffZahtev;
 import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
 import rs.ac.uns.ftn.informatika.rest.service.EmailService;
+import rs.ac.uns.ftn.informatika.rest.service.KorisnikService;
 import rs.ac.uns.ftn.informatika.rest.service.TimeOffRequestService;
 
 import java.security.Principal;
@@ -30,6 +31,9 @@ public class TimeOffRequestController {
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private KorisnikService korisnikService;
 
     @PostMapping("/addnew")
     @PreAuthorize("hasAnyRole('PHARMACIST', 'DERMATOLOGIST')")
@@ -61,10 +65,11 @@ public class TimeOffRequestController {
     @PreAuthorize("hasRole('PH_ADMIN')")
     public ResponseEntity<?> acceptTimeOffRequest(@PathVariable("id") String id) {
         TimeOffZahtev timeOffZahtev = timeOffRequestService.acceptTimeOffRequest(id);
+        korisnikService.addGodisnjiInfo(timeOffZahtev);
         if (emailService.sendTimeOffAccepted(timeOffZahtev))
             return new ResponseEntity<>(null, HttpStatus.OK);
 
-        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
     @PutMapping("/reject")
@@ -74,6 +79,8 @@ public class TimeOffRequestController {
         if (emailService.sendTimeOffRejected(timeOffZahtev, timeOffRejectDTO))
             return new ResponseEntity<>(null, HttpStatus.OK);
 
-        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
+
+
 }

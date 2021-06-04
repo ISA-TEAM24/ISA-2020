@@ -7,6 +7,7 @@ public class OrdersDTO {
     private String id;
     private String rok;
     private String kreirao;
+    private String status;
     private List<String> lekovi;
 
     public String getId() {
@@ -31,6 +32,14 @@ public class OrdersDTO {
 
     public void setKreirao(String kreirao) {
         this.kreirao = kreirao;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public List<String> getLekovi() {

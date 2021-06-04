@@ -43,25 +43,29 @@ public class NarudzbenicaService {
         narudzbenicaRepository.save(narudzbenica);
     }
 
-    public List<OrdersDTO> getActiveOrdersFromPharmacy(Apoteka a) {
+    public List<OrdersDTO> getAllOrdersFromPharmacy(Apoteka a) {
         List<Narudzbenica> narudzbenice = narudzbenicaRepository.findByApoteka(a);
 
         List<OrdersDTO> aktivne = new ArrayList<>();
         SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy");
 
         for (Narudzbenica n : narudzbenice) {
-            if (n.getStatus() == Narudzbenica.Status.CEKA) {
-                OrdersDTO dto = new OrdersDTO();
-                dto.setId(n.getID().toString());
-                dto.setKreirao(n.getKreirao().getUsername());
-                dto.setRok(dateFormat.format(n.getRokZaPonudu()));
-                List<String> lekovi = new ArrayList<>();
-                for (Map.Entry<String, Integer> entry : n.getSpisakLekova().entrySet()) {
-                    lekovi.add(entry.getKey());
-                }
-                dto.setLekovi(lekovi);
-                aktivne.add(dto);
+
+            OrdersDTO dto = new OrdersDTO();
+            dto.setId(n.getID().toString());
+            dto.setKreirao(n.getKreirao().getUsername());
+            if (n.getStatus().equals(Narudzbenica.Status.CEKA)) {
+                dto.setStatus("Aktivna");
+            } else {
+                dto.setStatus("Obradjena");
             }
+            dto.setRok(dateFormat.format(n.getRokZaPonudu()));
+            List<String> lekovi = new ArrayList<>();
+            for (Map.Entry<String, Integer> entry : n.getSpisakLekova().entrySet()) {
+                lekovi.add(entry.getKey());
+            }
+            dto.setLekovi(lekovi);
+            aktivne.add(dto);
         }
         return aktivne;
     }
