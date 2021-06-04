@@ -272,7 +272,7 @@ public class KorisnikService {
 	public void updateSubsForUser(SubCheckDTO dto, String username) {
 		Korisnik k = findByUsername(username);
 		k.getLoyaltyInfo().getPratiPromocije().put(dto.getNaziv(), dto.isPrati());
-  }
+  	}
 
 	public void addGodisnjiInfo(TimeOffZahtev timeOffZahtev) {
 		Korisnik k = timeOffZahtev.getPodnosilac();
