@@ -79,7 +79,9 @@
                         <a class="nav-link" id="v-pills-complaints-tab" data-toggle="pill" href="#v-pills-complaints" role="tab" aria-controls="v-pills-complaints" aria-selected="false">Complaints</a>
                         <a class="nav-link" onclick="penaltyCheck('Consult scheduling not allowed', 'v-pills-profile-tab')" id="v-pills-pickup-tab" data-toggle="pill" href="#v-pills-pickup" role="tab" aria-controls="v-pills-pickup" aria-selected="false">New Consult</a>
                         <a class="nav-link" id="v-pills-penalties-tab" data-toggle="pill" href="#v-pills-penalties" role="tab" aria-controls="v-pills-penalties" aria-selected="false">Grading</a>
-                        <a class="nav-link" onclick="penaltyCheck('Medicine reservation not allowed', 'v-pills-profile-tab')" id="v-pills-reservemeds-tab" data-toggle="pill" href="#v-pills-reservemeds" role="tab" aria-controls="v-pills-reservemeds" aria-selected="false">Reserve medicine</a>
+                        <a class="nav-link" onclick="penaltyCheck('Medicine reservation not allowed', 'v-pills-profile-tab')" id="v-pills-reservemeds-tab" data-toggle="pill" href="#v-pills-reservemeds" role="tab" aria-controls="v-pills-reservemeds" aria-selected="false">Reserve medicine</a>                      
+                        <a class="nav-link" id="v-pills-dermatologists-tab" data-toggle="pill" href="#v-pills-dermatologists" role="tab" aria-controls="v-pills-dermatologists" aria-selected="false">Dermatologists</a>
+                        <a class="nav-link" id="v-pills-pharmacists-tab" data-toggle="pill" href="#v-pills-pharmacists" role="tab" aria-controls="v-pills-pharmacists" aria-selected="false">Pharmacists</a>
                     </div>
                 </div>
                 <div class="col-9 right-panel">
@@ -633,7 +635,105 @@
                           
 
                   </div>
-                        
+                  
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  <div class="tab-pane fade" id="v-pills-dermatologists" role="tabpanel" aria-labelledby="v-pills-dermatologists-tab">
+                    <br>
+                    <br>
+                    <div class="text-pad">
+                      <div class="row pretty-color" style="font-size: 2.5vh;">Dermatologists</div>
+                      <br>
+                      <br>
+                      <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-3">
+                            <input id="searchdermname" onkeyup="searchDermatologistsByName()" type="text" placeholder="Search by name">
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-3">
+                          <input id="searchdermlastname" onkeyup="searchDermatologistsByLastName()" type="text" placeholder="Search by last name">
+                        </div>
+                        <div class="col-2"></div>
+                      </div>
+                      <br>
+                      <br>
+                      <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                        <table class="table table-bordered table-striped mb-0" id="dermatologistsT">
+                          <thead>
+                            <tr>
+                              <th scope="col" onclick="sortTable(0,'dermatologistsT')">Name</th>
+                              <th scope="col" onclick="sortTable(1,'dermatologistsT')">Last name</th>
+                              <th scope="col" onclick="sortTable(2,'dermatologistsT')">Grade</th>
+                              <th scope="col" onclick="sortTable(3,'dermatologistsT')">Pharmacies</th>
+                            </tr>
+                          </thead>
+                          <tbody id="dermatologistsTable">
+                                                
+                          </tbody>
+                        </table>
+                      </div>
+                      <br>                                           
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-pharmacists" role="tabpanel" aria-labelledby="v-pills-pharmacists-tab">
+                  <br>
+                  <br>
+                  <div class="text-pad">
+                    <div class="row pretty-color" style="font-size: 2.5vh;">Pharmacists</div>
+                    <br>
+                    <br>
+                    <div class="row">
+                      <div class="col-2"></div>
+                      <div class="col-3">
+                          <input id="searchphname" onkeyup="searchPharmacistsByName()" type="text" placeholder="Search by name">
+                      </div>
+                      <div class="col-2"></div>
+                      <div class="col-3">
+                        <input id="searchphlastname" onkeyup="searchPharmacistsByLastName()" type="text" placeholder="Search by last name">
+                      </div>
+                      <div class="col-2"></div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                      <table class="table table-bordered table-striped mb-0" id="pharmacistsT">
+                        <thead>
+                          <tr>
+                            <th scope="col" onclick="sortTable(0,'pharmacistsT')">Name</th>
+                            <th scope="col" onclick="sortTable(1,'pharmacistsT')">Last name</th>
+                            <th scope="col" onclick="sortTable(2,'pharmacistsT')">Grade</th>
+                            <th scope="col" onclick="sortTable(3,'pharmacistsT')">Pharmacies</th>
+                          </tr>
+                        </thead>
+                        <tbody id="pharmacistsTable">
+                                              
+                        </tbody>
+                      </table>
+                    </div>
+                    <br>                                           
+                  </div>
+              </div>
+
+
                       </div>          
                 </div>
             </div>
@@ -713,5 +813,7 @@
     <script src="../js/user/eprescmeds.js"></script>
     <script src="../js/user/complaints.js"></script>
     <script src="../js/authorization.js"></script>
+    <script src="../js/user/dermatologists.js"></script>
+    <script src="../js/user/pharmacists.js"></script>
   </body>
 </html>
