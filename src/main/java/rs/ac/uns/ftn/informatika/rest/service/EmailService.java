@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import rs.ac.uns.ftn.informatika.rest.dto.TimeOffRejectDTO;
 import rs.ac.uns.ftn.informatika.rest.model.*;
 
 import java.text.SimpleDateFormat;
@@ -79,5 +80,24 @@ public class EmailService {
         String naslov = promocija.getApoteka().getNaziv() + ": " + promocija.getNaslov();
 
         return sendSimpleMessage(user.getEmail(), naslov, text);
+    }
+
+    public boolean sendTimeOffAccepted(TimeOffZahtev timeOffZahtev) {
+        SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy");
+        String text = "Your timeOff request from " + dateFormat.format(timeOffZahtev.getOdDatuma()) + " to " +
+                dateFormat.format(timeOffZahtev.getDoDatuma()) + " has been accepted.";
+        String naslov = "TimeOff request accepted";
+
+        return sendSimpleMessage(timeOffZahtev.getPodnosilac().getEmail(), naslov, text);
+    }
+
+    public boolean sendTimeOffRejected(TimeOffZahtev timeOffZahtev, TimeOffRejectDTO timeOffRejectDTO) {
+        SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy");
+        String text = "Your timeOff request from " + dateFormat.format(timeOffZahtev.getOdDatuma()) + " to " +
+                dateFormat.format(timeOffZahtev.getDoDatuma()) + " has been rejected. Reason: " +
+                timeOffRejectDTO.getRazlogOdbijanja();
+        String naslov = "TimeOff request rejected";
+
+        return sendSimpleMessage(timeOffZahtev.getPodnosilac().getEmail(), naslov, text);
     }
 }

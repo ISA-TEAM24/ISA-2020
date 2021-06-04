@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.rest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.informatika.rest.dto.TOffDTO;
@@ -63,7 +64,7 @@ public class TimeOffRequestService {
     }
 
     public List<TOffDTO> getAllTimeOffsByPharmacy(Apoteka a) {
-        List<TimeOffZahtev> all = findAllTimeOffRequests();
+        List<TimeOffZahtev> all = timeOffZahtevRepository.findByStanjeZahteva(TimeOffZahtev.Stanje.AKTIVAN);
         List<TimeOffZahtev> myWorkers = new ArrayList<>();
         List<Korisnik> users = a.getZaposleni();
         for (TimeOffZahtev tz : all) {
@@ -96,5 +97,21 @@ public class TimeOffRequestService {
             dtos.add(dto);
         }
         return dtos;
+    }
+
+    public TimeOffZahtev acceptTimeOffRequest(String id) throws AccessDeniedException {
+        Long ID = Long.parseLong(id);
+        TimeOffZahtev timeOffZahtev = timeOffZahtevRepository.findById(ID).orElseGet(null);
+        timeOffZahtev.setStanjeZahteva(TimeOffZahtev.Stanje.PRIHVACEN);
+
+        return this.timeOffZahtevRepository.save(timeOffZahtev);
+    }
+
+    public TimeOffZahtev rejectTimeOffRequest(String id) throws AccessDeniedException {
+        Long ID = Long.parseLong(id);
+        TimeOffZahtev timeOffZahtev = timeOffZahtevRepository.findById(ID).orElseGet(null);
+        timeOffZahtev.setStanjeZahteva(TimeOffZahtev.Stanje.ODBIJEN);
+
+        return this.timeOffZahtevRepository.save(timeOffZahtev);
     }
 }

@@ -54,7 +54,22 @@ function addRequestsToTable(requests) {
 
     requests.forEach(function(req) {
         $(document).on('click', '#Accept-'+ req.id, function() {
-            alert("ACCEPT   " + req.id);
+
+            $.ajax({
+                type:'PUT',
+                url: '/timeoff/accept/' + req.id,
+                contentType : 'application/json',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+                },
+                success : function(requests) {
+                    alert("TimeOff request accepted");
+                    location.reload();
+                },
+                error : function() {
+                    console.log("error");
+                }
+            })
         });
     });
 
@@ -73,9 +88,67 @@ function addRequestsToTable(requests) {
 
     requests.forEach(function(req) {
         $(document).on('click', '#SendAnsw-'+ req.id, function() {
-            alert("REJECT  " + req.id);
+            
+            var obj = {
+                id : req.id,
+                razlogOdbijanja : $("#field-" + req.id).val()
+            }
+
+
+            $.ajax({
+                type:'PUT',
+                url: '/timeoff/reject',
+                contentType : 'application/json',
+                data: JSON.stringify(obj),
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+                },
+                success : function(requests) {
+                    alert("TimeOff request rejected");
+                    location.reload();
+                },
+                error : function() {
+                    console.log("error");
+                }
+            })
         });
     });
 }
 
+function sortTable(n,ttt) {
 
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById(ttt);
+    switching = true;
+    dir = "asc";
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            if (dir == "asc") {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+            }
+            } else if (dir == "desc") {
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+            }
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount ++;
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = true;
+            }
+        }
+    }
+}
