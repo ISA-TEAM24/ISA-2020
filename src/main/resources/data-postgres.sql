@@ -280,3 +280,27 @@ INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id
 INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (3, 7, false, 7, 56, 6);
 INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (4, 2, false, 1, 68, 6);
 
+--erecepti test
+INSERT INTO public.erecept(
+    id, apotekaid, datum_izdavanja, email, ime, prezime, status, trajanje_terapije)
+VALUES(1, 1, '2021-08-13', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 1, 7);
+
+INSERT INTO public.erecept(
+    id, apotekaid, datum_izdavanja, email, ime, prezime, status, trajanje_terapije)
+VALUES(2, 1, '2021-04-12', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 0, 3);
+
+INSERT INTO public.erecept(
+    id, apotekaid, datum_izdavanja, email, ime, prezime, status, trajanje_terapije)
+VALUES(3, 1, '2021-07-11', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 2, 14);
+
+INSERT INTO public.erecept_lekovi(
+    erecept_id, lekovi_id)
+VALUES (1, 55);
+
+INSERT INTO public.erecept_lekovi(
+    erecept_id, lekovi_id)
+VALUES (2, 55);
+
+INSERT INTO public.erecept_lekovi(
+    erecept_id, lekovi_id)
+VALUES (3, 56);

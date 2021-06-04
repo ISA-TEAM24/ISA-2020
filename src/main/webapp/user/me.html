@@ -74,7 +74,7 @@
                         <a class="nav-link" onclick="reloadSubs()" id="v-pills-subscriptions-tab" data-toggle="pill" href="#v-pills-subscriptions" role="tab" aria-controls="v-pills-subscriptions" aria-selected="false">Subscriptions</a>
                         <a class="nav-link" onclick="loadPastVisits()" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
                         <a class="nav-link" id="v-pills-upcoming-tab" data-toggle="pill" href="#v-pills-upcoming" role="tab" aria-controls="v-pills-upcoming" aria-selected="false">Meds via EPrescription</a>
-                        <a class="nav-link" id="v-pills-eprescriptions-tab" data-toggle="pill" href="#v-pills-eprescriptions" role="tab" aria-controls="v-pills-eprescriptions" aria-selected="true">EPrescriptions</a>
+                        <a class="nav-link" onclick="reloadPastPresc()" id="v-pills-eprescriptions-tab" data-toggle="pill" href="#v-pills-eprescriptions" role="tab" aria-controls="v-pills-eprescriptions" aria-selected="true">EPrescriptions</a>
                         <a class="nav-link" onclick="reloadReserved()" id="v-pills-reserved-tab" data-toggle="pill" href="#v-pills-reserved" role="tab" aria-controls="v-pills-reserved" aria-selected="false">Reserved</a>
                         <a class="nav-link" id="v-pills-complaints-tab" data-toggle="pill" href="#v-pills-complaints" role="tab" aria-controls="v-pills-complaints" aria-selected="false">Complaints</a>
                         <a class="nav-link" id="v-pills-pickup-tab" data-toggle="pill" href="#v-pills-pickup" role="tab" aria-controls="v-pills-pickup" aria-selected="false">New Consult</a>
@@ -388,35 +388,16 @@
                               <br>
                               <br>
                               <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
-                                <table class="table table-bordered mb-0" id="history_pharmacist_table">
+                                <table class="table table-bordered mb-0"  id="past_epresc_table">
                                   <thead>
-                                    <tr>
-                                      <th scope="col" onclick="">Medicine name</th>
-                                      <th scope="col" onclick="">Date of prescription</th>
-                                      <th scope="col" onclick="">Prescribed by</th>
-                                      <th scope="col" onclick="">Status</th>
-                                    </tr>
+                                    <th scope="col" onclick="sortTableNumeric(0,'past_epresc_table')">Number of meds</th>
+                                    <th scope="col" onclick="sortTable(1,'past_epresc_table')">Date of prescription</th>
+                                    <th scope="col" onclick="sortTableNumeric(2,'past_epresc_table')">Duration of Therapy</th>
+                                    <th scope="col" onclick="sortTable(3,'past_epresc_table')">Status</th>
                                     
                                   </thead>
-                                  <tbody>  
-                                    <tr>
-                                      <td>Aspirin</td>
-                                      <td>25/07/2020</td>
-                                      <td>Marky Mark</td>
-                                      <td>New</td>                                 
-                                    </tr> 
-                                    <tr>
-                                      <td>Aspirin</td>
-                                      <td>25/07/2020</td>
-                                      <td>Darky Dark</td>
-                                      <td>Processed</td>                                 
-                                    </tr> 
-                                    <tr>
-                                      <td>Aspirin</td>
-                                      <td>25/07/2020</td>
-                                      <td>Sparky Spark</td>
-                                      <td>Rejected</td>                                 
-                                    </tr>               
+                                  <tbody id="past_epresc_body">  
+                                               
                                   </tbody>
                                 </table>                            
                               </div>
@@ -426,11 +407,11 @@
                                     <label for="">Filter by status</label>
                                   </div>
                                   <div class="col-3">
-                                    <select class="custom-select modified-select">
-                                      <option selected></option>
-                                      <option value="1">New</option>
-                                      <option value="2">Processed</option>
-                                      <option value="3">Rejected</option>
+                                    <select class="custom-select modified-select" id="past_presc_filter">
+                                      <option selected  id="presc_none"></option>
+                                      <option value="1"  id="presc_new">Active</option>
+                                      <option value="2"  id="presc_processed">Processed</option>
+                                      <option value="3"  id="presc_rejected">Rejected</option>
                                     </select>
                                   </div>
                                 </div>
@@ -721,6 +702,7 @@
     <script src="../js/user/upcoming.js"></script>
     <script src="../js/user/reserved.js"></script>
     <script src="../js/user/grading.js"></script>
+    <script src="../js/user/eprescriptions.js"></script>
 
   </body>
 </html>
