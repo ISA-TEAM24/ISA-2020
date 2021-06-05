@@ -59,6 +59,7 @@ public class ReceptServis {
         u.setApoteka(a);
         u.setPosiljalac(korisnikService.findByUsername(username));
         u.setUspesan(false);
+        u.setDatum(new Date());
         
         upitRepository.save(u);
 

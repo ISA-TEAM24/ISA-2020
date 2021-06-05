@@ -278,10 +278,10 @@ INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, la
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (92, 1);
 
 --upiti:
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (1, 5, false, 1, 56, 7);
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (2, 10, true, 1, 55, 7);
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (3, 7, false, 7, 56, 6);
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (4, 2, false, 1, 68, 6);
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (1, 5, false, 1, 56, 7, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (2, 10, true, 1, 55, 7, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (3, 7, false, 7, 56, 6, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (4, 2, false, 1, 68, 6, '2021-07-13');
 
 --erecepti test
 INSERT INTO public.erecept(
