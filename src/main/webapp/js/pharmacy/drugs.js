@@ -38,10 +38,16 @@ function reloadDrugs(drugs) {
     drugs.forEach(function(drug) {
         table += `<tr>
                     <td>${drug.naziv}</td>
-                    <td><input type="date" id="datepick-${drug.ID}"></td>
-                    <td><button type="button" id="reserve-${drug.ID}" class="btn btn-info-reserve">Reserve</button></td>
+                    <td><button type="button" id="reserve-${drug.naziv}" onclick="reserveReroute(this.id)" class="btn btn-info-reserve">Reserve</button></td>
                   </tr>`;
     });
 
     drugs_body.append(table);
+}
+
+function reserveReroute(id) {
+
+    var med = id.split("-")[1]
+    localStorage.setItem('looking_for_med', med)
+    redirectToUserPage('reservenew')
 }

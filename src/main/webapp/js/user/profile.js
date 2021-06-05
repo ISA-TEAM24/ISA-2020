@@ -28,6 +28,21 @@ const alert_body = $('#alert_body')
 $(document).ready(function() {
     resetPenaltiesIfNeeded()
     reloadProfile()
+
+    var url = window.location.href
+    var tabby = url.split("#")[1]
+    if (tabby != undefined) {
+        if (tabby == 'consult') {
+            // redirect to that tab
+            $('#v-pills-pickup-tab').click()
+        }
+        else if(tabby == 'reservenew') {
+            $('#v-pills-reservemeds-tab').click()
+            $('#new_reserved_input').val(localStorage.getItem('looking_for_med'))
+            $('#findmed_xyz').click()
+
+        }
+    }
     
 })
 

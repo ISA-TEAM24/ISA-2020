@@ -69,7 +69,7 @@
                             <a class="nav-link active"  id="v-pills-pharmacy-tab" data-toggle="pill" href="#v-pills-pharmacy" role="tab" aria-controls="v-pills-pharmacy" aria-selected="true">Pharmacy</a>
                             <a class="nav-link" id="v-pills-dermatologists-tab" data-toggle="pill" href="#v-pills-dermatologists" role="tab" aria-controls="v-pills-dermatologists" aria-selected="false">Dermatologists</a>         
                             <a class="nav-link" id="v-pills-pharmacists-tab" data-toggle="pill" href="#v-pills-pharmacists" role="tab" aria-controls="v-pills-pharmacists" aria-selected="false">Pharmacists</a>
-                            <a class="nav-link" id="v-pills-drugs-tab" data-toggle="pill" href="#v-pills-drugs" role="tab" aria-controls="v-pills-drugs" aria-selected="false">Drugs</a>
+                            <a class="nav-link" onclick=""  id="v-pills-drugs-tab" data-toggle="pill" href="#v-pills-drugs" role="tab" aria-controls="v-pills-drugs" aria-selected="false">Drugs</a>
                             <a class="nav-link" id="v-pills-appointments-tab" data-toggle="pill" href="#v-pills-appointments" role="tab" aria-controls="v-pills-appointments" aria-selected="false">Available appointments</a>
                         </div>
                     </div>
@@ -194,7 +194,7 @@
                                     <br>
                                     <br>
                                     <div class="col text-center">
-                                        <button class="btn btn-info-pharmacists">Schedule a consultation</button>
+                                        <button class="btn btn-info-pharmacists" onclick="redirectToUserPage('consult')">Schedule a consultation</button>
                                     </div>
                                 </div>
                             </div>
@@ -213,7 +213,7 @@
                                         <thead>
                                             <tr>
                                             <th onclick="sortTable(0,'drugs_table')" scope="col">Drug name</th>
-                                            <th  scope="col">Pick up by</th>
+                                            
                                             <th scope="col"></th>
                                             </tr>
                                         </thead>
@@ -320,6 +320,39 @@
 
     </div>
 
+    <!-- MODAL ALERT-->
+    <div class="container" id="pharmacy_alert_box">
+        <div class="row">
+          <div class="col-md-12">
+      
+            <div class="modal fade" data-keyboard="false" data-backdrop="static" id="pharmacy_alert_modal" tabindex="-1">
+              <div class="modal-dialog modal-md">
+                <div class="modal-content">
+      
+                    <div class="modal-header">
+                      <h5 class="modal-title w-100" id="pharmacy_alert_title"> Zakazivanje dodatnog pregleda </h5>
+                      <button class="close" data-dismiss="modal">&times;</button>
+      
+                    </div>
+      
+                    <div class ="modal-body" id="pharmacy_alert_body">
+                      
+                    </div>
+      
+                    <br>
+      
+                    <div class="modal-footer">
+                      <button class="btn btn-info-allergies" id="pharmacy_close_alert" data-dismiss="modal">Close</button>
+                    </div>
+      
+                </div>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+
 
     <script
             src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -336,6 +369,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"
     ></script>
+    <script src="../js/pharmacy/modal.js"></script>
     <script src="../js/user/history.js"></script>
     <script src="../js/pharmacy/profile.js"></script>
     <script src="../js/pharmacy/appointments.js"></script>
