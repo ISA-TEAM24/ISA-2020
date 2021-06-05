@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.rest.dto.DrugAvabDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.DrugRecommendationDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.PrescMedDTO;
 import rs.ac.uns.ftn.informatika.rest.dto.PrescriptionDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.ERecept;
@@ -69,5 +70,12 @@ public class ReceptController {
     public List<ERecept> getPastPresc(Principal p) {
 
         return receptServis.findPrescsForUser(p.getName());
+    }
+
+    @PreAuthorize("hasAnyRole('USER')")
+    @GetMapping("/user/getpastpresc/meds")
+    public List<PrescMedDTO> getPastPrescMeds(Principal p) {
+
+        return receptServis.findPrescribedMedicine(p.getName());
     }
 }

@@ -23,12 +23,13 @@ function findPharmacies() {
         },
         data : JSON.stringify(obj),
         success : function(data) {
-            alert("success")
+            //showError()
             retData = data;
             fillConsultTable(data);
         },
         error : function() {
             console.log('An Error has occured while trying to check the consult availability')
+            showError('Error message', 'An Error has occured while trying to check the consult availability.')
         }
         
     })
@@ -131,12 +132,13 @@ function bookConsult(id) {
         },
         data : JSON.stringify(obj),
         success : function(data) {
-            alert("successfully saved consultation")
+            showError('Success message', 'Successfully scheduled consult!')
             $('#new_consult_table').html(buildInitialTable_1())
             
         },
         error : function() {
-            console.log('An Error has occured while trying to check the consult availability')
+            console.log('An Error has occured while trying to schedule the consult')
+            showError('Error message', 'An Error has occured while trying to schedule the consult.')
         }
         
     })

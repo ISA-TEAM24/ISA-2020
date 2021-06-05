@@ -14,6 +14,7 @@ function reloadAllergies() {
         },
         error : function() {
             console.log('Could not load allergies')
+            showError('Error message', 'Could not load allergies.')
         }
         
     })

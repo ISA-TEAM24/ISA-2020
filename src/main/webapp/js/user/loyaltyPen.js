@@ -12,6 +12,7 @@ function reloadInfo() {
         },
         error : function() {
             console.log('An Error has occured while trying to reload the profile')
+            showError('Error message', 'Could not load loyalty information.')
         }
         
     })

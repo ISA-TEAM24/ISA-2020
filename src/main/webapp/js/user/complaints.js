@@ -4,37 +4,37 @@
 //id="select_meds">Medicine</option>
 //id="select_derm"
 //id="select_farm"
-const select_group = $('#select_group')
-const select_specific = $('#select_specific')
-const grade_note = $('#grade_note')
-const grade = $('#grade_number')
+const select_group_c = $('#select_group_complaint')
+const select_specific_c = $('#select_specific_complaint')
+const complaint_text = $('#complaint_text')
+
 var pharmacy_list = []
 var med_list = []
 var derm_list = []
 var farm_list = [] 
 
-select_group.change(function(){
+select_group_c.change(function(){
 
-    var group_id = select_group.children(":selected").attr("id");
+    var group_id = select_group_c.children(":selected").attr("id");
 
-    if(group_id == 'select_pharmacy') {
+    if(group_id == 'select_pharmacy_c') {
         console.log('selected pharmacies')
-        getPharmaciesForGrading()
+        getPharmaciesForComplaint()
     }
 
-    else if(group_id == 'select_meds') {
+    else if(group_id == 'select_meds_c') {
         console.log('selected meds')
-        getMedsForGrading()
+        getMedsForComplaint()
     }
 
-    else if(group_id == 'select_derm') {
+    else if(group_id == 'select_derm_c') {
         console.log('selected derms')
-        getDermsForGrading()
+        getDermsForComplaint()
     }
 
-    else if(group_id == 'select_farm') {
+    else if(group_id == 'select_farm_c') {
         console.log('selected farms')
-        getFarmsForGrading()
+        getFarmsForComplaint()
     }
 
     else {
@@ -44,7 +44,7 @@ select_group.change(function(){
 
 }) 
 
-function getPharmaciesForGrading() {
+function getPharmaciesForComplaint() {
 
     $.ajax({
         type:'GET',
@@ -55,7 +55,7 @@ function getPharmaciesForGrading() {
         },
         success : function(data) {
             pharmacy_list = data 
-            editSelectionWithPharmacies()
+            editSelectionWithPharmaciesC()
         },
         error : function() {
             console.log('Could not load pharmacies')
@@ -65,7 +65,7 @@ function getPharmaciesForGrading() {
 
 }
 
-function getMedsForGrading() {
+function getMedsForComplaint() {
 
     $.ajax({
         type:'GET',
@@ -76,7 +76,7 @@ function getMedsForGrading() {
         },
         success : function(data) {
             med_list = data 
-            editSelectionWithMeds()
+            editSelectionWithMedsC()
         },
         error : function() {
             console.log('Could not load meds')
@@ -86,7 +86,7 @@ function getMedsForGrading() {
 
 }
 
-function getFarmsForGrading() {
+function getFarmsForComplaint() {
 
     $.ajax({
         type:'GET',
@@ -97,7 +97,7 @@ function getFarmsForGrading() {
         },
         success : function(data) {
             farm_list = data 
-            editSelectionWithFarms()
+            editSelectionWithFarmsC()
         },
         error : function() {
             console.log('Could not load farms')
@@ -107,7 +107,7 @@ function getFarmsForGrading() {
 
 }
 
-function getDermsForGrading() {
+function getDermsForComplaint() {
 
     $.ajax({
         type:'GET',
@@ -118,7 +118,7 @@ function getDermsForGrading() {
         },
         success : function(data) {
             derm_list = data 
-            editSelectionWithDerms()
+            editSelectionWithDermsC()
         },
         error : function() {
             console.log('Could not load derms')
@@ -128,7 +128,7 @@ function getDermsForGrading() {
 
 }
 
-function editSelectionWithPharmacies() {
+function editSelectionWithPharmaciesC() {
 
     var html = ""
     
@@ -139,11 +139,11 @@ function editSelectionWithPharmacies() {
         `
     })
 
-    select_specific.html(html)
+    select_specific_c.html(html)
     console.log(pharmacy_list)
 }
 
-function editSelectionWithMeds() {
+function editSelectionWithMedsC() {
 
     var html = ""
     
@@ -154,12 +154,12 @@ function editSelectionWithMeds() {
         `
     })
 
-    select_specific.html(html)
+    select_specific_c.html(html)
     console.log(med_list)
 
 }
 
-function editSelectionWithFarms() {
+function editSelectionWithFarmsC() {
 
     var html = ""
     
@@ -170,11 +170,11 @@ function editSelectionWithFarms() {
         `
     })
 
-    select_specific.html(html)
+    select_specific_c.html(html)
     console.log(farm_list)
 }
 
-function editSelectionWithDerms() {
+function editSelectionWithDermsC() {
 
     var html = ""
     
@@ -185,71 +185,64 @@ function editSelectionWithDerms() {
         `
     })
 
-    select_specific.html(html)
+    select_specific_c.html(html)
     console.log(derm_list)
 }
 
-function sendGrade() {
+function sendComplaint() {
 
     var primaoc;
     
-    var group_id = select_group.children(":selected").attr("id");
+    var group_id = select_group_c.children(":selected").attr("id");
 
-    if(group_id == 'select_pharmacy') {
+    if(group_id == 'select_pharmacy_c') {
         primaoc = 'apoteka'
     }
 
-    else if(group_id == 'select_meds') {
+    else if(group_id == 'select_meds_c') {
         primaoc = 'lek'
     }
 
-    else if(group_id == 'select_derm') {
+    else if(group_id == 'select_derm_c') {
         primaoc = 'osoba'
     }
 
-    else if(group_id == 'select_farm') {
+    else if(group_id == 'select_farm_c') {
         primaoc = 'osoba'
     }
 
     else {
+        console.log('I returned')
         return
     }
 
     var obj = {
-        "recipientID" : select_specific.children(":selected").attr("id").split("-")[1],
+        "idPrimaoca" : select_specific_c.children(":selected").attr("id").split("-")[1],
         "vrstaPrimaoca" : primaoc,
-        "ocena" : grade.val().trim(),
-        "note" : grade_note.val().trim()
+        "text" : complaint_text.val().trim()
     }
 
     console.log(obj)
-
-    if (obj.ocena > 5) {
-        console.log('>5')
+    if (obj.text == "") {
         return
     }
-
-    if (obj.ocena < 0) {
-        console.log('<0')
-        return
-    }
+    
 
     $.ajax({
         type:'POST',
-        url: '/api/user/grading/add',
+        url: '/api/user/complaint/add',
         contentType : 'application/json',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
         },
         data : JSON.stringify(obj),
         success : function(data) {
-            //alert('Successfully left grade')
-            showError('Success message', 'Successfully left grade!')
+            showError('Success message', 'Successfully left complaint')
             resetDropDowns()
         },
         error : function() {
-            console.log('Could not leave grade')
-            showError('Error message', 'Could not leave grade, please try again later')
+            console.log('Could not leave complaint')
+            showError('Error message', 'Failed to leave complaint, please try again later!')
         }
         
     })
@@ -259,8 +252,7 @@ function sendGrade() {
 
 function resetDropDowns() {
 
-    select_group.prop('selectedIndex', 0).change()
-    select_specific.html("")
-    grade.val("")
-    grade_note.val("")
+    select_group_c.prop('selectedIndex', 0).change()
+    select_specific_c.html("")
+    complaint_text.val('')
 }

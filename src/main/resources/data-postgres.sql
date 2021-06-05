@@ -286,7 +286,7 @@ INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id
 --erecepti test
 INSERT INTO public.erecept(
     id, apotekaid, datum_izdavanja, email, ime, prezime, status, trajanje_terapije)
-VALUES(1, 1, '2021-08-13', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 1, 7);
+VALUES(1, 1, '2021-07-13', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 1, 7);
 
 INSERT INTO public.erecept(
     id, apotekaid, datum_izdavanja, email, ime, prezime, status, trajanje_terapije)

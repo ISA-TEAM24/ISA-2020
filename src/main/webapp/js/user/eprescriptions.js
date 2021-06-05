@@ -17,7 +17,7 @@ function reloadPastPresc() {
             fillPrescTable(past_presc)
         },
         error : function() {
-            showError('Error message', 'Could not load past prescriptions')
+            showError('Error message', 'Could not load past prescriptions.')
         }
         
     })
@@ -56,7 +56,7 @@ function fillPrescTable(data) {
         var date = new Date(p.datumIzdavanja)//.toString()
 
         html += `
-                <tr> <td> ${p.lekovi.length} </td> <td> ${date.toLocaleDateString()} </td> <td> ${p.trajanjeTerapije} </td> <td> ${p.status} </td> </tr>`
+                <tr> <td> ${p.lekovi.length} </td> <td> ${date.toLocaleDateString('fr-CA')} </td> <td> ${p.trajanjeTerapije} </td> <td> ${p.status} </td> </tr>`
 
     }) 
 
