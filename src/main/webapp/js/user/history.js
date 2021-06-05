@@ -38,6 +38,7 @@ function loadPastVisits() {
         },
         success : function(data) {
             fillVisitTables(data)
+            refreshToken()
         },
         error : function() {
             console.log('An Error has occured while trying to reload the history')
@@ -59,14 +60,12 @@ function fillVisitTables(data){
     var db_html = ''
     //zap, cena, trajanje, datum
     data.forEach(function(v){
-      var date = new Date(v.datum).toString()
-      var parts = date.split(" ")
-      var date_string = parts[3]  + " " + parts[1]  + " " + parts[2]  + " " + parts[0]
+      var date = new Date(v.datum)
       if (v.vrsta == 'SAVETOVANJE'){
-        fb_html += `<tr><td>dr ${v.zaposleni.ime} ${v.zaposleni.prezime} </td><td>${v.apoteka.cenovnik['SAVETOVANJE']}</td><td>${v.trajanje}</td><td>${date_string}</td></tr>`
+        fb_html += `<tr><td>dr ${v.zaposleni.ime} ${v.zaposleni.prezime} </td><td>${v.apoteka.cenovnik['SAVETOVANJE']}</td><td>${v.trajanje}</td><td>${date.toLocaleDateString('fr-CA')}</td></tr>`
       }
       else {
-        db_html += `<tr><td>dr ${v.zaposleni.ime} ${v.zaposleni.prezime} </td><td>${v.apoteka.cenovnik['PREGLED']}</td><td>${v.trajanje}</td><td>${date_string}</td></tr>`
+        db_html += `<tr><td>dr ${v.zaposleni.ime} ${v.zaposleni.prezime} </td><td>${v.apoteka.cenovnik['PREGLED']}</td><td>${v.trajanje}</td><td>${date.toLocaleDateString('fr-CA')}</td></tr>`
       }
       
     })
@@ -133,6 +132,7 @@ function sortTable(n,ttt) {
   }
   
   function sortTableNumeric(n, ttt) {
+    console.log('sorting numerically')
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     
     table = document.getElementById(ttt);

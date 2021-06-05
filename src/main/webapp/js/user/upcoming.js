@@ -9,6 +9,7 @@ function reloadUpcoming() {
         },
         success : function(data) {
             fillUpcoming(data)
+            refreshToken()
         },
         error : function() {
             console.log('Could not load allergies')

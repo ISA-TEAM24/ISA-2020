@@ -26,9 +26,76 @@ const alert_title = $('#alert_title')
 const alert_body = $('#alert_body')
 
 $(document).ready(function() {
+    checkReservationPenalties()
+    resetPenaltiesIfNeeded()
     reloadProfile()
+    refreshToken()
+
+    var url = window.location.href
+    var tabby = url.split("#")[1]
+    if (tabby != undefined) {
+        if (tabby == 'consult') {
+            // redirect to that tab
+            $('#v-pills-pickup-tab').click()
+        }
+        else if(tabby == 'reservenew') {
+            $('#v-pills-reservemeds-tab').click()
+            $('#new_reserved_input').val(localStorage.getItem('looking_for_med'))
+            $('#findmed_xyz').click()
+
+        }
+    }
     
 })
+
+function checkReservationPenalties() {
+
+    $.ajax({
+        type:'GET',
+        url: '/reservation/penaltycheck',
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        success : function(data, statusText, xhr) {
+            if (xhr.status == 202) {
+                console.log('youve been penalized')
+            }
+            else {
+                console.log('no penalty for reservation')
+            }
+        },
+        error : function() {
+            console.log('Could not reset penalties')
+        }
+        
+    })
+
+}
+
+function resetPenaltiesIfNeeded() {
+
+    $.ajax({
+        type:'GET',
+        url: '/api/user/penalty/reset',
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        success : function(data, statusText, xhr) {
+            if (xhr.status == 202) {
+                showError('Penalty reset', 'Your penalties have been reset!')
+            }
+            console.log('success')
+            //fillProfile(user);
+        },
+        error : function() {
+            console.log('Could not reset penalties')
+        }
+        
+    })
+
+}
 
 function saveUser(){
     

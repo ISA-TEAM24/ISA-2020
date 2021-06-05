@@ -26,6 +26,7 @@ function findPharmacies() {
             //showError()
             retData = data;
             fillConsultTable(data);
+            refreshToken()
         },
         error : function() {
             console.log('An Error has occured while trying to check the consult availability')
@@ -134,7 +135,7 @@ function bookConsult(id) {
         success : function(data) {
             showError('Success message', 'Successfully scheduled consult!')
             $('#new_consult_table').html(buildInitialTable_1())
-            
+            refreshToken()
         },
         error : function() {
             console.log('An Error has occured while trying to schedule the consult')

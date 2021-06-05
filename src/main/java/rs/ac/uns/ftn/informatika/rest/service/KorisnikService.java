@@ -1,5 +1,6 @@
 package rs.ac.uns.ftn.informatika.rest.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -21,7 +22,7 @@ import rs.ac.uns.ftn.informatika.rest.repository.*;
 public class KorisnikService {
 
 	@Autowired
-	private KorisnikRepository userRepository;
+	protected KorisnikRepository userRepository;
 
 	@Autowired
 	private AuthorityRepository authorityRepository;
@@ -275,6 +276,7 @@ public class KorisnikService {
 	public void updateSubsForUser(SubCheckDTO dto, String username) {
 		Korisnik k = findByUsername(username);
 		k.getLoyaltyInfo().getPratiPromocije().put(dto.getNaziv(), dto.isPrati());
+		userRepository.save(k);
   	}
 
 	public void addGodisnjiInfo(TimeOffZahtev timeOffZahtev) {
@@ -297,5 +299,18 @@ public class KorisnikService {
 		z.setText(dto.getText());
 
 		zalbaRepository.save(z);
+	}
+
+	public boolean resetPenaltiesIfNeeded(String username) {
+
+		Korisnik k = findByUsername(username);
+		if (k.getLoyaltyInfo().getMonthOfLastReset() == LocalDate.now().getMonthValue()) {
+			// no reset needed already reset for this month
+			return false;
+		}
+		k.getLoyaltyInfo().setMonthOfLastReset(LocalDate.now().getMonthValue());
+		k.getLoyaltyInfo().setPenali(0);
+		userRepository.save(k);
+		return true;
 	}
 }

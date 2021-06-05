@@ -15,6 +15,7 @@ function reloadPastPresc() {
             console.log(data)
             past_presc = data
             fillPrescTable(past_presc)
+            refreshToken()
         },
         error : function() {
             showError('Error message', 'Could not load past prescriptions.')

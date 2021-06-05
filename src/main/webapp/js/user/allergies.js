@@ -11,6 +11,7 @@ function reloadAllergies() {
         },
         success : function(data) {
             fillAllergies(data)
+            refreshToken()
         },
         error : function() {
             console.log('Could not load allergies')
@@ -75,6 +76,7 @@ function addAllergy() {
             //countDownToAllergyButtonEdit(3);
 
             reloadAllergies();
+            refreshToken()
         },
         error : function() {
             //$('#allergies-add-button').html("Failed to add allergy!");
@@ -121,6 +123,7 @@ function removeAllergy(name) {
             //countDownToAllergyButtonEdit(3);
             showError('Success', 'Allergy list successfully edited')
             reloadAllergies();
+            refreshToken()
         },
         error : function() {
             //$('#allergies-add-button').html("Failed to remove allergy!");

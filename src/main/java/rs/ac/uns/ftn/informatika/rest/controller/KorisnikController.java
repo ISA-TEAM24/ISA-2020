@@ -27,6 +27,17 @@ public class KorisnikController {
     @Autowired
     private ApotekaService apotekaService;
 
+    @GetMapping("/user/penalty/reset")
+    public ResponseEntity resetPenaltiesIfNeeded(Principal p) {
+
+        boolean hasReset = korisnikService.resetPenaltiesIfNeeded(p.getName());
+
+        if(hasReset) return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+
+    }
+
     @GetMapping("/user/{id}")
     @PreAuthorize("hasRole('USER')")
     public Korisnik getById(@PathVariable Long id) {
