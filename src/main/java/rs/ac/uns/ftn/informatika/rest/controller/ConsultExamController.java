@@ -47,6 +47,7 @@ public class ConsultExamController {
             dto.setAlergije(korisnikService.findAllergiesForUser(po.getPacijent().getUsername()));
             dto.setDijagnoza("");
             dto.setApoteka(po.getApoteka().getNaziv());
+            dto.setTrajanje(po.getTrajanje());
 
             dtos.add(dto);
         }

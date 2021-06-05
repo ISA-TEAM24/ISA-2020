@@ -13,6 +13,7 @@ public class ConsultExamDTO {
     private String dijagnoza;
     private String apoteka;
     private Long apotekaId;
+    private int trajanje;
 
     public ConsultExamDTO() {
 
@@ -118,5 +119,13 @@ public class ConsultExamDTO {
 
     public void setApotekaId(Long apotekaId) {
         this.apotekaId = apotekaId;
+    }
+
+    public int getTrajanje() {
+        return trajanje;
+    }
+
+    public void setTrajanje(int trajanje) {
+        this.trajanje = trajanje;
     }
 }

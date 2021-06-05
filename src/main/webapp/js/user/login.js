@@ -128,5 +128,15 @@ function redirectToDashboard(user){
         console.log('You are a user redirecting to pharmacyadmin/index.html')
         window.location.href = 'pharmacyadmin/index.html'
     }
+
+    if(auth.authority == "ROLE_DERMATOLOGIST") {
+        console.log('You are a dermatologist redirecting to indexDermatolog.html')
+        window.location.href = 'dermatologist/indexDermatolog.html'
+    }
+
+    if(auth.authority == "ROLE_PHARMACIST") {
+        console.log('You are a user redirecting to indexFarmaceut.html')
+        window.location.href = 'pharmacist/indexFarmaceut.html'
+    }
 }
 

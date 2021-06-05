@@ -45,13 +45,13 @@ img {
     }
     
   table{
-     height:300px;              /* <-- Select the height of the table */
-     display: -moz-groupbox;    /*Firefox Bad Effect*/
+     /*height:300px; */             /* <-- Select the height of the table */
+     /*display: -moz-groupbox;    /*Firefox Bad Effect*/
   }
 
   #historytable{
     height:500px;              /* <-- Select the height of the table */
-    display: -moz-groupbox;    /*Firefox Bad Effect*/
+    display: -moz-groupbox;    /*Firefox Bad Effect*/ 
  }
     
   tbody{
