@@ -602,4 +602,19 @@ public class ApotekaService {
         apoteka.setCenovnik(cenovnik);
         apotekaRepository.save(apoteka);
     }
+
+    public List<Apoteka> findPharmaciesByDermatologist(Korisnik k) {
+
+        List<Apoteka> pharmaciesWhereIWork = new ArrayList<>();
+
+        List<Apoteka> allPharmacies = apotekaRepository.findAll();
+        for(Apoteka a : allPharmacies) {
+            for(Korisnik employee : a.getZaposleni()) {
+                if(k.getID() == employee.getID()) {
+                    pharmaciesWhereIWork.add(a);
+                }
+            }
+        }
+        return pharmaciesWhereIWork;
+    }
 }

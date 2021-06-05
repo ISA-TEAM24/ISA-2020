@@ -15,7 +15,7 @@ function getMe() {
                 console.log('Prvi put je logovan.')
                 window.location.href = '/dermatologist/mojProfilDermatolog.html'
             }
-            refreshToken();
+            //refreshToken();
             console.log('Promenjena je lozinka');
         },
         error : function() {

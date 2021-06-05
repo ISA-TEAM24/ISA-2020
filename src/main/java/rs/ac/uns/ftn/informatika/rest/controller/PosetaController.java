@@ -16,6 +16,7 @@ import rs.ac.uns.ftn.informatika.rest.service.DermatologistService;
 import rs.ac.uns.ftn.informatika.rest.service.KorisnikService;
 import rs.ac.uns.ftn.informatika.rest.service.PosetaService;
 
+import javax.websocket.server.PathParam;
 import java.security.Principal;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -184,5 +185,6 @@ public class PosetaController {
 
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
+
 
 }

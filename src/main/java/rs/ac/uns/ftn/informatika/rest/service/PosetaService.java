@@ -166,7 +166,11 @@ public class PosetaService {
             System.out.println("---- TODAY IS: " + today);
             System.out.println("---- POSETA WAS ON : " + p.getDatum());
 
-            if(!p.getDijagnoza().equals("")) {
+            if(p.getPacijent() == null) {
+                continue;
+            }
+
+            if(p.getDijagnoza() == null || !p.getDijagnoza().equals("")) {
                 retList.add(p);
 
                 continue;
@@ -420,4 +424,5 @@ public class PosetaService {
         }
         return false;
     }
+
 }

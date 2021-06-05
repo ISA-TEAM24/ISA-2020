@@ -5,7 +5,7 @@ $(document).ready(function() {
     var origin   = window.location.origin;
     console.log(origin);
 
-    refreshToken();
+    //refreshToken();
 })
 
 var visits = [];
