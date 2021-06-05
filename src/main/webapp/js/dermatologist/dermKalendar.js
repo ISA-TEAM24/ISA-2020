@@ -88,11 +88,11 @@ function addUpcomingVisitsToCalendar(data) {
       console.log(endTime);
 
       var origin = window.location.origin;
-      console.log(origin + "/pharmacist/aktivnoSavetovanje.html");
-      var visitUrl = origin + "/pharmacist/aktivnoSavetovanje.html?" + parseInt(visit.id);
+      console.log(origin + "/dermatologist/aktivanPregled.html");
+      var visitUrl = origin + "/dermatologist/aktivanPregled.html?" + parseInt(visit.id);
       
       var event = {
-        title: visit.ime + " " + visit.prezime,
+        title:  visit.ime + " " + visit.prezime + " - " + visit.apoteka,
         start: startTime,
         end : endTime,
         url : visitUrl,
@@ -136,10 +136,10 @@ function addPastVisitsToCalendar(data) {
       console.log(endTime);
 
       var origin = window.location.origin;
-      var visitUrl = origin + "/pharmacist/pregledaniKlijentiFarmaceut.html";
+      var visitUrl = origin + "/dermatologist/pregledaniKlijenti.html";
       
       var event = {
-        title: visit.pacijentIme + " " + visit.pacijentPrezime,
+        title:  visit.pacijentIme + " " + visit.pacijentPrezime + " - " + visit.apoteka,
         start: startTime,
         end : endTime,
         url : visitUrl,

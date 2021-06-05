@@ -14,11 +14,13 @@
 //            --> closedatabBtn, savedataBtn 
 
 $(document).ready(function() {
-    test_login();
+    //test_login();
+    getMe();
 })
 
-
+/*
 function test_login() {
+    console.log("TEST__LOGIN")
     var form = {
         "username" : "dermUsername",
         "password" : "test"
@@ -41,6 +43,7 @@ function test_login() {
         
     })
 }
+*/
 
 function getMe() {
     $.ajax({
@@ -181,7 +184,7 @@ function changepw() {
             $('#errormsg').text("");
             $('#successmsg').text("Uspešno izmenjena lozinka!");
 
-            var millisecondsToWait = 3000;
+            var millisecondsToWait = 2000;
             setTimeout(function() {
                 $('#changepwModal').modal('toggle');
             }, millisecondsToWait);

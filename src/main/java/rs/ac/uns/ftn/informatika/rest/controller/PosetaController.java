@@ -12,6 +12,7 @@ import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
 import rs.ac.uns.ftn.informatika.rest.repository.KorisnikRepository;
 import rs.ac.uns.ftn.informatika.rest.service.ApotekaService;
+import rs.ac.uns.ftn.informatika.rest.service.DermatologistService;
 import rs.ac.uns.ftn.informatika.rest.service.KorisnikService;
 import rs.ac.uns.ftn.informatika.rest.service.PosetaService;
 
@@ -30,6 +31,9 @@ public class PosetaController {
 
     @Autowired
     private PosetaService posetaService;
+
+    @Autowired
+    private DermatologistService dermatologistService;
 
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/user/consult/check")
@@ -101,6 +105,15 @@ public class PosetaController {
     @PostMapping("/addnewappointment")
     public ResponseEntity<?> addNewDermatologistAppointmentPhAdmin(@RequestBody NewPosetaDTO dto, Principal p) {
         Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        if (!dermatologistService.dateInRange(dto, a)) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
+        if (posetaService.appointmentsTimeIntersect(dto, a)) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
+        }
+
         posetaService.createNewAppointment(dto, a);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }

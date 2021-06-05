@@ -121,11 +121,13 @@ INSERT INTO public.apoteka(id, adresa, naziv, ocena, opis) VALUES (2, 'adresaApo
 INSERT INTO public.lek(id, na_recept, napomene, naziv, oblik, ocena, poeni, proizvodjac, sastav, vrsta) values (55, true, 'napomena1', 'Bromazepan', 'tableta', 5, 2, 'Hemofarm', 'penicilin,diklofenak', 'vrsta' );
 INSERT INTO public.lek(id, na_recept, napomene, naziv, oblik, ocena, poeni, proizvodjac, sastav, vrsta) values (56, true, 'napomena2', 'Rapidol', 'sirup', 4, 3, 'Hemofarm', 'diklofenak', 'vrsta' );
 
+
 INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (155, null, '2021-05-30 0:00:00', 1, 55, 1, false);
 INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (156, null, '2021-05-31 0:00:00', 1, 55, 1, false);
 INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (157, '2021-06-10 14:12:00', '2021-06-15 0:00:00', 1, 56, 1, false);
 INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (158, '2021-06-10 13:12:00', '2021-06-12 0:00:00', 2, 56, 1, false);
 INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (159, null, '2021-06-12 0:00:00', 1, 56, 1, false);
+
 
 INSERT INTO public.lek_alternative(
     lek_id, alternative)
@@ -278,10 +280,10 @@ INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, la
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (92, 1);
 
 --upiti:
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (1, 5, false, 1, 56, 7);
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (2, 10, true, 1, 55, 7);
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (3, 7, false, 7, 56, 6);
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id) VALUES (4, 2, false, 1, 68, 6);
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (1, 5, false, 1, 56, 7, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (2, 10, true, 1, 55, 7, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (3, 7, false, 7, 56, 6, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (4, 2, false, 1, 68, 6, '2021-07-13');
 
 --erecepti test
 INSERT INTO public.erecept(

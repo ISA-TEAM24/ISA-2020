@@ -4,7 +4,7 @@
 // razlogZahteva
 // podnesiZahtev 
 $(document).ready(function() {
-    test_login();   // just for testing
+    //test_login();   // just for testing
 
     var millisecondsToWait = 1000;
     setTimeout(function() {
@@ -13,6 +13,7 @@ $(document).ready(function() {
 
 })
 
+/*
 function test_login() {
     var pageURL = $(location).attr("href");
     console.log(pageURL);
@@ -49,6 +50,7 @@ function test_login() {
     })
 }
 
+
 function getMe() {
     $.ajax({
         type:'GET',
@@ -70,6 +72,7 @@ function getMe() {
         }    
     })
 }
+*/
 
 function sendRequest() {
     
@@ -122,7 +125,7 @@ function sendRequest() {
             console.log('SUCCESS')
             $("#successmsg").text("Uspešno poslat zahtev!");
             $("#errormsg").text("");
-
+            alert("Uspešno poslat zahtev!");
             refreshPageWithDelay();
         },
         error : function() {

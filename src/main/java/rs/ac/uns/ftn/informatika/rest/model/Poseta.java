@@ -151,6 +151,7 @@ public class Poseta {
     public VrstaPosete getPREGLED() {
         return  VrstaPosete.PREGLED;
     }
+
 }
 
 
