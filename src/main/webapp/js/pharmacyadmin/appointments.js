@@ -32,7 +32,10 @@ function getMe() {
                     addPageData(dermatolog)
                 }
             })
-        } 
+        }, error : function() {
+            alert("Your token has expired. You will be redirected to index page")
+            window.location.href = '../index.html';
+        }   
     })
 }
 
@@ -90,13 +93,17 @@ function addPageData(dermatolog) {
 }
 
 function addAppointment() {
-    console.log(usernm);
+    
+    if (!validateFields()) {
+        alert('You must fill all fields')
+        return;
+    }
 
     var appointment = {
         dermatologist : $('#name').val(),
-        date : $('#date').val(),
-        time : $('#time').val(),
-        duration : $('#duration').val(),
+        date : $('#datefield').val(),
+        time : $('#timefield').val(),
+        duration : $('#durationfield').val(),
     }
 
     $.ajax({
@@ -110,7 +117,16 @@ function addAppointment() {
         success : function() {
             alert("SUCCESS");
         }, error : function() {
-            alert("ERROR");
+            alert("Dermatologist isn't in the pharmacy or already has schedulled appointment at that time. Check tables above.");
         }
     })
+}
+
+function validateFields() {
+    if (!$('#datefield').val()) return false;
+    if (!$('#timefield').val()) return false;
+    if ($('#durationfield').val() == 0) return false;
+    if ($('#pricefield').val() == 0) return false;
+
+    return true;
 }

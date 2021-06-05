@@ -1,6 +1,7 @@
 package rs.ac.uns.ftn.informatika.rest.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Upit {
@@ -17,6 +18,8 @@ public class Upit {
     private boolean uspesan;
     @OneToOne
     private Korisnik posiljalac;
+    @Column(nullable = false)
+    private Date datum;
 
     public Long getID() {
         return ID;
@@ -64,5 +67,13 @@ public class Upit {
 
     public void setPosiljalac(Korisnik posiljalac) {
         this.posiljalac = posiljalac;
+    }
+
+    public Date getDatum() {
+        return datum;
+    }
+
+    public void setDatum(Date datum) {
+        this.datum = datum;
     }
 }

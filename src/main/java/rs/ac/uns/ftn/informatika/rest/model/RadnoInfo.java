@@ -58,6 +58,9 @@ public class RadnoInfo {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         int dayOfWeek = c.get(Calendar.DAY_OF_WEEK) - 1;
+        if (c.get(Calendar.DAY_OF_WEEK) == 1) {
+            dayOfWeek = 7;
+        }
         System.out.println("DAY OF THE WEEK IS " + dayOfWeek);
         if (this.neradniDani.contains(dayOfWeek)) {
             System.out.println("FARMACEUT NE RADI " + dayOfWeek);
@@ -96,5 +99,16 @@ public class RadnoInfo {
 
         }
         return isWorking;
+    }
+
+    public boolean doDateRangesIntersects(Date startDate1, Date endDate1, LocalTime startTime1, LocalTime endTime1) {
+        for (Period p : this.getBusinessHours()) {
+            if (!(endDate1.before(p.getOdDatum()) || startDate1.after(p.getDoDatum()))) {
+                if (!(endTime1.isBefore(p.getOdVreme()) || startTime1.isAfter(p.getDoVreme()))) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

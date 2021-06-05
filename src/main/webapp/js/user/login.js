@@ -123,6 +123,11 @@ function redirectToDashboard(user){
         console.log('You are a user redirecting to me.html')
         window.location.href = 'user/me.html'
     }
+     
+    if(auth.authority == "ROLE_PH_ADMIN") {
+        console.log('You are a user redirecting to pharmacyadmin/index.html')
+        window.location.href = 'pharmacyadmin/index.html'
+    }
 
     if(auth.authority == "ROLE_DERMATOLOGIST") {
         console.log('You are a dermatologist redirecting to indexDermatolog.html')
@@ -133,8 +138,5 @@ function redirectToDashboard(user){
         console.log('You are a user redirecting to indexFarmaceut.html')
         window.location.href = 'pharmacist/indexFarmaceut.html'
     }
-
-
-        
 }
 

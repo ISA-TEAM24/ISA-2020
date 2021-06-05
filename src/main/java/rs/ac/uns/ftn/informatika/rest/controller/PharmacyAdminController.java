@@ -8,10 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.informatika.rest.dto.*;
-import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
-import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
-import rs.ac.uns.ftn.informatika.rest.model.Lek;
-import rs.ac.uns.ftn.informatika.rest.model.Upit;
+import rs.ac.uns.ftn.informatika.rest.model.*;
 import rs.ac.uns.ftn.informatika.rest.service.*;
 
 import java.security.Principal;
@@ -139,6 +136,7 @@ public class PharmacyAdminController {
             String phAdminUsername = p.getName();
             Apoteka a = apotekaService.getPharmacyByAdmin(phAdminUsername);
             apotekaService.fireDermatologist(username, a);
+            dermatologistService.removeWorkTime(username, a);
             return new ResponseEntity<>(null, HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -164,10 +162,9 @@ public class PharmacyAdminController {
     @PostMapping(value = "/hiredermatologist")
     @PreAuthorize("hasRole('PH_ADMIN')")
     public ResponseEntity<?> hireDermatologist(@RequestBody HireDermatologistDTO hireDermatologistDTO, Principal p) {
-        System.out.println(hireDermatologistDTO.getUsername());
-        System.out.println(hireDermatologistDTO.getDoDatum());
-        System.out.println(hireDermatologistDTO.getOdDatum());
-        System.out.println(hireDermatologistDTO.getDoVreme());
+        if (dermatologistService.checkDateRanges(hireDermatologistDTO)) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
         Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
         pharmacyAdminService.hireDermatologist(hireDermatologistDTO, a);
 
@@ -250,4 +247,16 @@ public class PharmacyAdminController {
         return new ResponseEntity<>(null,HttpStatus.OK);
     }
 
+    @GetMapping("/getpricelist")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public List<PriceListDTO> getPriceList(Principal p) {
+        return apotekaService.getPriceList(p);
+    }
+
+    @PutMapping("/updatepricelist")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public ResponseEntity<?> updatePricelist(@RequestBody CenovnikDTO cenovnikDTO, Principal p) {
+        apotekaService.updatePricelist(cenovnikDTO, p.getName());
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
 }
