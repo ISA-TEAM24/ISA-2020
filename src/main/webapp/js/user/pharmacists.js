@@ -14,6 +14,7 @@ function reloadPharmacists() {
         },
         success : function(pharmacists) {
             fillPharmacists(pharmacists)
+            refreshToken()
         },
         error : function() {
             console.log('Could not load dermatologists')

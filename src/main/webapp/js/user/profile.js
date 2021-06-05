@@ -29,6 +29,7 @@ $(document).ready(function() {
     checkReservationPenalties()
     resetPenaltiesIfNeeded()
     reloadProfile()
+    refreshToken()
 
     var url = window.location.href
     var tabby = url.split("#")[1]

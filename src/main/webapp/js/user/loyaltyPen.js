@@ -9,6 +9,7 @@ function reloadInfo() {
         },
         success : function(user) {
             fillInfo(user);
+            refreshToken()
         },
         error : function() {
             console.log('An Error has occured while trying to reload the profile')

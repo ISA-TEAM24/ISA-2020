@@ -14,6 +14,7 @@ function reloadDermatologists() {
         },
         success : function(dermatologists) {
             fillDermatologists(dermatologists)
+            refreshToken()
         },
         error : function() {
             console.log('Could not load dermatologists')

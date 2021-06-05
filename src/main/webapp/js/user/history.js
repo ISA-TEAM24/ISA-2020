@@ -38,6 +38,7 @@ function loadPastVisits() {
         },
         success : function(data) {
             fillVisitTables(data)
+            refreshToken()
         },
         error : function() {
             console.log('An Error has occured while trying to reload the history')
