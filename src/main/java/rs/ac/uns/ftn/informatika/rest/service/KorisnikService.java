@@ -22,7 +22,7 @@ import rs.ac.uns.ftn.informatika.rest.repository.*;
 public class KorisnikService {
 
 	@Autowired
-	private KorisnikRepository userRepository;
+	protected KorisnikRepository userRepository;
 
 	@Autowired
 	private AuthorityRepository authorityRepository;

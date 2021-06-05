@@ -26,6 +26,7 @@ const alert_title = $('#alert_title')
 const alert_body = $('#alert_body')
 
 $(document).ready(function() {
+    checkReservationPenalties()
     resetPenaltiesIfNeeded()
     reloadProfile()
 
@@ -45,6 +46,31 @@ $(document).ready(function() {
     }
     
 })
+
+function checkReservationPenalties() {
+
+    $.ajax({
+        type:'GET',
+        url: '/reservation/penaltycheck',
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        success : function(data, statusText, xhr) {
+            if (xhr.status == 202) {
+                console.log('youve been penalized')
+            }
+            else {
+                console.log('no penalty for reservation')
+            }
+        },
+        error : function() {
+            console.log('Could not reset penalties')
+        }
+        
+    })
+
+}
 
 function resetPenaltiesIfNeeded() {
 

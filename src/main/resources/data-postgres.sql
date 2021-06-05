@@ -7,7 +7,7 @@ insert into authority values (5, 'ROLE_PH_ADMIN');
 
 
 INSERT INTO public.godisnji_info (id, do_datuma, na_godisnjem, od_datuma) VALUES (1, NULL, false, NULL);
-INSERT INTO public.loyalty_info (id, klasa, penali, poeni, month_of_last_reset) VALUES (1, 0, 3, 0, 7);
+INSERT INTO public.loyalty_info (id, klasa, penali, poeni, month_of_last_reset) VALUES (1, 0, 1, 0, 6);
 
 INSERT INTO public.loyalty_apoteka_mapping(
     loyalty_id, prati, naziv_apoteke)
@@ -121,11 +121,11 @@ INSERT INTO public.apoteka(id, adresa, naziv, ocena, opis) VALUES (2, 'adresaApo
 INSERT INTO public.lek(id, na_recept, napomene, naziv, oblik, ocena, poeni, proizvodjac, sastav, vrsta) values (55, true, 'napomena1', 'Bromazepan', 'tableta', 5, 2, 'Hemofarm', 'penicilin,diklofenak', 'vrsta' );
 INSERT INTO public.lek(id, na_recept, napomene, naziv, oblik, ocena, poeni, proizvodjac, sastav, vrsta) values (56, true, 'napomena2', 'Rapidol', 'sirup', 4, 3, 'Hemofarm', 'diklofenak', 'vrsta' );
 
-INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id) values (155, null, '2021-05-30 0:00:00', 1, 55, 1);
-INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id) values (156, null, '2021-05-31 0:00:00', 1, 55, 1);
-INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id) values (157, '2021-06-10 14:12:00', '2021-06-15 0:00:00', 1, 56, 1);
-INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id) values (158, '2021-06-10 13:12:00', '2021-06-12 0:00:00', 2, 56, 1);
-INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id) values (159, null, '2021-06-12 0:00:00', 2, 56, 1);
+INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (155, null, '2021-05-30 0:00:00', 1, 55, 1, false);
+INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (156, null, '2021-05-31 0:00:00', 1, 55, 1, false);
+INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (157, '2021-06-10 14:12:00', '2021-06-15 0:00:00', 1, 56, 1, false);
+INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (158, '2021-06-10 13:12:00', '2021-06-12 0:00:00', 2, 56, 1, false);
+INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (159, null, '2021-06-12 0:00:00', 1, 56, 1, false);
 
 INSERT INTO public.lek_alternative(
     lek_id, alternative)
