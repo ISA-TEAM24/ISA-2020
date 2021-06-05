@@ -25,3 +25,17 @@ function refreshToken() {
         
     })
 }
+
+function countDownToPageReloading(x) {
+    var counter = x;
+    var interval = setInterval(function() {
+        counter--;
+        // Display 'counter' wherever you want to display it.
+        if (counter < 1) {
+            // Display a login box
+            location.reload()
+        }
+
+
+    }, 1000);
+}

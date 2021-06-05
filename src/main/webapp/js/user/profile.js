@@ -27,7 +27,7 @@ const alert_body = $('#alert_body')
 
 $(document).ready(function() {
     checkReservationPenalties()
-    resetPenaltiesIfNeeded()
+    //resetPenaltiesIfNeeded()
     reloadProfile()
     refreshToken()
 
@@ -64,6 +64,7 @@ function checkReservationPenalties() {
             else {
                 console.log('no penalty for reservation')
             }
+            resetPenaltiesIfNeeded()
         },
         error : function() {
             console.log('Could not reset penalties')
