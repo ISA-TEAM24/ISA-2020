@@ -6,6 +6,8 @@ $(document).ready(function() {
     getMyPharmacists();
 });
 
+
+
 function getMyPharmacists() {
 
     const queryString = window.location.search;

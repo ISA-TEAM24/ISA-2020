@@ -11,6 +11,7 @@ function reloadPastPrescMeds() {
         },
         success : function(data) {
             fillPastPrescMedsTable(data)
+            refreshToken()
           
         },
         error : function() {

@@ -56,6 +56,7 @@ function getPharmaciesForComplaint() {
         success : function(data) {
             pharmacy_list = data 
             editSelectionWithPharmaciesC()
+            refreshToken()
         },
         error : function() {
             console.log('Could not load pharmacies')
@@ -77,6 +78,7 @@ function getMedsForComplaint() {
         success : function(data) {
             med_list = data 
             editSelectionWithMedsC()
+            refreshToken()
         },
         error : function() {
             console.log('Could not load meds')
@@ -98,6 +100,7 @@ function getFarmsForComplaint() {
         success : function(data) {
             farm_list = data 
             editSelectionWithFarmsC()
+            refreshToken()
         },
         error : function() {
             console.log('Could not load farms')
@@ -119,6 +122,7 @@ function getDermsForComplaint() {
         success : function(data) {
             derm_list = data 
             editSelectionWithDermsC()
+            refreshToken()
         },
         error : function() {
             console.log('Could not load derms')
@@ -239,6 +243,7 @@ function sendComplaint() {
         success : function(data) {
             showError('Success message', 'Successfully left complaint')
             resetDropDowns()
+            refreshToken()
         },
         error : function() {
             console.log('Could not leave complaint')

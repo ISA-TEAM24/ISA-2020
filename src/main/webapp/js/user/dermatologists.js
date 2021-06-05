@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    reloadDermatologists();
+    //reloadDermatologists();
 });
 
 function reloadDermatologists() {
@@ -14,6 +14,7 @@ function reloadDermatologists() {
         },
         success : function(dermatologists) {
             fillDermatologists(dermatologists)
+            refreshToken()
         },
         error : function() {
             console.log('Could not load dermatologists')
@@ -38,7 +39,7 @@ function fillDermatologists(dermatologists) {
         table +=           `</ul></td></tr>`
     });
 
-    $("#dermatologistsTable").append(table);
+    $("#dermatologistsTable").html(table);
 }
 
 function searchDermatologistsByName() {

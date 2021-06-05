@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    reloadPharmacists();
+    //reloadPharmacists();
 });
 
 function reloadPharmacists() {
@@ -14,6 +14,7 @@ function reloadPharmacists() {
         },
         success : function(pharmacists) {
             fillPharmacists(pharmacists)
+            refreshToken()
         },
         error : function() {
             console.log('Could not load dermatologists')
@@ -34,7 +35,7 @@ function fillPharmacists(pharmacists) {
                      </tr>`
     });
 
-    $("#pharmacistsTable").append(table);
+    $("#pharmacistsTable").html(table);
 }
 
 function searchPharmacistsByName() {

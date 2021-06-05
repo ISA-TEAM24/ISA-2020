@@ -184,4 +184,35 @@ public class RezervacijaService {
         }
         return true;
     }
+
+    public int updateReservationPenaltiesForUser(String username) {
+
+        Korisnik k = korisnikService.findByUsername(username);
+
+        int sum = 0;
+        for(Rezervacija r : rezervacijaRepository.findAllByPacijentID(k.getID())) {
+
+            if(r.isPenalized()) {
+                continue;
+            }
+            // not penalized
+            if(r.getDatumPreuz() != null) {
+                continue;
+            }
+            if(r.getRokZaPreuzimanje().compareTo(new Date()) < 0) {
+                r.setPenalized(true);
+                rezervacijaRepository.save(r);
+                sum += 1;
+            }
+
+        }
+
+        if (sum == 0) return 0;
+
+        int current = k.getLoyaltyInfo().getPenali();
+        k.getLoyaltyInfo().setPenali(current + sum);
+        korisnikService.userRepository.save(k);
+        return sum;
+
+    }
 }

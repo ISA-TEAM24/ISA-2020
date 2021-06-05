@@ -12,6 +12,7 @@ function reloadSubs(){
         success : function(data) {
             console.log(data)
             fillSubs(data)
+            refreshToken()
         },
         error : function() {
             console.log('Could not load allergies')

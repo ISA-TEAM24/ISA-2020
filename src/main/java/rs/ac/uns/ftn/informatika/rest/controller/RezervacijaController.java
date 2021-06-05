@@ -93,4 +93,15 @@ public class RezervacijaController {
         return retList;
     }
 
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/penaltycheck")
+    public ResponseEntity updateReservationPenalties(Principal p) {
+
+        int penalty = rezervacijaService.updateReservationPenaltiesForUser(p.getName());
+
+        if(penalty > 0) return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
 }

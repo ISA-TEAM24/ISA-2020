@@ -17,17 +17,29 @@ public class Rezervacija {
     private Date datumPreuz;
     @OneToOne
     private Korisnik pacijent;
+    @Column(nullable = false)
+    private boolean penalized;
 
     public Rezervacija() {
+        this.penalized = false;
     }
 
-    public Rezervacija(Long ID, Lek lek, Apoteka apoteka, Date rokZaPreuzimanje, Date datumPreuz, Korisnik pacijent) {
+    public Rezervacija(Long ID, Lek lek, Apoteka apoteka, Date rokZaPreuzimanje, Date datumPreuz, Korisnik pacijent, boolean penalized) {
         this.ID = ID;
         this.lek = lek;
         this.apoteka = apoteka;
         this.rokZaPreuzimanje = rokZaPreuzimanje;
         this.datumPreuz = datumPreuz;
         this.pacijent = pacijent;
+        this.penalized = penalized;
+    }
+
+    public boolean isPenalized() {
+        return penalized;
+    }
+
+    public void setPenalized(boolean penalized) {
+        this.penalized = penalized;
     }
 
     public Long getID() {

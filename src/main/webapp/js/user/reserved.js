@@ -10,6 +10,7 @@ function reloadReserved() {
         },
         success : function(data) {
             fillReserved(data)
+            refreshToken()
         },
         error : function() {
             console.log('Could not load reserved medicine')
@@ -62,6 +63,7 @@ function cancelReservation(id) {
         success : function() {
             //alert('Succesfully canceled')
             reloadReserved();
+            refreshToken()
         },
         error : function() {
             console.log('Could not load reserved medicine')
@@ -91,6 +93,7 @@ function searchMedicine() {
         data : JSON.stringify(obj),
         success : function(data) {
             fillTableWithFoundMeds(data);
+            refreshToken()
         },
         error : function() {
             console.log('Could not load reserved medicine')
@@ -145,6 +148,7 @@ function reserveMedicine(id) {
             //alert('Successfully reserved')
             showError('Success Message', 'Successfully reserved medicine.')
             $('#new_reserve_body').html("")
+            refreshToken()
         },
         error : function() {
             console.log('Could not load reserved medicine')
