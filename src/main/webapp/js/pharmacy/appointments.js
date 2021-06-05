@@ -67,15 +67,23 @@ function reserveApp(id) {
         },
         success : function(user) {
             //return isUserAllowed(user)
-            if(user.loyaltyInfo.penali > 2) {
-                showModal('Exam reservation not allowed', 'Because of the amount of penalties you are not allowed to use this functionality, penalties reset every 1st of the month.')
+            if (user.loyaltyInfo != undefined) {
+                if(user.loyaltyInfo.penali > 2) {
+                    showModal('Exam reservation not allowed', 'Because of the amount of penalties you are not allowed to use this functionality, penalties reset every 1st of the month.')
+                }
+                else {
+                    console.log('appointment else')
+                    reserveAppAjax(obj)
+                }
             }
             else {
-                reserveAppAjax(obj)
+                showModal('Not allowed', 'You need to be logged in as a patient to use this functionality.')
             }
+
         },
         error : function() {
             console.log('An Error has occured while trying to reload the profile')
+            showModal('Not logged in', 'You need to be logged in as a patient to use this functionality.')
             //showError('Error message', 'Could not load  information.')
         }
         
@@ -103,7 +111,7 @@ function reserveAppAjax(obj) {
             console.log('error occured');
             if (xhr.status == 401) {
                 // not logged in
-                showModal('Not logged in', 'You need to be logged in to use this functionality.')
+                showModal('Not logged in', 'You need to be logged in as a patient to use this functionality.')
             }
             else if (xhr.status == 406) {
                 showModal('Error message', 'You already have an appointment at this time.')

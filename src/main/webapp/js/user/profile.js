@@ -336,4 +336,22 @@ function validateUserFields(obj) {
     return true;
 }
 
+function logMeOut() {
+
+    $.ajax({
+        type:'POST',
+        url: '/auth/logout',
+        contentType : 'application/json',
+        success : function() {
+            console.log('I have been logged out')
+            location.reload()
+            localStorage.removeItem('myToken')
+        },
+        error : function() {
+            console.log('FAIL LOGOUT')
+            //alert('Bad credentials')
+        }
+        
+    })
+}
 
