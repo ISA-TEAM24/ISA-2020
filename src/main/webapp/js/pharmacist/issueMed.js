@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    refreshToken();
 })
 
 function getReservationById() {
@@ -15,7 +15,7 @@ function getReservationById() {
         success : function(data) {
             console.log(data);
             fillTable(data);
-
+            refreshToken();
         },
         error : function() {
             alert('Broj rezervacije nije ispravan!');
@@ -53,7 +53,7 @@ function issueMed(brojRez) {
             alert('Uspešno izdat lek!');
             refreshPageWithDelay();
             console.log('Success');
-
+            refreshToken();
         },
         error : function() {
             console.log('Error');

@@ -4,6 +4,8 @@ $(document).ready(function() {
 
     var origin   = window.location.origin;
     console.log(origin);
+
+    refreshToken();
 })
 
 var visits = [];
@@ -19,10 +21,13 @@ function getUpcomingVisits() {
         success : function(data) {
             console.log(data)
             fillVisits(data);
+            refreshToken();
 
         },
         error : function() {
             console.log('Cant get upcoming visits');
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }    
     })
 }
@@ -104,11 +109,13 @@ function addPenalToPatient(data) {
         success : function() {
             console.log('Success');
             alert('Pacijentu je dodeljen 1 penal!');
-
+            refreshToken();
             location.reload();
         },
         error : function() {
             console.log('Error');
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }
         
     }) 

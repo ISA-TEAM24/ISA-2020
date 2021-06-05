@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     resetFields();
     disablePastDates();
-
+    refreshToken();
 })
 
 
@@ -46,7 +46,7 @@ function sendSchedulingRequest() {
 
             alert('Uspešno ste zakazali savetovanje!');
             resetFields();
-
+            refreshToken();
         },
         error : function(xhr, status, error) {
 

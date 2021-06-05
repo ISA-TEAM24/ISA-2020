@@ -15,11 +15,13 @@ function getMe() {
                 console.log('Prvi put je logovan.')
                 window.location.href = '/dermatologist/mojProfilDermatolog.html'
             }
-
+            refreshToken();
             console.log('Promenjena je lozinka');
         },
         error : function() {
             console.log('Error')
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }    
     })
 }

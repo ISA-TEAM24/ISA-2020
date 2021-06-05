@@ -60,9 +60,12 @@ function getMe() {
                 console.log('Prvi put je logovan.')
                 requirePwChange(dermatologist.username.toString());
             }
+            refreshToken();
         },
         error : function() {
             console.log('An Error has occured while trying to reload the profile')
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }    
     })
 }
@@ -126,7 +129,7 @@ function saveNewData(){
         success : function(dermatologist) {
             addProfileData(dermatologist);
             addProfileDataToChangeDataModal(dermatologist);
-
+            refreshToken();
             $('#successmsgData').text("Uspešno izmenjeni podaci!");
 
             var millisecondsToWait = 2000;
@@ -137,6 +140,8 @@ function saveNewData(){
         },
         error : function() {
             console.log('error occured')
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }
         
     })   
@@ -187,7 +192,7 @@ function changepw() {
         success : function() {
             $('#errormsg').text("");
             $('#successmsg').text("Uspešno izmenjena lozinka!");
-
+            refreshToken();
             var millisecondsToWait = 2000;
             setTimeout(function() {
                 $('#changepwModal').modal('toggle');
@@ -205,6 +210,8 @@ function changepw() {
                 error : function() {
                     console.log(username)
                     console.log('error in firstlogpwchange')
+                    alert("Istekao vam je token. Ulogujte se ponovo.")
+                    window.location.href = '../index.html';
                 }
                 
             })

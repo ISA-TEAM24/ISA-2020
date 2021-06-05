@@ -5,7 +5,7 @@ $(document).ready(function() {
     retVal = [];
     addIdToPenalButton();
     disablePastDates();
-
+    refreshToken();
 })
 
 function getData() {
@@ -28,10 +28,12 @@ function getData() {
         success : function(data) {
             console.log('Success');
             fillFields(data);
-            
+            refreshToken();
         },
         error : function() {
             console.log('Error');
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }
         
     }) 
@@ -85,10 +87,12 @@ function saveReport() {
                 var url = origin + "/pharmacist/savetovanje.html"
             
                 window.location.href = url;
-    
+                refreshToken();
             },
             error : function() {
                 console.log('error occured')
+                alert("Istekao vam je token. Ulogujte se ponovo.")
+                window.location.href = '../index.html';
             }
            
         })   
@@ -139,7 +143,7 @@ function createAddtitionalVisit() {
 
             alert('Uspešno ste zakazali savetovanje!');
             resetFields();
-
+            refreshToken();
         },
         error : function(xhr, status, error) {
 
@@ -217,7 +221,7 @@ function rewritePredefExam(dto) {
 
             alert('Uspešno ste zakazali pregled!');
             $('#dodatniPregledModal').modal('toggle');
-
+            refreshToken();
         },
         error : function(xhr, status, error) {
 
@@ -254,7 +258,7 @@ function createNewExam(dto) {
 
             alert('Uspešno ste zakazali pregled!');
             $('#dodatniPregledModal').modal('toggle');
-
+            refreshToken();
         },
         error : function(xhr, status, error) {
 
@@ -298,10 +302,12 @@ function getPredefinedExamsForDerm() {
             //console.log(retVal);
             console.log(data);
             fillDermAppointmentFields();
-
+            refreshToken();
         },
         error : function(xhr, status, error) {
             console.log('ERROR')
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }
     })
 }
@@ -389,6 +395,7 @@ function preparePrescription() {
             console.log(drugs);
             fillSelectBoxWithDrugs(drugs);
             drugList = drugs;
+            refreshToken();
         }, error : function() {
             console.log('error occured');
         }
@@ -459,6 +466,7 @@ function checkAvailability() {
                 console.log('STATUS JE: '  + xhr.status)
                 alert('Nema tog leka u magacinu, administrator obavešten! Pogledajte alternativne lekove.');
                 loadAlternatives(dto);
+                refreshToken();
             } else {
                 alert('Lek je dostupan');
 
@@ -485,6 +493,7 @@ function loadAlternatives(dto) {
         success : function(data) {
             console.log(data);
             fillAlternatives(data);
+            refreshToken();
         }, error : function() {
             console.log('error occured');
         }
@@ -578,6 +587,7 @@ function prescribe() {
         success : function() {
             alert('Uspešno sačuvan prepis!');
             $('#prepisiLekModal').modal('toggle');
+            refreshToken();
  
         }, error : function() {
             console.log('error occured');

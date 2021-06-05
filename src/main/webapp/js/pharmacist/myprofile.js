@@ -43,9 +43,12 @@ function getMe() {
                 console.log('Prvi put je logovan.')
                 requirePwChange(pharmacist.username.toString());
             }
+            refreshToken();
         },
         error : function() {
             console.log('An Error has occured while trying to reload the profile')
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }    
     })
 }
@@ -115,10 +118,12 @@ function saveNewData(){
             setTimeout(function() {
                 location.reload();
             }, millisecondsToWait);
-
+            refreshToken();
         },
         error : function() {
             console.log('error occured')
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }
         
     })   
@@ -182,11 +187,14 @@ function changepw() {
                     xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
                 },
                 success : function() {
-                console.log('success in firstlogpwchange')
+                console.log('success in firstlogpwchange');
+                refreshToken();
                 },
                 error : function() {
                     console.log(username)
                     console.log('error in firstlogpwchange')
+                    alert("Istekao vam je token. Ulogujte se ponovo.")
+                    window.location.href = '../index.html';
                 }
                 
             })

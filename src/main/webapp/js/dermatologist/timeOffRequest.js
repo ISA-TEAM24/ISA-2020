@@ -12,7 +12,7 @@ $(document).ready(function() {
     }, millisecondsToWait);
 
     disablePastDates()
-
+    refreshToken();
 })
 
 /*
@@ -128,6 +128,7 @@ function sendRequest() {
             $("#successmsg").text("Uspešno poslat zahtev!");
             $("#errormsg").text("");
             alert("Uspešno poslat zahtev!");
+            refreshToken();
             refreshPageWithDelay();
         },
         error : function() {
@@ -159,11 +160,14 @@ function getRequests() {
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
         },
         success : function(data) {
-            console.log('Loaded requests')
-            fillRequestTable(data)
+            console.log('Loaded requests');
+            fillRequestTable(data);
+            refreshToken();
         },
         error : function() {
             console.log('Could not load Requests!')
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }
     })
 }

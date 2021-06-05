@@ -1,7 +1,7 @@
 datas = [];
 
 $(document).ready(function() {
-
+    refreshToken();
 })
 
 // on window load popuni kalendar
@@ -66,10 +66,12 @@ function getUpcomingVisits() {
       success : function(data) {
           console.log(data)
           addUpcomingVisitsToCalendar(data);
-
+          refreshToken();
       },
       error : function() {
           console.log('Cant get upcoming visits');
+          alert("Istekao vam je token. Ulogujte se ponovo.");
+          window.location.href = '../index.html';
       }    
   })
 }
@@ -114,10 +116,13 @@ function getPastVisits() {
     },
     success : function(data) {
         console.log(data);
-        addPastVisitsToCalendar(data)
+        addPastVisitsToCalendar(data);
+        refreshToken();
     },
     error : function() {
         console.log('Cant get finished visits');
+        alert("Istekao vam je token. Ulogujte se ponovo.");
+        window.location.href = '../index.html';
     }    
   })
 }
