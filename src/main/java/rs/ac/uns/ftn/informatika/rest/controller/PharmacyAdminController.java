@@ -247,4 +247,16 @@ public class PharmacyAdminController {
         return new ResponseEntity<>(null,HttpStatus.OK);
     }
 
+    @GetMapping("/getpricelist")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public List<PriceListDTO> getPriceList(Principal p) {
+        return apotekaService.getPriceList(p);
+    }
+
+    @PutMapping("/updatepricelist")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public ResponseEntity<?> updatePricelist(@RequestBody CenovnikDTO cenovnikDTO, Principal p) {
+        apotekaService.updatePricelist(cenovnikDTO, p.getName());
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
 }

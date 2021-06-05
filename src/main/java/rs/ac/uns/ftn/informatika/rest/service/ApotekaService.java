@@ -14,6 +14,7 @@ import rs.ac.uns.ftn.informatika.rest.model.*;
 import rs.ac.uns.ftn.informatika.rest.repository.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.*;
@@ -575,5 +576,30 @@ public class ApotekaService {
 
         return true;
 
+    }
+
+    public List<PriceListDTO> getPriceList(Principal p) {
+        Apoteka apoteka = getPharmacyByAdmin(p.getName());
+        Map<String,Integer> cenovnik = apoteka.getCenovnik();
+        List<PriceListDTO> cenovnikLista = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : cenovnik.entrySet()) {
+            PriceListDTO stavka = new PriceListDTO();
+            stavka.setNaziv(entry.getKey());
+            stavka.setCena(entry.getValue());
+            cenovnikLista.add(stavka);
+        }
+
+        return cenovnikLista;
+    }
+
+    public void updatePricelist(CenovnikDTO cenovnikDTO, String name) {
+        Apoteka apoteka = getPharmacyByAdmin(name);
+        Map<String, Integer> cenovnik = apoteka.getCenovnik();
+        for (CenovnikStavkeDTO cenovnikStavkeDTO : cenovnikDTO.getStavke()) {
+            cenovnik.replace(cenovnikStavkeDTO.getNaziv(), cenovnikStavkeDTO.getCena());
+        }
+
+        apoteka.setCenovnik(cenovnik);
+        apotekaRepository.save(apoteka);
     }
 }
