@@ -71,7 +71,17 @@ public class AuthenticationController {
         return ResponseEntity.ok(new UserTokenState(jwt, expiresIn));
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity logoutUser() throws Exception {
+        // testing purpose
+        // System.out.println(userService.findByUsername(authenticationRequest.getUsername()));
 
+        // Izbaci korisnika u iz trenutnog security konteksta
+        SecurityContextHolder.clearContext();
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+
+    }
 
     @GetMapping("/verify/{username}")
     public ResponseEntity<Korisnik> verifyUser(@PathVariable String username) {

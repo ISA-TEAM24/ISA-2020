@@ -44,9 +44,9 @@ function reloadDrugs(drugs) {
 
     drugs_body.append(table);
 }
-
+// in modal.js
 function reserveReroute(id) {
-
+    console.log('Clicked on reserve button')
     var med = id.split("-")[1]
     localStorage.setItem('looking_for_med', med)
     redirectToUserPage('reservenew')

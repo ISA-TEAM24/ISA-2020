@@ -18,7 +18,7 @@ function redirectToUserPage(where) {
         error : function(xhr,status,data) {
             console.log('An Error has occured while trying to reload the profile')
             if (xhr.status == 401) {
-                showModal('Not logged in', 'You need to log in to use this funcionality.')
+                showModal('Not logged in', 'You need to log in as a patient to use this funcionality.')
             }
             else {
                 showModal('Error message', 'Could not load pharmacy information.')
@@ -32,8 +32,9 @@ function redirectToUserPage(where) {
 
 function redirectCheck(user,where) {
 
-    if (user != undefined) {
-        showModal('Not logged in', 'You need to log in to use this funcionality.')
+    if (user == undefined) {
+        console.log('undefined')
+        showModal('Not logged in', 'You need to log in as a patient to use this funcionality.')
     }
 
     var shouldRedirect = false
@@ -45,6 +46,10 @@ function redirectCheck(user,where) {
 
     if (shouldRedirect) {
         window.location.href = '../user/me.html#' + where
+    }
+    else {
+        console.log('else')
+        showModal('Not allowed', 'You need to log in as a patient to use this funcionality.')
     }
 
 }

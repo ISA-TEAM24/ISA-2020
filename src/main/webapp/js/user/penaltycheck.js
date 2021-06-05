@@ -26,7 +26,8 @@ function isUserAllowed(user, title, tab) {
     if(user.loyaltyInfo.penali > 2) {
         console.log('You have been penalized')
         showError(title, 'Because of the amount of penalties you are not allowed to use this functionality, penalties reset every 1st of the month.')
-        $('#' + tab).click()
+        //$('#' + tab).click()
+        countDownToPageReloading(5)
         return
     }    
 

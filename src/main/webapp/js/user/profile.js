@@ -27,7 +27,7 @@ const alert_body = $('#alert_body')
 
 $(document).ready(function() {
     checkReservationPenalties()
-    resetPenaltiesIfNeeded()
+    //resetPenaltiesIfNeeded()
     reloadProfile()
     refreshToken()
 
@@ -64,6 +64,7 @@ function checkReservationPenalties() {
             else {
                 console.log('no penalty for reservation')
             }
+            resetPenaltiesIfNeeded()
         },
         error : function() {
             console.log('Could not reset penalties')
@@ -335,4 +336,22 @@ function validateUserFields(obj) {
     return true;
 }
 
+function logMeOut() {
+
+    $.ajax({
+        type:'POST',
+        url: '/auth/logout',
+        contentType : 'application/json',
+        success : function() {
+            console.log('I have been logged out')
+            location.reload()
+            localStorage.removeItem('myToken')
+        },
+        error : function() {
+            console.log('FAIL LOGOUT')
+            //alert('Bad credentials')
+        }
+        
+    })
+}
 

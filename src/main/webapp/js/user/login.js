@@ -5,15 +5,19 @@ $(document).ready(function() {
     console.log("asdsasad");
 });
 
-$('#loginNavBtn').click(function(){
+ 
+
+function setupLoginButton() {
+
+    $('#loginNavBtn').html('LOGIN')
+    $('#loginNavBtn').click(function(){
         console.log('hello');
         $("#registrationFormModal").hide();
         disableScroll();
         $('#loginFormModal').show();
-        hideIndex1()
-        
-        
-    }); 
+        hideIndex1()    
+    });
+}
 
 
 function disableScroll(){
