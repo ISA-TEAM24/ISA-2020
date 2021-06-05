@@ -38,7 +38,7 @@ function fillInfo(user) {
  
     var pen_string = "You currently have " + loyalty.penali + " penalty points"
 
-    if (loyalty.penali < 2) {
+    if (loyalty.penali < 3) {
         pen_string +=  " - no punishment";
     }
     else {

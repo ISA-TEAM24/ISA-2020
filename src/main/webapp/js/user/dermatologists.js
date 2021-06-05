@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    reloadDermatologists();
+    //reloadDermatologists();
 });
 
 function reloadDermatologists() {

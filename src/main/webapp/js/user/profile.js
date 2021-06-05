@@ -26,9 +26,34 @@ const alert_title = $('#alert_title')
 const alert_body = $('#alert_body')
 
 $(document).ready(function() {
+    resetPenaltiesIfNeeded()
     reloadProfile()
     
 })
+
+function resetPenaltiesIfNeeded() {
+
+    $.ajax({
+        type:'GET',
+        url: '/api/user/penalty/reset',
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        success : function(data, statusText, xhr) {
+            if (xhr.status == 202) {
+                showError('Penalty reset', 'Your penalties have been reset!')
+            }
+            console.log('success')
+            //fillProfile(user);
+        },
+        error : function() {
+            console.log('Could not reset penalties')
+        }
+        
+    })
+
+}
 
 function saveUser(){
     

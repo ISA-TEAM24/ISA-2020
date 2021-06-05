@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.informatika.rest.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,12 +28,23 @@ public class LoyaltyInfo {
     @MapKeyColumn(name = "naziv_apoteke")
     @Column(name = "prati")
     private Map<String, Boolean> pratiPromocije;
+    @Column(nullable = false)
+    private int monthOfLastReset;
 
     public LoyaltyInfo() {
         klasa = Klasa.REGULAR;
         poeni = 0;
         penali = 0;
         pratiPromocije = new HashMap<>();
+        monthOfLastReset = LocalDate.now().getMonthValue();
+    }
+
+    public int getMonthOfLastReset() {
+        return monthOfLastReset;
+    }
+
+    public void setMonthOfLastReset(int monthOfLastReset) {
+        this.monthOfLastReset = monthOfLastReset;
     }
 
     public Long getID() {

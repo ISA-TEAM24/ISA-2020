@@ -7,7 +7,7 @@ insert into authority values (5, 'ROLE_PH_ADMIN');
 
 
 INSERT INTO public.godisnji_info (id, do_datuma, na_godisnjem, od_datuma) VALUES (1, NULL, false, NULL);
-INSERT INTO public.loyalty_info (id, klasa, penali, poeni) VALUES (1, 0, 0, 0);
+INSERT INTO public.loyalty_info (id, klasa, penali, poeni, month_of_last_reset) VALUES (1, 0, 2, 0, 7);
 
 INSERT INTO public.loyalty_apoteka_mapping(
     loyalty_id, prati, naziv_apoteke)
@@ -140,7 +140,7 @@ INSERT INTO public.apoteka_magacin_mapping(apoteka_id, kolicina, id_leka) VALUES
 --Pretraga korisnika - istorija poseta (Derm, Farm)
 INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 3);  --Dermatolog radi u apoteci1
 
-INSERT INTO public.loyalty_info (id, klasa, penali, poeni) VALUES (2, 0, 0, 0);
+INSERT INTO public.loyalty_info (id, klasa, penali, poeni, month_of_last_reset) VALUES (2, 0, 0, 0, 6);
 INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (250, true, 'adresica', 'USA', 'pswtim24@gmail.com', 'New York', 'Jovan', '2021-05-22 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'Jovic', true, '321', 'pacijent2', null, 2);
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (250, 1);
 
@@ -262,17 +262,17 @@ INSERT INTO public.radno_info_neradni_dani(radno_info_id, neradni_dani) VALUES (
 INSERT INTO public.korisnik_radno_info(korisnik_id, radno_info_id, radno_info_key) VALUES (3, 102, 'apoteka1');
 
 --actions and promotions test:
-INSERT INTO public.loyalty_info (id, klasa, penali, poeni) VALUES (90, 0, 0, 0);
+INSERT INTO public.loyalty_info (id, klasa, penali, poeni, month_of_last_reset) VALUES (90, 0, 0, 0, 6);
 INSERT INTO public.loyalty_apoteka_mapping(loyalty_id, prati, naziv_apoteke) VALUES (90, true, 'apoteka1');
 INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (90, true, 'adresa90', 'USA', 'izfidjfddsa@gmail.com', 'New York', 'jelena', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'zalic', true, '515631616', 'tesadsydsa', null, 90);
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (90, 1);
 
-INSERT INTO public.loyalty_info (id, klasa, penali, poeni) VALUES (91, 0, 0, 0);
+INSERT INTO public.loyalty_info (id, klasa, penali, poeni, month_of_last_reset) VALUES (91, 0, 0, 0, 6);
 INSERT INTO public.loyalty_apoteka_mapping(loyalty_id, prati, naziv_apoteke) VALUES (91, true, 'apoteka1');
 INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (91, true, 'adresa91', 'USA', 'fdsdffds@gmail.com', 'New York', 'ana', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'avicic', true, '8175931616', 'ioeqwioewq', null, 91);
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (91, 1);
 
-INSERT INTO public.loyalty_info (id, klasa, penali, poeni) VALUES (92, 0, 0, 0);
+INSERT INTO public.loyalty_info (id, klasa, penali, poeni, month_of_last_reset) VALUES (92, 0, 0, 0, 6);
 INSERT INTO public.loyalty_apoteka_mapping(loyalty_id, prati, naziv_apoteke) VALUES (92, false, 'apoteka1');
 INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, last_password_reset_date, ocena, password, prezime, prvo_logovanje, telefon, username, godisnji_info_id, loyalty_info_id) VALUES (92, true, 'adresa92', 'USA', 'dokvdo@gmail.com', 'New York', 'tasana', '2021-05-23 11:30:17.518', 5, '$2a$10$YWVI64SHppEpbj9dbCzt1OdxtmGJRBR5wC9lhgAVAqcl/IwjuTZb2', 'avdaic', true, '6142331616', 'uue128ru', null, 92);
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (92, 1);
