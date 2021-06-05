@@ -71,8 +71,18 @@ function reserveApp(id) {
         success : function() {
             getFreeAppointments()
         }, 
-        error : function() {
+        error : function(xhr,status, data) {
             console.log('error occured');
+            if (xhr.status == 401) {
+                // not logged in
+                showModal('Not logged in', 'You need to be logged in to use this functionality.')
+            }
+            else if (xhr.status == 406) {
+                showModal('Error message', 'You already have an appointment at this time.')
+            }
+            else {
+                showModal('Error message', 'There has been an error please try again later.')
+            }
         }
     });
 

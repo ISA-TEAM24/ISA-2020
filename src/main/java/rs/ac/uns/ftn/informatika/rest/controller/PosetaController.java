@@ -130,7 +130,7 @@ public class PosetaController {
         Long appID = Long.parseLong(dto.getId());
         boolean success = posetaService.addExam(appID, p.getName());
 
-        if (!success) return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        if (!success) return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
 
         return new ResponseEntity<>(null, HttpStatus.CREATED);
 
