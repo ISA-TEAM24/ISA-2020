@@ -34,7 +34,7 @@ function fillPharmacists(pharmacists) {
                      </tr>`
     });
 
-    $("#pharmacistsTable").append(table);
+    $("#pharmacistsTable").html(table);
 }
 
 function searchPharmacistsByName() {

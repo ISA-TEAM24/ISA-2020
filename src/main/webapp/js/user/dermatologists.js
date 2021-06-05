@@ -38,7 +38,7 @@ function fillDermatologists(dermatologists) {
         table +=           `</ul></td></tr>`
     });
 
-    $("#dermatologistsTable").append(table);
+    $("#dermatologistsTable").html(table);
 }
 
 function searchDermatologistsByName() {
