@@ -1,8 +1,9 @@
 $(document).ready(function() {
-    test_login();
+    //test_login();
+    getMe();
 })
 
-
+/*
 function test_login() {
     var form = {
         "username" : "farmaceut1",
@@ -25,6 +26,7 @@ function test_login() {
         }
     })
 }
+*/
 
 function getMe() {
     $.ajax({

@@ -3,6 +3,7 @@ $(document).ready(function() {
     getData();
     drugList = [];
     retVal = [];
+    addIdToPenalButton();
 
 })
 
@@ -581,5 +582,46 @@ function prescribe() {
             console.log('error occured');
         }
     });
+
+}
+
+function addIdToPenalButton(){
+
+
+    var val = $("#penal").attr("onclick", "addPenalToPatient()");
+    console.log(val);
+}
+
+function addPenalToPatient(visitId) {
+
+    var url = window.location.href;
+    var visitId = url.split("?")[1];
+
+    console.log(visitId);
+    console.log(obj.email);
+
+    var object = {
+        "email" : obj.email,
+        "id" : parseInt(visitId)
+    }
+
+    $.ajax({
+        type:'POST',
+        url: '/api/visit/givePenalty',
+        contentType : 'application/json',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
+        },
+        data : JSON.stringify(object),
+        success : function() {
+            console.log('Success');
+            alert('Pacijentu je dodeljen 1 penal!');
+            history.go(-1);
+        },
+        error : function() {
+            console.log('Error');
+        }
+        
+    }) 
 
 }

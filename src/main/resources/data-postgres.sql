@@ -125,7 +125,7 @@ INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, 
 INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id) values (156, null, '2021-05-31 0:00:00', 1, 55, 1);
 INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id) values (157, '2021-06-10 14:12:00', '2021-06-15 0:00:00', 1, 56, 1);
 INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id) values (158, '2021-06-10 13:12:00', '2021-06-12 0:00:00', 2, 56, 1);
-INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id) values (159, null, '2021-06-12 0:00:00', 2, 56, 1);
+INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id) values (159, null, '2021-06-12 0:00:00', 1, 56, 1);
 
 INSERT INTO public.lek_alternative(
     lek_id, alternative)
