@@ -32,7 +32,10 @@ function getMe() {
                     addPageData(dermatolog)
                 }
             })
-        }
+        }, error : function() {
+            alert("Your token has expired. You will be redirected to index page")
+            window.location.href = '../index.html';
+        }  
     })
 }
 
@@ -55,8 +58,16 @@ function addPageData(dermatolog) {
 }
 
 function register() {
+    
+    if (!validateFields()) {
+        alert('You must fill all fields')
+        return;
+    }
 
-    console.log(usernm);
+    if (!endBeforeStart()) {
+        alert('End date is before start date')
+        return;
+    }
 
     var derm = {
         username : usernm,
@@ -78,8 +89,22 @@ function register() {
         success : function() {
             document.location.href = "dermatologistslist.html"
         }, error : function() {
-            alert("ERROR");
+            alert("Your dates overlaps with other work times");
         }
     })
 }
 
+function validateFields() {
+    if (!$('#odDatum').val()) return false;
+    if (!$('#doDatum').val()) return false;
+    if (!$('#odVreme').val()) return false;
+    if (!$('#doVreme').val()) return false;
+
+    return true;
+}
+
+function endBeforeStart() {
+    if ($('#odDatum').val() > $('#doDatum').val()) return false;
+
+    return true;
+}

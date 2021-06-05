@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
+import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
 
 import java.util.List;
@@ -20,4 +22,5 @@ public interface PosetaRepository extends JpaRepository<Poseta, Long> {
 
     Poseta findPosetaByID(Long ID);
 
+    List<Poseta> findPosetaByZaposleniAndApoteka(Korisnik zaposleni, Apoteka apoteka);
 }

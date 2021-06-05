@@ -123,6 +123,10 @@ function redirectToDashboard(user){
         console.log('You are a user redirecting to me.html')
         window.location.href = 'user/me.html'
     }
-        
+     
+    if(auth.authority == "ROLE_PH_ADMIN") {
+        console.log('You are a user redirecting to pharmacyadmin/index.html')
+        window.location.href = 'pharmacyadmin/index.html'
+    }
 }
 

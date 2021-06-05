@@ -27,7 +27,10 @@ function getMe() {
                     addDermatologistsToTable(dermatologists);
                 }
             })
-        }  
+        }, error : function() {
+            alert("Your token has expired. You will be redirected to index page")
+            window.location.href = '../index.html';
+        }    
     })
 }
 

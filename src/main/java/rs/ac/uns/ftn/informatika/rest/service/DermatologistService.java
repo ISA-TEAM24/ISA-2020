@@ -221,4 +221,40 @@ public class DermatologistService {
         }
         return  dermatologDTOS;
     }
+
+    public boolean checkDateRanges(HireDermatologistDTO hireDermatologistDTO) {
+        Korisnik k = findByUsername(hireDermatologistDTO.getUsername());
+        Map<String, RadnoInfo> radnoInfo = k.getRadnoInfo();
+
+        for (Map.Entry<String, RadnoInfo> entry : radnoInfo.entrySet()) {
+            RadnoInfo ri = entry.getValue();
+            if (ri.doDateRangesIntersects(hireDermatologistDTO.getOdDatum(), hireDermatologistDTO.getDoDatum(),
+                    hireDermatologistDTO.getOdVreme(), hireDermatologistDTO.getDoVreme())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeWorkTime(String username, Apoteka a) {
+        Korisnik k = findByUsername(username);
+        k.getRadnoInfo().remove(a.getNaziv());
+
+        userRepository.save(k);
+    }
+
+    public boolean dateInRange(NewPosetaDTO dto, Apoteka a) {
+        Korisnik k = findByUsername(dto.getDermatologist());
+        Map<String, RadnoInfo> radnoInfo = k.getRadnoInfo();
+
+        for (Map.Entry<String, RadnoInfo> entry : radnoInfo.entrySet()) {
+            if (entry.getKey().equalsIgnoreCase(a.getNaziv())) {
+                RadnoInfo ri = entry.getValue();
+                if (ri.isDateInRange(dto.getDate(), dto.getTime()) && ri.isDateInRange(dto.getDate(), dto.getTime().plusMinutes(dto.getDuration()))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

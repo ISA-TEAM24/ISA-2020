@@ -18,10 +18,7 @@ import java.text.DateFormat;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -41,6 +38,9 @@ public class PosetaService {
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private DermatologistService dermatologistService;
 
     public Korisnik findByEmail(String email) {
         return korisnikService.findByEmail(email);
@@ -382,5 +382,36 @@ public class PosetaService {
 
         }
         return retList;
+    }
+
+    public boolean appointmentsTimeIntersect(NewPosetaDTO dto, Apoteka a) {
+        Korisnik k = dermatologistService.findByUsername(dto.getDermatologist());
+        List<Poseta> posete = posetaRepository.findPosetaByZaposleniAndApoteka(k, a);
+        for (Poseta p : posete) {
+
+            LocalDate date1 = p.getDatum().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate date2 = dto.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            System.out.println("Date 1: " + date1);
+            System.out.println("Date 2: " + date2);
+
+            if (date1.equals(date2)) {
+                LocalTime start1 = dto.getTime();
+                LocalTime end1 = start1.plusMinutes(dto.getDuration());
+                LocalTime start2 = p.getVreme();
+                LocalTime end2 = start2.plusMinutes(p.getTrajanje());
+
+                System.out.println(start1);
+                System.out.println(end1);
+                System.out.println("-----------------");
+                System.out.println(start2);
+                System.out.println(end2);
+
+                if (!(end1.isBefore(start2) || start1.isAfter(end2))) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
