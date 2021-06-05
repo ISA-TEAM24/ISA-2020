@@ -3,12 +3,16 @@ $(document).ready(function() {
 });
 
 
-$("#signUpNavBtn").click(function(){
-    $('#loginFormModal').hide();
-    $("#registrationFormModal").show();
-    disableScroll();
-    hideIndex1()
-});
+function setupRegistrationButton() {
+
+    $("#signUpNavBtn").html('SIGNUP')
+    $("#signUpNavBtn").click(function(){
+        $('#loginFormModal').hide();
+        $("#registrationFormModal").show();
+        disableScroll();
+        hideIndex1()
+    });
+}
 
 
 $("#cancelRegBtn").click(function(){
