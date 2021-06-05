@@ -93,6 +93,10 @@ function saveNewData(){
      phoneNumber :  $('#telefon1').val().trim()    
     }
 
+    if(validateInputs() == false) {
+        return;
+    }
+
     $.ajax({
         type:'PUT',
         url: '/pharmacist/editdata',
@@ -220,4 +224,46 @@ function requirePwChange(username) {
 
     console.log(username)
     changepw()
+}
+
+function validateInputs() {
+    var pattern = $("#ime1").attr("pattern");
+    var re = new RegExp(pattern);
+
+    if(!re.test($("#ime1").val())) {
+        alert('Zabranjen karakter u ime polje');
+        return false;
+    }
+
+    if(!re.test($("#prezime1").val())) {
+        alert('Zabranjen karakter u prezime polje');
+        return false;
+    }
+
+    if(!re.test($("#grad1").val())) {
+        alert('Zabranjen karakter u grad polje');
+        return false;
+    }
+
+    if(!re.test($("#drzava1").val())) {
+        alert('Zabranjen karakter u drzava polje');
+        return false;
+    }
+
+    pattern = $("#adresa1").attr("pattern");
+    re = new RegExp(pattern)
+    if(!re.test($("#adresa1").val())) {
+        alert('Zabranjen karakter u adresa polje');
+        return false;
+    }
+
+    pattern = $("#telefon1").attr("pattern");
+    re = new RegExp(pattern)
+    if(!re.test($("#telefon1").val())) {
+        alert('Zabranjen karakter u telefon polje');
+        return false;
+    }
+
+    return true;
+
 }

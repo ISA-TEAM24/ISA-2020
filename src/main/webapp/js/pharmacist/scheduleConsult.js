@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     resetFields();
+    disablePastDates();
 
 })
 
@@ -23,6 +24,10 @@ function sendSchedulingRequest() {
         "email" : email,
         "datum" : datum,
         "vreme" : vreme
+    }
+
+    if(validateInputs() == false) {
+        return;
     }
 
     console.log(obj);
@@ -70,4 +75,37 @@ function resetFields() {
     $('#mail').val('')
     $('#datumpregleda').val('')
     $('#vremepregleda').val('')
+}
+
+function disablePastDates() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0 so need to add 1 to make it 1!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+      dd='0'+dd
+    } 
+    if(mm<10){
+      mm='0'+mm
+    } 
+    
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("datumpregleda").setAttribute("min", today);
+}
+
+function validateInputs() {
+    var pattern = $("#imepac").attr("pattern");
+    var re = new RegExp(pattern);
+
+    if(!re.test($("#imepac").val())) {
+        alert('Zabranjen karakter u ime polje');
+        return false;
+    }
+
+    if(!re.test($("#prezimepac").val())) {
+        alert('Zabranjen karakter u prezime polje');
+        return false;
+    }
+
+    return true;
 }
