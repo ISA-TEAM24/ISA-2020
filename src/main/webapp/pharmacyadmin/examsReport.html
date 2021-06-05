@@ -20,7 +20,7 @@
 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto topnav">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="pharmacyedit.html">Pharmacy</a>
                 </li>
                 <li class="nav-item">
@@ -46,7 +46,7 @@
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="dermatologistsReport.html">Dermatologists</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="examsReport.html">Examinations</a>
+                      <a class="dropdown-item active" href="examsReport.html">Examinations</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="medicineReport.html">Medicines</a>
                       <div class="dropdown-divider"></div>
@@ -54,14 +54,14 @@
                     </div>
                   </li>
                 <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Purchase order
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="purchaseorder.html">New</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="orderslist.html">All</a>
-                </div>
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      Purchase order
+                  </a>
+                  <div class="dropdown-menu">
+                      <a class="dropdown-item" href="purchaseorder.html">New</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="orderslist.html">All</a>
+                  </div>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="newactionpromotion.html">Actions/promotions</a>
@@ -73,15 +73,15 @@
                 <a class="nav-link" href="absencerequestpage.html">TimeOff requests</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <div class="btn-group">
-                        <a href="myprofile.html" class="btn btn-link nav-link">My profile</a>
-                        <a href="#" class="btn btn-link nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="../index.html">Log out</a>
-                        </div>
+                <div class="btn-group">
+                    <a href="myprofile.html" class="btn btn-link nav-link">My profile</a>
+                    <a href="#" class="btn btn-link nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="../index.html">Log out</a>
                     </div>
+                </div>
                 </li>
             </ul>
         </div>
@@ -89,55 +89,12 @@
 
         <div class="container" id="pharmacyeditcont">
             <br><br>
-            <h1 align="center">Pharmacy informations</h1>
-            <br><br><br>
-            <div class="row">
-                <div class="col-4 text-center" id="labels">
-                    Pharmacy name
-                </div>
-                <div class="col-6 text-center" id="inputfield">
-                    <div class="form-group">
-                        <input type="text" id="field1" disabled class="form-control" aria-label="Pharmacyname" aria-describedby="basic-addon1">
-                    </div>
-                </div>
-                <div class="col-2 text-center">
-                    <button type="button" id="Edit1" class="btn btn-primary">Edit</button>
-                </div>
-            </div>
+            <h1 align="center">Number of examinations held per month</h1>
             <br><br>
-            <div class="row">
-                <div class="col-4 text-center" id="labels">
-                    Pharmacy address
-                </div>
-                <div class="col-6 text-center" id="inputfield">
-                    <div class="form-group">
-                        <input id="field2" disabled type="text" class="form-control" aria-label="Pharmacyname" aria-describedby="basic-addon1">
-                    </div>
-                </div>
-                <div class="col-2 text-center">
-                    <button type="button" id="Edit2" class="btn btn-primary">Edit</button>
-                </div>
-            </div>
-            <br><br>
-            <div class="row">
-                <div class="col-4 text-center" id="labels"> 
-                    Description
-                </div>
-                <div class="col-6 text-center" id="inputfield">
-                    <div class="form-group">
-                        <textarea class="form-control" disabled rows="5" id="field3"></textarea>
-                    </div>
-                </div>
-                <div class="col-2 text-center" style="width: 50px;">
-                    <button type="button" id="Edit3" class="btn btn-primary">Edit</button>
-                </div>
-            </div>
-            <br>
-            <div class="text-center">
-                <button type="button" id="Save" onclick='save()' class="btn btn-primary">Save</button>
-            </div>
+            <div id="chartdiv"></div>
             <br><br>
         </div>
+        
     </div>
   
   <script
@@ -155,7 +112,12 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
-  <script src="../js/pharmacyadmin/phadminpharmacyeditjs.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+  <script src="../js/pharmacyadmin/examsReport.js"></script>
+  <script src="../js/pharmacyadmin/drawgraph.js"></script>
   <script src="../js/authorization.js"></script>
 
 </body>

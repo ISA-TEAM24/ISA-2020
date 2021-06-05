@@ -14,14 +14,13 @@ import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
 import rs.ac.uns.ftn.informatika.rest.repository.PosetaRepository;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.text.DateFormat;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @Service
@@ -38,6 +37,9 @@ public class PosetaService {
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private PharmacyAdminService pharmacyAdminService;
 
     @Autowired
     private DermatologistService dermatologistService;
@@ -419,5 +421,68 @@ public class PosetaService {
             }
         }
         return false;
+    }
+
+    public Map<String, Integer> getPastVisitsByMonth(Apoteka a) {
+        List<Poseta> proslePosete = getPreviousExaminationsInPharmacy(a);
+
+        LinkedHashMap<String, Integer> meseci = pharmacyAdminService.createMonthsMap();
+
+        for (Poseta p : proslePosete) {
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(p.getDatum());
+
+            if (cal.get(Calendar.MONTH) == Calendar.JANUARY) {
+                meseci.computeIfPresent("January", (k,v) -> v+1);
+            }
+            if (cal.get(Calendar.MONTH) == Calendar.FEBRUARY) {
+                meseci.computeIfPresent("February", (k,v) -> v+1);
+            }
+            if (cal.get(Calendar.MONTH) == Calendar.MARCH) {
+                meseci.computeIfPresent("March", (k,v) -> v+1);
+            }
+            if (cal.get(Calendar.MONTH) == Calendar.APRIL) {
+                meseci.computeIfPresent("April", (k,v) -> v+1);
+            }
+            if (cal.get(Calendar.MONTH) == Calendar.MAY) {
+                meseci.computeIfPresent("May", (k,v) -> v+1);
+            }
+            if (cal.get(Calendar.MONTH) == Calendar.JUNE) {
+                meseci.computeIfPresent("June", (k,v) -> v+1);
+            }
+            if (cal.get(Calendar.MONTH) == Calendar.JULY) {
+                meseci.computeIfPresent("July", (k,v) -> v+1);
+            }
+            if (cal.get(Calendar.MONTH) == Calendar.AUGUST) {
+                meseci.computeIfPresent("August", (k,v) -> v+1);
+            }
+            if (cal.get(Calendar.MONTH) == Calendar.SEPTEMBER) {
+                meseci.computeIfPresent("September", (k,v) -> v+1);
+            }
+            if (cal.get(Calendar.MONTH) == Calendar.OCTOBER) {
+                meseci.computeIfPresent("October", (k,v) -> v+1);
+            }
+            if (cal.get(Calendar.MONTH) == Calendar.NOVEMBER) {
+                meseci.computeIfPresent("November", (k,v) -> v+1);
+            }
+            if (cal.get(Calendar.MONTH) == Calendar.DECEMBER){
+                meseci.computeIfPresent("December", (k,v) -> v+1);
+            }
+        }
+
+        return meseci;
+
+    }
+
+    public List<Poseta> getPreviousExaminationsInPharmacy (Apoteka a) {
+        List<Poseta> svePosete = posetaRepository.findPosetaByApoteka(a);
+        List<Poseta> proslePosete = new ArrayList<>();
+        for (Poseta p : svePosete) {
+            if (p.getDatum().before(new Date())) {
+                proslePosete.add(p);
+            }
+        }
+        return proslePosete;
     }
 }

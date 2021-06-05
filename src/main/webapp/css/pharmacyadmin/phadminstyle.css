@@ -157,3 +157,7 @@ hr.solid {
     color: rgb(255, 255, 255);
     border-radius: 30px;
 }
+
+#chartdiv {
+    height: 380pt;
+}

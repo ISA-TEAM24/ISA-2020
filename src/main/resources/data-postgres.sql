@@ -280,10 +280,23 @@ INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, la
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (92, 1);
 
 --upiti:
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (1, 5, false, 1, 56, 7, '2021-07-13');
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (2, 10, true, 1, 55, 7, '2021-07-13');
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (3, 7, false, 7, 56, 6, '2021-07-13');
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (4, 2, false, 1, 68, 6, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (13, 5, false, 1, 56, 7, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (14, 10, true, 1, 55, 7, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (15, 7, false, 7, 56, 6, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (16, 2, false, 1, 68, 6, '2021-07-13');
+
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (1, 5, true, 1, 56, 7, '2021-05-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (2, 8, true, 1, 55, 7, '2021-04-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (3, 7, true, 1, 56, 6, '2021-03-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (4, 9, true, 1, 68, 6, '2021-02-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (5, 12, true, 1, 56, 7, '2021-05-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (6, 10, true, 1, 55, 7, '2021-06-01');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (7, 6, true, 1, 56, 6, '2021-04-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (8, 2, true, 1, 68, 6, '2021-01-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (9, 4, true, 1, 56, 7, '2021-05-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (10, 10, true, 1, 55, 7, '2021-01-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (11, 13, true, 1, 56, 6, '2021-02-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (12, 12, true, 1, 68, 6, '2021-05-13');
 
 --erecepti test
 INSERT INTO public.erecept(
