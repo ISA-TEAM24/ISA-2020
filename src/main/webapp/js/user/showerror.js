@@ -33,7 +33,7 @@ function countDownToPageReloading(x) {
         // Display 'counter' wherever you want to display it.
         if (counter < 1) {
             // Display a login box
-            location.reload()
+            window.location.href = window.location.origin + '/user/me.html'
         }
 
 
