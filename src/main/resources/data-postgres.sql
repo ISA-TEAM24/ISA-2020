@@ -1,3 +1,5 @@
+-- SVE LOZINKE SU 'test' (bez navodnika), za env varijable je mejl 'mdnnpharm@gmail.com'
+-- dok je lozinka za mejl 'mdnn1234'
 -- autoriteti
 
 insert into authority values (1, 'ROLE_USER');
