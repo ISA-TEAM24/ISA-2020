@@ -119,6 +119,12 @@ function checkDermatologistAuthority(user) {
     if (shouldReturn) {
         window.location.href = '../index.html'
     }
+
+    if(user.prvoLogovanje == true && window.location.pathname.substring(1) != 'dermatologist/mojProfilDermatolog.html') {
+        console.log('Prvi put je logovan.')
+        window.location.href = '/dermatologist/mojProfilDermatolog.html'
+    }
+
     console.log('You are a dermatologist, you are allowed on this page')
 } 
 
@@ -161,6 +167,12 @@ function checkPharmacistAuthority(user) {
     if (shouldReturn) {
         window.location.href = '../index.html'
     }
+
+    if(user.prvoLogovanje == true && window.location.pathname.substring(1) != 'pharmacist/mojProfilFarmaceut.html' ) {
+        console.log('Prvi put je logovan.')
+        window.location.href = '/pharmacist/mojProfilFarmaceut.html'
+    }
+
     console.log('You are a pharmacist, you are allowed on this page')
 } 
 
