@@ -27,10 +27,12 @@ function getData() {
                 success : function(pharmacy) {
                     console.log(phadmin);
                     fillData(pharmacy);
+                    refreshToken();
                 }, error : function() {
                     console.log('error occured')
                 }
             })
+            refreshToken();
         }, error : function() {
             //alert("Your token has expired. You will be redirected to index page")
             window.location.href = '../index.html';

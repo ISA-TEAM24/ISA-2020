@@ -33,8 +33,10 @@ function getMe() {
                 },
                 success : function(dermatolog) {
                     addPageData(dermatolog)
+                    refreshToken();
                 }
             })
+            refreshToken();
         }, error : function() {
             //alert("Your token has expired. You will be redirected to index page")
             window.location.href = '../index.html';
@@ -119,6 +121,8 @@ function addAppointment() {
         data : JSON.stringify(appointment),
         success : function() {
             alert("SUCCESS");
+            window.location.reload();
+            refreshToken();
         }, error : function() {
             alert("Dermatologist isn't in the pharmacy or already has schedulled appointment at that time. Check tables above.");
         }

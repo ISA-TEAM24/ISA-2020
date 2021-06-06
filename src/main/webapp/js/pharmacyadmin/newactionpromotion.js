@@ -15,6 +15,7 @@ function getMe() {
                 console.log('Prvi put je logovan.')
                 window.location.href = 'index.html';
             }
+            refreshToken();
         }, error : function() {
             //alert("Your token has expired. You will be redirected to index page")
             window.location.href = '../index.html';
@@ -46,6 +47,7 @@ function createAction() {
         success : function() {
             alert("Promotion successfully created");
             location.reload();
+            refreshToken();
         },
         error : function() {
             console.log('error occured')

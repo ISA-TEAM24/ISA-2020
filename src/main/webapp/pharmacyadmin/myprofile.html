@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="nameid" value="" type="text" class="form-control">
+                        <input id="nameid" pattern='^[" "A-ZŠČĆŽĐa-zščćžđ]{2,32}$' value="" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -137,7 +137,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="lastnameid" value="" type="text" class="form-control">
+                        <input id="lastnameid" pattern='^[" "A-ZŠČĆŽĐa-zščćžđ]{2,32}$' value="" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -150,7 +150,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="phoneid" value="" type="text" class="form-control">
+                        <input id="phoneid" value="" pattern='^[" ""-""/""+"0-9]{5,32}$' type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -163,7 +163,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="addressid" value="" type="text" class="form-control">
+                        <input id="addressid" pattern='^[" ""/""."0-9A-ZŠČĆŽĐa-zščćžđ]{5,32}$' value="" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -176,7 +176,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="cityid" type="text" class="form-control">
+                        <input id="cityid" pattern='^[" "A-ZŠČĆŽĐa-zščćžđ]{2,32}$' type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -189,7 +189,7 @@
                 </div>
                 <div class="col-5 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="countryid" type="text" class="form-control">
+                        <input id="countryid" pattern='^[" "A-ZŠČĆŽĐa-zščćžđ]{2,32}$' type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -286,6 +286,7 @@
   ></script>
   <script src="../js/pharmacyadmin/myprofile.js"></script>
   <script src="../js/authorization.js"></script>
+  <script src="../js/user/showerror.js"></script>
   <script src="../js/logout.js"></script>
 
 </body>

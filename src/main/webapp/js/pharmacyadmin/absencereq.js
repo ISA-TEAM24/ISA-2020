@@ -24,6 +24,7 @@ function getMe() {
                 },
                 success : function(requests) {
                     addRequestsToTable(requests);
+                    refreshToken();
                 },
                 error : function() {
                     console.log("error");
@@ -68,6 +69,7 @@ function addRequestsToTable(requests) {
                 success : function(requests) {
                     alert("TimeOff request accepted");
                     location.reload();
+                    refreshToken();
                 },
                 error : function() {
                     console.log("error");
@@ -97,6 +99,11 @@ function addRequestsToTable(requests) {
                 razlogOdbijanja : $("#field-" + req.id).val()
             }
 
+            if ($("#field-" + req.id).val() == "") {
+                alert("You must enter reason for rejecting")
+                return;
+            }
+
 
             $.ajax({
                 type:'PUT',
@@ -109,6 +116,7 @@ function addRequestsToTable(requests) {
                 success : function(requests) {
                     alert("TimeOff request rejected");
                     location.reload();
+                    refreshToken();
                 },
                 error : function() {
                     console.log("error");

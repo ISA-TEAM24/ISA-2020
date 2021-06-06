@@ -16,6 +16,7 @@ function getMe() {
                 console.log('Prvi put je logovan.')
                 window.location.href = 'index.html';
             }
+            refreshToken();
         },
         error : function() {
             window.location.href = '../index.html';
@@ -44,6 +45,10 @@ function saveNewData(){
      country :  $('#countryid').val().trim(),
      city :  $('#cityid').val().trim(),
      phoneNumber :  $('#phoneid').val().trim()
+    }
+
+    if (validateUserFields(obj) == false){
+        return;
     }
 
     $.ajax({
@@ -78,14 +83,23 @@ function changepw() {
     newpw2 = document.getElementById("newpw2").value
 
     if (oldpw == "") {
+        $('#errormsg').text("Old password field empty");
+        $('#successmsg').text("");
+
         return;
     }
 
     if (newpw1 == "") {
+        $('#errormsg').text("New password field empty");
+        $('#successmsg').text("");
+
         return;
     }
 
     if (newpw2 == "") {
+        $('#errormsg').text("Confirm password field empty");
+        $('#successmsg').text("");
+
         return;
     }
 
@@ -108,6 +122,14 @@ function changepw() {
         return;
     }
 
+    if (newpw1.length < 4) {
+
+        $('#errormsg').text("New password has to be at least 4 characters or longer");
+        $('#successmsg').text("");
+ 
+        return;
+    }
+
     var obj = {
         oldPassword : oldpw,
         newPassword : newpw1
@@ -123,20 +145,20 @@ function changepw() {
         data : JSON.stringify(obj),
         success : function() {
             $('#errormsg').text("");
-            $('#successmsg').text("Uspešno izmenjena lozinka!");
+            $('#successmsg').text("Successfully changed password");
 
             var millisecondsToWait = 2000;
             setTimeout(function() {
                 $('#myModal').modal('toggle');
             }, millisecondsToWait);
+            refreshToken();
         },
         error : function() {
             console.log('An Error has occured while trying to reload the profile')
             $('#successmsg').text("");
-            $('#errormsg').text("Greška!");
+            $('#errormsg').text("Old password is not correct");
 
         }
-        
     })
 }
 
@@ -162,4 +184,54 @@ function requirePwChange(username) {
 
     console.log(username)
     changepw()
+}
+
+function validateUserFields(obj) {
+
+    var pattern = $("#nameid").attr("pattern");
+    var re = new RegExp(pattern);
+    if (!re.test($("#nameid").val())) {
+        alert('Forbidden character in name field')
+        console.log('name does not match pattern')
+        return false;
+    }
+
+    if (!re.test($("#lastnameid").val())) {
+        console.log('last name does not match pattern')
+        alert('Forbidden character in last name field')
+        return false;
+    }
+
+    pattern = $("#addressid").attr("pattern")
+    re = new RegExp(pattern)
+    if (!re.test($("#addressid").val())) {
+        console.log('address does not match pattern')
+        alert('Forbidden character in address field')
+        return false;
+    }
+
+    pattern = $("#phoneid").attr("pattern")
+    re = new RegExp(pattern)
+    if (!re.test($("#phoneid").val())) {
+        console.log('phone does not match pattern')
+        alert('Forbidden character in phone field')
+        return false;
+    }
+
+    pattern = $("#cityid").attr("pattern")
+    re = new RegExp(pattern)
+    if (!re.test($("#cityid").val())) {
+        console.log('city does not match pattern')
+        alert('Forbidden character in city field')
+        return false;
+    }
+
+    if (!re.test($("#countryid").val())) {
+        console.log('country does not match pattern')
+        alert('Forbidden character in country field')
+        return false;
+    }
+
+    
+    return true;
 }

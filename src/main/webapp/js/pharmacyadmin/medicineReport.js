@@ -25,8 +25,10 @@ function getData() {
                 },
                 success : function(months) {
                     fillData(months);
+                    refreshToken();
                 }
             })
+            refreshToken();
         }, error : function() {
             //alert("Your token has expired. You will be redirected to index page")
             window.location.href = '../index.html';

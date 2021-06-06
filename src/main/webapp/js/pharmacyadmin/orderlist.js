@@ -24,8 +24,10 @@ function getMe() {
                 },
                 success : function(orders) {
                     addOrdersToTable(orders);
+                    refreshToken();
                 }
             });
+            refreshToken();
         }, error : function() {
             //alert("Your token has expired. You will be redirected to index page")
             window.location.href = '../index.html';
@@ -73,6 +75,7 @@ function addOrdersToTable(orders) {
                 success : function() {
                     alert("Succesfully deleted order.");
                     window.location.reload();
+                    refreshToken();
                 }, error : function() {
                     alert("Someone already made an offer, so order can't be deleted");
                 }

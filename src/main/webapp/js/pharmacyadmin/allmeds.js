@@ -25,8 +25,10 @@ function getMe() {
                 },
                 success : function(medicines) {
                     addMedsToTable(medicines);
+                    refreshToken();
                 }
             })
+            refreshToken();
         },error : function() {
             //alert("Your token has expired. You will be redirected to index page")
             window.location.href = '../index.html';
@@ -66,6 +68,7 @@ function addMedsToTable(medicines) {
                 success : function() {
                     alert("Succesfully added medicine to pharmacy.(You have to manually change price and amount)");
                     document.location.href="meds.html";
+                    refreshToken();
                 }, error : function() {
                     alert("Error.");
                 }

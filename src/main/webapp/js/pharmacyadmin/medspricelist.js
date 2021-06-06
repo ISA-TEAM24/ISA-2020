@@ -32,8 +32,10 @@ function getMe() {
                     addPriceList(priceList);
                 }
             });
+            refreshToken();
         }   
     });
+    refreshToken();
 }
 
 function addPriceList(priceList) {
@@ -69,7 +71,7 @@ function updatepricelist() {
         medName = $("#name-" + item.naziv).val();
         medAmount = $("#price-" + item.naziv).val();
         if (medAmount < 0) {
-            alert("Cena ne sme biti manja od 0");
+            alert("Price can't be negative");
             return;
         }
         map[medName] = medAmount;
