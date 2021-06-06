@@ -1,5 +1,6 @@
 $(document).ready(function() {
     getMe();
+    refreshToken();
 })
 
 function getMe() {
@@ -15,11 +16,13 @@ function getMe() {
                 console.log('Prvi put je logovan.')
                 window.location.href = '/pharmacist/mojProfilFarmaceut.html'
             }
-
+            refreshToken();
             console.log('Promenjena je lozinka');
         },
         error : function() {
             console.log('Error')
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }    
     })
 }

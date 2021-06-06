@@ -5,10 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import rs.ac.uns.ftn.informatika.rest.dto.DateTimeDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.NewPosetaDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.PosetaDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.ScheduleDTO;
+import rs.ac.uns.ftn.informatika.rest.dto.*;
 import rs.ac.uns.ftn.informatika.rest.model.Apoteka;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
@@ -166,7 +163,11 @@ public class PosetaService {
             System.out.println("---- TODAY IS: " + today);
             System.out.println("---- POSETA WAS ON : " + p.getDatum());
 
-            if(!p.getDijagnoza().equals("")) {
+            if(p.getPacijent() == null) {
+                continue;
+            }
+
+            if(p.getDijagnoza() == null || !p.getDijagnoza().equals("")) {
                 retList.add(p);
 
                 continue;
@@ -420,4 +421,77 @@ public class PosetaService {
         }
         return false;
     }
+
+    public int scheduleVisitByDerm(String pharmacistUsername, ScheduleExamDTO dto) throws ParseException {
+        Korisnik employee = korisnikService.findByUsername(pharmacistUsername);
+        Poseta p = new Poseta();
+
+        DateTimeDTO dt = new DateTimeDTO();
+        dt.setDate(dto.getDatum());
+        dt.setTime(dto.getVreme());
+
+        Apoteka moja = null;
+        List<Apoteka> apotekaList = apotekaService.findPharmaciesByDermatologist(employee);
+
+        for(Apoteka a : apotekaList) {
+            if(a.getNaziv().equals(dto.getApoteka())) {
+                moja = a;
+                break;
+            }
+        }
+
+        Korisnik pacijent = korisnikService.findByEmail(dto.getEmail());
+
+        if(pacijent == null) {
+            System.out.println("--- Ne postoji pacijent sa zadatim mailom");
+            return 2;
+        }
+
+        if(apotekaService.checkIfEmployeeIsFree(employee, dt.parseDateStringToDate(), dt.parseTimeStringToLocalTime(), moja)
+                && checkIfUserIsFree(pacijent.getUsername(), dto.getDatum(), dto.getVreme(),dto.getTrajanje())) {
+
+            p.setApoteka(moja);
+            p.setDijagnoza("");
+            p.setTrajanje(dto.getTrajanje());
+
+            p.setVrsta(p.getPREGLED());
+            boolean pharmacistRole = false;
+            for (GrantedAuthority auth : employee.getAuthorities()) {
+                if (auth.getAuthority().equalsIgnoreCase("ROLE_PHARMACIST")) {
+                    p.setVrsta(p.getSAVETOVANJE());
+                    pharmacistRole = true;
+                }
+            }
+
+            p.setPoeni(5);
+            p.setPacijent(pacijent);
+            p.setZaposleni(employee);
+            p.setDatum(dt.parseDateStringToDate());
+            p.setVreme(dt.parseTimeStringToLocalTime());
+
+            posetaRepository.save(p);
+
+            //send mail
+            Format formatter = new SimpleDateFormat("dd-MM-YYYY");
+            String s = formatter.format(p.getDatum());
+
+            String msg = "Dear " + pacijent.getIme() + " " + pacijent.getPrezime();
+            if(pharmacistRole) {
+                msg += ", We've successfully scheduled your consult. Consult information: ";
+            } else {
+                msg += ", We've successfully scheduled your exam. Consult information: ";
+            }
+
+            msg += "Pharmacist: " + employee.getIme() +  " " + employee.getPrezime();
+            msg += " // ";
+            msg += " Pharmacy: " + moja.getNaziv() + ", " + moja.getAdresa() + " // ";
+            msg += " When: " + s + " at " + p.getVreme();
+            boolean inform =  emailService.sendSimpleMessage(pacijent.getEmail(), "New scheduled consult", msg);
+        } else {
+            return 0;
+        }
+
+        return 1;
+    }
+
 }

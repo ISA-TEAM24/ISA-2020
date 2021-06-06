@@ -2,6 +2,7 @@ package rs.ac.uns.ftn.informatika.rest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import rs.ac.uns.ftn.informatika.rest.dto.CalendarDataDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.LoyaltyInfo;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
@@ -25,6 +26,9 @@ public class ConsultExamService {
 
     @Autowired
     private LoyaltyInfoRepository loyaltyInfoRepository;
+
+    @Autowired
+    private PosetaService posetaService;
 
     public List<Poseta> findUpcomingVisitsForEmployee(String username) {
         Korisnik employee = korisnikService.findByUsername(username);
@@ -127,4 +131,47 @@ public class ConsultExamService {
         return retList;
     }
 
+    public List<CalendarDataDTO> getAllVisitsForUser(String name, Long id) {
+        List<CalendarDataDTO> dtos = new ArrayList<>();
+
+        List<Poseta> upcomingList = new ArrayList<>();
+        upcomingList.addAll(findUpcomingVisitsForEmployee(name));
+
+        List<Poseta> didList = new ArrayList<>();
+        didList.addAll(posetaService.getFinishedPoseteByDermOrPharm(name));
+
+        for(Poseta p : didList) {
+            if(p.getApoteka().getID() == id) {
+                CalendarDataDTO dto = new CalendarDataDTO();
+                dto.setPosetaId(p.getID());
+                dto.setPacijentIme(p.getPacijent().getIme());
+                dto.setPacijentPrezime(p.getPacijent().getPrezime());
+                dto.setDatum(p.getDatum().toString().split(" ")[0]);
+                dto.setVreme(p.getVreme().toString());
+                dto.setTrajanje(p.getTrajanje());
+                dto.setApoteka(p.getApoteka().getNaziv());
+                dto.setAktivan(false);
+
+                dtos.add(dto);
+            }
+        }
+
+        for(Poseta p : upcomingList) {
+            if(p.getApoteka().getID() == id) {
+                CalendarDataDTO dto = new CalendarDataDTO();
+                dto.setPosetaId(p.getID());
+                dto.setPacijentIme(p.getPacijent().getIme());
+                dto.setPacijentPrezime(p.getPacijent().getPrezime());
+                dto.setDatum(p.getDatum().toString().split(" ")[0]);
+                dto.setVreme(p.getVreme().toString());
+                dto.setTrajanje(p.getTrajanje());
+                dto.setApoteka(p.getApoteka().getNaziv());
+                dto.setAktivan(true);
+
+                dtos.add(dto);
+            }
+        }
+
+        return dtos;
+    }
 }
