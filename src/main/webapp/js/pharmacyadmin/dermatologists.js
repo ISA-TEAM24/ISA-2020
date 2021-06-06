@@ -25,8 +25,10 @@ function getMe() {
                 },
                 success : function(dermatologists) {
                     addDermatologistsToTable(dermatologists);
+                    refreshToken();
                 }
             })
+            refreshToken();
         }, error : function() {
             //alert("Your token has expired. You will be redirected to index page")
             window.location.href = '../index.html';
@@ -66,6 +68,7 @@ function addDermatologistsToTable(dermatologists) {
                 success : function() {
                     alert("Succesfully removed dermatologist from pharmacy.");
                     window.location.reload()
+                    refreshToken();
                 }, error : function() {
                     alert("Dermatologist have schedulled appointments. Cant be fired.");
                 }

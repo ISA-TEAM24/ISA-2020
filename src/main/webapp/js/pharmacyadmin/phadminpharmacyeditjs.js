@@ -27,10 +27,12 @@ function getMe() {
                 success : function(pharmacy) {
                     pharmacyname = pharmacy.naziv;
                     addProfileData(pharmacy);
+                    refreshToken();
                 }, error : function() {
                     console.log('error occured')
                 }
             })
+            refreshToken();
         }, error : function() {
             //alert("Your token has expired. You will be redirected to index page")
             window.location.href = '../index.html';
@@ -59,6 +61,10 @@ function save() {
         menjannaziv : mN
     }
 
+    if (validateUserFields(obj) == false){
+        return;
+    }    
+
     $.ajax({
         type:'PUT',
         url: '/phadmin/editPharmacy',
@@ -68,7 +74,7 @@ function save() {
         },
         data : JSON.stringify(obj),
         success : function(pharmacy) {
-            console.log('yes')
+            window.location.reload();
         },
         error : function() {
             console.log('error occured')
@@ -94,4 +100,25 @@ function showMap() {
     window.localStorage.setItem('address', address);
 
     document.location.href = "testmaps.html";
+}
+
+function validateUserFields(obj) {
+
+    var pattern = $("#field1").attr("pattern");
+    var re = new RegExp(pattern);
+    if (!re.test($("#field1").val())) {
+        alert('Forbidden character in pharmacy name field')
+        console.log('name does not match pattern')
+        return false;
+    }
+
+    var pattern = $("#field2").attr("pattern");
+    var re = new RegExp(pattern);
+    if (!re.test($("#field2").val())) {
+        console.log('last name does not match pattern')
+        showError('Forbidden character pharmacy address field')
+        return false;
+    }
+
+    return true;
 }

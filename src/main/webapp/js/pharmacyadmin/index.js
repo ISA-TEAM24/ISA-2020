@@ -46,14 +46,23 @@ function changepw() {
     newpw2 = document.getElementById("newpw2").value
 
     if (oldpw == "") {
+        $('#errormsg').text("Old password field empty");
+        $('#successmsg').text("");
+
         return;
     }
 
     if (newpw1 == "") {
+        $('#errormsg').text("New password field empty");
+        $('#successmsg').text("");
+
         return;
     }
 
     if (newpw2 == "") {
+        $('#errormsg').text("Confirm password field empty");
+        $('#successmsg').text("");
+
         return;
     }
 
@@ -76,6 +85,14 @@ function changepw() {
         return;
     }
 
+    if (newpw1.length < 4) {
+
+        $('#errormsg').text("New password has to be at least 4 characters or longer");
+        $('#successmsg').text("");
+ 
+        return;
+    }
+
     var obj = {
         oldPassword : oldpw,
         newPassword : newpw1
@@ -91,7 +108,7 @@ function changepw() {
         data : JSON.stringify(obj),
         success : function() {
             $('#errormsg').text("");
-            $('#successmsg').text("Uspešno izmenjena lozinka!");
+            $('#successmsg').text("Successfully changed password");
 
             var millisecondsToWait = 2000;
             setTimeout(function() {
@@ -118,9 +135,8 @@ function changepw() {
         error : function() {
             console.log('An Error has occured while trying to reload the profile')
             $('#successmsg').text("");
-            $('#errormsg').text("Greška!");
+            $('#errormsg').text("Old password is not correct");
 
         }
-        
     })
 }

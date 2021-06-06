@@ -97,7 +97,7 @@
                 </div>
                 <div class="col-6 text-center" id="inputfield">
                     <div class="form-group">
-                        <input type="text" id="field1" disabled class="form-control" aria-label="Pharmacyname" aria-describedby="basic-addon1">
+                        <input type="text" id="field1" pattern='^[" "A-ZŠČĆŽĐa-zščćžđ]{2,32}$' disabled class="form-control" aria-label="Pharmacyname" aria-describedby="basic-addon1">
                     </div>
                 </div>
                 <div class="col-2 text-center">
@@ -111,7 +111,7 @@
                 </div>
                 <div class="col-6 text-center" id="inputfield">
                     <div class="form-group">
-                        <input id="field2" disabled type="text" class="form-control" aria-label="Pharmacyname" aria-describedby="basic-addon1">
+                        <input id="field2" pattern='^[" ""/"",""."0-9A-ZŠČĆŽĐa-zščćžđ]{5,32}$' disabled type="text" class="form-control" aria-label="Pharmacyname" aria-describedby="basic-addon1">
                     </div>
                 </div>
                 <div class="col-2 text-center">
@@ -161,6 +161,7 @@
   ></script>
   <script src="../js/pharmacyadmin/phadminpharmacyeditjs.js"></script>
   <script src="../js/authorization.js"></script>
+  <script src="../js/user/showerror.js"></script>
   <script src="../js/logout.js"></script>
 
 </body>

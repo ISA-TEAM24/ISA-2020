@@ -46,9 +46,10 @@ function getMe() {
                 },
                 success : function(offers) {                   
                     addOffersToTable(offers);
+                    refreshToken();
                 }
             })
-
+            refreshToken();
 
         }, error : function() {
             //alert("Your token has expired. You will be redirected to index page")
@@ -117,6 +118,7 @@ function addOffersToTable(offers) {
                     success : function() {
                         alert("Offer successfuly accepted");
                         document.location.href = "orderslist.html";
+                        refreshToken();
                     }
                 });
             }
