@@ -211,7 +211,7 @@ INSERT INTO public.lek_alternative(lek_id, alternative) VALUES (3, 2);
 
 -- apoteka BENU
 
-INSERT INTO public.apoteka(id, adresa, naziv, ocena, opis) VALUES (1, 'Glavna 56, Novi Sad', 'BENU', 5, 'Najbolja apoteka');
+INSERT INTO public.apoteka(id, adresa, naziv, ocena, opis) VALUES (1, 'Glavna 56, Novi Sad', 'BENU', 4.3, 'Najbolja apoteka');
 
 INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 3);
 INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (1, 4);
@@ -232,7 +232,7 @@ INSERT INTO public.apoteka_cenovnik_mapping(apoteka_id, cena, naziv_predmeta) VA
 
 -- apoteka ZEGIN
 
-INSERT INTO public.apoteka(id, adresa, naziv, ocena, opis) VALUES (2, 'Bulevar oslobodjenja 72, Novi Sad', 'ZEGIN', 5, 'Najbolja apoteka');
+INSERT INTO public.apoteka(id, adresa, naziv, ocena, opis) VALUES (2, 'Bulevar oslobodjenja 72, Novi Sad', 'ZEGIN', 4.8, 'Najbolja apoteka');
 
 INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (2, 3);
 INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (2, 6);
@@ -241,7 +241,7 @@ INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (2, 11);
 
 INSERT INTO public.apoteka_magacin_mapping(apoteka_id, kolicina, id_leka) VALUES (2, 50, 4);
 INSERT INTO public.apoteka_magacin_mapping(apoteka_id, kolicina, id_leka) VALUES (2, 0, 5); -- nema kafetina
-INSERT INTO public.apoteka_magacin_mapping(apoteka_id, kolicina, id_leka) VALUES (2, 50, 6);
+INSERT INTO public.apoteka_magacin_mapping(apoteka_id, kolicina, id_leka) VALUES (2, 20, 6);
 INSERT INTO public.apoteka_magacin_mapping(apoteka_id, kolicina, id_leka) VALUES (2, 50, 7);
 
 INSERT INTO public.apoteka_cenovnik_mapping(apoteka_id, cena, naziv_predmeta) VALUES (2, 1250, 'SAVETOVANJE');
@@ -522,7 +522,7 @@ INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, 
 INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (7, null, '2021-05-16 0:00:00', 2, 3, 2, true);
 INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (8, '2021-06-16 14:12:00', '2021-07-02 0:00:00', 2, 2, 2, false);
 INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (9, '2021-06-12 13:12:00', '2021-07-05 0:00:00', 1, 5, 2, false);
-INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (10, null, '2021-07-12 0:00:00', 1, 5, 2, false);
+INSERT INTO public.rezervacija(id, datum_preuz, rok_za_preuzimanje, apoteka_id, lek_id, pacijent_id, penalized) values (10, null, '2021-07-12 0:00:00', 2, 5, 2, false);
 
 
 -- TimeOff zahtevi (GODISNJI/ODSUSTVO)  - aktivan/prihvacen/odbijen

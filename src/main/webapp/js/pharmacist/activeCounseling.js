@@ -83,10 +83,15 @@ function saveReport() {
             success : function() {
 
                 alert("Uspešno ste sačuvali izveštaj!");
-                var origin   = window.location.origin;
-                var url = origin + "/pharmacist/savetovanje.html"
-            
-                window.location.href = url;
+                var url   = window.location.href;
+                if(url.includes("pharmacist")) {
+                    window.location.href = window.location.origin + '/pharmacist/savetovanje.html'
+                } else {
+                    window.location.href = window.location.origin + '/dermatologist/pregled.html'
+                }
+
+                //history.go(-1);
+                //window.location.href = url;
                 refreshToken();
             },
             error : function() {
