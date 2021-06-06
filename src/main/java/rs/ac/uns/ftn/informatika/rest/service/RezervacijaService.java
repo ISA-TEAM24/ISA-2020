@@ -146,6 +146,10 @@ public class RezervacijaService {
         if (r == null)
             return false;
 
+        Apoteka a = r.getApoteka();
+        Lek l = r.getLek();
+        int current_quantity = a.getMagacin().get(l.getID());
+        a.getMagacin().put(l.getID(), current_quantity + 1);
         rezervacijaRepository.deleteRezervacijaByID(id);
         return true;
     }
@@ -166,7 +170,7 @@ public class RezervacijaService {
         newRez.setLek(l);
         newRez.setPacijent(k);
         Rezervacija rez = rezervacijaRepository.save(newRez);
-        emailService.sendReservationCreatedMessage(rez);
+        emailService.sendReservationCreatedMessage(rez, dto.getRokZaPreuzimanje());
         Map<Long, Integer> map = a.getMagacin();
         a.getMagacin().put(dto.getLek(), map.get(dto.getLek()) - 1);
         apotekaService.saveApoteka(a);
