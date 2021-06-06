@@ -223,7 +223,7 @@ public class KorisnikService {
 
 	private void leaveGradeForPharmacy(Apoteka a, List<Ocena> ocene) {
 		int counter = 1;
-		float sum = 5;
+		float sum = a.getOcena();
 		for (Ocena grade : ocene) {
 			if(a.getID() == grade.getRecipientID()) {
 				sum += grade.getOcena();
@@ -240,7 +240,7 @@ public class KorisnikService {
 	private void leaveGradeForMedicine(Lek l, List<Ocena> ocene) {
 
 		int counter = 1;
-		float sum = 5;
+		float sum = l.getOcena();
 		for (Ocena grade : ocene) {
 			if(l.getID() == grade.getRecipientID()) {
 				sum += grade.getOcena();
@@ -259,7 +259,7 @@ public class KorisnikService {
 	private void leaveGradeForEmployee(Korisnik k, List<Ocena> ocene) {
 
 		int counter = 1;
-		float sum = 5;
+		float sum = k.getOcena();
 		for (Ocena grade : ocene) {
 			if(k.getID() == grade.getRecipientID()) {
 				sum += grade.getOcena();

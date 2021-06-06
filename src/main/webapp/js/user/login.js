@@ -116,7 +116,7 @@ function redirectMe() {
 }
 
 function redirectToDashboard(user){
-
+    console.log("REDIREEEEEEEEEECT")
     if (user.activated == false) {
         alert('Please activate your account')
     }
@@ -126,21 +126,27 @@ function redirectToDashboard(user){
     if(auth.authority == "ROLE_USER") {
         console.log('You are a user redirecting to me.html')
         window.location.href = 'user/me.html'
+        return
     }
      
     if(auth.authority == "ROLE_PH_ADMIN") {
         console.log('You are a user redirecting to pharmacyadmin/index.html')
         window.location.href = 'pharmacyadmin/index.html'
+        return
     }
 
     if(auth.authority == "ROLE_DERMATOLOGIST") {
         console.log('You are a dermatologist redirecting to indexDermatolog.html')
         window.location.href = 'dermatologist/indexDermatolog.html'
+        return
     }
 
     if(auth.authority == "ROLE_PHARMACIST") {
         console.log('You are a user redirecting to indexFarmaceut.html')
         window.location.href = 'pharmacist/indexFarmaceut.html'
+        return
     }
+
+    window.location.href = '../index.html'
 }
 
