@@ -27,7 +27,7 @@ function isUserAllowed(user, title, tab) {
         console.log('You have been penalized')
         showError(title, 'Because of the amount of penalties you are not allowed to use this functionality, penalties reset every 1st of the month.')
         //$('#' + tab).click()
-        countDownToPageReloading(5)
+        countDownToPageReloading(1)
         return
     }    
 

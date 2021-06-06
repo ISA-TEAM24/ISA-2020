@@ -47,7 +47,9 @@ Maven verzija : 1.6.1
     - POTREBNO je kreirati semu baze pod nazivom "jpa"
     - navedeni su kredencijali (username i password) za konektovanje na bazu - u fajlu su ostavljene default kredencijali ('username', 'root')
     - neke od operacija (navedene ispod) zahtevaju slanje mejla te je potreban odredjen broj sekundi da se zahtev izvrsi i vrati odgovor
-
+    - preporucujemo google chrome kao pretrazivac (zbog PRIKAZA GRAFICKOG KALENDARA, datepickera i timepickera)
+    - za manje ekrane ako je potrebno mozete odzumirati za 10%
+    
 **VAZNA NAPOMENA** :
 - Kako bi se mogao koristiti email servis potrebno je postaviti sledece environment varijable u IDE (koristili smo IDE variable, a ne config
 kako bi smo sprecili curenje kredencijala na javni repozitorijum) :
