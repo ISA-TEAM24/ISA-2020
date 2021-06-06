@@ -3,7 +3,6 @@ package rs.ac.uns.ftn.informatika.rest.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.informatika.rest.dto.CalendarDataDTO;
-import rs.ac.uns.ftn.informatika.rest.dto.MyPosetaDTO;
 import rs.ac.uns.ftn.informatika.rest.model.Korisnik;
 import rs.ac.uns.ftn.informatika.rest.model.LoyaltyInfo;
 import rs.ac.uns.ftn.informatika.rest.model.Poseta;
@@ -134,10 +133,6 @@ public class ConsultExamService {
 
     public List<CalendarDataDTO> getAllVisitsForUser(String name, Long id) {
         List<CalendarDataDTO> dtos = new ArrayList<>();
-        //List<Poseta> all = new ArrayList<>();
-
-        //all.addAll(findUpcomingVisitsForEmployee(name));
-        //all.addAll(posetaService.getFinishedPoseteByDermOrPharm(name));
 
         List<Poseta> upcomingList = new ArrayList<>();
         upcomingList.addAll(findUpcomingVisitsForEmployee(name));
