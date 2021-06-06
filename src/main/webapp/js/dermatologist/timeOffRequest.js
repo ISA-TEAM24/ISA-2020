@@ -11,6 +11,8 @@ $(document).ready(function() {
         getRequests();
     }, millisecondsToWait);
 
+    disablePastDates()
+    refreshToken();
 })
 
 /*
@@ -126,6 +128,7 @@ function sendRequest() {
             $("#successmsg").text("Uspešno poslat zahtev!");
             $("#errormsg").text("");
             alert("Uspešno poslat zahtev!");
+            refreshToken();
             refreshPageWithDelay();
         },
         error : function() {
@@ -157,11 +160,14 @@ function getRequests() {
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
         },
         success : function(data) {
-            console.log('Loaded requests')
-            fillRequestTable(data)
+            console.log('Loaded requests');
+            fillRequestTable(data);
+            refreshToken();
         },
         error : function() {
             console.log('Could not load Requests!')
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }
     })
 }
@@ -196,4 +202,21 @@ function fillRequestTable(data) {
 
         table.innerHTML += row
     }    
+}
+
+function disablePastDates() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+    if(dd<10){
+      dd='0'+dd
+    } 
+    if(mm<10){
+      mm='0'+mm
+    } 
+    
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("odDatuma").setAttribute("min", today);
+    document.getElementById("doDatuma").setAttribute("min", today);
 }

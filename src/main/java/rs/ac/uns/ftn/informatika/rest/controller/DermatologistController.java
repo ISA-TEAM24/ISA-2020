@@ -124,4 +124,13 @@ public class DermatologistController {
         List<Korisnik> dermatologists = dermatologistService.getAll();
         return dermatologistService.createDermDtos(dermatologists);
     }
+
+    @GetMapping("/getmypharmacies")
+    @PreAuthorize("hasRole('DERMATOLOGIST')")
+    public List<Apoteka> findMyPharmacies(Principal p) {
+
+        Korisnik k = dermatologistService.findByUsername(p.getName());
+
+        return pharmacyService.findPharmaciesByDermatologist(k);
+    }
 }

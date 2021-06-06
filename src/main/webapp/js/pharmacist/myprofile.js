@@ -43,9 +43,12 @@ function getMe() {
                 console.log('Prvi put je logovan.')
                 requirePwChange(pharmacist.username.toString());
             }
+            refreshToken();
         },
         error : function() {
             console.log('An Error has occured while trying to reload the profile')
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }    
     })
 }
@@ -93,6 +96,10 @@ function saveNewData(){
      phoneNumber :  $('#telefon1').val().trim()    
     }
 
+    if(validateInputs() == false) {
+        return;
+    }
+
     $.ajax({
         type:'PUT',
         url: '/pharmacist/editdata',
@@ -111,10 +118,12 @@ function saveNewData(){
             setTimeout(function() {
                 location.reload();
             }, millisecondsToWait);
-
+            refreshToken();
         },
         error : function() {
             console.log('error occured')
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }
         
     })   
@@ -178,11 +187,14 @@ function changepw() {
                     xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
                 },
                 success : function() {
-                console.log('success in firstlogpwchange')
+                console.log('success in firstlogpwchange');
+                refreshToken();
                 },
                 error : function() {
                     console.log(username)
                     console.log('error in firstlogpwchange')
+                    alert("Istekao vam je token. Ulogujte se ponovo.")
+                    window.location.href = '../index.html';
                 }
                 
             })
@@ -220,4 +232,46 @@ function requirePwChange(username) {
 
     console.log(username)
     changepw()
+}
+
+function validateInputs() {
+    var pattern = $("#ime1").attr("pattern");
+    var re = new RegExp(pattern);
+
+    if(!re.test($("#ime1").val())) {
+        alert('Nedozvoljen karakter u polju ime');
+        return false;
+    }
+
+    if(!re.test($("#prezime1").val())) {
+        alert('Nedozvoljen karakter u polju prezime');
+        return false;
+    }
+
+    if(!re.test($("#grad1").val())) {
+        alert('Nedozvoljen karakter u polju grad');
+        return false;
+    }
+
+    if(!re.test($("#drzava1").val())) {
+        alert('Nedozvoljen karakter u polju drzava');
+        return false;
+    }
+
+    pattern = $("#adresa1").attr("pattern");
+    re = new RegExp(pattern)
+    if(!re.test($("#adresa1").val())) {
+        alert('Nedozvoljen karakter u polju adresa1');
+        return false;
+    }
+
+    pattern = $("#telefon1").attr("pattern");
+    re = new RegExp(pattern)
+    if(!re.test($("#telefon1").val())) {
+        alert('Nedozvoljen karakter u polju telefon');
+        return false;
+    }
+
+    return true;
+
 }

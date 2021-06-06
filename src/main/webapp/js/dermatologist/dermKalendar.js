@@ -1,6 +1,18 @@
-datas = [];
+var deo;
+var datas = [];
+var myPharmacies = [];
+var apoteka;
 
 $(document).ready(function() {
+
+    myPharmacies = [];
+    getMyPharmacies();
+
+    if(deo == undefined) {
+        console.log('deo je undefined')
+    }
+
+    refreshToken();
 
 })
 
@@ -22,8 +34,12 @@ function initCalendar(datas) {
 
   document.addEventListener('DOMContentLoaded', function() {
 
-    getUpcomingVisits();
-    getPastVisits();
+    url = window.location.href;
+    deo = url.split("?")[1];
+
+    if(deo != undefined) {
+       getAllVisits(deo); 
+    }
     
     var millisecondsToWait = 200;
     setTimeout(function() {
@@ -55,99 +71,136 @@ function initCalendar(datas) {
 }
 
 
-function getUpcomingVisits() {
-  $.ajax({
+function getMyPharmacies() {
+    $.ajax({
       type:'GET',
-      url: '/api/visit/getupcomings',
-      contentType : 'application/json',
+      url: '/dermatologist/getmypharmacies',
       beforeSend: function (xhr) {
           xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
       },
       success : function(data) {
-          console.log(data)
-          addUpcomingVisitsToCalendar(data);
-
+          console.log(data);
+          console.log(data[0].naziv);
+          fillMyPharmacies(data);
       },
       error : function() {
-          console.log('Cant get upcoming visits');
+          console.log('Cant get my pharmacies');
+          window.location.href = '../index.html';
       }    
   })
+
 }
 
-function addUpcomingVisitsToCalendar(data) {
-    data.forEach(function(visit) {
+function fillMyPharmacies(data) {
 
-      var startTime = visit.datum + "T" + visit.vreme + ":00";
-
-      var startDate = new Date(startTime);
-      console.log(startDate);
-      
-      console.log(visit.trajanje.toString());
-      var endTime = new Date(startDate.setMinutes(startDate.getMinutes() + visit.trajanje ));
-      
-      console.log(endTime);
-
-      var origin = window.location.origin;
-      console.log(origin + "/dermatologist/aktivanPregled.html");
-      var visitUrl = origin + "/dermatologist/aktivanPregled.html?" + parseInt(visit.id);
-      
-      var event = {
-        title:  visit.ime + " " + visit.prezime + " - " + visit.apoteka,
-        start: startTime,
-        end : endTime,
-        url : visitUrl,
-        color: '#37c5cc'
-      } 
-
-      datas.push(event);
+    $('#apotekeId').html('');
+    $("#apotekeId").html(`<option id="option-none"> </option>`);
+    data.forEach(function(f) {
+      myPharmacies.push(f.id);
+      $('#apotekeId').append('<option value="' + f.naziv + '" id="option-' + f.id + '">' + f.naziv + '</option>');
     })
 
+    console.log(myPharmacies);
+    var counter = 1;
+    var index;
+    myPharmacies.forEach(function(pharmacyId) {
+        if(pharmacyId == deo) {
+          index = counter;
+        }
+        else {
+          counter = counter + 1;
+        }
+    })
+    
+     $("#apotekeId").prop('selectedIndex', index);
+
+    console.log(myPharmacies);
 }
 
-function getPastVisits() {
+$("#apotekeId").change(function() {
+
+  if($("#apotekeId").children(":selected").attr("id") == 'option-none') {
+    return;
+  }
+
+  var xurl = window.location.href;
+  var neededpart = xurl.split("?")[0];
+  console.log(neededpart);
+
+  var selectedId = $("#apotekeId").children(":selected").attr("id");
+  var mojId = selectedId.split("-")[1];
+
+  console.log('MOJ IDDD JE : ' + mojId);
+
+  window.location.href = neededpart + "?" + mojId;
+
+})
+
+function getAllVisits(id) {
   $.ajax({
     type:'GET',
-    url: '/api/visit/getfinishedvisits',
+    url: '/api/dermatologist/visits/all/' + id,
     contentType : 'application/json',
     beforeSend: function (xhr) {
         xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('myToken'));
     },
     success : function(data) {
+        addVisitsToCal(data);
         console.log(data);
-        addPastVisitsToCalendar(data)
     },
     error : function() {
-        console.log('Cant get finished visits');
+        console.log('Cant get upcoming visits');
+        //alert("Istekao vam je token. Ulogujte se ponovo.")
+        window.location.href = '../index.html';
     }    
-  })
+})
 }
 
-function addPastVisitsToCalendar(data) {
-    data.forEach(function(visit) {
+function addVisitsToCal(data) {
+  data.forEach(function(visit) {
 
-      var startTime = visit.datum + "T" + visit.vreme + ":00";
+    if(visit.aktivan == true) {
+        var startTime = visit.datum + "T" + visit.vreme + ":00";
 
-      var startDate = new Date(startTime);
-      console.log(startDate);
-      
-      console.log(visit.trajanje.toString());
-      var endTime = new Date(startDate.setMinutes(startDate.getMinutes() + visit.trajanje ));
-      
-      console.log(endTime);
+        var startDate = new Date(startTime);
 
-      var origin = window.location.origin;
-      var visitUrl = origin + "/dermatologist/pregledaniKlijenti.html";
-      
-      var event = {
-        title:  visit.pacijentIme + " " + visit.pacijentPrezime + " - " + visit.apoteka,
-        start: startTime,
-        end : endTime,
-        url : visitUrl,
-        color: '#eb8c21'
-      } 
+        var endTime = new Date(startDate.setMinutes(startDate.getMinutes() + visit.trajanje ));
+        
+        var origin = window.location.origin;
+        var visitUrl = origin + "/dermatologist/aktivanPregled.html?" + visit.posetaId;
+        
+        var event = {
+          title:  visit.pacijentIme + " " + visit.pacijentPrezime + " - " + visit.apoteka,
+          start: startTime,
+          end : endTime,
+          url : visitUrl,
+          color: '#37c5cc'
+        } 
+    
+        datas.push(event);
 
-      datas.push(event);
-  })
+    } else {
+        var startTime = visit.datum + "T" + visit.vreme + ":00";
+
+        var startDate = new Date(startTime);
+        
+        var endTime = new Date(startDate.setMinutes(startDate.getMinutes() + visit.trajanje ));
+        
+        var origin = window.location.origin;
+        var visitUrl = origin + "/dermatologist/pregledaniKlijenti.html";
+        
+        var event = {
+          title:  visit.pacijentIme + " " + visit.pacijentPrezime + " - " + visit.apoteka,
+          start: startTime,
+          end : endTime,
+          url : visitUrl,
+          color: '#eb8c21'
+        } 
+    
+        datas.push(event);
+    }
+
+})
 }
 
 

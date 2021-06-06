@@ -1,7 +1,7 @@
 // tbodySearch
 $(document).ready(function() {
     //search();
-
+    refreshToken();
 })
 
 function searchIme() {

@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
     resetFields();
-
+    disablePastDates();
+    refreshToken();
 })
 
 
@@ -25,6 +26,10 @@ function sendSchedulingRequest() {
         "vreme" : vreme
     }
 
+    if(validateInputs() == false) {
+        return;
+    }
+
     console.log(obj);
     var origin   = window.location.origin;
     console.log(origin);
@@ -41,7 +46,7 @@ function sendSchedulingRequest() {
 
             alert('Uspešno ste zakazali savetovanje!');
             resetFields();
-
+            refreshToken();
         },
         error : function(xhr, status, error) {
 
@@ -70,4 +75,37 @@ function resetFields() {
     $('#mail').val('')
     $('#datumpregleda').val('')
     $('#vremepregleda').val('')
+}
+
+function disablePastDates() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0 so need to add 1 to make it 1!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+      dd='0'+dd
+    } 
+    if(mm<10){
+      mm='0'+mm
+    } 
+    
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("datumpregleda").setAttribute("min", today);
+}
+
+function validateInputs() {
+    var pattern = $("#imepac").attr("pattern");
+    var re = new RegExp(pattern);
+
+    if(!re.test($("#imepac").val())) {
+        alert('Nedozvoljen karakter u polju ime');
+        return false;
+    }
+
+    if(!re.test($("#prezimepac").val())) {
+        alert('Nedozvoljen karakter u polju prezime');
+        return false;
+    }
+
+    return true;
 }

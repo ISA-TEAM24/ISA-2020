@@ -118,4 +118,10 @@ public class ConsultExamController {
         return new ResponseEntity<>(retList, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('DERMATOLOGIST')")
+    @GetMapping("/dermatologist/visits/all/{id}")
+    public List<CalendarDataDTO> getVisitsForDermatologist(Principal p, @PathVariable Long id) {
+        return consultExamService.getAllVisitsForUser(p.getName(), id);
+    }
+
 }

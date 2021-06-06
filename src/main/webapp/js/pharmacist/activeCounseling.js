@@ -4,7 +4,8 @@ $(document).ready(function() {
     drugList = [];
     retVal = [];
     addIdToPenalButton();
-
+    disablePastDates();
+    refreshToken();
 })
 
 function getData() {
@@ -27,10 +28,12 @@ function getData() {
         success : function(data) {
             console.log('Success');
             fillFields(data);
-            
+            refreshToken();
         },
         error : function() {
             console.log('Error');
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }
         
     }) 
@@ -84,10 +87,12 @@ function saveReport() {
                 var url = origin + "/pharmacist/savetovanje.html"
             
                 window.location.href = url;
-    
+                refreshToken();
             },
             error : function() {
                 console.log('error occured')
+                alert("Istekao vam je token. Ulogujte se ponovo.")
+                window.location.href = '../index.html';
             }
            
         })   
@@ -138,7 +143,7 @@ function createAddtitionalVisit() {
 
             alert('Uspešno ste zakazali savetovanje!');
             resetFields();
-
+            refreshToken();
         },
         error : function(xhr, status, error) {
 
@@ -178,19 +183,22 @@ function createAdditionalExam() {
         return;
     }
 
-    var dto = {
+    var mydto = {
         "ime" : obj.ime,
         "prezime" : obj.prezime,
         "email" : obj.email,
         "datum" : datum,
         "trajanje" : 30,
-        "vreme" : vreme
+        "vreme" : vreme,
+        "apoteka" : $("#apotekaId1").val().trim()
     }
+    console.log('ITTVOK----------------------')
+    console.log(mydto);
 
     if($("#predefTerminsId").children(":selected").attr("id") == "option-none") {
-        createNewExam(dto);
+        createNewExam(mydto);
     } else {
-        rewritePredefExam(dto);
+        rewritePredefExam(mydto);
     }
     
 }
@@ -216,7 +224,7 @@ function rewritePredefExam(dto) {
 
             alert('Uspešno ste zakazali pregled!');
             $('#dodatniPregledModal').modal('toggle');
-
+            refreshToken();
         },
         error : function(xhr, status, error) {
 
@@ -253,7 +261,7 @@ function createNewExam(dto) {
 
             alert('Uspešno ste zakazali pregled!');
             $('#dodatniPregledModal').modal('toggle');
-
+            refreshToken();
         },
         error : function(xhr, status, error) {
 
@@ -297,10 +305,12 @@ function getPredefinedExamsForDerm() {
             //console.log(retVal);
             console.log(data);
             fillDermAppointmentFields();
-
+            refreshToken();
         },
         error : function(xhr, status, error) {
             console.log('ERROR')
+            alert("Istekao vam je token. Ulogujte se ponovo.")
+            window.location.href = '../index.html';
         }
     })
 }
@@ -388,6 +398,7 @@ function preparePrescription() {
             console.log(drugs);
             fillSelectBoxWithDrugs(drugs);
             drugList = drugs;
+            refreshToken();
         }, error : function() {
             console.log('error occured');
         }
@@ -458,6 +469,7 @@ function checkAvailability() {
                 console.log('STATUS JE: '  + xhr.status)
                 alert('Nema tog leka u magacinu, administrator obavešten! Pogledajte alternativne lekove.');
                 loadAlternatives(dto);
+                refreshToken();
             } else {
                 alert('Lek je dostupan');
 
@@ -484,6 +496,7 @@ function loadAlternatives(dto) {
         success : function(data) {
             console.log(data);
             fillAlternatives(data);
+            refreshToken();
         }, error : function() {
             console.log('error occured');
         }
@@ -577,6 +590,7 @@ function prescribe() {
         success : function() {
             alert('Uspešno sačuvan prepis!');
             $('#prepisiLekModal').modal('toggle');
+            refreshToken();
  
         }, error : function() {
             console.log('error occured');
@@ -623,5 +637,22 @@ function addPenalToPatient(visitId) {
         }
         
     }) 
+
+}
+
+function disablePastDates() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+    if(dd<10){
+      dd='0'+dd
+    } 
+    if(mm<10){
+      mm='0'+mm
+    } 
+    
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("datumId1").setAttribute("min", today);
 
 }
