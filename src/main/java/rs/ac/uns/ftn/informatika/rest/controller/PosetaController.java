@@ -21,6 +21,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -185,5 +186,10 @@ public class PosetaController {
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
-
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    @GetMapping("/getexamsbymonth")
+    public Map<String, Integer> getExamsByMonth(Principal p) {
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        return posetaService.getPastVisitsByMonth(a);
+    }
 }

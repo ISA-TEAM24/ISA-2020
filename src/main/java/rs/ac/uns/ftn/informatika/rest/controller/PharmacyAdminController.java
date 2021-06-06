@@ -259,4 +259,18 @@ public class PharmacyAdminController {
         apotekaService.updatePricelist(cenovnikDTO, p.getName());
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
+
+    @GetMapping("/getmedicineconsumption")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public Map<String, Integer> getMedicineConsumption(Principal p) {
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        return pharmacyAdminService.getMedicineConsumptionByMonth(a);
+    }
+
+    @GetMapping("/getincomebymonth")
+    @PreAuthorize("hasRole('PH_ADMIN')")
+    public Map<String, Integer> getIncomeByMonth(Principal p) {
+        Apoteka a = apotekaService.getPharmacyByAdmin(p.getName());
+        return pharmacyAdminService.getIncomeByMonth(a);
+    }
 }

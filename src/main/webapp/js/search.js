@@ -5,7 +5,7 @@ let pharmacy_list = []
 function searchEvent() {
     if ($("#dropdown_id").children("option").filter(":selected").text().includes('PHARMACY')) {
         console.log("../pharmacy/pharmacies.html")
-        window.location.href="../pharmacy/pharmacies.html?" + search_field.val().trim().replace(" ", "%")
+        window.location.href="../pharmacy/pharmacies.html?" + search_field.val().trim().replaceAll(" ", "%20")
     }
 }
 

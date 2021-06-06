@@ -23,4 +23,6 @@ public interface PosetaRepository extends JpaRepository<Poseta, Long> {
     Poseta findPosetaByID(Long ID);
 
     List<Poseta> findPosetaByZaposleniAndApoteka(Korisnik zaposleni, Apoteka apoteka);
+
+    List<Poseta> findPosetaByApoteka(Apoteka a);
 }
