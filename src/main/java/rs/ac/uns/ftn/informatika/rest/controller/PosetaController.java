@@ -158,9 +158,9 @@ public class PosetaController {
 
     @PreAuthorize("hasRole('DERMATOLOGIST')")
     @PostMapping("/exam/schedule")
-    public ResponseEntity<String> schedulExamByDermatologist(@RequestBody ScheduleDTO dto, Principal pharmacist) throws ParseException {
+    public ResponseEntity<String> schedulExamByDermatologist(@RequestBody ScheduleExamDTO dto, Principal pharmacist) throws ParseException {
 
-        int answer = posetaService.scheduleVisitByEmployee(pharmacist.getName(), dto);
+        int answer = posetaService.scheduleVisitByDerm(pharmacist.getName(), dto);
 
         if(answer == 1) {
             return new ResponseEntity("CREATED", HttpStatus.CREATED);

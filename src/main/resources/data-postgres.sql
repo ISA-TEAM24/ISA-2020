@@ -280,35 +280,35 @@ INSERT INTO public.korisnik (id, activated, adresa, drzava, email, grad, ime, la
 INSERT INTO public.korisnik_authorities (korisnik_id, authorities_id) VALUES (92, 1);
 
 --upiti:
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (1, 5, false, 1, 56, 7, '2021-07-13');
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (2, 10, true, 1, 55, 7, '2021-07-13');
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (3, 7, false, 7, 56, 6, '2021-07-13');
-INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (4, 2, false, 1, 68, 6, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (10, 5, false, 1, 56, 7, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (11, 10, true, 1, 55, 7, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (12, 7, false, 7, 56, 6, '2021-07-13');
+INSERT INTO public.upit(id, kolicina, uspesan, apoteka_id, lek_id, posiljalac_id, datum) VALUES (13, 2, false, 1, 68, 6, '2021-07-13');
 
 --erecepti test
 INSERT INTO public.erecept(
     id, apotekaid, datum_izdavanja, email, ime, prezime, status, trajanje_terapije)
-VALUES(1, 1, '2021-07-13', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 1, 7);
+VALUES(10, 1, '2021-07-13', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 1, 7);
 
 INSERT INTO public.erecept(
     id, apotekaid, datum_izdavanja, email, ime, prezime, status, trajanje_terapije)
-VALUES(2, 1, '2021-04-12', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 0, 3);
+VALUES(11, 1, '2021-04-12', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 0, 3);
 
 INSERT INTO public.erecept(
     id, apotekaid, datum_izdavanja, email, ime, prezime, status, trajanje_terapije)
-VALUES(3, 1, '2021-07-11', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 2, 14);
+VALUES(12, 1, '2021-07-11', 'mdnnpharm@gmail.com', 'Iva', 'Ivic', 2, 14);
 
 INSERT INTO public.erecept_lekovi(
     erecept_id, lekovi_id)
-VALUES (1, 55);
+VALUES (10, 55);
 
 INSERT INTO public.erecept_lekovi(
     erecept_id, lekovi_id)
-VALUES (2, 55);
+VALUES (11, 55);
 
 INSERT INTO public.erecept_lekovi(
     erecept_id, lekovi_id)
-VALUES (3, 56);
+VALUES (12, 56);
 
 -- Dermatolog3 - radno info u drugoj apoteci
 INSERT INTO public.apoteka_zaposleni(apoteka_id, zaposleni_id) VALUES (7, 3);

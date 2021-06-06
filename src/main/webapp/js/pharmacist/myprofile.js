@@ -239,36 +239,36 @@ function validateInputs() {
     var re = new RegExp(pattern);
 
     if(!re.test($("#ime1").val())) {
-        alert('Zabranjen karakter u ime polje');
+        alert('Nedozvoljen karakter u polju ime');
         return false;
     }
 
     if(!re.test($("#prezime1").val())) {
-        alert('Zabranjen karakter u prezime polje');
+        alert('Nedozvoljen karakter u polju prezime');
         return false;
     }
 
     if(!re.test($("#grad1").val())) {
-        alert('Zabranjen karakter u grad polje');
+        alert('Nedozvoljen karakter u polju grad');
         return false;
     }
 
     if(!re.test($("#drzava1").val())) {
-        alert('Zabranjen karakter u drzava polje');
+        alert('Nedozvoljen karakter u polju drzava');
         return false;
     }
 
     pattern = $("#adresa1").attr("pattern");
     re = new RegExp(pattern)
     if(!re.test($("#adresa1").val())) {
-        alert('Zabranjen karakter u adresa polje');
+        alert('Nedozvoljen karakter u polju adresa1');
         return false;
     }
 
     pattern = $("#telefon1").attr("pattern");
     re = new RegExp(pattern)
     if(!re.test($("#telefon1").val())) {
-        alert('Zabranjen karakter u telefon polje');
+        alert('Nedozvoljen karakter u polju telefon');
         return false;
     }
 

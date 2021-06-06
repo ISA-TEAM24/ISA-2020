@@ -98,12 +98,12 @@ function validateInputs() {
     var re = new RegExp(pattern);
 
     if(!re.test($("#imepac").val())) {
-        alert('Zabranjen karakter u ime polje');
+        alert('Nedozvoljen karakter u polju ime');
         return false;
     }
 
     if(!re.test($("#prezimepac").val())) {
-        alert('Zabranjen karakter u prezime polje');
+        alert('Nedozvoljen karakter u polju prezime');
         return false;
     }
 

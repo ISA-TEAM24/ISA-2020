@@ -100,10 +100,29 @@ function fillMyPharmacies(data) {
       $('#apotekeId').append('<option value="' + f.naziv + '" id="option-' + f.id + '">' + f.naziv + '</option>');
     })
 
+    console.log('APOTEKEEEEEEEEEEEEEEEEEE')
+    console.log(myPharmacies);
+    var counter = 1;
+    var index;
+    myPharmacies.forEach(function(pharmacyId) {
+        if(pharmacyId == deo) {
+          index = counter;
+        }
+        else {
+          counter = counter + 1;
+        }
+    })
+    
+     $("#apotekeId").prop('selectedIndex', index);
+
     console.log(myPharmacies);
 }
 
 $("#apotekeId").change(function() {
+
+  if($("#apotekeId").children(":selected").attr("id") == 'option-none') {
+    return;
+  }
 
   var xurl = window.location.href;
   var neededpart = xurl.split("?")[0];

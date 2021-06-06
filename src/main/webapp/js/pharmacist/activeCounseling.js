@@ -183,19 +183,22 @@ function createAdditionalExam() {
         return;
     }
 
-    var dto = {
+    var mydto = {
         "ime" : obj.ime,
         "prezime" : obj.prezime,
         "email" : obj.email,
         "datum" : datum,
         "trajanje" : 30,
-        "vreme" : vreme
+        "vreme" : vreme,
+        "apoteka" : $("#apotekaId1").val().trim()
     }
+    console.log('ITTVOK----------------------')
+    console.log(mydto);
 
     if($("#predefTerminsId").children(":selected").attr("id") == "option-none") {
-        createNewExam(dto);
+        createNewExam(mydto);
     } else {
-        rewritePredefExam(dto);
+        rewritePredefExam(mydto);
     }
     
 }
