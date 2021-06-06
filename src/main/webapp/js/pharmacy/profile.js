@@ -131,8 +131,13 @@ function changeSubStatusPharmacy() {
         }
         
     })
+}
 
+function showMap() {
+    var address = $("#phAddress").val();
+    window.localStorage.setItem('address', address);
 
+    window.location.href = "../pharmacyadmin/testmaps.html";
 }
 
 // NOTE : This page should only be allowed to get to when the url contains the ID of the pharmacy

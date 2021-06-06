@@ -153,7 +153,7 @@ function filterAll() {
 function checkQuery(){
 
     if (query != undefined) {
-        var text = query.replace("%"," ")
+        var text = query.replaceAll("%20"," ")
         search_field.val(text)
         filterAll()
     }

@@ -88,3 +88,10 @@ $("#Edit2").click(function() {
 $("#Edit3").click(function() {
     $('#field3').removeAttr('disabled');
 });
+
+function showMap() {
+    var address = $('#field2').val();
+    window.localStorage.setItem('address', address);
+
+    document.location.href = "testmaps.html";
+}

@@ -211,7 +211,7 @@ public class PosetaService {
         poseta.setVreme(dto.getTime());
         poseta.setTrajanje(dto.getDuration());
         poseta.setVrsta(poseta.getPREGLED());
-        poseta.setDijagnoza(null);
+        poseta.setDijagnoza("");
         poseta.setPoeni(0);
         poseta.setPacijent(null);
 
