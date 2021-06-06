@@ -38,13 +38,13 @@ public class EmailService {
         return retBool;
     }
 
-    public boolean sendReservationCreatedMessage(Rezervacija r) {
+    public boolean sendReservationCreatedMessage(Rezervacija r, String dateString) {
 
         String text = "Hello " + r.getPacijent().getUsername();
         text += ", you successfully reserved " + r.getLek().getNaziv() + " in Pharmacy " + r.getApoteka().getNaziv();
         text += ", " + r.getApoteka().getAdresa();
         text += ". Your unique reservation ID is " + r.getID() + ".";
-        text += " Your due pick up date is " + r.getRokZaPreuzimanje().toString().split("T")[0];
+        text += " Your due pick up date is " + dateString;
 
         return sendSimpleMessage(r.getPacijent().getEmail(), "You reserved some medicine", text);
     }

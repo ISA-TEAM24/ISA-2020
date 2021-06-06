@@ -162,7 +162,7 @@ function reserveMedicine(id) {
 
 function limitDatePicker(dp) {
     var today = new Date();
-    var dd = today.getDate() + 1;
+    var dd = today.getDate() + 2;
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();
     if(dd<10){

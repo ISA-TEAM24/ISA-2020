@@ -30,6 +30,7 @@ $(document).ready(function() {
     //resetPenaltiesIfNeeded()
     reloadProfile()
     refreshToken()
+    limitDatePicker('consult-date-picker')
 
     var url = window.location.href
     var tabby = url.split("#")[1]
