@@ -97,5 +97,6 @@ function purcahseOrder() {
 }
 
 function priceList() {
-    document.location.href = "medspricelist.html"
+    console.log('CAOOO DANILO ')
+    document.location.href = "pricelist.html"
 }

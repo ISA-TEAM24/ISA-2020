@@ -78,6 +78,7 @@ public class PharmacistService {
         k.setLastPasswordResetDate(new Date());
         k.setTelefon(dto.getTelefon());
         k.setEmail(dto.getEmail());
+        k.setActivated(true);
         List<Authority> auth = findByName("ROLE_PHARMACIST");
         if (auth == null)
             throw new Exception("No role with such name");

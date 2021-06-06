@@ -89,7 +89,7 @@ function logMeIn() {
         },
         error : function() {
             console.log('FAIL LOGIN')
-            alert('Bad credentials')
+            alert('Bad credentials or not verified')
         }
         
     })

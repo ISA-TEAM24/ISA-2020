@@ -160,6 +160,7 @@ public class PosetaService {
         Date today = new Date();
 
         List<Poseta> retList = new ArrayList<Poseta>();
+        posetaList.sort(Comparator.comparing(Poseta::getDatum));
 
         for(Poseta p : posetaList) {
             System.out.println("---- TODAY IS: " + today);
@@ -385,7 +386,12 @@ public class PosetaService {
         List<Poseta> retList = new ArrayList<>();
         Korisnik k = korisnikService.findByUsername(username);
         for (Poseta p : posetaRepository.findPosetaByPacijentID(k.getID())) {
-            if(p.getDatum().before(new Date()) && p.getVreme().isBefore(LocalTime.now())) {
+            if(p.getDatum().before(new Date())) {
+                retList.add(p);
+                continue;
+            }
+
+            if(p.getDatum().compareTo(new Date()) == 0 && p.getVreme().isBefore(LocalTime.now())) {
                 retList.add(p);
             }
 

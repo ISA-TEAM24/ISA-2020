@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 public class RadnoInfo {
 
-    @SequenceGenerator(name="Event_Seq", sequenceName="Event_Seq", initialValue = 15, allocationSize = 1)
+    @SequenceGenerator(name="Event_Seq", sequenceName="Event_Seq", initialValue = 50, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event_Seq")
     @Id
     private Long ID;
