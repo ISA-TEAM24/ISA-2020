@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="../css/style.css" />
+        <link rel="stylesheet" href="../css/pharmacy/pharmacystyle.css"/>
+        
+        <title>Pharmacies</title>
+
+    </head>
+    <body>
+        <div class="img-background background-tint" id="">
+        <nav class="navbar navbar-expand-md navbar-light fixed-top">
+            <div class="container-fluid">
+            <button
+                class="navbar-toggler custom-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarResponsive"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="container">
+                <ul class="navbar-nav w-100 justify-content-center">
+                    <li class="nav-item">
+                    <a class="nav-link surround-item" href="#contact">CONTACT</a>
+                    </li>
+        
+                    <li class="nav-item">
+                    <a class="nav-link surround-item" href="#about">ABOUT US</a>
+                    </li>
+        
+                    <li class="nav-item middle-nav">
+                    <a class="nav-link" href="../index.html">MDNN</a>
+                    </li>
+        
+                    <li class="nav-item active">
+                    <a class="nav-link surround-item" href="">PHARMACIES</a>
+                    </li>
+        
+                    <li class="nav-item">
+                    <a class="nav-link surround-item"  href="../index.html" >INDEX</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+        </nav>
+
+        <section id="under-nav-fake" class="under-nav-fake">
+        </section>
+
+        <section id="under-nav-real" class="under-nav-real">
+            <div class="container pt-5">
+                <div class="row no-gutters">
+                    <div class="col-3 left-panel">
+                        <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <br>
+                            <br>
+                            <a class="nav-link active" id="v-pills-pharmacies-tab" data-toggle="pill" href="#v-pills-pharmacies" role="tab" aria-controls="v-pills-pharmacies" aria-selected="true">Pharmacies</a>
+                            </div>
+                    </div>
+                    <div class="col-9 right-panel">
+                        <div class="tab-content" id="v-pills-tabContent">
+
+                            <!--Pharmacy profile-->
+                            <div class="tab-pane fade show active" id="v-pills-pharmacy" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <br>
+                                <br>
+                                <div class="container text-pad" >
+                                    <div class="row pharm-color" style="font-size: 20pt;">
+                                        Pharmacies
+                                    </div>
+                                    <br>
+                                    <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                        <table class="table table-bordered mb-0" id='pharmaciesId'>
+                                          <thead>
+                                            <tr>
+                                              <th class="header" scope="col" onclick="sortTableP(0, 'pharmaciesId')">Pharmacy name</th>
+                                              <th class="header" scope="col" onclick="sortTableP(1, 'pharmaciesId')">Address</th>
+                                              <th class="header" scope="col" onclick="sortTableNumericP(2, 'pharmaciesId')">Number of Dermatologists</th>
+                                              <th class="header" scope="col" onclick="sortTableNumericP(3, 'pharmaciesId')">Number of Pharmacists</th>
+                                              <th class="header" scope="col" onclick="sortTableNumericP(4, 'pharmaciesId')">Grade</th>
+                                              <th class="header" scope="col"></th>          
+                                            </tr>
+                                          </thead>
+                                          <tbody id="pharmacies_body">
+                       
+                                          </tbody>
+                                        </table>
+                                        </div>
+                                        <br>
+                                        <div class="container py-3">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <label for="">Name / Address</label>
+                                                </div>
+                                                <div class="col-1">
+                                                    <input  id="generic_filter_input">
+                                                </div>
+                                                <div class="offset-3 col-1">
+                                                    <label for="">Grade</label>
+                                                </div>
+                                                <div class="col-1">
+                                                    <select id="grade_select">
+                                                        <option value="grade0" id="no_grade"></option>
+                                                        <option id="low_grade">&#60 2</option>
+                                                        <option id="medium_grade">2-4</option>
+                                                        <option id="high_grade">4+</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-3">
+                                                    <label for="">Dermatologist number</label>
+                                                </div>
+                                                <div class="col-1">
+                                                    <select id="derm_select">
+                                                        <option value="derm0" id="no_derm"></option>
+                                                        <option id="low_derm">&#60 10</option>
+                                                        <option id="medium_derm">10-50</option>
+                                                        <option id="high_derm">50+</option>
+                                                    </select>
+                                                </div>
+                                                <div class="offset-2 col-3">
+                                                    <label for="">Pharmacist number</label>
+                                                </div>
+                                                <div class="col-1">
+                                                    <select id="farm_select">
+                                                        <option value="farm0" id="no_farm"></option>
+                                                        <option id="low_farm">&#60 10</option>
+                                                        <option id="medium_farm">10-50</option>
+                                                        <option id="high_farm">50+</option>
+                                                    </select>
+                                                </div>                                             
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="offset-5 col-2">
+                                                    <button onclick="resetFilters()" class="btn btn-info-reserve">Reset filters</button>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    <br>
+                                    <br>
+                                                  
+                                </div>                                     
+                                
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </section>
+
+    </div>
+    <div class="img-about" id="about">
+                
+    </div>
+    <div class="img-contact" id="contact">
+
+    </div>
+
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+  </script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+    ></script>
+    <script src="../js/pharmacy/pharmacies.js"></script>
+    <script src="../js/logout.js"></script>
+  </body>
+</html>

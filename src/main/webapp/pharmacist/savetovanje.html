@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/dermatologist/dermstyle.css" />
+    <link rel="stylesheet" href="../css/dermatologist/navbar-dermpharm.css"/>
+
+    <title>Consultation</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand brand" href="../index.html"> <img src="../img/logo2.png" alt="" /></a>
+        <h2 id='systemName'>MDNN</h2>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="indexFarmaceut.html">Početna</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link" href="pregledaniKlijentiFarmaceut.html">Pregledani klijenti</a>
+              </li>
+  
+              <li class="nav-item active">
+                <a class="nav-link" href="savetovanje.html">Savetovanje</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link" href="radniKalendar.html">Radni kalendar</a>
+              </li>
+  
+              <li class="nav-item">
+                  <a class="nav-link" href="izdavanjeLeka.html">Izdavanje leka</a>
+                </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="timeOffZahtev.html">Godišnji/odsustvo</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link" href="mojProfilFarmaceut.html">Moj profil</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link" href="zakaziSavetovanje.html">Zakazivanje savetovanja</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html" onclick = "logOutPharmDerm()">Izloguj se</a>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <br>
+
+    <h2 class="text-center">Pretraga pacijenta za savetovanje</h2>
+    <hr>
+
+
+    <div class ="container">
+        
+        <div class="row">
+            <div class="col-lg-3">             
+            </div>
+
+            <div class="col-lg-2">
+                <label>Ime:</label>
+                <input type="text" id="imeId" onkeyup="searchIme()">
+            </div>
+
+            <div class="col-lg-1">             
+            </div>
+    
+            <div class="col-lg-2">
+                <label>Prezime:</label>
+                <input type="text" id="prezimeId" onkeyup="searchPrezime()">
+            </div>
+
+            <div class="col-lg-1">             
+            </div>
+
+            <!--
+            <div class="col-lg-2">
+                <button class="btn btn-primary" id="searchbtn">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Pretraži &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
+            </div> 
+            -->
+  
+        </div>
+
+        <br>
+        <hr>
+        <br>
+
+        <div class='form col-lg-3'>
+
+        </div>
+
+        <div class="form col-lg-12"> 
+            
+            <table class="table text-center" id = "mydatatable">
+              <thead>
+                <tr>
+                  <th scope="col" >Datum</th>
+                  <th scope="col">Vreme</th>
+                  <th scope="col">Ime</th>
+                  <th scope="col">Prezime</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+
+                </tr>
+              </thead>
+
+              <tbody id="tableBody">
+                <!--
+                <tr>
+ 
+                    <td>18-05-2021</td>
+                    <td>08:00</td>
+                    <td>Test</td>
+                    <td>Pacijent</td>
+                    <td><button class="btn btn-dark" id="">Započni savetovanje</button></td>
+                    <td><button class="btn btn-warning" id="">Nije se pojavio/la</button></td>
+
+                </tr>
+                -->
+              </tbody>
+            </table>
+          </div>
+
+          <br>
+          <hr>
+          <br>
+
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+    </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="../js/user/showerror.js"></script>
+    <script type="text/javascript" src="../js/pharmacist/counseling.js"></script>
+    <script src="../js/authorization.js"></script>
+    <script src="../js/logout.js"></script>
+  </body>
+</html>

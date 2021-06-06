@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/pharmacyadmin/phadminstyle.css" />
+    <title>Homepage</title>
+  </head>
+
+<body>
+    <div class="index-img">
+        <nav class="navbar navbar-expand-md navbar-default">
+            <a class="navbar-brand" href="../index.html">M D N N</a>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto topnav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="pharmacyedit.html">Pharmacy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pharmacistslist.html">Pharmacists</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="dermatologistslist.html">Dermatologists</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="meds.html">Medicines</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="pricelist.html">Pricelist</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Report
+                      </a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="pharmacyReport.html">Pharmacy</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="pharmacistsReport.html">Pharmacists</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="dermatologistsReport.html">Dermatologists</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="examsReport.html">Examinations</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="medicineReport.html">Medicines</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="incomeReport.html">Incomes</a>
+                      </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          Purchase order
+                      </a>
+                      <div class="dropdown-menu">
+                          <a class="dropdown-item active" href="purchaseorder.html">New</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="orderslist.html">All</a>
+                      </div>
+                      </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="newactionpromotion.html">Actions/promotions</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="queries.html">Queries</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="absencerequestpage.html">TimeOff requests</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <div class="btn-group">
+                        <a href="myprofile.html" class="btn btn-link nav-link">My profile</a>
+                        <a href="#" class="btn btn-link nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="../index.html" onclick = "logOutPharmDerm()">Log out</a>
+                        </div>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container" id="pharmacyeditcont" align="center">
+            <br><br>
+            <h1>All medicines in system</h1>
+            <br><br>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <input id="search" onkeyup='search()' type="text" class="form-control" placeholder="Search" aria-label="Search" >
+                </div>
+                <div class="col-3"></div>
+            </div>
+            <br><br>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar" style="width: 80%;">
+                <table class="table table-bordered table-striped" id="allTable">
+                <thead>
+                    <tr>
+                    <th scope="col" onclick="sortTable(0,'allTable')">Medicine</th>
+                    <th scope="col" onclick="sortTable(1,'allTable')">Structure</th>
+                    <th scope="col" onclick="sortTable(2,'allTable')">Manufacturer</th>
+                    <th scope="col" onclick="sortTable(3,'allTable')">Grade</th>
+                    <th scope="col" onclick="sortTable(4,'allTable')"></th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    
+                </tbody>
+                </table>
+            </div>
+            <br>
+            <br><br>
+        </div>
+    </div>
+      
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+  </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/pharmacyadmin/allmeds.js"></script>
+    <script src="../js/authorization.js"></script>
+    <script src="../js/pharmacyadmin/sorttable.js"></script>
+    <script src="../js/user/showerror.js"></script>
+    <script src="../js/logout.js"></script>
+
+</body>
+</html>

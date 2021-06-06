@@ -1,25 +1,17 @@
 package rs.ac.uns.ftn.informatika.rest;
 
+import net.devh.boot.grpc.server.autoconfigure.GrpcServerSecurityAutoConfiguration;
 import org.springframework.boot.SpringApplication;
-import org.springframework.amqp.core.*;
-import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
-import org.springframework.amqp.support.converter.MessageConverter;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
-@EnableScheduling
-@SpringBootApplication
+
+@SpringBootApplication(exclude = { GrpcServerSecurityAutoConfiguration.class })
 public class RestExampleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RestExampleApplication.class, args);
 	}
-	
+	/*
 	@Value("${myqueue}")
 	String queue;
 
@@ -87,5 +79,5 @@ public class RestExampleApplication {
 	      rabbitTemplate.setMessageConverter(jsonMessageConverter());
 	      return rabbitTemplate;
 	  }
-	
+	*/
 }

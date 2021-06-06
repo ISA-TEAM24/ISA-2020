@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/user/user_style.css"/>
+    
+    <title>Homepage</title>
+  </head>
+  <body>
+    <div class="img-background background-tint" id="">
+      <nav class="navbar navbar-expand-md navbar-light fixed-top">
+        <div class="container-fluid">
+          <!--<a class="navbar-brand" href="#"> <img class="logo-img" src="img/logo.png" alt="" /></a>-->
+          <button
+            class="navbar-toggler custom-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div class="container">
+              <ul class="navbar-nav w-100 justify-content-center">
+                <li class="nav-item">
+                  <a class="nav-link surround-item" href="#contact">CONTACT</a>
+                </li>
+    
+                <li class="nav-item">
+                  <a class="nav-link surround-item" href="#about">ABOUT US</a>
+                </li>
+    
+                <li class="nav-item active middle-nav">
+                  <a class="nav-link" href="../index.html">MDNN</a>
+                </li>
+    
+                <li class="nav-item">
+                  <a class="nav-link surround-item" href="../pharmacy/pharmacies.html">PHARMACIES</a>
+                </li>
+    
+                <li class="nav-item">
+                  <a onclick="logMeOut()" class="nav-link surround-item"  href="">LOGOUT</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      <section id="under-nav-fake" class="under-nav-fake">
+      </section>
+
+      <section id="under-nav-real" class="under-nav-real">
+
+        <div class="container pt-5">
+            <div class="row no-gutters">
+                <div class="col-3 left-panel">
+                    <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <br>
+                        <br>
+                        <a class="nav-link active" onclick="reloadProfile()" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
+                        <a class="nav-link" onclick="reloadAllergies()" id="v-pills-allergies-tab" data-toggle="pill" href="#v-pills-allergies" role="tab" aria-controls="v-pills-allergies" aria-selected="false">Allergies</a>         
+                        <a class="nav-link" onclick="reloadUpcoming()" id="v-pills-appointments-tab" data-toggle="pill" href="#v-pills-appointments" role="tab" aria-controls="v-pills-appointments" aria-selected="false">Appointments</a>
+                        <a class="nav-link" onclick="reloadInfo()" id="v-pills-loyalty-tab" data-toggle="pill" href="#v-pills-loyalty" role="tab" aria-controls="v-pills-loyalty" aria-selected="false">Loyalty/Penalties</a>
+                        <a class="nav-link" onclick="reloadSubs()" id="v-pills-subscriptions-tab" data-toggle="pill" href="#v-pills-subscriptions" role="tab" aria-controls="v-pills-subscriptions" aria-selected="false">Subscriptions</a>
+                        <a class="nav-link" onclick="loadPastVisits()" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
+                        <a class="nav-link" onclick="reloadPastPrescMeds()" id="v-pills-upcoming-tab" data-toggle="pill" href="#v-pills-upcoming" role="tab" aria-controls="v-pills-upcoming" aria-selected="false">Meds via EPrescription</a>
+                        <a class="nav-link" onclick="reloadPastPresc()" id="v-pills-eprescriptions-tab" data-toggle="pill" href="#v-pills-eprescriptions" role="tab" aria-controls="v-pills-eprescriptions" aria-selected="true">EPrescriptions</a>
+                        <a class="nav-link" onclick="reloadReserved()" id="v-pills-reserved-tab" data-toggle="pill" href="#v-pills-reserved" role="tab" aria-controls="v-pills-reserved" aria-selected="false">Reserved</a>
+                        <a class="nav-link" id="v-pills-complaints-tab" data-toggle="pill" href="#v-pills-complaints" role="tab" aria-controls="v-pills-complaints" aria-selected="false">Complaints</a>
+                        <a class="nav-link" onclick="penaltyCheck('Consult scheduling not allowed', 'v-pills-profile-tab')" id="v-pills-pickup-tab" data-toggle="pill" href="#v-pills-pickup" role="tab" aria-controls="v-pills-pickup" aria-selected="false">New Consult</a>
+                        <a class="nav-link" id="v-pills-penalties-tab" data-toggle="pill" href="#v-pills-penalties" role="tab" aria-controls="v-pills-penalties" aria-selected="false">Grading</a>
+                        <a class="nav-link" onclick="penaltyCheck('Medicine reservation not allowed', 'v-pills-profile-tab')" id="v-pills-reservemeds-tab" data-toggle="pill" href="#v-pills-reservemeds" role="tab" aria-controls="v-pills-reservemeds" aria-selected="false">Reserve medicine</a>                      
+                        <a class="nav-link" onclick="reloadDermatologists()" id="v-pills-dermatologists-tab" data-toggle="pill" href="#v-pills-dermatologists" role="tab" aria-controls="v-pills-dermatologists" aria-selected="false">Dermatologists</a>
+                        <a class="nav-link" onclick="reloadPharmacists()" id="v-pills-pharmacists-tab" data-toggle="pill" href="#v-pills-pharmacists" role="tab" aria-controls="v-pills-pharmacists" aria-selected="false">Pharmacists</a>
+                    </div>
+                </div>
+                <div class="col-9 right-panel">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <br>
+                            <br>
+                            <div class="container text-pad" >
+                                <div class="row pretty-color" style="font-size: 2.5vh;">Profile</div>
+                                <br>
+                                <br>
+                                <div class="row" style="font-size: 2vh;">
+                                    <div class="col-2 left-pad">
+                                        <label>email</label>
+                                    </div>
+
+                                    <div class="col-2 mx-1">
+                                        <input type="text" class="input-border" disabled id="profile-email-input" value="">
+                                    </div>
+
+                                    <div class="offset-2 col-2 left-pad">
+                                        <label>current password</label>
+                                    </div>
+                                    <div class="col-2 mx-0">
+                                        <input type="password" class="input-border" id="profile-password-old-input">
+                                    </div>                    
+                                </div> 
+                                
+                                <div class="row" style="font-size: 2vh;">
+                                    <div class="col-2 left-pad">
+                                        <label>name</label>
+                                    </div>
+                                    <div class="col-1 mx-1">
+                                        <input type="text" class="input-border" id="profile-name-input" pattern='^[" "A-ZŠČĆŽĐa-zščćžđ]{2,32}$' value="">
+                                    </div>
+
+                                    <div class="offset-3 left-pad">
+                                        <label>new password</label>
+                                    </div>
+                                    <div class="col-2 mx-3">
+                                        <input type="password" class="input-border" id="profile-password-new-input">
+                                    </div>
+
+                                </div>
+
+                                <div class="row" style="font-size: 2vh;">
+                                    <div class="col-2 left-pad">
+                                        <label>last name</label>
+                                    </div>
+                                    <div class="col-1 mx-0">
+                                        <input type="text" class="input-border" id="profile-lastname-input" value="">
+                                    </div>
+                                    <div class="offset-3 col-2 left-pad">
+                                      <label>confirm password</label>
+                                  </div>
+                                  <div class="col-1 mx-0">
+                                      <input type="password" class="input-border" id="profile-password-confirm-input" value="">
+                                  </div>
+                                </div>
+
+                                <div class="row" style="font-size: 2vh;">
+                                    <div class="col-2 left-pad">
+                                        <label>address</label>
+                                    </div>
+                                    <div class="col-2 mx-0">
+                                        <input type="text" class="input-border" id="profile-address-input" pattern='^[" ""/""."0-9A-ZŠČĆŽĐa-zščćžđ]{5,32}$' value="">
+                                    </div>
+
+                                    <div class="offset-4 col-3">
+                                      <button id="profile-change-password-button" class="btn btn-info-profile" onclick="changePassword()">&nbsp&nbsp&nbspChange password&nbsp&nbsp</button>
+                                  </div>
+                                    
+                                    
+
+                                </div>
+
+                                <div class="row" style="font-size: 2vh;">
+                                    <div class="col-2 left-pad">
+                                        <label>phone number</label>
+                                    </div>
+                                    <div class="col-2 mx-0">
+                                        <input type="text" class="input-border" id="profile-phone-input" pattern='^[" ""-""/""+"0-9]{5,32}$' value="">
+                                    </div>
+
+                                    <div class="offset-4 col-3">
+                                      <button id="profile-save-button" class="btn btn-info-profile" onclick="saveUser()">&nbsp&nbsp&nbspSave changes&nbsp&nbsp</button>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="font-size: 2vh;">
+                                  <div class="col-2 left-pad">
+                                      <label>country</label>
+                                  </div>
+                                  <div class="col-2 mx-0">
+                                      <input type="text" class="input-border" id="profile-country-input" value="">
+                                  </div>
+                                  <div class="offset-2 col-2 left-pad">
+                                    <label>city</label>
+                                </div>
+                                <div class="col-2 mx-0">
+                                    <input type="text" class="input-border" id="profile-city-input" value="">
+                                </div>
+                                  
+                              </div>
+                                
+
+
+                            </div>
+                        </div>
+                         
+                        <div class="tab-pane fade" id="v-pills-allergies" role="tabpanel" aria-labelledby="v-pills-allergies-tab">
+                          <br>
+                          <br>
+                          <div class="text-pad">
+                            <div class="row pretty-color" style="font-size: 2.5vh;">Allergies</div>
+                            <br>
+                            <br>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                              <table class="table table-bordered table-striped mb-0">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col"></th>
+                                  </tr>
+                                </thead>
+                                <tbody id="allergies_body">
+                                                          
+                                </tbody>
+                              </table>
+                            </div>
+                            <br>
+                            <hr>
+                            <div class="container py-5">
+                              <div class="row">
+                                <div class="offset-3 col-2">
+                                  <input id="allergies-input" type="text" placeholder="Allergy name" pattern='^[A-ZŠČĆŽĐa-zščćžđ]{2,32}$'>
+                                </div>
+                                <div class="offset-1 col-2">
+                                  <button onclick="addAllergy()" class="btn btn-info-allergies" id="allergies-add-button">Add new allergy </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                            
+                        </div>
+
+                        <div class="tab-pane fade" id="v-pills-appointments" role="tabpanel" aria-labelledby="v-pills-appointments-tab">
+                            <br>
+                            <br>
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">Appointments</div>
+                              <br>
+                              <br>
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                <table class="table table-bordered table-striped mb-0" id="upcoming_table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" onclick="sortTable(0,'upcoming_table')">Type of visit</th>
+                                      <th scope="col" onclick="sortTable(1,'upcoming_table')">Doctor</th>
+                                      <th scope="col" onclick="sortTable(2,'upcoming_table')">Time</th>
+                                      <th scope="col" onclick="sortTable(3,'upcoming_table')">Date</th>
+                                      <th scope="col" onclick="sortTable(4,'upcoming_table')">Pharmacy</th>
+                                      <th scope="col"></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id="upcoming_body">
+                                                        
+                                  </tbody>
+                                </table>
+                              </div>
+                              <br>                                           
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-loyalty" role="tabpanel" aria-labelledby="v-pills-loyalty-tab">
+                          <br>
+                          <br>
+                          <div class="text-pad">
+                            <div class="row pretty-color" style="font-size: 2.5vh;">Loyalty/Penalties</div>
+                            <h5 id="cat_div" class="py-5 "> 
+                              
+                            </h5>
+                            <h5 id="pen_div" class="py-3"> 
+                              
+                            </h5>
+                            <h5 id="grade_div" class="py-5"> 
+                              
+                            </h5>
+
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-subscriptions" role="tabpanel" aria-labelledby="v-subscriptions-tab">
+                            <br>
+                            <br>
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">Subscriptions</div>
+                              <br>
+                              <br>
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                <table class="table table-bordered mb-0">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Pharmacy name</th>
+                                      <th scope="col">Subscribed</th>
+
+                                    </tr>
+                                  </thead>
+                                  <tbody id="subs_body">
+                                                     
+                                  </tbody>
+                                </table>
+                                <div class="container py-3">
+                                  <div class="row">
+                                    <div class="offset-7 col-2">
+                                      <button class="btn-info-profile btn" hidden>&nbsp&nbspSave Changes&nbsp&nbsp</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+  
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab">
+                            <br>
+                            <br>
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">History of appointments</div>
+                              <br>
+                              <br>
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                <table class="table table-bordered mb-0" id="history_pharmacist_table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" onclick="sortTable(0,'history_pharmacist_table')">Pharmacist</th>
+                                      <th scope="col" onclick="sortTableNumeric(1,'history_pharmacist_table')">Price</th>
+                                      <th scope="col" onclick="sortTableNumeric(2,'history_pharmacist_table')">Length</th>
+                                      <th scope="col" onclick="sortTable(3,'history_pharmacist_table')">Date</th>
+
+                                    </tr>
+                                    
+                                  </thead>
+                                  <tbody id="farm_body_id">  
+                                                 
+                                  </tbody>
+                                </table>
+                                <table class="table table-bordered mb-0" id="history_dermatologist_table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" onclick="sortTable(0,'history_dermatologist_table')">Dermatologist</th>
+                                      <th scope="col" onclick="sortTable(1,'history_dermatologist_table')">Price</th>
+                                      <th scope="col" onclick="sortTable(2,'history_dermatologist_table')">Length</th>
+                                      <th scope="col" onclick="sortTable(3,'history_dermatologist_table')">Date</th>  
+                                    </tr>
+                                  </thead>
+                                  <tbody id="derm_body_id">
+                                                                                                                 
+                                  </tbody>
+                                </table>
+                              </div>
+                                <div class="container py-3">
+                                  <div class="row">
+                                    <div class="offset-7 col-2">
+                                      <button id="history_save" class="btn-info-profile btn">Show exams</button>
+                                    </div>
+                                  </div>
+                                </div>
+
+  
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-upcoming" role="tabpanel" aria-labelledby="v-pills-upcoming-tab">
+                          <br>
+                          <br>
+                          <div class="text-pad">
+                            <div class="row pretty-color" style="font-size: 2.5vh;">Medicine prescribed via EPrescription</div>
+                            <br>
+                            <br>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                              <table class="table table-bordered mb-0" id="history_pharmacist_table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col" onclick="">Medicine name</th>
+                                    <th scope="col" onclick="">Date of prescription</th>
+                                    <th scope="col" onclick="">In Pharmacy</th>
+                                  </tr>
+                                  
+                                </thead>
+                                <tbody id="past_presc_meds_body">  
+               
+                                </tbody>
+                              </table>                            
+                            </div>
+                          </div>
+                        </div>
+                            
+                        
+                        <div class="tab-pane fade" id="v-pills-eprescriptions" role="tabpanel" aria-labelledby="v-pills-eprescriptions-tab">
+                            <br>
+                            <br>
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">EPrescriptions</div>
+                              <br>
+                              <br>
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                <table class="table table-bordered mb-0"  id="past_epresc_table">
+                                  <thead>
+                                    <th scope="col" onclick="sortTableNumeric(0,'past_epresc_table')">Number of meds</th>
+                                    <th scope="col" onclick="sortTable(1,'past_epresc_table')">Date of prescription</th>
+                                    <th scope="col" onclick="sortTableNumeric(2,'past_epresc_table')">Duration of Therapy</th>
+                                    <th scope="col" onclick="sortTable(3,'past_epresc_table')">Status</th>
+                                    
+                                  </thead>
+                                  <tbody id="past_epresc_body">  
+                                               
+                                  </tbody>
+                                </table>                            
+                              </div>
+                              <div class="container">
+                                <div class="row">
+                                  <div class="col-2">
+                                    <label for="">Filter by status</label>
+                                  </div>
+                                  <div class="col-3">
+                                    <select class="custom-select modified-select" id="past_presc_filter">
+                                      <option selected  id="presc_none"></option>
+                                      <option value="1"  id="presc_new">Active</option>
+                                      <option value="2"  id="presc_processed">Processed</option>
+                                      <option value="3"  id="presc_rejected">Rejected</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-reserved" role="tabpanel" aria-labelledby="v-pills-reserved-tab">
+                            <br>
+                            <br>
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">Reserved medicine</div>
+                              <br>
+                              <br>
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                <table class="table table-bordered mb-0" id="history_pharmacist_table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col" onclick="">Medicine name</th>
+                                      <th scope="col" onclick="">Pharmacy</th>
+                                      <th scope="col" onclick="">Pick up by date</th>
+                                      <th scope="col" onclick=""></th>
+                                      
+                                    </tr>
+                                    
+                                  </thead>
+                                  <tbody id="reserved_body">  
+                                                            
+                                  </tbody>
+                                </table>                            
+                              </div>                       
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-complaints" role="tabpanel" aria-labelledby="v-pills-complaints-tab">
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="text-pad">
+                              <div class="row pretty-color" style="font-size: 2.5vh;">Write a complaint</div>
+                              <br>
+                              <br>
+                              <div class="container">
+                                <div class="row">
+                                  <div class="col-2">
+                                    <label for="">Complaint group</label>
+                                  </div>
+                                  <div class="col-4">
+                                    <select class="custom-select modified-select" id="select_group_complaint">
+                                      <option selected id="select_none_c"></option>
+                                      <option value="1" id="select_pharmacy_c">Pharmacy</option>
+                                      <option value="2" id="select_meds_c">Medicine</option>
+                                      <option value="3" id="select_farm_c">Pharmacist</option>
+                                      <option value="4" id="select_derm_c">Dermatologist</option>
+                                    </select>
+                                  </div>
+                                </div>                            
+                                <br>
+                                <div class="row">
+                                  <div class="col-2">
+                                    <label for="">Complaint about</label>
+                                  </div>
+                                  <div class="col-4">
+                                    <select class="custom-select modified-select" id="select_specific_complaint">
+                                    </select>
+                                  </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                  <div class="col-2">
+                                    <label for="">Complaint text</label>
+                                  </div>
+                                  <div class="col-9">
+                                    <textarea rows="10" cols="70" id="complaint_text" placeholder="Complaint text">
+                                    </textarea>
+                                  </div>                                 
+                                </div>
+                                <br>
+                                <div class="row">
+                                  <div class="offset-8">
+                                    <button onclick="sendComplaint()" class="btn btn-info-profile">&nbspSend complaint&nbsp</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-pickup" role="tabpanel" aria-labelledby="v-pills-pickup-tab">
+                                <br>
+                                <br>                            
+                                <div class="text-pad">
+                                  <div class="row pretty-color" style="font-size: 2.5vh;">Schedule a consult</div>
+                                  <br>
+                                  <br>
+                                  <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                                    <table class="table table-bordered mb-0" id="new_consult_table">
+                                      
+                                    </table>                            
+                                  </div>
+                                  <div class="container">
+                                    <div class="row">
+                                      <div class="col-2">
+                                        <label for="">At date</label>
+                                      </div>
+                                      <div class="col-3">
+                                        <input type="date" id="consult-date-picker">
+                                      </div>
+                                      <div class="offset- 1 col-3">
+                                        <button onclick="findPharmacies()" class="btn btn-info-profile">&nbsp&nbspFind term&nbsp&nbsp</button>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-2">
+                                        <label for="">On time</label>
+                                      </div>
+                                      <div class="col-3">
+                                        <input type="time" id="consult-time-picker">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-penalties" role="tabpanel" aria-labelledby="v-pills-penalties-tab">
+                                <br>
+                                <br>
+                                <div class="text-pad">
+                                  <div class="row pretty-color" style="font-size: 2.5vh;">Grading</div>
+                                  <br>
+                                  <br>
+                                  <div class="container">
+                                    <div class="row">
+                                      <div class="col-2">
+                                        <label for="" >Group</label>
+                                      </div>
+                                      <div class="col-2">
+                                        <select id="select_group">
+                                          <option id="select_none"></option>
+                                          <option id="select_pharmacy">Pharmacy</option>
+                                          <option id="select_meds">Medicine</option>
+                                          <option id="select_farm">Pharmacist</option>
+                                          <option id="select_derm">Dermatologist</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                      <div class="col-3">
+                                        <label for="" >Specifically for</label>
+                                      </div>
+                                      <div class="col-2">
+                                        <select id="select_specific">
+                                        </select>
+                                      </div>
+
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                      <div class="col-2">
+                                        <label for="" >Grade</label>
+                                      </div>  
+                                      <div class="offset-1">
+                                        <input id="grade_number" type="number" min="0.5" max="5" step="0.5" placeholder="grade" style="min-width: 5vw;">    
+                                      </div> 
+                                                                
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="row">
+                                      <div class="col-3">
+                                        <label for="" >Reason for grade</label>
+                                      </div>  
+                                      <div class="">
+                                        <textarea id="grade_note" rows="5" cols="35" id="TITLE" placeholder="Complaint text">
+                                        </textarea>    
+                                      </div>  
+                                      <div class="offset-1 col-2">
+                                        <button onclick="sendGrade()" class="btn btn-info-profile">Send grade</button>
+                                      </div>                                                             
+                                    </div>
+
+                                  </div>
+                                </div>
+                                
+
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-reservemeds" role="tabpanel" aria-labelledby="v-pills-reservemeds-tab">
+                          <br>
+                          <br>
+                          <div class="text-pad">
+                            <div class="row pretty-color" style="font-size: 2.5vh;">Reserve medicine (search je uradjen ovde jer student4 nije uradio jos pretragu lekova)</div>
+                            <br>
+                            <br>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                              <table class="table table-bordered mb-0" id="history_pharmacist_table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col" onclick="">Medicine name</th>
+                                    <th scope="col" onclick="">Available in</th>
+                                    <th scope="col" onclick="">Address</th>
+                                    <th scope="col">Pick up by</th>
+                                    <th scope="col" onclick=""></th>
+                                  </tr>
+                                  
+                                </thead>
+                                <tbody id="new_reserve_body">  
+                                                 
+                                </tbody>
+                              </table>                            
+                            </div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-1">
+                                  <label for="">medicine name:</label>
+                                </div>
+                                <div class="offset-1 col-2">
+                                  <input id="new_reserved_input" type="text" placeholder="medicine name">
+                                </div>
+                                <div class="offset-1 col-2">
+                                  <button onclick="searchMedicine()" id="findmed_xyz" class="btn btn-info-allergies">Search</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+
+                  </div>
+                  
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  <div class="tab-pane fade" id="v-pills-dermatologists" role="tabpanel" aria-labelledby="v-pills-dermatologists-tab">
+                    <br>
+                    <br>
+                    <div class="text-pad">
+                      <div class="row pretty-color" style="font-size: 2.5vh;">Dermatologists</div>
+                      <br>
+                      <br>
+                      <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-3">
+                            <input id="searchdermname" onkeyup="searchDermatologistsByName()" type="text" placeholder="Search by name">
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-3">
+                          <input id="searchdermlastname" onkeyup="searchDermatologistsByLastName()" type="text" placeholder="Search by last name">
+                        </div>
+                        <div class="col-2"></div>
+                      </div>
+                      <br>
+                      <br>
+                      <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                        <table class="table table-bordered table-striped mb-0" id="dermatologistsT">
+                          <thead>
+                            <tr>
+                              <th scope="col" onclick="sortTable(0,'dermatologistsT')">Name</th>
+                              <th scope="col" onclick="sortTable(1,'dermatologistsT')">Last name</th>
+                              <th scope="col" onclick="sortTable(2,'dermatologistsT')">Grade</th>
+                              <th scope="col" onclick="sortTable(3,'dermatologistsT')">Pharmacies</th>
+                            </tr>
+                          </thead>
+                          <tbody id="dermatologistsTable">
+                                                
+                          </tbody>
+                        </table>
+                      </div>
+                      <br>                                           
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-pharmacists" role="tabpanel" aria-labelledby="v-pills-pharmacists-tab">
+                  <br>
+                  <br>
+                  <div class="text-pad">
+                    <div class="row pretty-color" style="font-size: 2.5vh;">Pharmacists</div>
+                    <br>
+                    <br>
+                    <div class="row">
+                      <div class="col-2"></div>
+                      <div class="col-3">
+                          <input id="searchphname" onkeyup="searchPharmacistsByName()" type="text" placeholder="Search by name">
+                      </div>
+                      <div class="col-2"></div>
+                      <div class="col-3">
+                        <input id="searchphlastname" onkeyup="searchPharmacistsByLastName()" type="text" placeholder="Search by last name">
+                      </div>
+                      <div class="col-2"></div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar pr-5">
+                      <table class="table table-bordered table-striped mb-0" id="pharmacistsT">
+                        <thead>
+                          <tr>
+                            <th scope="col" onclick="sortTable(0,'pharmacistsT')">Name</th>
+                            <th scope="col" onclick="sortTable(1,'pharmacistsT')">Last name</th>
+                            <th scope="col" onclick="sortTable(2,'pharmacistsT')">Grade</th>
+                            <th scope="col" onclick="sortTable(3,'pharmacistsT')">Pharmacies</th>
+                          </tr>
+                        </thead>
+                        <tbody id="pharmacistsTable">
+                                              
+                        </tbody>
+                      </table>
+                    </div>
+                    <br>                                           
+                  </div>
+              </div>
+
+
+                      </div>          
+                </div>
+            </div>
+        </div>
+
+      </section>
+
+    </div>
+    <!-- ABOUT PAGE START -->
+    <div class="img-about" id="about">
+                
+    </div>
+    <!-- CONTACT PAGE START -->
+    <div class="img-contact" id="contact">
+
+    </div>
+    <!-- MODAL ALERT-->
+    <div class="container" id="custom_alert_box">
+      <div class="row">
+        <div class="col-md-12">
+    
+          <div class="modal fade" data-keyboard="false" data-backdrop="static" id="alert_modal" tabindex="-1">
+            <div class="modal-dialog modal-md">
+              <div class="modal-content">
+    
+                  <div class="modal-header">
+                    <h5 class="modal-title w-100" id="alert_title"> Zakazivanje dodatnog pregleda </h5>
+                    <button class="close" data-dismiss="modal">&times;</button>
+    
+                  </div>
+    
+                  <div class ="modal-body" id="alert_body">
+                    
+                  </div>
+    
+                  <br>
+    
+                  <div class="modal-footer">
+                    <button class="btn btn-info-allergies" id="close_alert" data-dismiss="modal">Close</button>
+                  </div>
+    
+              </div>
+            </div>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+  </script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+    ></script>
+    <script src="../js/user/showerror.js"></script>
+    <script src="../js/user/penaltycheck.js"></script>
+    <script src="../js/user/history.js"></script>
+    <script src="../js/user/profile.js"></script>
+    <script src="../js/user/allergies.js"></script>
+    <script src="../js/user/loyaltyPen.js"></script>
+    <script src="../js/user/subscriptions.js"></script>
+    <script src="../js/user/consult.js"></script>
+    <script src="../js/user/upcoming.js"></script>
+    <script src="../js/user/reserved.js"></script>
+    <script src="../js/user/grading.js"></script>
+    <script src="../js/user/eprescriptions.js"></script>
+    <script src="../js/user/eprescmeds.js"></script>
+    <script src="../js/user/complaints.js"></script>
+    <script src="../js/authorization.js"></script>
+    <script src="../js/user/dermatologists.js"></script>
+    <script src="../js/user/pharmacists.js"></script>
+  </body>
+</html>

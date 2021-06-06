@@ -5,26 +5,42 @@ import java.util.Date;
 @Entity
 public class Rezervacija {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="Event_Seq", sequenceName="Event_Seq", initialValue = 50, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event_Seq")
     private Long ID;
     @OneToOne
     private Lek lek;
     @OneToOne
     private Apoteka apoteka;
     @Column(nullable = false)
+    private Date rokZaPreuzimanje;
+    @Column(nullable = true)
     private Date datumPreuz;
     @OneToOne
     private Korisnik pacijent;
+    @Column(nullable = false)
+    private boolean penalized;
 
     public Rezervacija() {
+        this.penalized = false;
     }
 
-    public Rezervacija(Long ID, Lek lek, Apoteka apoteka, Date datumPreuz, Korisnik pacijent) {
+    public Rezervacija(Long ID, Lek lek, Apoteka apoteka, Date rokZaPreuzimanje, Date datumPreuz, Korisnik pacijent, boolean penalized) {
         this.ID = ID;
         this.lek = lek;
         this.apoteka = apoteka;
+        this.rokZaPreuzimanje = rokZaPreuzimanje;
         this.datumPreuz = datumPreuz;
         this.pacijent = pacijent;
+        this.penalized = penalized;
+    }
+
+    public boolean isPenalized() {
+        return penalized;
+    }
+
+    public void setPenalized(boolean penalized) {
+        this.penalized = penalized;
     }
 
     public Long getID() {
@@ -67,12 +83,21 @@ public class Rezervacija {
         this.pacijent = pacijent;
     }
 
+    public Date getRokZaPreuzimanje() {
+        return rokZaPreuzimanje;
+    }
+
+    public void setRokZaPreuzimanje(Date rokZaPreuzimanje) {
+        this.rokZaPreuzimanje = rokZaPreuzimanje;
+    }
+
     @Override
     public String toString() {
         return "Rezervacija{" +
                 "ID=" + ID +
                 ", lek=" + lek +
                 ", apoteka=" + apoteka +
+                ", rokZaPreuzimanje=" + rokZaPreuzimanje +
                 ", datumPreuz=" + datumPreuz +
                 ", pacijent=" + pacijent +
                 '}';

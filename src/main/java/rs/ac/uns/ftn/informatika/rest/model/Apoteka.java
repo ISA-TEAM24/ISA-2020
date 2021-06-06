@@ -9,14 +9,16 @@ import java.util.Map;
 public class Apoteka {
 
     @Id
-    private String ID;
-    @Column(nullable = false, unique = false)
+    @SequenceGenerator(name="Event_Seq", sequenceName="Event_Seq", initialValue = 50, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event_Seq")
+    private Long ID;
+    @Column(nullable = false, unique = true)
     private String naziv;
     @Column(nullable = false, unique = false)
     private String adresa;
     @Column(nullable = false, unique = false)
     private String opis;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Korisnik> zaposleni;
     @ElementCollection
     @CollectionTable(name = "apoteka_cenovnik_mapping",
@@ -36,7 +38,69 @@ public class Apoteka {
 
     }
 
+    public Long getID() {
+        return ID;
+    }
 
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
+
+    public String getNaziv() {
+        return naziv;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public String getAdresa() {
+        return adresa;
+    }
+
+    public void setAdresa(String adresa) {
+        this.adresa = adresa;
+    }
+
+    public String getOpis() {
+        return opis;
+    }
+
+    public void setOpis(String opis) {
+        this.opis = opis;
+    }
+
+    public List<Korisnik> getZaposleni() {
+        return zaposleni;
+    }
+
+    public void setZaposleni(List<Korisnik> zaposleni) {
+        this.zaposleni = zaposleni;
+    }
+
+    public Map<String, Integer> getCenovnik() {
+        return cenovnik;
+    }
+
+    public void setCenovnik(Map<String, Integer> cenovnik) {
+        this.cenovnik = cenovnik;
+    }
+
+    public float getOcena() {
+        return ocena;
+    }
+
+    public void setOcena(float ocena) {
+        this.ocena = ocena;
+    }
+
+    public Map<Long, Integer> getMagacin() {
+        return magacin;
+    }
+
+    public void setMagacin(Map<Long, Integer> magacin) {
+        this.magacin = magacin;
+    }
 
     @Override
     public String toString() {

@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Entity
 public class Lek {
     @Id
+    @SequenceGenerator(name="Event_Seq", sequenceName="Event_Seq", initialValue = 50, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event_Seq")
     private Long ID;
     @Column(nullable = false, unique = false)
     private String naziv;
@@ -24,7 +26,7 @@ public class Lek {
     private boolean naRecept;
 
     @ElementCollection
-    private Set<String> alternative = new HashSet<String>();
+    private Set<Long> alternative = new HashSet<Long>();
     @Column(nullable = false, unique = false)
     private String napomene;
     @Column(nullable = false, unique = false)
@@ -36,7 +38,7 @@ public class Lek {
     }
 
     public Lek(Long ID, String naziv, String vrsta, String oblik, String sastav, String proizvodjac, boolean naRecept,
-               Set<String> alternative, String napomene, int poeni, float ocena) {
+               Set<Long> alternative, String napomene, int poeni, float ocena) {
         this.ID = ID;
         this.naziv = naziv;
         this.vrsta = vrsta;
@@ -106,11 +108,11 @@ public class Lek {
         this.naRecept = naRecept;
     }
 
-    public Set<String> getAlternative() {
+    public Set<Long> getAlternative() {
         return alternative;
     }
 
-    public void setAlternative(Set<String> alternative) {
+    public void setAlternative(Set<Long> alternative) {
         this.alternative = alternative;
     }
 

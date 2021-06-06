@@ -5,15 +5,51 @@ import java.util.Date;
 @Entity
 public class GodisnjiInfo {
 
+    @SequenceGenerator(name="Event_Seq", sequenceName="Event_Seq", initialValue = 50, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Event_Seq")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID;
     @Column(nullable = false)
     private boolean naGodisnjem;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date odDatuma;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date doDatuma;
 
+    public GodisnjiInfo(){
+        naGodisnjem = false;
 
+    }
+
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
+
+    public boolean isNaGodisnjem() {
+        return naGodisnjem;
+    }
+
+    public void setNaGodisnjem(boolean naGodisnjem) {
+        this.naGodisnjem = naGodisnjem;
+    }
+
+    public Date getOdDatuma() {
+        return odDatuma;
+    }
+
+    public void setOdDatuma(Date odDatuma) {
+        this.odDatuma = odDatuma;
+    }
+
+    public Date getDoDatuma() {
+        return doDatuma;
+    }
+
+    public void setDoDatuma(Date doDatuma) {
+        this.doDatuma = doDatuma;
+    }
 }
