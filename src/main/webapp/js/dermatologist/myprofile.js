@@ -64,7 +64,7 @@ function getMe() {
         },
         error : function() {
             console.log('An Error has occured while trying to reload the profile')
-            alert("Istekao vam je token. Ulogujte se ponovo.")
+            //alert("Istekao vam je token. Ulogujte se ponovo.")
             window.location.href = '../index.html';
         }    
     })
@@ -140,7 +140,7 @@ function saveNewData(){
         },
         error : function() {
             console.log('error occured')
-            alert("Istekao vam je token. Ulogujte se ponovo.")
+            //alert("Istekao vam je token. Ulogujte se ponovo.")
             window.location.href = '../index.html';
         }
         
@@ -210,7 +210,7 @@ function changepw() {
                 error : function() {
                     console.log(username)
                     console.log('error in firstlogpwchange')
-                    alert("Istekao vam je token. Ulogujte se ponovo.")
+                    //alert("Istekao vam je token. Ulogujte se ponovo.")
                     window.location.href = '../index.html';
                 }
                 

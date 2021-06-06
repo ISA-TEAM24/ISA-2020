@@ -32,7 +32,7 @@ function getData() {
         },
         error : function() {
             console.log('Error');
-            alert("Istekao vam je token. Ulogujte se ponovo.")
+            //alert("Istekao vam je token. Ulogujte se ponovo.")
             window.location.href = '../index.html';
         }
         
@@ -91,7 +91,7 @@ function saveReport() {
             },
             error : function() {
                 console.log('error occured')
-                alert("Istekao vam je token. Ulogujte se ponovo.")
+                //alert("Istekao vam je token. Ulogujte se ponovo.")
                 window.location.href = '../index.html';
             }
            
@@ -309,7 +309,7 @@ function getPredefinedExamsForDerm() {
         },
         error : function(xhr, status, error) {
             console.log('ERROR')
-            alert("Istekao vam je token. Ulogujte se ponovo.")
+            //alert("Istekao vam je token. Ulogujte se ponovo.")
             window.location.href = '../index.html';
         }
     })
