@@ -166,7 +166,7 @@ function getRequests() {
         },
         error : function() {
             console.log('Could not load Requests!')
-            alert("Istekao vam je token. Ulogujte se ponovo.")
+            //alert("Istekao vam je token. Ulogujte se ponovo.")
             window.location.href = '../index.html';
         }
     })

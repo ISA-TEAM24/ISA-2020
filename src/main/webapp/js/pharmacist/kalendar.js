@@ -121,7 +121,7 @@ function getPastVisits() {
     },
     error : function() {
         console.log('Cant get finished visits');
-        alert("Istekao vam je token. Ulogujte se ponovo.");
+        //alert("Istekao vam je token. Ulogujte se ponovo.");
         window.location.href = '../index.html';
     }    
   })
