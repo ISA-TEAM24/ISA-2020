@@ -100,7 +100,6 @@ function fillMyPharmacies(data) {
       $('#apotekeId').append('<option value="' + f.naziv + '" id="option-' + f.id + '">' + f.naziv + '</option>');
     })
 
-    console.log('APOTEKEEEEEEEEEEEEEEEEEE')
     console.log(myPharmacies);
     var counter = 1;
     var index;

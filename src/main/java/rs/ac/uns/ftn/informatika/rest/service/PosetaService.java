@@ -432,12 +432,10 @@ public class PosetaService {
 
         Apoteka moja = null;
         List<Apoteka> apotekaList = apotekaService.findPharmaciesByDermatologist(employee);
-        System.out.println("asdadsadsadsasdasdadsdas" + apotekaList.size());
 
         for(Apoteka a : apotekaList) {
             if(a.getNaziv().equals(dto.getApoteka())) {
                 moja = a;
-                System.out.println("USLI SMO U IF AAAAAAAAA");
                 break;
             }
         }
@@ -451,7 +449,6 @@ public class PosetaService {
 
         if(apotekaService.checkIfEmployeeIsFree(employee, dt.parseDateStringToDate(), dt.parseTimeStringToLocalTime(), moja)
                 && checkIfUserIsFree(pacijent.getUsername(), dto.getDatum(), dto.getVreme(),dto.getTrajanje())) {
-            System.out.println("FARMACEUT JE FREE ===============");
 
             p.setApoteka(moja);
             p.setDijagnoza("");
