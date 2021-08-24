@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/supplier/supplierStyle.css" />
+
+    <link rel="stylesheet" href="../css/systemAdmin/systemAdminStyle.css">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand brand" href="indexSystemAdmin.html"> <img src="../img/logo2.png" alt="" /></a>
+            <h2 id='systemName'>MDNN</h2>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="indexSystemAdmin.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="registerPharmacy.html">Register pharmacy</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="registerEmployee.html">Register employee</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="loyaltyProgram.html">Loyalty program</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="complains.html">Complains</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vacations.html">Absences/Vacations</a>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="myProfile.html">My profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Log out</a>
+                        </div>
+                    </li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Complains</h1>
+    </div>
+    <div class="container myContainer">
+        <br>
+
+        <table class="table complains">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First name</th>
+                    <th scope="col">Last name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-toggle="modal" data-target="#addNewMenager">
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                </tr>
+            </tbody>
+        </table>
+
+        </br>
+
+
+
+        <div class="modal fade" id="addNewMenager" tabindex="-1" aria-labelledby="postNotifModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addNewMenagaerRegistration">Complain</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <form method="post">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="firstName">Message</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                            rows="3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam praesentium unde quaerat quia nostrum voluptas.</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-9">
+                                        <label for="inputEmail4">Email</label>
+                                        <input type="email" class="form-control" value="mark.otto@gmail.com" disabled
+                                            id="inputEmail4" placeholder="Email">
+                                    </div>
+
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="firstName">Reply</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                            rows="3"></textarea>
+                                    </div>
+                                </div>
+
+                                </br>
+                                </br>
+                                <input class="btn btn-primary" value="Send" type="submit"></button>
+                            </form>
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

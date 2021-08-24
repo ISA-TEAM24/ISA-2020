@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/supplier/supplierStyle.css" />
+
+    <link rel="stylesheet" href="../css/systemAdmin/systemAdminStyle.css">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand brand" href="indexSystemAdmin.html"> <img src="../img/logo2.png" alt="" /></a>
+            <h2 id='systemName'>MDNN</h2>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="indexSystemAdmin.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="registerPharmacy.html">Register pharmacy</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="registerEmployee.html">Register employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="loyaltyProgram.html">Loyalty program</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="complains.html">Complains</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vacations.html">Absences/Vacations</a>
+                    </li>
+
+
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="myProfile.html">My profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Log out</a>
+                        </div>
+                    </li>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Loyalty program</h1>
+    </div>
+    <div class="container myContainer">
+        <form>
+            <div class="form-row">
+                <div class="col">
+                    <label for="inputName">Name</label>
+                    <input type="text" class="form-control" disabled value="Nikola" placeholder="First name">
+                </div>
+                <div class="col">
+                    <label for="inputLastName">Last name</label>
+
+                    <input type="text" class="form-control" disabled value="Aleksic" placeholder="Last name">
+                </div>
+            </div>
+            </br>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" class="form-control" disabled value="nikola@gmail.com" id="inputEmail4">
+                </div>
+                <div class="col">
+                    <label for="inputUsername">Username</label>
+                    <input type="text" class="form-control" disabled value="nikola1234" placeholder="Username">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <input type="text" class="form-control" disabled id="inputAddress" value="Bulevar oslobodjenja 123"
+                    placeholder="1234 Main St">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCity">City</label>
+                    <input type="text" class="form-control" disabled value="Novi Sad" id="inputCity">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputCity">State</label>
+                    <input type="text" class="form-control" disabled value="Serbia" id="inputState">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <span>Edit</span>
+            </button>
+            <button type="submit" disabled class="btn btn-primary">
+                <span>Save</span>
+            </button>
+            </br></br>
+        </form>
+    </div>
+
+    </br>
+    </br>
+    </br></br>
+
+    <div class="container myContainer">
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Old password</label>
+            <input type="password" class="form-control" placeholder="Old password" id="inputPassword4">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">New password</label>
+            <input type="password" class="form-control" placeholder="New password" id="inputPassword4">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Confirm password</label>
+            <input type="password" class="form-control" placeholder="Cofirm password" id="inputPassword4">
+        </div>
+        <button id="changePassBtn" type="submit" class="btn btn-primary">
+            <span>Change password</span>
+        </button>
+        </br>
+        </br>
+
+    </div>
+    </br>
+    </br>
+    </br></br>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
